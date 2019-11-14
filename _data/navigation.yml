@@ -3,10 +3,10 @@ main:
   - title: "About"
     url: /about/
 
-  - title: "Embedded Projects"
+  - title: "Embedded"
     url: /embedded-projects/
 
-  - title: "Software Dev Projects"
+  - title: "Software Dev"
     url: /software-projects/
   # - title: "About"
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
