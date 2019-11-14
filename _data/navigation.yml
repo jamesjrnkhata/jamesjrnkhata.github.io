@@ -6,7 +6,7 @@ main:
   - title: "Embedded Projects"
     url: /embedded-projects/
 
-  - title: "Software Development Projects"
+  - title: "Software Dev Projects"
     url: /software-projects/
   # - title: "About"
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
