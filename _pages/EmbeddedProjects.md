@@ -1,8 +1,19 @@
 ---
 layout: archive
 permalink: /embedded-projects/
-title: "Embedded Project Posts by Tags"
+title: "Embedded Projects Posts by Tags"
 author_profile: true
 header:
-  image: "/images/embedded_background.jpg"
+  image: "/images/background_grass2.jpg"
 ---
+
+{% include absolute_url %}
+{% include group-by-array collection=site.posts field="tags" %}
+
+{% for tag in group_names %}
+  {% assign posts = group_items[forloop.index0] %}
+  <h2 id="{{ tag | slugify }}" class="archive__subtitle">{{ tag }}</h2>
+  {% for post in posts %}
+    {% include archive-single.html %}
+  {% endfor %}
+{% endfor %}
