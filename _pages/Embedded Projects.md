@@ -4,7 +4,7 @@ permalink: /embedded-projects/
 title: "Embedded Projects Posts by Tags"
 author_profile: true
 header:
-  image: "/images/"
+  image: "/images/background_grass2.jpg"
 ---
 
 {% include base_path %}
@@ -16,4 +16,4 @@ header:
   {% for post in posts %}
     {% include archive-single.html %}
   {% endfor %}
-{% endfor %} 
+{% endfor %}
