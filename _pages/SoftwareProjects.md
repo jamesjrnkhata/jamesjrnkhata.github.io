@@ -1,8 +1,8 @@
 ---
 layout: archive
-permalink: /software-projects/
+permalink: /software-dev-projects/
 title: "Software Dev Posts by Tags"
 author_profile: true
 header:
-  image: "/images/software_background.jpeg"
+  image: "/images/software_background.jpg"
 ---
