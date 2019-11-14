@@ -108,7 +108,7 @@ analytics:
 # Site Author
 author:
   name             : "James Junior Nkhata"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/images/bio-photo_2018.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Embedded and Software Portfolio"
   location         : "Leicester, UK"
   email            :
