@@ -4,7 +4,7 @@ permalink: /embedded-projects/
 title: "Embedded Projects Posts by Tags"
 author_profile: true
 header:
-  image: "/images/background_grass2.jpg"
+  image: "/images/embedded_background.jpg"
 ---
 
 {% include group-by-array collection=site.posts field="tags" %}
