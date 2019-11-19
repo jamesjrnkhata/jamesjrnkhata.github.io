@@ -2,7 +2,7 @@
 title: "About"
 permalink: /about/
 header:
-  image: "/images/about.jpeg"
+  image: "/images/about.jpg"
 ---
 
-I am  
+I am an Embedded and Computer Engineer who lives in Leicester, United Kingdom. 
