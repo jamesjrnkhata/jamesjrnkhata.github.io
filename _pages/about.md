@@ -5,4 +5,4 @@ header:
   image: "/images/about.jpg"
 ---
 
-I am an Embedded and Computer Engineer who lives in Leicester, United Kingdom. 
+I am an Embedded and Computer Engineer who resides in Leicester, United Kingdom. 
