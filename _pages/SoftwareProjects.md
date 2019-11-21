@@ -7,7 +7,7 @@ header:
   image: "/images/software_background.jpg"
 ---
 {% for post in site.posts %}
-  {% if site.categories == "Software-projects"  %}
+  {% if site.categories == "software-projects"  %}
     {% include archive-single.html %}
   {% endif %}  
 {% endfor %}
