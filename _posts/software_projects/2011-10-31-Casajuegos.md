@@ -1,12 +1,10 @@
 ---
-layout: "post"
 title: "Casa-Juegos Cafe"
 date: 2018-01-28
 categories: [software-projects]
-permalink: /:categories/:title/:date
+permalink: /:categories/:title/
 header:
   image: "/images/"
-tags: [software, media entertainment, networking, gaming]
 excerpt: "software, media entertainment, networking, gaming"
 ---
 # H1 Heading
