@@ -10,7 +10,7 @@ main:
     url: /software-projects/
 
   - title: "Web Development"
-  #  url: /web-dev-projects/
+    url: /web-projects/
   # - title: "About"
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
   # - title: "Sample Posts"
