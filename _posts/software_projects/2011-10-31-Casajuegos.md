@@ -2,7 +2,7 @@
 layout: "post"
 title: "Casa-Juegos Cafe"
 date: 2018-01-28
-categories: software-projects
+categories: [software-projects]
 permalink: /:categories/:title/:date
 header:
   image: "/images/"
