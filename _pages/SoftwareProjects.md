@@ -6,8 +6,8 @@ author_profile: true
 header:
   image: "/images/software_background.jpg"
 ---
-{% for post in site.posts %}
-  {% if site.categories == "software-projects"  %}
+{% for category in site.categories %}
+  {% if category[0] == "software-projects"  %}
     {% include archive-single.html %}
   {% else %}
     <h2>Out of category</h2>
