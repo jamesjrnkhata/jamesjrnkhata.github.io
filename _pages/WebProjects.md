@@ -1,8 +1,10 @@
 ---
 layout: archive
-permalink: /web-dev-projects/
+permalink: /web-projects/
 title: "Web Project Links"
 author_profile: true
 header:
-  image: "/images/"
+  image: "/images/web_background.jpg"
 ---
+
+{% include under_contruction.html %}
