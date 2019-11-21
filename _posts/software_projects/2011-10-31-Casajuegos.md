@@ -3,7 +3,7 @@ layout: "post"
 title: "Casa-Juegos Gaming Cafe"
 date: 2018-01-28
 categories: software-projects
-permalink: /:categories/:title
+permalink: /:categories/:title/:date
 header:
   image: "/images/"
 
