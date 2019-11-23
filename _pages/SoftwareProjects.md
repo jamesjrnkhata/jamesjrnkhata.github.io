@@ -8,5 +8,5 @@ header:
 ---
 
 {% for category in site.categories %}
-  <h3>category[0]</h3>
+  <h3>{{category[0]}}</h3>
 {% endfor %}
