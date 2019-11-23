@@ -7,6 +7,8 @@ header:
   image: "/images/software_background.jpg"
 ---
 
-{% for category in site.categories %}
-  <h3>{{category[0]}}</h3>
+{% for post in site.posts %}
+  {% if post.categories[0] == "software-projects" %}
+    <h3>{{ categories[0] }}</h3>
+  {% endif %}  
 {% endfor %}
