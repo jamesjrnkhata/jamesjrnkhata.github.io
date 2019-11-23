@@ -7,4 +7,4 @@ header:
   image: "/images/web_background.jpg"
 ---
 
-{% include under_construction.html %}
+{% include page_construction.html %}
