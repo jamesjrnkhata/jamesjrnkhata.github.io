@@ -9,6 +9,6 @@ header:
 
 {% for post in site.posts %}
   {% if post.categories[0] == "software-projects" %}
-    <h3>{{ categories[0] }}</h3>
+    <h1>{{ categories[0] }}</h1>
   {% endif %}  
 {% endfor %}
