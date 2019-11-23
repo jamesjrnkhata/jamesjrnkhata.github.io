@@ -9,7 +9,7 @@ header:
 
 {% for category in site.categories %}
 
-  {% if category[0]== software-projects %}
+  {% if category[0] == software-projects %}
     <h3>{{ category[0] }}</h3>
     <ul>
       {% for post in category[1] %}
