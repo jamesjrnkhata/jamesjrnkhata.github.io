@@ -49,7 +49,7 @@ head(df)
 Here's some inline code `x+y`.
 
 Here's an image:
-<img src="{{ site.url }}{{ site.baseurl }}images/software_projects/casajuegoscafe/casajuegos_img00.jpg" alt="Image from the project">
+<img src="{{ site.url }}{{ site.baseurl }}/images/software_projects/casajuegoscafe/casajuegos_img00.jpg" alt="Image from the project">
 
 Here's another image using Kramdown:
 ![alt]({{ site.url }}{{ site.baseurl }}/images/perceptron/linsep.jpg)
