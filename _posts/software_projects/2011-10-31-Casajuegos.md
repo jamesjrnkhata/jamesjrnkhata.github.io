@@ -3,7 +3,7 @@ title: "CasaJuegos Cafe"
 date: 2011-10-31
 categories: [software-projects]
 permalink: /:categories/:title/
-featured_img: /images/software_projects/casajuegoscafe/casajuegos_img00.jpg
+feature_img: /images/software_projects/casajuegoscafe/casajuegos_img00.jpg
 excerpt: "software, media entertainment, networking, gaming"
 ---
 # H1 Heading
