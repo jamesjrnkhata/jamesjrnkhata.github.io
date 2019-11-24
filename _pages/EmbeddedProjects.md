@@ -29,7 +29,7 @@ header:
 
           </a>
 
-          {{post.read_time}}.<small class="post-date">({{ post.date | date_to_string }})</small>
+          <small class="post-date">({{ post.date | date_to_string }})</small>
 
           <p class="sidebar">{{ post.excerpt }}</p>
 
