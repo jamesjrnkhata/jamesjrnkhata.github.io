@@ -11,27 +11,29 @@ header:
 
   {% for tag in site.categories %}
 
-  <h2 id="{{ tag[0] | slugify }}">{{ tag | first }}</h2>
+    {% if tag[0] == "software-projects" %}
 
-  <ul class="tags-expo-posts">
+      <ul class="tags-expo-posts">
 
-    {% for post in tag[1] %}
+        {% for post in tag[1] %}
 
-      <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
+          <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
 
-    <li>
+        <li>
 
-      {{ post.title }}
+          {{ post.title }}
 
-    <small class="post-date">{{ post.date | date_to_string }}</small>
+        <small class="post-date">{{ post.date | date_to_string }}</small>
 
-    </li>
+        </li>
 
-    </a>
+        </a>
 
-    {% endfor %}
+        {% endfor %}
 
-  </ul>
+      </ul>
+
+    {% endif %}
 
   {% endfor %}
 
