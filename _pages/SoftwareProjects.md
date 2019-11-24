@@ -11,7 +11,7 @@ header:
 
   {% for tag in site.categories %}
 
-    {% if tag[0] == "software-projects" %}
+    {% if tag[0] == "embedded-projects" %}
 
       <ul class="tags-expo-posts">
 
@@ -25,11 +25,11 @@ header:
 
         <small class="post-date">({{ post.date | date_to_string }})</small>
 
-        <p>{{ post.excerpt }}</p>
-
         </li>
 
         </a>
+
+        <p>{{ post.excerpt }}</p>
 
         {% endfor %}
 

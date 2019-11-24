@@ -25,11 +25,11 @@ header:
 
         <small class="post-date">({{ post.date | date_to_string }})</small>
 
-        <p>{{ post.excerpt }}</p>  
-
         </li>
 
         </a>
+
+        <p>{{ post.excerpt }}</p>
 
         {% endfor %}
 
