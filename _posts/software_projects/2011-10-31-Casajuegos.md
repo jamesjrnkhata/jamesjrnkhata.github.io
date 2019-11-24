@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "CasaJuegos Cafe"
 date: 2011-10-31
 categories: [software-projects]
