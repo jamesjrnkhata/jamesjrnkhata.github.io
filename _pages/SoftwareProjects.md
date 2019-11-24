@@ -11,7 +11,7 @@ header:
 
   {% for tag in site.categories %}
 
-    {% if tag[0] == "embedded-projects" %}
+    {% if tag[0] == "software-projects" %}
 
       <ul class="tags-expo-posts">
 
