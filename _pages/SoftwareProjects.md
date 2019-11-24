@@ -7,21 +7,7 @@ header:
   image: "/images/software_background.jpg"
 ---
 
-<div class="tags-expo">
-
-  <div class="tags-expo-list">
-
-    {% for tag in site.categories %}
-
-    <a href="#{{ tag[0] | slugify }}" class="post-tag">{{ tag[0] }}</a>
-
-    {% endfor %}
-
-  </div>
-
-  <hr/>
-
-  <div class="tags-expo-section">
+<div class="tags-expo-section">
 
     {% for tag in site.categories %}
 
