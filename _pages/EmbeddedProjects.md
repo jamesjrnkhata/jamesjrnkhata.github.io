@@ -17,19 +17,21 @@ header:
 
         {% for post in tag[1] %}
 
+          <img src="{% post.feature_img %}" />
+
           <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
 
-        <li>
+          <li>
 
-          {{ post.title }}
+            {{ post.title }}
 
-        <small class="post-date">({{ post.date | date_to_string }})</small>
+          <small class="post-date">({{ post.date | date_to_string }})</small>
 
-        </li>
+          </li>
 
-        </a>
+          </a>
 
-        <p>{{ post.excerpt }}</p>
+          <p>{{ post.excerpt }}</p>
 
         {% endfor %}
 
