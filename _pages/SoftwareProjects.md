@@ -13,7 +13,7 @@ header:
 
     {% if tag[0] == "software-projects" %}
 
-      <ul class="tags-expo-posts">
+      <ul >
 
         {% for post in tag[1] %}
 
