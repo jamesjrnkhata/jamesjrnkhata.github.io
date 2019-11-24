@@ -7,14 +7,48 @@ header:
   image: "/images/software_background.jpg"
 ---
 
-{% for category in site.categories %}
+<div class="tags-expo">
 
-  {% if category[0] == software-projects %}
-    <h3>{{ category[0] }}</h3>
-    <ul>
-      {% for post in category[1] %}
-        <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+  <div class="tags-expo-list">
+
+    {% for tag in site.categories %}
+
+    <a href="#{{ tag[0] | slugify }}" class="post-tag">{{ tag[0] }}</a>
+
+    {% endfor %}
+
+  </div>
+
+  <hr/>
+
+  <div class="tags-expo-section">
+
+    {% for tag in site.categories %}
+
+    <h2 id="{{ tag[0] | slugify }}">{{ tag | first }}</h2>
+
+    <ul class="tags-expo-posts">
+
+      {% for post in tag[1] %}
+
+        <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
+
+      <li>
+
+        {{ post.title }}
+
+      <small class="post-date">{{ post.date | date_to_string }}</small>
+
+      </li>
+
+      </a>
+
       {% endfor %}
+
     </ul>
-  {% endif %}
-{% endfor %}
+
+    {% endfor %}
+
+  </div>
+
+</div>
