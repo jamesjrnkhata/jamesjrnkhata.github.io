@@ -25,11 +25,11 @@ header:
 
             {{ post.title }}
 
-          <small class="post-date">({{ post.date | date_to_string }})</small>
-
           </li>
 
           </a>
+
+          {{page.read_time}}.<small class="post-date">({{ post.date | date_to_string }})</small>
 
           <p>{{ post.excerpt }}</p>
 
