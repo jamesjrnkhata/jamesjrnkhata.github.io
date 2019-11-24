@@ -20,7 +20,7 @@ title                    : "James Junior Nkhata"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "James Junior Nkhata"
-description              : "Embedded and Software Portfolio"
+description              : "Embedded and Computer Engineer"
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
