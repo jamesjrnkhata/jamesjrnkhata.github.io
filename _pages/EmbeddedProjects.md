@@ -7,12 +7,34 @@ header:
   image: "/images/embedded_background.jpg"
 ---
 
-{% include group-by-array collection=site.posts field="tags" %}
+<div class="tags-expo-section">
 
-{% for tag in group_names %}
-  {% assign posts = group_items[forloop.index0] %}
-  <h2 id="{{ tag | slugify }}" class="archive__subtitle">{{ tag }}</h2>
-  {% for post in posts %}
-    {% include archive-single.html %}
+  {% for tag in site.categories %}
+
+    {% if tag[0] == "embedded-projects" %}
+
+      <ul class="tags-expo-posts">
+
+        {% for post in tag[1] %}
+
+          <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
+
+        <li>
+
+          {{ post.title }}
+
+        <small class="post-date">{{ post.date | date_to_string }}</small>
+
+        </li>
+
+        </a>
+
+        {% endfor %}
+
+      </ul>
+
+    {% endif %}
+
   {% endfor %}
-{% endfor %}
+
+</div>

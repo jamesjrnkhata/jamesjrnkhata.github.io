@@ -1,11 +1,11 @@
 ---
-title: "Casa-Juegos Cafe"
-date: 2011-10-31
-categories: [software-projects]
+title: "Carbs Cooker"
+date: 2017-01-23
+categories: [embedded-projects]
 permalink: /:categories/:title/
 header:
   image: "/images/"
-excerpt: "software, media entertainment, networking, gaming"
+excerpt: "embedded, auto-cooker, rice, pasta, nsima, food"
 ---
 # H1 Heading
 
