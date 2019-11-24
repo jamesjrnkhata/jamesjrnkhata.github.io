@@ -23,7 +23,7 @@ header:
 
           {{ post.title }}
 
-        <small class="post-date">{{ post.date | date_to_string }}</small>
+        <small class="post-date">({{ post.date | date_to_string }})</small>
 
         </li>
 
