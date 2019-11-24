@@ -1,7 +1,7 @@
 ---
 layout: archive
 permalink: /software-projects/
-title: "Software Project Posts"
+title: "Software Projects"
 author_profile: true
 header:
   image: "/images/software_background.jpg"
