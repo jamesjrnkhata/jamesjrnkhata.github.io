@@ -41,10 +41,10 @@ header:
             </a>
               <p class="page__meta">{{ post.excerpt }}</p>
 
-              <p class="archive__item-excerpt">{{ post.purpose }}</p>
+              <p class="archive__item-excerpt">{{ post.purpose }}
               <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
               ..Read More...
-              </a>
+              </a> </p>
 
           </div>
 
