@@ -1,5 +1,5 @@
 ---
-layout: archive
+layout: default
 permalink: /software-projects/
 title: "Software Projects"
 author_profile: true
@@ -47,7 +47,7 @@ header:
         {% endfor %}
 
       </ul>
-      
+
     </div>
 
     {% endif %}
