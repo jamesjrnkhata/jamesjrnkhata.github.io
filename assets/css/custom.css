@@ -18,8 +18,12 @@
 
 }
 
-ul li, .custom_post {
+ul.custom_post {
   list-style: none;
+  margin: 0 0  4px !important;
+}
+
+ul.custom_post li {
   margin: 0 0  4px !important;
 }
 

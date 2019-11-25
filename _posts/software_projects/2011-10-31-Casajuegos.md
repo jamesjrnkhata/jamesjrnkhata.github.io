@@ -5,7 +5,7 @@ categories: [software-projects]
 permalink: /:categories/:title/
 feature_img: "/images/software_projects/casajuegoscafe/casajuegos_img00.jpg"
 excerpt: "software, media entertainment, networking, gaming"
-purpose: "The purpose of this project was to establish a start-up that was as a modern video game arcade as well as an offline media-streaming hub."
+purpose: "The purpose of this project was to establish a start-up that could offer services as a modern video game arcade as well as an offline media-streaming hub."
 ---
 # H1 Heading
 
