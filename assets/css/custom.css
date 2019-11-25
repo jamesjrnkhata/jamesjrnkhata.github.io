@@ -18,7 +18,7 @@
 
 }
 
-ul.custom_post {
+ul li.custom_post {
   list-style: none;
   margin-bottom: 0 !important;
 }
