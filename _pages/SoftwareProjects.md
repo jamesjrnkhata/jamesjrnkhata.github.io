@@ -17,7 +17,7 @@ header:
 
         {% for post in tag[1] %}
 
-          <img src="{{ post.feature_img }}" />
+          <img width="110" height="110" src="{{ post.feature_img }}" />
 
           <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
 
