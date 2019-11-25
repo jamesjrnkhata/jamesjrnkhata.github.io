@@ -13,29 +13,46 @@ header:
 
     {% if tag[0] == "embedded-projects" %}
 
-      <ul class="tags-expo-posts">
+    <div id="custom_container">
+      <ul class="custom_post" >
 
         {% for post in tag[1] %}
 
-          <img src="{{ post.feature_img }}" />
+          <div id="container_left">
 
-          <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
+            <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
+              <img class="post_feature_img" src="{{ post.feature_img }}" />
+            </a>
 
-          <li>
+          </div>
 
-            {{ post.title }}
+          <div id="container_right">
+            <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
 
-          </li>
+            <li>
 
-          </a>
+              {{ post.title }}
 
-          <small class="post-date">({{ post.date | date_to_string }})</small>
+            <small class="post-date">({{ post.date | date_to_string }})</small>
 
-          <p class="sidebar">{{ post.excerpt }}</p>
+            </li>
+
+            </a>
+              <p class="page__meta-custom">{{ post.excerpt }}</p>
+
+              <p class="archive__item-excerpt">{{ post.purpose }}
+              <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
+              Read more...
+              </a> </p>
+
+          </div>
+
 
         {% endfor %}
 
       </ul>
+
+    </div>
 
     {% endif %}
 
