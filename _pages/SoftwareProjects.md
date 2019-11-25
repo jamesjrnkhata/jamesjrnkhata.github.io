@@ -39,11 +39,11 @@ header:
             </li>
 
             </a>
-              <p class="page__meta">{{ post.excerpt }}</p>
+              <p class="page__meta-custom">{{ post.excerpt }}</p>
 
               <p class="archive__item-excerpt">{{ post.purpose }}
               <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
-              Read More...
+              Read more...
               </a> </p>
 
           </div>
