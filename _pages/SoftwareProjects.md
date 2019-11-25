@@ -22,7 +22,7 @@ header:
           <div class="container_left">
 
             <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
-              <img width="110" height="110" src="{{ post.feature_img }}" />
+              <img class="post_feature_img" src="{{ post.feature_img }}" />
             </a>
 
           </div>
@@ -39,7 +39,7 @@ header:
             </li>
 
             </a>
-            {{ post.excerpt }} 
+            {{ post.excerpt }}
 
           </div>
 
