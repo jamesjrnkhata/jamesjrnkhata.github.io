@@ -42,6 +42,9 @@ header:
               <p class="page__meta">{{ post.excerpt }}</p>
 
               <p class="archive__item-excerpt">{{ post.purpose }}</p>
+              <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
+              ..Read More...
+              </a>
 
           </div>
 
