@@ -31,7 +31,7 @@ img.post_feature_img {
   max-height: 100%;
 }
 
-p.page__meta-custom {
+.page__meta-custom {
   margin-top: 2em;
   color: #898c8f;
   font-family: -apple-system,BlinkMacSystemFont,"Roboto","Segoe UI","Helvetica Neue","Lucida Grande",Arial,sans-serif;
