@@ -14,12 +14,12 @@ header:
 
     {% if tag[0] == "software-projects" %}
 
-    <div class="custom_container">
+    <div id="custom_container">
       <ul class="custom_post" >
 
         {% for post in tag[1] %}
 
-          <div class="container_left">
+          <div id="container_left">
 
             <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
               <img class="post_feature_img" src="{{ post.feature_img }}" />
@@ -27,7 +27,7 @@ header:
 
           </div>
 
-          <div class="container_right">
+          <div id="container_right">
             <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
 
             <li>
