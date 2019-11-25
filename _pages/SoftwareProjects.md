@@ -39,8 +39,9 @@ header:
             </li>
 
             </a>
-            {{ post.excerpt }}
-            {{ post.purpose }}
+              <p class="page__meta">{{ post.excerpt }}</p>
+
+              <p class="archive__item-excerpt">{{ post.purpose }}</p>
 
           </div>
 
