@@ -7,6 +7,8 @@ header:
   image: "/images/software_background.jpg"
 ---
 
+</br>
+
 <div class="tags-expo-section">
 
   {% for tag in site.categories %}
@@ -20,7 +22,9 @@ header:
 
           <div class="container_left">
 
-            <img width="110" height="110" src="{{ post.feature_img }}" />
+            <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
+              <img width="110" height="110" src="{{ post.feature_img }}" />
+            </a>
 
           </div>
 
