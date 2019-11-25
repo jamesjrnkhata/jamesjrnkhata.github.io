@@ -10,3 +10,7 @@ float: right;
 .container_left {
 float: left;
 }
+
+ul.custom_post {
+list-style: none; 
+}
