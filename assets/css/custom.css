@@ -20,3 +20,8 @@ list-style: none;
 ul.custom_post a {
   text-decoration: none;
 }
+
+img.post_feature_img {
+  width: 75% content-box;
+  height: 75% content-box;
+}
