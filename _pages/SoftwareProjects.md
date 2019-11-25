@@ -39,8 +39,7 @@ header:
             </li>
 
             </a>
-
-            <p>{{ post.excerpt }}</p>
+            {{ post.excerpt }} 
 
           </div>
 
