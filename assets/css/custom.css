@@ -12,5 +12,9 @@ float: left;
 }
 
 ul.custom_post {
-list-style: none; 
+list-style: none;
+}
+
+ul.custom_post a {
+  
 }

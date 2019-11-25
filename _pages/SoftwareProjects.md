@@ -18,8 +18,6 @@ header:
 
         {% for post in tag[1] %}
 
-        </div>
-
           <div class="container_left">
 
             <img width="110" height="110" src="{{ post.feature_img }}" />
@@ -41,6 +39,7 @@ header:
 
             <p>{{ post.excerpt }}</p>
 
+          </div>
 
 
         {% endfor %}
