@@ -13,29 +13,38 @@ header:
 
     {% if tag[0] == "software-projects" %}
 
+    <div class="custom_container">
       <ul >
 
         {% for post in tag[1] %}
 
-          <img width="110" height="110" src="{{ post.feature_img }}" />
+          <div class="container_left">
 
-          <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
+            <img width="110" height="110" src="{{ post.feature_img }}" />
 
-          <li>
+          </div>
 
-            {{ post.title }}
+          <div class="container_right">
+            <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
 
-          <small class="post-date">({{ post.date | date_to_string }})</small>
+            <li>
 
-          </li>
+              {{ post.title }}
 
-          </a>
+            <small class="post-date">({{ post.date | date_to_string }})</small>
 
-          <p>{{ post.excerpt }}</p>
+            </li>
+
+            </a>
+
+            <p>{{ post.excerpt }}</p>
+
+          </div>
 
         {% endfor %}
 
       </ul>
+    </div>
 
     {% endif %}
 
