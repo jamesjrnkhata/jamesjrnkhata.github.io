@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: splash
 permalink: /software-projects/
 title: "Software Projects"
 author_profile: true
