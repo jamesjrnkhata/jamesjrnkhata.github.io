@@ -1,5 +1,5 @@
 ---
-layout: splash
+layout: archive_custom
 permalink: /software-projects/
 title: "Software Projects"
 author_profile: true
