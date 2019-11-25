@@ -1,16 +1,18 @@
 .custom_container {
-  height: auto;
+
+  width: 100 % ;
 
 }
 
 .container_right {
 float: left;
 margin-left: 5px;
-width: auto;
+width: 80%;
 }
 
 .container_left {
 float: left;
+width: 20%;
 }
 
 ul.custom_post {
