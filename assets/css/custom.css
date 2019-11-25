@@ -20,6 +20,7 @@
 
 ul.custom_post {
   list-style: none;
+  margin-bottom: 0 !important;
 }
 
 ul.custom_post a {
