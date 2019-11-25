@@ -40,6 +40,7 @@ header:
 
             </a>
             {{ post.excerpt }}
+            {{ post.purpose }}
 
           </div>
 
