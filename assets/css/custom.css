@@ -22,6 +22,6 @@ ul.custom_post a {
 }
 
 img.post_feature_img {
-  width: 5% content-box;
-  height: 5% content-box;
+  max-width: 150px;
+  max-height: 150px;
 }
