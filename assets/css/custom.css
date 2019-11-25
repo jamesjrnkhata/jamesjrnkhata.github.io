@@ -1,0 +1,12 @@
+.custom_container {
+  height: auto;
+
+}
+
+.container_right {
+float: right;
+}
+
+.container_left {
+float: none;
+}

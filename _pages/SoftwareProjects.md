@@ -18,12 +18,6 @@ header:
 
         {% for post in tag[1] %}
 
-          <div class="container_left">
-
-            <img width="110" height="110" src="{{ post.feature_img }}" />
-
-          </div>
-
           <div class="container_right">
             <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
 
@@ -38,6 +32,12 @@ header:
             </a>
 
             <p>{{ post.excerpt }}</p>
+
+          </div>
+
+          <div class="container_left">
+
+            <img width="110" height="110" src="{{ post.feature_img }}" />
 
           </div>
 
