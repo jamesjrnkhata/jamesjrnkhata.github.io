@@ -6,7 +6,7 @@ author_profile: true
 header:
   image: "/images/software_background.jpg"
 ---
-<br></br>
+
 
 <div class="tags-expo-section">
 
