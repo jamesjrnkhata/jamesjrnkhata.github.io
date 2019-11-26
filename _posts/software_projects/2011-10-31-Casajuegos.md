@@ -69,10 +69,9 @@ images:
     weight: 19    
 ---
 The purpose of the project was to establish a start-up that could offer services as a modern video game arcade and an offline media-streaming hub at a location in Lilongwe, Malawi, South-East Africa.
+
 <h2 class="text-underline">Structure of the Café</h2>
-
 The location was partitioned into four groups:
-
 *	PlayStation 3  room
 *	XBOX 360 room
 *	Private Party rooms  
