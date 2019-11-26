@@ -76,7 +76,7 @@ The purpose of the project was to establish a start-up that could offer services
   {% for image in page.images %}
     {% if image.weight >= 4 and image.weight <= 5 %}  
     <li>
-      <img src="{{ image.image_path }}" alt="{{ image.title }}">
+      <img class="galley_img" src="{{ image.image_path }}" alt="{{ image.title }}">
     </li>
     {% endif %}  
   {% endfor %}  
@@ -98,7 +98,7 @@ The customer(s) would choose the room they desired and a game to play from the t
     {% if image.weight >= 1 and image.weight <= 3 %}
       <li>
         <figure class="custom-figure">
-          <img src="{{ image.image_path }}" alt="{{ image.title }}">
+          <img class="galley_img" src="{{ image.image_path }}" alt="{{ image.title }}">
           <figcaption class="custom-figcaption">
             {{ image.title }}
           </figcaption>
@@ -138,7 +138,7 @@ The *BLU-RAY & DVD Ripping software* was used to extract the content from the ow
   {% for image in page.images %}
     {% if image.weight >= 6 and image.weight <= 13 %}  
       <li>
-        <img src="{{ image.image_path }}" alt="{{ image.title }}">
+        <img class="galley_img" src="{{ image.image_path }}" alt="{{ image.title }}">
       </li>
     {% endif %}  
   {% endfor %}  
@@ -152,7 +152,7 @@ On occasion, the Café would go on the road and provide the services available t
   {% for image in page.images %}
     {% if image.weight >= 15 and image.weight <= 19 %}  
       <li>
-        <img src="{{ image.image_path }}" alt="{{ image.title }}">
+        <img class="galley_img" src="{{ image.image_path }}" alt="{{ image.title }}">
       </li>
     {% endif %}  
   {% endfor %}  
