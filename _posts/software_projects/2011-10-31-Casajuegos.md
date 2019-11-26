@@ -32,7 +32,7 @@ images:
     title: Private Gaming room
     weight: 2
   - image_path: /images/software_projects/casajuegoscafe/casajuegos_img08.jpg
-    title: Cinema
+    title: Cinema room
     weight: 3    
   - image_path: /images/software_projects/casajuegoscafe/casajuegos_img09.jpg
     title:  Customers in the Cinema room 1

@@ -57,7 +57,7 @@ img.post_feature_img {
 
 .photo-gallery li {
 	display: inline-block;
-	width: 33%;
+	width: 98%;
 }
 
 .photo-gallery li img {
@@ -94,4 +94,5 @@ img.post_feature_img {
 
 .custom-figure {
   margin: -1em 0 !important;
+  text-align: center !important;
 }
