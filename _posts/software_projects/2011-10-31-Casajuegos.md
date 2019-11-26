@@ -99,10 +99,6 @@ casajuegos_img09.jpg" alt="Cinema room"
 
 The customer(s) would choose the room they desired and a game to play from the titles displayed in the lobby (with the freedom to change at any time). They would then proceed to pay for the hours and room size they required. Prices were fixed for each room size regardless of the number of users.
 
-casajuegos_img02.jpg" alt="Lobby Pic 1"
-
-casajuegos_img03.jpg" alt="Lobby Pic 2"
-
 <ul class="photo-gallery">
   {% for image in page.images %}
     {% if image.weight >= 4 and image.weight <= 5 %}  
@@ -140,17 +136,6 @@ Time tracking software was used to track the customers remaining time for each s
 
 <h2 class="text-underline">Gallery</h2>
 
-casajuegos_img00.jpg
-casajuegos_img01.jpg
-casajuegos_img04.jpg
-casajuegos_img06.jpg
-casajuegos_img08.jpg
-casajuegos_img10.jpg
-casajuegos_img11.jpg
-casajuegos_img12.jpg
-casajuegos_img13.jpg
-casajuegos_img14.jpg
-
 <ul class="photo-gallery">
   {% for image in page.images %}
     {% if image.weight >= 6 and image.weight <= 14 %}  
@@ -165,16 +150,6 @@ casajuegos_img14.jpg
 <h2 class="text-underline">Exhibits and Road Shows</h2>
 
 On occasion, the Café would go on the road and provide the services available to Colleges and Universities during weekends. These ranged from Movie Screenings to Video Game Tournaments with prizes.
-
-casajuegos_img16.jpg" alt="College Tournament Trials 1">
-
-casajuegos_img17.jpg" alt="College Tournament Lecture Hall Presentation">
-
-casajuegos_img18.jpg" alt="College Tournament Trials 2">
-
-casajuegos_img19.jpg" alt="College Outdoor Screening Demo 1">
-
-casajuegos_img20.jpg" alt="College Outdoor Screening Demo 2">
 
 <ul class="photo-gallery">
   {% for image in page.images %}
