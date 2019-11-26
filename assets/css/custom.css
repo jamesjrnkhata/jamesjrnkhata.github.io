@@ -96,3 +96,7 @@ img.post_feature_img {
   margin: 0 0 -1em 0 !important;
   text-align: center !important;
 }
+
+.custom-figure figcaption {
+  text-align: center !important;
+}
