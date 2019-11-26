@@ -115,7 +115,6 @@ The customer(s) would choose the room they desired and a game to play from the t
 The hardware, software and decorations were appropriated ahead of travel from the UK and sent to Lilongwe, Malawi through Air Freight for the project.
 
 <h2 class="text-underline">Implementation</h2>
-
 ### Decoration
 The *wallpaper* was put up, *light fittings* were installed and the wiring was routed through the ceiling to prevent trip hazards once the cargo was cleared from customs.
 
