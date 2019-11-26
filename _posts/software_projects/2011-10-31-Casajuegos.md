@@ -86,7 +86,6 @@ The purpose of the project was to establish a start-up that could offer services
     {% endif %}  
   {% endfor %}  
 </ul>
-
 The location was partitioned into four groups:
 *	PlayStation 3 room
 *	XBOX 360 room
