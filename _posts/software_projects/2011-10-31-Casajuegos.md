@@ -69,7 +69,6 @@ images:
     weight: 19    
 ---
 The purpose of the project was to establish a start-up that could offer services as a modern video game arcade and an offline media-streaming hub at a location in Lilongwe, Malawi, South-East Africa.
-
 <h2 class="text-underline">Structure of the Café</h2>
 
 The location was partitioned into four groups:
@@ -141,7 +140,6 @@ Time tracking software was used to track the customers remaining time for each s
     {% endif %}  
   {% endfor %}  
 </ul>
-
 
 <h2 class="text-underline">Exhibits and Road Shows</h2>
 
