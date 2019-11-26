@@ -130,7 +130,7 @@ The PCs had two user profiles each, one for the Customer and the other for Admin
 ### Software
 The *ripping software* was used to extract the content from the owned *BLU-RAYs* and *DVD*. These were then stored on the *Media Server PC* separated by the content type: Movies, TV Shows and Animated Shows. The *MetaBrowser software* was used to collect media information for the content such as Poster, backdrops and actor information. *Media Browser Server* and *PS3 Media Server* were used to organize and stream to the devices on the Local Area Network. *XBOX 360* and *PCs* used Windows Media Center to interface with the media library.
 
-*Time tracking software* was used to track the customers remaining time for each session.
+*Time tracking software* was used to track the customer's remaining time for each session.
 
 <h2 class="text-underline">Gallery</h2>
 
