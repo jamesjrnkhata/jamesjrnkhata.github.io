@@ -1,5 +1,5 @@
 ---
-title: "CasaJuegos Cafe"
+title: "CasaJuegos Café"
 date: 2011-10-31
 categories: [software-projects]
 permalink: /:categories/:title/
