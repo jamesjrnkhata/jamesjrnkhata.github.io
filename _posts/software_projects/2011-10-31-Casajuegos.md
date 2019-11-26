@@ -26,10 +26,10 @@ images:
     title: Customer in the XBOX 360 room
     weight:    
   - image_path: /images/software_projects/casajuegoscafe/casajuegos_img06.jpg
-    title: Customers in the Private Party room
+    title: Customers in the Private Gaming room
     weight: 8   
   - image_path: /images/software_projects/casajuegoscafe/casajuegos_img07.jpg
-    title: Private Party room
+    title: Private Gaming room
     weight: 2
   - image_path: /images/software_projects/casajuegoscafe/casajuegos_img08.jpg
     title: Cinema
@@ -75,10 +75,10 @@ The purpose of the project was to establish a start-up that could offer services
 The location was partitioned into four groups:
 *	PlayStation 3 room
 *	XBOX 360 room
-*	Private Party rooms  
+*	Private Gaming rooms  
 *	Cinema room
 
-PlayStation 3 as well as the XBOX 360 room accommodated up to 2 users per console / screen, Private Party rooms accommodated up to 6 users and Cinema room up to 20 users. Private party rooms offered a Gaming PC and a Nintendo Wii on a 32” inch monitor.  The Cinema room offered a PlayStation 3, XBOX 360 and Nintendo Wii on a 150” inch projected screen. All devices with the exception of the Nintendo Wii’s could access and playback the media files stored on a central media-hosting computer (Media Server PC).
+PlayStation 3 as well as the XBOX 360 room accommodated up to 2 users per console / screen, Private Gaming rooms accommodated up to 6 users and Cinema room up to 20 users. Private Gaming rooms offered a Gaming PC and a Nintendo Wii on a 32” inch monitor.  The Cinema room offered a PlayStation 3, XBOX 360 and Nintendo Wii on a 150” inch projected screen. All devices with the exception of the Nintendo Wii’s could access and playback the media files stored on a central media-hosting computer (Media Server PC).
 
 <ul class="photo-gallery">
   {% for image in page.images %}
@@ -120,7 +120,7 @@ The hardware, software and decorations were appropriated ahead of travel from th
 The wallpaper was put up, light fittings were installed and the wiring was routed through the ceiling to prevent trip hazards once the cargo was cleared from customs.
 
 ### Hardware
-The devices (consoles and PCs) were centralised in one well-ventilated room (Control room) for security, networking and ease of access (change gaming media). Because monitors were used, the audio and video signals had to be separated from the consoles to the room were the users would sit. For the XBOX 360 room, the XBOX VGA adapter combined with VGA and 3.5 mm to RCA cables were used to carry the signals from the Control room. In the case of the PlayStation 3 room, the PlayStation 3 component cable combined with the HDMI and the 3.5 mm to RCA cables were used to carry the signals from the Control room. The Private Party rooms and the Cinema room used HDMI cables to the HDTV’s and Projector and then those were used to connect to 5.1 Surround Sound Speakers.
+The devices (consoles and PCs) were centralised in one well-ventilated room (Control room) for security, networking and ease of access (change gaming media). Because monitors were used, the audio and video signals had to be separated from the consoles to the room were the users would sit. For the XBOX 360 room, the XBOX VGA adapter combined with VGA and 3.5 mm to RCA cables were used to carry the signals from the Control room. In the case of the PlayStation 3 room, the PlayStation 3 component cable combined with the HDMI and the 3.5 mm to RCA cables were used to carry the signals from the Control room. The Private Gaming rooms and the Cinema room used HDMI cables to the HDTV’s and Projector and then those were used to connect to 5.1 Surround Sound Speakers.
 
 The PCs had two User profiles each, one for the Customer and the other for Administrative duties (to prevent the users from making modifications to the PCs). One PC (Media Server PC) was used as the Media Server and hosted all the Media for the Café (only accessible through administrative rights to prevent media deletion). All devices were connected through the Router and Switches to create a Local Area Network used for Media Viewing and Multiplayer Gaming.
 
