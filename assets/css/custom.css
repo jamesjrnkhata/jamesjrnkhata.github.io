@@ -91,3 +91,7 @@ img.post_feature_img {
 .photo-gallery-3col li img {
 	width: 100%;
 }
+
+.custom-figure {
+  margin: -1em 0 !important;
+}

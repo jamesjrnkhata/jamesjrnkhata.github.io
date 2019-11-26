@@ -76,7 +76,7 @@ The purpose of the project was to establish a start-up that could offer services
   {% for image in page.images %}
     {% if image.weight >= 4 and image.weight <= 5 %}  
       <li>
-        <figure>
+        <figure class="custom-figure">
           <img src="{{ image.image_path }}" alt="{{ image.title }}">
           <figcaption>
             {{ image.title }}
