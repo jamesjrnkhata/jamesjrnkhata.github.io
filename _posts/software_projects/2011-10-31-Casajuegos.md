@@ -79,12 +79,6 @@ The location was partitioned into four groups:
 
 PlayStation 3 as well as the XBOX 360 room accommodated up to 2 users per console / screen, Private Party rooms accommodated up to 6 users and Cinema room up to 20 users. Private party rooms offered a Gaming PC and a Nintendo Wii on a 32” inch monitor.  The Cinema room offered a PlayStation 3, XBOX 360 and Nintendo Wii on a 150” inch projected screen. All devices with the exception of the Nintendo Wii’s could access and playback the media files stored on a central media-hosting computer (Media Server PC).
 
-casajuegos_img04.jpg" alt="PS3 / XBOX 360 room"
-
-casajuegos_img07.jpg" alt="Private Party room"
-
-casajuegos_img09.jpg" alt="Cinema room"
-
 <ul class="photo-gallery">
   {% for image in page.images %}
     {% if image.weight >= 1 and image.weight <= 3 %}  
