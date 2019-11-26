@@ -106,7 +106,7 @@ The customer(s) would choose the room they desired and a game to play from the t
 
 <h2 class="text-underline">Technical Requirements</h2>
 
-**Hardware** required for the project were: *PC’s*, *Consoles*, *Wireless Controllers*, *Wireless Mice*, *Wireless Keyboards*, *24” Monitors*, *32” HDTV’s*, *HD Projectors*, *5.1 Surround Sound Speakers*, *Router*, *Switches*, *RJ45 (Ethernet) Cables*, *PC Headphones*, *Media BLU-RAYs & DVDs*, *Digital Games*, *Game Discs*, *HDMI cables* (20 metres), *VGA cables* (20 metres), *XBOX VGA adapter*, *3.5 mm to RCA cables* (20 metres), *PlayStation 3 component cable*, *wall mounts* and *ceiling mounts*.
+**Hardware** required for the project was: *PC’s*, *Consoles*, *Wireless Controllers*, *Wireless Mice*, *Wireless Keyboards*, *24” Monitors*, *32” HDTV’s*, *HD Projectors*, *5.1 Surround Sound Speakers*, *Router*, *Switches*, *RJ45 (Ethernet) Cables*, *PC Headphones*, *Media BLU-RAYs & DVDs*, *Digital Games*, *Game Discs*, *HDMI cables* (20 metres), *VGA cables* (20 metres), *XBOX VGA adapter*, *3.5 mm to RCA cables* (20 metres), *PlayStation 3 component cable*, *wall mounts* and *ceiling mounts*.
 
 **Software** required was: *Windows 7 OS license* for each PC, *Windows Media Center* (included with Windows 7 OS), *Media Browser Server license*, *PS3 Media Server*, *Time Tracking Software*, *BLU-RAY & DVD Ripping Software* and *MetaBrowser* (Media Metadata Software).
 
