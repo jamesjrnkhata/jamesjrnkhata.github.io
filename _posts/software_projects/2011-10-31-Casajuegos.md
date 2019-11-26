@@ -12,7 +12,7 @@ images:
 
 ---
 
-<h1 class="text-underline">Structure of the Café</h1>
+<h2 class="text-underline">Structure of the Café</h2>
 
 The location was partitioned into four groups:
 
@@ -37,7 +37,7 @@ casajuegos_img09.jpg" alt="Cinema room"
   {% endfor %}  
 </ul>
 
-# Alt-H1 How it worked
+<h2 class="text-underline">How it worked</h2>
 
 The customer(s) would choose the room they desired and a game to play from the titles displayed in the lobby (with the freedom to change at any time). They would then proceed to pay for the hours and room size they required. Prices were fixed for each room size regardless of the number of users.
 
@@ -45,7 +45,7 @@ casajuegos_img02.jpg" alt="Lobby Pic 1"
 
 casajuegos_img03.jpg" alt="Lobby Pic 2"
 
-# Alt-H1 Technical Requirements
+<h2 class="text-underline">Technical Requirements</h2>
 
 **Hardware** required for the project were: PC’s, Consoles, Wireless Controllers, Wireless Mice, Wireless Keyboards, 24” Monitors, 32” HDTV’s, HD Projectors, 5.1 Surround sound speakers, Router, Switches, RJ45 Ethernet Cables, PC Headphones, Media Blu-rays & DVDs, Digital Games, Game Discs, HDMI cables (20 Metres), VGA cables (20 Metres), XBOX VGA adapter, 3.5 mm to RCA cables (20 Metres), PlayStation 3 component cable, wall mounts, ceiling mounts.
 
@@ -55,22 +55,22 @@ casajuegos_img03.jpg" alt="Lobby Pic 2"
 
 The hardware, software and decorations were appropriated ahead of travel from the UK and sent to Lilongwe, Malawi through Air Freight for the project.
 
-# Alt-H1 Implementation
+<h2 class="text-underline">Implementation</h2>
 
-## H2 Decoration
+### Decoration
 The wallpaper was put up, light fittings were installed and the wiring was routed through the ceiling to prevent trip hazards once the cargo was cleared from customs.
 
-## H2 Hardware
+### Hardware
 The devices (consoles and PCs) were centralised in one well-ventilated room (Control room) for security, networking and ease of access (change gaming media). Because monitors were used, the audio and video signals had to be separated from the consoles to the room were the users would sit. For the XBOX 360 room, the XBOX VGA adapter combined with VGA and 3.5 mm to RCA cables were used to carry the signals from the Control room. In the case of the PlayStation 3 room, the PlayStation 3 component cable combined with the HDMI and the 3.5 mm to RCA cables were used to carry the signals from the Control room. The Private Party rooms and the Cinema room used HDMI cables to the HDTV’s and Projector and then those were used to connect to 5.1 Surround Sound Speakers.
 
 The PCs had two User profiles each, one for the Customer and the other for Administrative duties (to prevent the users from making modifications to the PCs). One PC (Media Server PC) was used as the Media Server and hosted all the Media for the Café (only accessible through administrative rights to prevent media deletion). All devices were connected through the Router and Switches to create a Local Area Network used for Media Viewing and Multiplayer Gaming.
 
-## H2 Software
+### Software
 The ripping software was used to extract the owned Blu-ray and DVD content. These were then stored on the Media Server PC separated by the content type: Movies, TV Shows and Animated Shows. The MetaBrowser software was used to collect visual information for the content such as Poster, backdrops and actor information. Media Browser Server and PS3 Media Server were used to organize and stream to the devices on the Local Area Network. XBOX 360 and PCs used Windows Media Center to interface with the media library.
 
 Time tracking software was used to track the customers remaining time for each session.
 
-# Alt-H1 Gallery
+<h2 class="text-underline">Gallery</h2>
 
 casajuegos_img01.jpg
 casajuegos_img04.jpg
@@ -85,7 +85,7 @@ casajuegos_img14.jpg
 
 
 
-# Alt-H1 Exhibits and Road Shows
+<h2 class="text-underline">Exhibits and Road Shows</h2>
 
 On occasion, the Café would go on the road and provide the services available to Colleges and Universities during weekends. These ranged from Movie Screenings to Video Game Tournaments with prizes.
 
