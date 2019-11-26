@@ -63,3 +63,31 @@ img.post_feature_img {
 .photo-gallery li img {
 	width: 100%;
 }
+
+.photo-gallery-2col, .photo-gallery-2col li {
+	list-style: none;
+	padding: 0;
+}
+
+.photo-gallery-2col li {
+	display: inline-block;
+	width: 33%;
+}
+
+.photo-gallery-2col li img {
+	width: 100%;
+}
+
+.photo-gallery-3col, .photo-gallery-3col li {
+	list-style: none;
+	padding: 0;
+}
+
+.photo-gallery-3col li {
+	display: inline-block;
+	width: 32%;
+}
+
+.photo-gallery-3col li img {
+	width: 100%;
+}

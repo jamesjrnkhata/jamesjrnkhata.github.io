@@ -72,6 +72,16 @@ The purpose of the project was to establish a start-up that could offer services
 
 <h2 class="text-underline">Structure of the Café</h2>
 
+<ul class="photo-gallery-2col">
+  {% for image in page.images %}
+    {% if image.weight >= 4 and image.weight <= 5 %}  
+      <li>
+        <img src="{{ image.image_path }}" alt="{{ image.title }}">
+      </li>
+    {% endif %}  
+  {% endfor %}  
+</ul>
+
 The location was partitioned into four groups:
 *	PlayStation 3 room
 *	XBOX 360 room
@@ -80,23 +90,13 @@ The location was partitioned into four groups:
 
 PlayStation 3 as well as the XBOX 360 room accommodated up to 2 users per console / screen, Private Gaming rooms accommodated up to 6 users and Cinema room up to 20 users. Private Gaming rooms offered a Gaming PC and a Nintendo Wii on a 32” inch monitor.  The Cinema room offered a PlayStation 3, XBOX 360 and Nintendo Wii on a 150” inch projected screen. All devices with the exception of the Nintendo Wii’s could access and playback the media files stored on a central media-hosting computer (Media Server PC).
 
-<ul class="photo-gallery">
-  {% for image in page.images %}
-    {% if image.weight >= 1 and image.weight <= 3 %}  
-      <li>
-        <img src="{{ image.image_path }}" alt="{{ image.title }}">
-      </li>
-    {% endif %}  
-  {% endfor %}  
-</ul>
-
 <h2 class="text-underline">How it worked</h2>
 
 The customer(s) would choose the room they desired and a game to play from the titles displayed in the lobby (with the freedom to change at any time). They would then proceed to pay for the hours and room size they required. Prices were fixed for each room size regardless of the number of users.
 
-<ul class="photo-gallery">
+<ul class="photo-gallery-3col">
   {% for image in page.images %}
-    {% if image.weight >= 4 and image.weight <= 5 %}  
+    {% if image.weight >= 1 and image.weight <= 3 %}  
       <li>
         <img src="{{ image.image_path }}" alt="{{ image.title }}">
       </li>
@@ -131,7 +131,7 @@ Time tracking software was used to track the customers remaining time for each s
 
 <h2 class="text-underline">Gallery</h2>
 
-<ul class="photo-gallery">
+<ul class="photo-gallery-2col">
   {% for image in page.images %}
     {% if image.weight >= 6 and image.weight <= 14 %}  
       <li>
@@ -145,7 +145,7 @@ Time tracking software was used to track the customers remaining time for each s
 
 On occasion, the Café would go on the road and provide the services available to Colleges and Universities during weekends. These ranged from Movie Screenings to Video Game Tournaments with prizes.
 
-<ul class="photo-gallery">
+<ul class="photo-gallery-2col">
   {% for image in page.images %}
     {% if image.weight >= 15 and image.weight <= 19 %}  
       <li>
