@@ -37,6 +37,10 @@ img.post_feature_img {
   height: 100%;
 }
 
+.text-underline {
+  text-decoration: underline;
+}
+
 .page__meta-custom {
   margin-top: 2em;
   color: #898c8f;
