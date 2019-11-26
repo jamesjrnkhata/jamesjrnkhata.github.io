@@ -144,7 +144,7 @@ The *ripping software* was used to extract the content from the owned *BLU-RAYs*
   {% endfor %}  
 </ul>
 
-<h2 class="text-underline">Exhibits and Road Shows</h2>
+<h2 class="text-underline">Exhibits and Showcases</h2>
 
 On occasion, the Café would go on the road and provide the services available to Colleges and Universities during weekends. These ranged from Movie Screenings to Video Game Tournaments with prizes.
 
