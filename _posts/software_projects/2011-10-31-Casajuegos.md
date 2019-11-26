@@ -31,7 +31,7 @@ casajuegos_img09.jpg" alt="Cinema room"
 
 <ul class="photo-gallery">
   {% for image in page.images %}
-    {% if image.weight >= 1 && image.weight <= 3 %}  
+    {% if image.weight >= 1 and image.weight <= 3 %}  
       <li>
         <img src="{{ image.image_path }}" alt="{{ image.title }}">
       </li>
