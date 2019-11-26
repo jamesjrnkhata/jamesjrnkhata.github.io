@@ -93,6 +93,6 @@ img.post_feature_img {
 }
 
 .custom-figure {
-  margin: -1em 0 !important;
+  margin: 0 0 -1em 0 !important;
   text-align: center !important;
 }
