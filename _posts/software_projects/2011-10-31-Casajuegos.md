@@ -99,7 +99,7 @@ The customer(s) would choose the room they desired and a game to play from the t
       <li>
         <figure class="custom-figure">
           <img src="{{ image.image_path }}" alt="{{ image.title }}">
-          <figcaption>
+          <figcaption clas="custom-figcaption">
             {{ image.title }}
           </figcaption>
         </figure>  
