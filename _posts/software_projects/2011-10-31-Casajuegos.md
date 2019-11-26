@@ -128,7 +128,7 @@ The devices (*consoles and PCs*) were centralised in one well-ventilated room (C
 The PCs had two user profiles each, one for the Customer and the other for Administrative duties (to prevent the customers from making modifications to the *PCs*). One PC (Media Server PC) was used as the Media Server and hosted all the Media for the Café (only accessible through administrative rights to prevent media deletion). All devices were connected through the *Router* and *Switches* to create a Local Area Network used for Media Viewing and Multiplayer Gaming.
 
 ### Software
-The *ripping software* was used to extract the content from the owned *BLU-RAYs* and *DVD*. These were then stored on the *Media Server PC* separated by the content type: Movies, TV Shows and Animated Shows. The *MetaBrowser software* was used to collect media information for the content such as Poster, backdrops and actor information. *Media Browser Server* and *PS3 Media Server* were used to organize and stream to the devices on the Local Area Network. *XBOX 360* and *PCs* used Windows Media Center to interface with the media library.
+The *BLU-RAY & DVD Ripping software* was used to extract the content from the owned *BLU-RAYs* and *DVDs*. These were then stored on the *Media Server PC* separated by the content type: Movies, TV Shows and Animated Shows. The *MetaBrowser software* was used to collect media information for the content such as Poster, backdrops and actor information. *Media Browser Server* and *PS3 Media Server* were used to organize and stream to the devices on the Local Area Network. *XBOX 360* and *PCs* used Windows Media Center to interface with the media library.
 
 *Time tracking software* was used to track the customer's remaining time for each session.
 
