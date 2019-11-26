@@ -75,14 +75,9 @@ The purpose of the project was to establish a start-up that could offer services
 <ul class="photo-gallery-2col">
   {% for image in page.images %}
     {% if image.weight >= 4 and image.weight <= 5 %}  
-      <li>
-        <figure class="custom-figure">
-          <img src="{{ image.image_path }}" alt="{{ image.title }}">
-          <figcaption>
-            {{ image.title }}
-          </figcaption>
-        </figure>  
-      </li>
+    <li>
+      <img src="{{ image.image_path }}" alt="{{ image.title }}">
+    </li>
     {% endif %}  
   {% endfor %}  
 </ul>
@@ -100,9 +95,14 @@ The customer(s) would choose the room they desired and a game to play from the t
 
 <ul class="photo-gallery-3col">
   {% for image in page.images %}
-    {% if image.weight >= 1 and image.weight <= 3 %}  
+    {% if image.weight >= 1 and image.weight <= 3 %}
       <li>
-        <img src="{{ image.image_path }}" alt="{{ image.title }}">
+        <figure class="custom-figure">
+          <img src="{{ image.image_path }}" alt="{{ image.title }}">
+          <figcaption>
+            {{ image.title }}
+          </figcaption>
+        </figure>  
       </li>
     {% endif %}  
   {% endfor %}  
@@ -158,4 +158,4 @@ On occasion, the Café would go on the road and provide the services available t
   {% endfor %}  
 </ul>
 
-facebook page link for the CasaJuegos [link](https://www.facebook.com/casajuegos/)
+facebook page [link](https://www.facebook.com/casajuegos/) for the CasaJuegos
