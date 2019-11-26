@@ -5,58 +5,99 @@ categories: [software-projects]
 permalink: /:categories/:title/
 feature_img: "/images/software_projects/casajuegoscafe/casajuegos_img00.jpg"
 excerpt: "software, media entertainment, networking, gaming"
-purpose: "The purpose of this project was to establish a start-up that could offer services as a modern video game arcade and an offline media-streaming hub."
+purpose: "The purpose of the project was to establish a start-up that could offer services as a modern video game arcade and an offline media-streaming hub at a location in Lilongwe, Malawi, South-East Africa."
+images:
+  - image_path: /images/software_projects/casajuegoscafe/casajuegos_img00.jpg
+    title: XBOX 360 Room 
+
 ---
-# H1 Heading
 
-## H2 Heading
+# Alt-H1 Structure of the Café
 
-### H3 Heading
+The location was partitioned into four groups:
 
-Here's some basic text.
+*	PlayStation 3  room
+*	XBOX 360 room
+*	Private Party rooms  
+*	Cinema room
 
-And here's some *italics*
+PlayStation 3 as well as the XBOX 360 room accommodated up to 2 users per console / screen, Private Party rooms accommodated up to 6 users and Cinema room up to 20 users. Private party rooms offered a Gaming PC and a Nintendo Wii on a 32” inch monitor.  The Cinema room offered a PlayStation 3, XBOX 360 and Nintendo Wii on a 150” inch projected screen. All devices with the exception of the Nintendo Wii’s could access and playback the media files stored on a central media-hosting computer (Media Server PC).
 
-Here's some **bold** text.
+casajuegos_img04.jpg" alt="PS3 / XBOX 360 room"
 
-What about a [link](https://github.com/dataoptimal)?
+casajuegos_img07.jpg" alt="Private Party room"
 
-Here's a bulleted list:
-* First item
-+ Second item
-- Third item
+casajuegos_img09.jpg" alt="Cinema room"
 
-Here's a numbered list:
-1. First
-2. Second
-3. Third
+<ul class="photo-gallery">
+  {% for image in page.images %}
+    <li>
+      <img src="{{ image.image_path }}" alt="{{ image.title }}">
+    </li>
+  {% endfor %}  
+</ul>
 
-Python code block:
-```python
-    import numpy as np
+# Alt-H1 How it worked
 
-    def test_function(x, y):
-      z = np.sum(x,y)
-      return z
-```
+The customer(s) would choose the room they desired and a game to play from the titles displayed in the lobby (with the freedom to change at any time). They would then proceed to pay for the hours and room size they required. Prices were fixed for each room size regardless of the number of users.
 
-R code block:
-```r
-library(tidyverse)
-df <- read_csv("some_file.csv")
-head(df)
-```
+casajuegos_img02.jpg" alt="Lobby Pic 1"
 
-Here's some inline code `x+y`.
+casajuegos_img03.jpg" alt="Lobby Pic 2"
 
-Here's an image:
-<img src="{{ site.url }}{{ site.baseurl }}/images/software_projects/casajuegoscafe/casajuegos_img00.jpg" alt="Image from the project">
+# Alt-H1 Technical Requirements
 
-Here's another image using Kramdown:
-![alt]({{ site.url }}{{ site.baseurl }}/images/software_projects/casajuegoscafe/casajuegos_img01.jpg)
+**Hardware** required for the project were: PC’s, Consoles, Wireless Controllers, Wireless Mice, Wireless Keyboards, 24” Monitors, 32” HDTV’s, HD Projectors, 5.1 Surround sound speakers, Router, Switches, RJ45 Ethernet Cables, PC Headphones, Media Blu-rays & DVDs, Digital Games, Game Discs, HDMI cables (20 Metres), VGA cables (20 Metres), XBOX VGA adapter, 3.5 mm to RCA cables (20 Metres), PlayStation 3 component cable, wall mounts, ceiling mounts.
 
-Here's some math:
+**Software** required was Windows 7 licenses, Windows Media Center, Media Browser Server license, PS3 Media Server, Time Tracking Software, BLU-RAY & DVD Ripping Software and MetaBrowser (Media Metadata Software).
 
-$$z=x+y$$
+**Decorations** used was Wallpaper, Posters, Light Fittings and Promotional Material.
 
-You can also put it inline $$z=x+y$$
+The hardware, software and decorations were appropriated ahead of travel from the UK and sent to Lilongwe, Malawi through Air Freight for the project.
+
+# Alt-H1 Implementation
+
+## H2 Decoration
+The wallpaper was put up, light fittings were installed and the wiring was routed through the ceiling to prevent trip hazards once the cargo was cleared from customs.
+
+## H2 Hardware
+The devices (consoles and PCs) were centralised in one well-ventilated room (Control room) for security, networking and ease of access (change gaming media). Because monitors were used, the audio and video signals had to be separated from the consoles to the room were the users would sit. For the XBOX 360 room, the XBOX VGA adapter combined with VGA and 3.5 mm to RCA cables were used to carry the signals from the Control room. In the case of the PlayStation 3 room, the PlayStation 3 component cable combined with the HDMI and the 3.5 mm to RCA cables were used to carry the signals from the Control room. The Private Party rooms and the Cinema room used HDMI cables to the HDTV’s and Projector and then those were used to connect to 5.1 Surround Sound Speakers.
+
+The PCs had two User profiles each, one for the Customer and the other for Administrative duties (to prevent the users from making modifications to the PCs). One PC (Media Server PC) was used as the Media Server and hosted all the Media for the Café (only accessible through administrative rights to prevent media deletion). All devices were connected through the Router and Switches to create a Local Area Network used for Media Viewing and Multiplayer Gaming.
+
+## H2 Software
+The ripping software was used to extract the owned Blu-ray and DVD content. These were then stored on the Media Server PC separated by the content type: Movies, TV Shows and Animated Shows. The MetaBrowser software was used to collect visual information for the content such as Poster, backdrops and actor information. Media Browser Server and PS3 Media Server were used to organize and stream to the devices on the Local Area Network. XBOX 360 and PCs used Windows Media Center to interface with the media library.
+
+Time tracking software was used to track the customers remaining time for each session.
+
+# Alt-H1 Gallery
+
+casajuegos_img01.jpg
+casajuegos_img04.jpg
+casajuegos_img06.jpg
+casajuegos_img08.jpg
+casajuegos_img10.jpg
+casajuegos_img11.jpg
+casajuegos_img12.jpg
+casajuegos_img13.jpg
+casajuegos_img14.jpg
+
+
+
+
+# Alt-H1 Exhibits and Road Shows
+
+On occasion, the Café would go on the road and provide the services available to Colleges and Universities during weekends. These ranged from Movie Screenings to Video Game Tournaments with prizes.
+
+casajuegos_img16.jpg" alt="College Tournament Trials 1">
+
+casajuegos_img17.jpg" alt="College Tournament Lecture Hall Presentation">
+
+casajuegos_img18.jpg" alt="College Tournament Trials 2">
+
+casajuegos_img19.jpg" alt="College Outdoor Screening Demo 1">
+
+casajuegos_img20.jpg" alt="College Outdoor Screening Demo 2">
+
+
+facebook page link for the CasaJuegos [link](https://www.facebook.com/casajuegos/)?
