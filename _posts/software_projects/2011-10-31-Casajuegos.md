@@ -7,9 +7,9 @@ feature_img: /images/software_projects/casajuegoscafe/casajuegos_img00.jpg
 excerpt: "software, media entertainment, networking, gaming"
 purpose: "The purpose of the project was to establish a start-up that could offer services as a modern video game arcade and an offline media-streaming hub at a location in Lilongwe, Malawi, South-East Africa."
 images:
-  - image_path: /images/software_projects/casajuegoscafe/casajuegos_img00.jpg
+  - image_path: /images/software_projects/casajuegoscafe/casajuegos_img01.jpg
     title: XBOX 360 Room
-    weight: 1
+    weight: 2
 
 ---
 <h2 class="text-underline">Structure of the Café</h2>
@@ -31,9 +31,11 @@ casajuegos_img09.jpg" alt="Cinema room"
 
 <ul class="photo-gallery">
   {% for image in page.images %}
-    <li>
-      <img src="{{ image.image_path }}" alt="{{ image.title }}">
-    </li>
+    {% if image.weight == 1 %}  
+      <li>
+        <img src="{{ image.image_path }}" alt="{{ image.title }}">
+      </li>
+    {% endif %}  
   {% endfor %}  
 </ul>
 
