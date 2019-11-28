@@ -22,8 +22,8 @@ The incentive behind designing the Carb Cooker was to:
 
  [![Nsima Cooking](http://img.youtube.com/vi/e3Qg-X7DNN8/0.jpg)](https://www.youtube.com/watch?v=e3Qg-X7DNN8 "Nsima Cooking")
 
- Rice, Pasta and Nsima all require different amounts of water, uncooked material (raw rice, pasta and maize flour) and heating at various temperatures each with its own timings. Changes on the amount of water and timing can alter the resulting cooked product’s either making it too soft, soggy or slightly hard.
- 
+ Rice, Pasta and Nsima all require different amounts of water, uncooked ingredients (raw rice, pasta and maize flour) and heating at various temperatures each with its own timings. Changes on the amount of water and timing can alter the resulting cooked product’s either making it too soft, soggy or slightly hard.
+
 
 
 <h2 class="text-underline">Requirements</h2>
