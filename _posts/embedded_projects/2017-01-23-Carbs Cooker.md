@@ -18,7 +18,7 @@ The incentive behind designing the Carb Cooker was to:
 
 <h2 class="text-underline">Concept</h2>
 
-<a class="custom_link" href="https://en.wikipedia.org/wiki/Ugali">Nsima </a>is a type of maize flour porridge made in Africa. It is also known as **Ugali pap**, **Ngima**, **Obusuma**, **Kimnyet**, **Nshima**, **Mieliepap**, **Phutu**, **Sadza**, **Kwon**, and other names in other African countries. Process of cooking it may differ but It is cooked in boiling water or milk until it reaches a stiff or firm dough-like consistency.
+<a class="custom_link" href="https://en.wikipedia.org/wiki/Ugali">Nsima </a>is a type of maize flour porridge made in Africa. It is also known as **Ugali pap**, **Ngima**, **Obusuma**, **Kimnyet**, **Mieliepap**, **Nshima**, **Phutu**, **Sadza**, **Kwon**, and other names in other African countries. Process of cooking it may differ but It is cooked in boiling water or milk until it reaches a stiff or firm dough-like consistency.
 
  [![Nsima Cooking](http://img.youtube.com/vi/e3Qg-X7DNN8/0.jpg)](https://www.youtube.com/watch?v=e3Qg-X7DNN8 "Nsima Cooking")
 
