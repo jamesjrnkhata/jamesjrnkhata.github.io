@@ -9,7 +9,7 @@ purpose: "This project aimed at developing a proof of concept (POC) for an all-i
 ---
 This project aimed at developing a proof of concept (POC) for an all-in-one automatic cooker for three popular forms of carbs, these being Rice, Pasta and Nsima (Southern-African dish).
 
-<h2 class=""text-underline"">Motivation</h2>
+<h2 class="text-underline">Motivation</h2>
 
 The incentive behind designing the Carb Cooker was to:
  1.	Simplify the process of determining the measurements required (water and uncooked rice, pasta or maize flour) to cook for a specific amount of people.
@@ -21,13 +21,13 @@ The incentive behind designing the Carb Cooker was to:
  [![Nsima Cooking](http://img.youtube.com/vi/e3Qg-X7DNN8/0.jpg)](https://www.youtube.com/watch?v=e3Qg-X7DNN8 "Nsima Cooking")
 
  Rice, Pasta and Nsima all require different amounts of water, uncooked material (raw rice, pasta and maize flour) and heating at various temperatures each with its own timings. Changes on the amount of water and timing can alter the resulting cooked product’s either making it too soft, soggy or slightly hard.
- 
 
-<h2 class=""text-underline"">Concept</h2>
 
-<h2 class=""text-underline"">Requirements</h2>
+<h2 class="text-underline>Concept</h2>
 
-<h2 class=""text-underline"">Implementation</h2>
+<h2 class="text-underline">Requirements</h2>
+
+<h2 class="text-underline">Implementation</h2>
 
 ### Hardware
 
