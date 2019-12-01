@@ -3,7 +3,7 @@ title: "Carbs Cooker"
 date: 2017-01-23
 categories: [embedded-projects]
 permalink: /:categories/:title/
-feature_img: "/images/embedded_projects/"
+feature_img: "http://img.youtube.com/vi/e3Qg-X7DNN8/0.jpg"
 excerpt: "embedded, auto-cooker, rice, pasta, nsima, food"
 purpose: "This project aimed at developing a proof of concept (POC) for an all-in-one automatic cooker for three popular forms of carbs, these being Rice, Pasta and Nsima (Southern-African dish)."
 ---
