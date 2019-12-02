@@ -62,4 +62,158 @@ The components researched and used were chosen to minimize the cost of the overa
 **Cooker Housing** – A prototype case was built for the Cooker using local hardware (B&Q) material to hold its units and components together.   
 
 ### Software
-The portions were estimated for each carb type by cooking the dishes conventionally (pot and stove), while recording how much ingredients were used in weight. This data was then used as a standard in *Load Sensor* readings (weight) to determine how much ingredients were required for extra portions of each carb type. All the steps carried out in cooking rice; Pasta and Nsima were then implemented into Arduino Sketch.   
+The portions were estimated for each carb type by cooking the dishes conventionally (pot and stove), while recording how much ingredients were used in weight. This data was then used as a standard in *Load Sensor* readings (weight) to determine how much ingredients were required for extra portions of each carb type. All the steps carried out in cooking rice; Pasta and Nsima were then implemented into Arduino Sketch.
+
+**Decelaration Snippet**
+
+```cpp
+
+#include <OneWire.h>
+#include <DallasTemperature.h>
+#include <Servo.h>
+#include <Hx711.h>
+#include <LiquidCrystal.h>
+#include <AnalogKeypad.h>
+
+// Data wire is plugged into pin 2 on the Arduino
+const int ONE_WIRE_BUS = 2; // Temperature sensor on pin 2
+
+// Setup a oneWire instance to communicate with any OneWire devices
+// (not just Maxim/Dallas temperature ICs)
+OneWire oneWire(ONE_WIRE_BUS);
+
+// Pass our oneWire reference to Dallas Temperature.
+DallasTemperature sensors(&oneWire);
+
+HX711 scale(A2, A3);
+Servo servoMain; // Define our Servo
+
+// initialize the library with the numbers of the interface pins
+LiquidCrystal lcd(13, 11, 10, 6, 5, 3);
+
+// FLAGS AND STATES
+byte Heated_flag, Start_Water_Temp_Flag, start_Heating = 0; // Declare all flags to be used
+byte First_Pour_Flag, Second_Pour_Flag, Third_Pour_Flag, Simmer_Flag, Final_Cook_Flag, Completed_Cook_Flag = 0;
+byte Low_Heat_Flag, High_Heat_Flag, Low_Stirr_Flag, High_Stirr_Flag = 0;
+byte selection_lock, first_selection_flag, rice_selection_flag, water_level_flag, powder_level_flag = 0;
+byte powder_drain_flag, pasta_selection_flag , manual_selection_flag, manual_cook;
+int cook_selection = 0;
+int selected = 0;
+byte portion_selection = 0;
+int texture_selection = 0;
+int water, powder;
+int current_water, current_powder;
+int next_water, next_powder;
+unsigned long system_count = 0;
+unsigned long cook_count = 0;
+
+byte powder_hatch_state = 1; // variable to hold the state of the powder door
+byte water_hatch_state = 1; // variable to hold the state of the water door
+byte main_hatch_state = 1; // variable to hold the state of the main hatch
+
+byte powder_hatch = 0; // powder door
+byte water_hatch = 0; // water door
+byte main_hatch = 0; // main door
+
+byte progress_bar[8] = { 0b11111, 0b11111, 0b11111, 0b11111, 0b11111, 0b11111, 0b11111, 0b11111};
+
+DeviceAddress WaterBoilerTemp = {0x28, 0xFF, 0x9F, 0xEA, 0x72, 0x15, 0x02, 0xCD};
+DeviceAddress PotTemp = {0x28, 0xFF, 0x95, 0x5A, 0x10, 0x14, 0x00, 0x73};
+
+// OUTPUT PINS
+const int HeaterSwitch = 4;
+const int waterDrain = 7;
+const int Heat_Low = 14;
+const int Heat_High = 15;
+const int Stirr_Low = 8;
+const int Stirr_High = 12;
+
+// BUTTONS AND SWITCHES
+const int Button_analogPin = 19;
+//Button 1 = firstchoice_button
+//Button 2 = rice_button
+//Button 3 = button_portion
+
+//Button 4 = button_porridge,button_soft and button_firm
+
+//Button 5 = drain_button
+//Button 6 = start_Cook_button
+
+// LEDS AND INDICATORS
+//const int HeatedInd = 3;
+//const int firstchoice_Led = A5;
+//const int rice_Led = 7;
+//const int button_portion_Led = 8;
+//const int drain_Led = 6;
+
+// MISCELLANEOUS
+
+// Variables will change :
+int ledState = LOW; // ledState used to set the LED
+
+// Generally, you should use "unsigned long" for variables that hold time
+// The value will quickly become too large for an int to store
+unsigned long previousMillis = 0; // will store last time
+unsigned long minutes = 0;
+byte seconds = 0;
+long mod_seconds;
+byte two_second_counter;
+byte lcd_delay;
+byte lcd_toggle = 5; // SET TO 5 AS THE DEFAULT INACTIVE STATE
+String how_many;
+String texture;
+
+// constants won't change :
+const long interval = 1000; // interval at which to blink (milliseconds)
+
+String Key_press; // variable to hold key presses
+char BT_press; // variable to hold key presses
+String Food_Choice; //Variable used to carry the name of the food being made
+String blank = "                ";
+
+int powder_dec1, powder_dec2, powder_dec3;
+int water_dec1, water_dec2;
+
+AnalogKeypad AnKeypad(Button_analogPin);
+
+
+void setup(void)
+{
+  // start serial port
+  Serial.begin(9600);
+  lcd.begin(16, 2);
+  // Print a message to the LCD.
+  lcd.print(" Casa-Juegos Inc");
+  delay(2000);
+  lcd.setCursor(0,0);
+  lcd.print(blank);
+  lcd.setCursor(0,0);
+  lcd.createChar(0, progress_bar);
+
+  servoMain.attach(9); // servo on digital pin 9
+  servoMain.write(0);  // Turn Servo Left to 0 degrees
+
+  // Start up the library
+  sensors.begin();
+
+  // Set Output Pins
+  pinMode(HeaterSwitch, OUTPUT);
+  pinMode(waterDrain, OUTPUT);
+
+  pinMode(Heat_Low, OUTPUT);
+  pinMode(Heat_High, OUTPUT);
+
+  pinMode(Stirr_Low, OUTPUT);
+  pinMode(Stirr_High, OUTPUT);
+
+
+  digitalWrite(HeaterSwitch, HIGH); // switch off Element on start up
+  digitalWrite(waterDrain, HIGH); // switch off Drain on start up
+
+  digitalWrite(Heat_Low, HIGH); // switch off Cooker Low on start up
+  digitalWrite(Heat_High, HIGH); // switch off Cooker Low on start up
+
+  digitalWrite(Stirr_Low, HIGH); // switch off Stirring Low on start up
+  digitalWrite(Stirr_High, HIGH); // switch off Stirring High on start up  
+}
+```  
