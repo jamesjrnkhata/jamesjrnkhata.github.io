@@ -30,22 +30,22 @@ The incentive behind designing the Carb Cooker was to:
 
 The components researched and used were chosen to minimize the cost of the overall design.
 *	Cooker Housing (to hold all the components together)
-*	Non-stick cooking pot
+*	Non-Stick Cooking Pot
 *	Microcontroller (MCU) that fulfilled the requirements (General I/O pins, Flash Memory etc.).
-*	LCD Display, Button Matrix PCB and Buzzer
-*	Load cells, High torque Servo motors, Relays, Temperature Probes (Sensors)
+*	LCD Display, Button Matrix PCB, Bluetooth Module and Buzzer
+*	Load Cells, High Torque Servo Motors, Relays, Temperature Probes (Sensors)
 *	Temperature Sensor for Electric Rice Cooker
 *	Electric Hot Plate Cooking Coil
-*	Hot water pump
-*	Water holder, heating and feeding unit
-*	Rice, Pasta, maize flour feeding units
+*	Hot Water Pump
+*	Water Holder, Heater and Feeder unit
+*	Rice, Pasta, Maize flour Feeder units
 *	High torque DC Motor for stirring
-*	Stirring spatula
+*	Stirring Spatula
 
 <h2 class="text-underline">Implementation</h2>
 
 ### Hardware
-**User Interface** – This was made up of an *LCD Display* and the *Button Matrix PCB* (with button labels). The buttons were used to make selections. The *LCD Display* was used to give the user prompts, get information on the minimum requirements needed to cook a particular carb and progress of the cooking process. The *Buzzer* was used to notify the user when a cooking process was completed.
+**User Interface** – This was made up of an *LCD Display*, *Bluetooth Module* and the *Button Matrix PCB* (with button labels). The *Button Matrix PCB* and a Mobile Device App that sent serial commands to the *Microcontroller* through the *Bluetooth Module* were used to make selections on the Cooker. The *LCD Display* was used to give the user prompts, get information on the minimum requirements needed to cook a particular carb (with the amount of portions) and progress of the cooking process. The *Buzzer* was used to notify the user when a cooking process was completed.
 
 **Water Heater / Feeder Unit** – This was achieved with a *Boiling Kettle* modified to receive on and off signals from the *Controller unit* through a *Relay*. This was also fitted with a *Hot Water Pump* to feed the water to the *Non-Stick Cooking Pot*.
 
@@ -64,7 +64,7 @@ The components researched and used were chosen to minimize the cost of the overa
 ### Software
 The portions were estimated for each carb type by cooking the dishes conventionally (pot and stove), while recording how much ingredients were used in weight. This data was then used as a standard in *Load Sensor* readings (weight) to determine how much ingredients were required for extra portions of each carb type. All the steps carried out in cooking rice; Pasta and Nsima were then implemented into Arduino Sketch.
 
-**Decelaration Snippet**
+**Declaration Snippet (Nsima and Rice Only)**
 
 ```cpp
 
@@ -95,7 +95,7 @@ LiquidCrystal lcd(13, 11, 10, 6, 5, 3);
 byte Heated_flag, Start_Water_Temp_Flag, start_Heating = 0; // Declare all flags to be used
 byte First_Pour_Flag, Second_Pour_Flag, Third_Pour_Flag, Simmer_Flag, Final_Cook_Flag, Completed_Cook_Flag = 0;
 byte Low_Heat_Flag, High_Heat_Flag, Low_Stirr_Flag, High_Stirr_Flag = 0;
-byte selection_lock, first_selection_flag, rice_selection_flag, water_level_flag, powder_level_flag = 0;
+byte selection_lock, nsima_selection_flag, rice_selection_flag, water_level_flag, powder_level_flag = 0;
 byte powder_drain_flag, pasta_selection_flag , manual_selection_flag, manual_cook;
 int cook_selection = 0;
 int selected = 0;
@@ -130,7 +130,7 @@ const int Stirr_High = 12;
 
 // BUTTONS AND SWITCHES
 const int Button_analogPin = 19;
-//Button 1 = firstchoice_button
+//Button 1 = nsima_button
 //Button 2 = rice_button
 //Button 3 = button_portion
 
@@ -141,7 +141,7 @@ const int Button_analogPin = 19;
 
 // LEDS AND INDICATORS
 //const int HeatedInd = 3;
-//const int firstchoice_Led = A5;
+//const int nsima_Led = A5;
 //const int rice_Led = 7;
 //const int button_portion_Led = 8;
 //const int drain_Led = 6;
@@ -175,45 +175,4 @@ int powder_dec1, powder_dec2, powder_dec3;
 int water_dec1, water_dec2;
 
 AnalogKeypad AnKeypad(Button_analogPin);
-
-
-void setup(void)
-{
-  // start serial port
-  Serial.begin(9600);
-  lcd.begin(16, 2);
-  // Print a message to the LCD.
-  lcd.print(" Casa-Juegos Inc");
-  delay(2000);
-  lcd.setCursor(0,0);
-  lcd.print(blank);
-  lcd.setCursor(0,0);
-  lcd.createChar(0, progress_bar);
-
-  servoMain.attach(9); // servo on digital pin 9
-  servoMain.write(0);  // Turn Servo Left to 0 degrees
-
-  // Start up the library
-  sensors.begin();
-
-  // Set Output Pins
-  pinMode(HeaterSwitch, OUTPUT);
-  pinMode(waterDrain, OUTPUT);
-
-  pinMode(Heat_Low, OUTPUT);
-  pinMode(Heat_High, OUTPUT);
-
-  pinMode(Stirr_Low, OUTPUT);
-  pinMode(Stirr_High, OUTPUT);
-
-
-  digitalWrite(HeaterSwitch, HIGH); // switch off Element on start up
-  digitalWrite(waterDrain, HIGH); // switch off Drain on start up
-
-  digitalWrite(Heat_Low, HIGH); // switch off Cooker Low on start up
-  digitalWrite(Heat_High, HIGH); // switch off Cooker Low on start up
-
-  digitalWrite(Stirr_Low, HIGH); // switch off Stirring Low on start up
-  digitalWrite(Stirr_High, HIGH); // switch off Stirring High on start up  
-}
 ```  
