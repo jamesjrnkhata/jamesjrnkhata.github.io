@@ -120,7 +120,7 @@ The hardware, software and decorations were appropriated ahead of travel from th
 
 <h2 class="text-underline">Implementation</h2>
 ### Decoration
-The *wallpaper* was put up, *light fittings* were installed and the wiring was routed through the ceiling to prevent trip hazards once the cargo was cleared from customs.
+The location used was a house (Area 14 / 125) in the suburbs. The rooms in the house had to be painted, with some flooring and furnishing installed by the author. The *wallpaper*, *light fittings* were installed and the wiring was routed through the ceiling to prevent trip hazards once the cargo from the UK was cleared at customs.
 
 ### Hardware
 The devices (*consoles and PCs*) were centralised in one well-ventilated room (Control room) for security, networking and ease of access (change gaming media). Because *monitors* were used, the audio and video signals had to be separated from the consoles to the room were the users would sit. For the XBOX 360 room, the *XBOX VGA adapter* combined with *VGA* and *3.5 mm to RCA cables* were used to carry the signals from the Control room. In the case of the PlayStation 3 room, the *PlayStation 3 component cable* combined with the *HDMI* and the *3.5 mm to RCA cables* were used to carry the signals from the Control room. The Private Gaming rooms and the Cinema room used *HDMI cables* to the *HDTV’s* and *Projector*. These were then used to connect to *5.1 Surround Sound Speakers*.
