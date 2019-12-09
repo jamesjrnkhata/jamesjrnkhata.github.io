@@ -11,13 +11,13 @@
 #container_left {
   float: left;
   width: 25%;
-  height: 100%;
+  height: inherit;
 }
 
 #container_right {
   float: right;
   width: 70%;
-  height: 100%;
+  height: inherit;
 
 }
 
