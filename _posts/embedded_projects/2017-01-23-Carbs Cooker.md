@@ -5,9 +5,9 @@ categories: [embedded-projects]
 permalink: /:categories/:title/
 feature_img: "http://img.youtube.com/vi/e3Qg-X7DNN8/0.jpg"
 excerpt: "embedded, auto-cooker, c++, arduino, microcontroller, rice, pasta, nsima, food"
-purpose: "This project aimed at developing a proof of concept (POC) for an all-in-one automatic cooker for three popular forms of carbs: Rice, Pasta and Nsima (Southern-African dish)."
+purpose: "The project aimed at developing a proof of concept (POC) for an all-in-one automatic cooker for three popular forms of carbs: Rice, Pasta and Nsima (Southern-African dish)."
 ---
-This project aimed at developing a proof of concept (POC) for an all-in-one automatic cooker for three popular forms of carbs: Rice, Pasta and Nsima (Southern-African dish).
+The project aimed at developing a proof of concept (POC) for an all-in-one automatic cooker for three popular forms of carbs: Rice, Pasta and Nsima (Southern-African dish).
 
 <h2 class="text-underline">Motivation</h2>
 

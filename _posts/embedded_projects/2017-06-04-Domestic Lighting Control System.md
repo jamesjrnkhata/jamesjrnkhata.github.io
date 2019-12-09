@@ -5,5 +5,6 @@ categories: [embedded-projects]
 permalink: /:categories/:title/
 feature_img: /images//embedded_projects/domesticlightingcontrol/domesticlc_img00.jpg
 excerpt: "automation, security, embedded, control, domestic, c++, arduino, microcontroller"
-purpose: "This project was one of the bespoke embedded control solutions offered to customers in domestic and industrial environments in Malawi. This particular system provided an energy saving and security lighting control system."
+purpose: "The project was one of the bespoke embedded control solutions offered to customers in domestic and industrial environments in Malawi. This particular system provided an energy saving and security lighting control system."
 ---
+The project was one of the bespoke embedded control solutions offered to customers in domestic and industrial environments in Malawi. This particular system provided an energy saving and security lighting control system.
