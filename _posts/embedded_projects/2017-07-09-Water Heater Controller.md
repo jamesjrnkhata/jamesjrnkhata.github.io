@@ -1,5 +1,5 @@
 ---
-title: "Water Heater (Geyser) Controller"
+title: "Water Heater Controller"
 date: 2017-07-09
 categories: [embedded-projects]
 permalink: /:categories/:title/

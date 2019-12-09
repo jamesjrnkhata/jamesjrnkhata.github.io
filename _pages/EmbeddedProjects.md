@@ -43,7 +43,7 @@ blank_feature_img: /images/no_image.jpg
             </li>
 
             </a>
-              <p class="page__meta-custom">{{ post.excerpt }}</p>
+              <p class="page__meta-custom">{{ post.excerpt | truncate: 100 }}</p>
 
               <p class="archive__item-excerpt">{{ post.purpose }}
               <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
