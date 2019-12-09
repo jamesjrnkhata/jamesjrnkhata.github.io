@@ -5,6 +5,7 @@ title: "Embedded Projects"
 author_profile: true
 header:
   image: "/images/embedded_background.jpg"
+blank_feature_img: /images/no_image.jpg  
 ---
 
 <div class="tags-expo-section">
@@ -19,9 +20,13 @@ header:
         {% for post in tag[1] %}
         <div id="custom_container">
           <div id="container_left">
-          <div class="post_feature_img" style="background-image: url({{ post.feature_img }})">
-          </div>
-
+          {% if post_feature_img %}
+            <div class="post_feature_img" style="background-image: url({{ post.feature_img }})">
+            </div>
+          {% else %}
+            <div class="post_feature_img" style="background-image: url({{ page.blank_feature_img }})">
+            </div>
+          {% endif %}  
 
 
           </div>
