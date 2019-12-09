@@ -10,7 +10,7 @@
   float: left;
   width: 25%;
   height: 100%;
-  background-image: url({{ page.bgimage }});
+  background-image: url({{ post.feature_img }});
 }
 
 #container_right {
