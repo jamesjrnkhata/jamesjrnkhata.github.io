@@ -13,11 +13,11 @@ header:
 
     {% if tag[0] == "embedded-projects" %}
 
-    <div id="custom_container">
+
       <ul class="custom_post" >
 
         {% for post in tag[1] %}
-
+        <div id="custom_container">
           <div id="container_left">
 
             <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
@@ -46,13 +46,13 @@ header:
               </a> </p>
 
           </div>
-
+        </div>
 
         {% endfor %}
 
       </ul>
 
-    </div>
+
 
     {% endif %}
 
