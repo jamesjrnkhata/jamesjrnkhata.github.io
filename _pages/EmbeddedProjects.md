@@ -20,7 +20,7 @@ blank_feature_img: /images/no_image.jpg
         {% for post in tag[1] %}
         <div id="custom_container">
           <div id="container_left">
-          {% if post_feature_img %}
+          {% if post.feature_img %}
             <div class="post_feature_img" style="background-image: url({{ post.feature_img }})">
             </div>
           {% else %}
