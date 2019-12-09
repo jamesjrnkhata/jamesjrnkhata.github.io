@@ -19,10 +19,10 @@ header:
         {% for post in tag[1] %}
         <div id="custom_container">
           <div id="container_left">
+          <div class="post_feature_img" style="background-image: url({{ post.feature_img }})">
+          </div>
 
-            <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
-              <img class="post_feature_img" src="{{ post.feature_img }}" />
-            </a>
+
 
           </div>
 
