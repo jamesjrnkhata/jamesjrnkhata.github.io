@@ -1,5 +1,5 @@
 ---
-title: "Carbs Cooker"
+title: "Domestic Lighting Control System"
 date: 2017-06-04
 categories: [embedded-projects]
 permalink: /:categories/:title/
