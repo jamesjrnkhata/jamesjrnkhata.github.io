@@ -21,7 +21,7 @@ header:
           <div id="container_left">
 
             <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
-              <img class="post_feature_img" src="{{ post.feature_img }}" />
+              
             </a>
 
           </div>
