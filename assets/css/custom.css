@@ -3,6 +3,7 @@
   width: auto;
   height: 20% ;
   margin-top: 30px;
+  display: inline;
 }
 
 #container_left {
