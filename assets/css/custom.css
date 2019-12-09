@@ -37,8 +37,10 @@ ul.custom_post a {
 }
 
 img.post_feature_img {
-  width: 100%;
   height: auto;
+  width: auto;
+  max-width: 300px;
+  max-height: 300px;
 }
 
 .text-underline {
