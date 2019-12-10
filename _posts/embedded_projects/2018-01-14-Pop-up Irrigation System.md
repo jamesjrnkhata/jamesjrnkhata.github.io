@@ -5,6 +5,6 @@ categories: [embedded-projects]
 permalink: /:categories/:title/
 feature_img: /images//embedded_projects/popupIrrigationsystem/popupIrrigationsystem_img00.jpg
 excerpt: "irrigation, embedded, control, plumbing, c++, arduino, microcontroller"
-purpose: "writing draft. writing draft. writing draft. writing draft. writing draft. writing draft. writing draft. writing draft. writing draft. writing draft. writing draft. writing draft. "
+purpose: "drafting project. drafting project. drafting project. drafting project. drafting project. drafting project. drafting project. drafting project. drafting project. drafting project."
 ---
 Drafting Project
