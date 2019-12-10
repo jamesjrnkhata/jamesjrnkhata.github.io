@@ -37,8 +37,8 @@ ul.custom_post a {
 }
 
 .post_feature_img {
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: cover;
