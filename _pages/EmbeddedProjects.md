@@ -43,17 +43,17 @@ blank_feature_img: /images/no_image.jpg
             </li>
 
             </a>
-              {{ if post.excerpt}}
+              {% if post.excerpt %}
                 <p class="page__meta-custom">{{ post.excerpt }}</p>
-              {{ else }}
+              {% else %}
                 <p class="page__meta-custom">'    '</p>
-              {{ endif }}    
+              {% endif %}    
 
-              {{ if post.purpose }}              
+              {% if post.purpose %}              
                 <p class="archive__item-excerpt">{{ post.purpose | truncatewords: 25 }}
-              {{ else }}
+              {% else %}
                 <p class="page__meta-custom">'    '</p>
-              {{ endif }}
+              {% endif %}
 
 
               <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">

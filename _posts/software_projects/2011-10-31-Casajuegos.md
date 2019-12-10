@@ -158,4 +158,4 @@ On occasion, the Café would go on the road and provide the services available t
   {% endfor %}  
 </ul>
 
-Facebook page for the <a class="custom_link" href="https://www.facebook.com/casajuegos/">CasaJuegos</a>
+Facebook page for <a class="custom_link" href="https://www.facebook.com/casajuegos/">CasaJuegos Café</a>
