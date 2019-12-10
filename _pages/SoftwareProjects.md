@@ -6,24 +6,26 @@ author_profile: true
 header:
   image: "/images/software_background.jpg"
 ---
-
-
 <div class="tags-expo-section">
 
   {% for tag in site.categories %}
 
     {% if tag[0] == "software-projects" %}
 
-    <div id="custom_container">
+
       <ul class="custom_post" >
 
         {% for post in tag[1] %}
-
+        <div id="custom_container">
           <div id="container_left">
+          {% if post.feature_img %}
+            <div class="post_feature_img" style="background-image: url({{ post.feature_img }})">
+            </div>
+          {% else %}
+            <div class="post_feature_img" style="background-image: url({{ page.blank_feature_img }})">
+            </div>
+          {% endif %}  
 
-            <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
-              <img class="post_feature_img" src="{{ post.feature_img }}" />
-            </a>
 
           </div>
 
@@ -41,19 +43,19 @@ header:
             </a>
               <p class="page__meta-custom">{{ post.excerpt }}</p>
 
-              <p class="archive__item-excerpt">{{ post.purpose }}
+              <p class="archive__item-excerpt">{{ post.purpose | truncatewords: 25 }}
               <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
-              Read more...
+              Read more.
               </a> </p>
 
           </div>
-
+        </div>
 
         {% endfor %}
 
       </ul>
 
-    </div>
+
 
     {% endif %}
 
