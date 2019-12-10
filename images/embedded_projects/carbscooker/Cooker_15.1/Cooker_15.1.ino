@@ -26,7 +26,7 @@ LiquidCrystal lcd(13, 11, 10, 6, 5, 3);
 byte Heated_flag, Start_Water_Temp_Flag, start_Heating = 0; // Declare all flags to be used 
 byte First_Pour_Flag, Second_Pour_Flag, Third_Pour_Flag, Simmer_Flag, Final_Cook_Flag, Completed_Cook_Flag = 0;
 byte Low_Heat_Flag, High_Heat_Flag, Low_Stirr_Flag, High_Stirr_Flag = 0;
-byte selection_lock, first_selection_flag, rice_selection_flag, water_level_flag, powder_level_flag = 0;
+byte selection_lock, nsima_selection_flag, rice_selection_flag, water_level_flag, powder_level_flag = 0;
 byte powder_drain_flag, pasta_selection_flag , manual_selection_flag, manual_cook;
 int cook_selection = 0;
 int selected = 0;
@@ -61,7 +61,7 @@ const int Stirr_High = 12;
 
 // BUTTONS AND SWITCHES
 const int Button_analogPin = 19;
-//Button 1 = firstchoice_button
+//Button 1 = nsima_button
 //Button 2 = rice_button
 //Button 3 = button_portion
 
@@ -72,7 +72,7 @@ const int Button_analogPin = 19;
 
 // LEDS AND INDICATORS
 //const int HeatedInd = 3;
-//const int firstchoice_Led = A5;
+//const int nsima_Led = A5;
 //const int rice_Led = 7;
 //const int button_portion_Led = 8;
 //const int drain_Led = 6;
@@ -100,7 +100,7 @@ const long interval = 1000; // interval at which to blink (milliseconds)
 String Key_press; // variable to hold key presses
 char BT_press; // variable to hold key presses
 String Food_Choice; //Variable used to carry the name of the food being made
-String blank = "                ";
+String blank = "                "; // white space used to clear the LCD Display
 
 int powder_dec1, powder_dec2, powder_dec3;
 int water_dec1, water_dec2;
@@ -200,7 +200,7 @@ void loop(void)
       
       manual_selection_flag = 0;
       rice_selection_flag = 0;
-      first_selection_flag = 0;
+      nsima_selection_flag = 0;
       pasta_selection_flag = 0;
 
       texture_selection = 0;
@@ -238,7 +238,7 @@ void loop(void)
         powder_level_flag = 0; // reset powder_level_flag to accommodate for last minute changes 
         manual_selection_flag = 1;
         rice_selection_flag = 0;
-        first_selection_flag = 0;
+        nsima_selection_flag = 0;
         pasta_selection_flag = 0;
         lcd_toggle = 7;
         BT_press = ' ';
@@ -371,13 +371,13 @@ void loop(void)
   if(main_hatch_state == 1 && water_hatch_state == 1 && powder_hatch_state == 1){  
           
         
-    // START FIRST CHOICE SELECTION 
-    if(Key_press == "FIRSTCHOICE" && selection_lock == 0 || BT_press == 'N' && selection_lock == 0){
-     Food_Choice = "FIRST";     
+    // START NSIMA SELECTION 
+    if(Key_press == "NSIMA" && selection_lock == 0 || BT_press == 'N' && selection_lock == 0){
+     Food_Choice = "NSIMA";     
      lcd_toggle = 0;
      water_level_flag = 0; // reset water_level_flag to accommodate for last minute changes
      powder_level_flag = 0; // reset powder_level_flag to accommodate for last minute changes
-     first_selection_flag = 1;
+     nsima_selection_flag = 1;
      rice_selection_flag = 0;
      pasta_selection_flag = 0;
      manual_selection_flag = 0;
@@ -391,7 +391,7 @@ void loop(void)
      water_level_flag = 0; // reset water_level_flag to accommodate for last minute changes
      powder_level_flag = 0; // reset powder_level_flag to accommodate for last minute changes 
      rice_selection_flag = 1;
-     first_selection_flag = 0;      
+     nsima_selection_flag = 0;      
      pasta_selection_flag = 0;
      manual_selection_flag = 0;
      BT_press = ' ';
@@ -405,14 +405,14 @@ void loop(void)
      powder_level_flag = 0; // reset powder_level_flag to accommodate for last minute changes 
      pasta_selection_flag = 1;
      rice_selection_flag = 0;
-     first_selection_flag = 0;
+     nsima_selection_flag = 0;
      manual_selection_flag = 0;
      BT_press = ' ';
    }   
       
     
-  // FIRST CHOICE SELECTION BLOCK 
-   if(first_selection_flag == 1){  
+  // NSIMA SELECTION BLOCK 
+   if(nsima_selection_flag == 1){  
 
       Auto_Cook_Selection();
       
@@ -644,8 +644,8 @@ void opened_hatches()
         lcd.setCursor(0,1);
         lcd.print(" FULL CAPACITY !");
       }
-      if(Key_press == "FIRSTCHOICE" || BT_press == 'N'){
-        // CHECK WATER LEVEL RELATIVE TO FIRSTCHOICE
+      if(Key_press == "NSIMA" || BT_press == 'N'){
+        // CHECK WATER LEVEL RELATIVE TO NSIMA
       }
       if(Key_press == "RICE" || BT_press == 'R'){
         // CHECK WATER LEVEL RELATIVE TO RICE
@@ -677,8 +677,8 @@ void opened_hatches()
       lcd.setCursor(0,1);
       lcd.print(" FULL CAPACITY !");
     }
-    if(Key_press == "FIRSTCHOICE" || BT_press == 'N'){
-      // CHECK HOLDER LEVEL RELATIVE TO FIRSTCHOICE
+    if(Key_press == "NSIMA" || BT_press == 'N'){
+      // CHECK HOLDER LEVEL RELATIVE TO NSIMA
     }
     if(Key_press == "RICE" || BT_press == 'R'){
       // CHECK HOLDER LEVEL RELATIVE TO RICE
@@ -817,7 +817,7 @@ void Cook_Progress()
            lcd.setCursor(0,0);lcd.print(blank);lcd.setCursor(0,1);lcd.print(blank);lcd.setCursor(0,0);
            lcd.print("Press: PORRIDGE");
            lcd.setCursor(0,1);
-           if(first_selection_flag == 1){
+           if(nsima_selection_flag == 1){
             lcd.print("SOFT OR FIRM");
            }
            else
@@ -927,7 +927,7 @@ void Cook_Progress()
     }     
   }
 
-  if(Start_Water_Temp_Flag == 0 &&  first_selection_flag == 0 && powder_drain_flag == 0 && rice_selection_flag == 0 && pasta_selection_flag == 0 && manual_selection_flag == 0){
+  if(Start_Water_Temp_Flag == 0 &&  nsima_selection_flag == 0 && powder_drain_flag == 0 && rice_selection_flag == 0 && pasta_selection_flag == 0 && manual_selection_flag == 0){
     
      // MAIN HATCH IS CLOSED EVERYTHING GOES BACK TO NORMAL 
       if(main_hatch_state == 1){
@@ -1063,7 +1063,7 @@ void Auto_Cook_Selection()
       if(Key_press == "PORRIDGE" || BT_press == 'T'){
         lcd_toggle = 2;
         texture = "PORRIDGE";
-        if(first_selection_flag == 1){texture_selection = 100;}
+        if(nsima_selection_flag == 1){texture_selection = 100;}
         else if(rice_selection_flag == 1){texture_selection = 400;}
         water_level_flag = 0; // reset water_level_flag to accommodate for last minute changes
         powder_level_flag = 0; // reset powder_level_flag to accommodate for last minute changes
@@ -1072,7 +1072,7 @@ void Auto_Cook_Selection()
       if(Key_press == "SOFT" || BT_press == 'U'){
         lcd_toggle = 2;
         texture = "SOFT";            
-        if(first_selection_flag == 1){texture_selection = 200;}
+        if(nsima_selection_flag == 1){texture_selection = 200;}
         else if(rice_selection_flag == 1){texture_selection = 500;}
         water_level_flag = 0; // reset water_level_flag to accommodate for last minute changes
         powder_level_flag = 0; // reset powder_level_flag to accommodate for last minute changes  
@@ -1081,7 +1081,7 @@ void Auto_Cook_Selection()
       if(Key_press == "FIRM" || BT_press == 'V'){
         lcd_toggle = 2;
         texture = "FIRM";            
-        if(first_selection_flag == 1){texture_selection = 300;}
+        if(nsima_selection_flag == 1){texture_selection = 300;}
         else if(rice_selection_flag == 1){texture_selection = 500;}
         water_level_flag = 0; // reset water_level_flag to accommodate for last minute changes
         powder_level_flag = 0; // reset powder_level_flag to accommodate for last minute changes
@@ -1094,20 +1094,20 @@ void Auto_Cook_Selection()
 void Start_Cook()
 {
   switch (cook_selection) {
-      case 101: // THE BUTTON HAS BEEN PRESSED FOR FIRSTCHOICE PORRIDGE     
+      case 101: // THE BUTTON HAS BEEN PRESSED FOR NSIMA PORRIDGE     
        if(selection_lock == 1){
        //  Cook_Progress(); // FUNCTION TO INDICATE FOOD COOKING PROGRESS          
-         first_porridge(); // RUN FIRST PORRIDGE COOK
-         first_porridge_complete(); // FINALIZE COOK AS PORRIDGE         
+         nsima_porridge(); // RUN NSIMA PORRIDGE COOK
+         nsima_porridge_complete(); // FINALIZE COOK AS PORRIDGE         
     //     Cook_complete(); // RUN FINALIZING FUNCTION    
        }   
       break;
       
-      case 102: // THE BUTTON HAS BEEN PRESSED FOR FIRSTCHOICE SOFT / FIRM     
+      case 102: // THE BUTTON HAS BEEN PRESSED FOR NSIMA SOFT / FIRM     
        if(selection_lock == 1){  
        //  Cook_Progress(); // FUNCTION TO INDICATE FOOD COOKING PROGRESS                              
-         first_porridge(); // RUN FIRST PORRIDGE COOK
-         first_soft_firm(); // RUN FIRST SOFT / FIRM TO COMPLETE COOK
+         nsima_porridge(); // RUN NSIMA PORRIDGE COOK
+         nsima_soft_firm(); // RUN NSIMA SOFT / FIRM TO COMPLETE COOK
        //  Cook_complete(); // RUN FINALIZING FUNCTION          
        }   
       break;
@@ -1135,7 +1135,7 @@ void level_check()
 {
  switch(selected){
 
-    // PORRIDGE FIRST_SELECTION
+    // PORRIDGE NSIMA_SELECTION
      
      case 101:  
       // minimum required levels are checked for cook
@@ -1187,7 +1187,7 @@ void level_check()
       cook_selection = 101;   
      break;
 
-   // SOFT FIRST_SELECTION
+   // SOFT NSIMA_SELECTION
 
      case 201:  
       // minimum required levels are checked for cook
@@ -1239,7 +1239,7 @@ void level_check()
       cook_selection = 102;         
      break;
 
-   // FIRM FIRST_SELECTION   
+   // FIRM NSIMA_SELECTION   
 
      case 301:  
       // minimum required levels are checked for cook
@@ -1517,7 +1517,7 @@ int powder_level(long value2){
   return powder;
  }
 
- void first_porridge()
+ void nsima_porridge()
 {   
       
    // STEP 1 POUR COLD WATER AND POUR INITIAL POWDER
@@ -1619,7 +1619,7 @@ int powder_level(long value2){
   }   
 }
 
-void first_soft_firm()
+void nsima_soft_firm()
 {
     if(Simmer_Flag == 1 && Final_Cook_Flag == 0){ 
      if(Third_Pour_Flag == 1 && Final_Cook_Flag == 0){
@@ -1679,7 +1679,7 @@ void first_soft_firm()
 }
 
 
-void first_porridge_complete(){
+void nsima_porridge_complete(){
   if(Third_Pour_Flag == 1){
     Completed_Cook_Flag = 1; // Final flag activated
    }
@@ -1693,7 +1693,7 @@ void Cook_complete(){
    main_hatch = 0; // unlock main hatch   
 
    if(main_hatch_state == 0){ 
-     selection_lock = 0; first_selection_flag = 0; rice_selection_flag = 0; water_level_flag = 0; powder_level_flag = 0;               
+     selection_lock = 0; nsima_selection_flag = 0; rice_selection_flag = 0; water_level_flag = 0; powder_level_flag = 0;               
      Heated_flag = 0; Start_Water_Temp_Flag = 0; powder_drain_flag = 0; start_Heating = 0; 
      First_Pour_Flag = 0; Second_Pour_Flag = 0; Third_Pour_Flag = 0; Simmer_Flag = 0; Final_Cook_Flag = 0;
      Low_Heat_Flag = 0; High_Heat_Flag = 0; Low_Stirr_Flag = 0; High_Stirr_Flag = 0;               
@@ -1701,7 +1701,7 @@ void Cook_complete(){
      current_water = 0; current_powder = 0; next_water = 0; next_powder = 0; cook_count = 0; 
      servoMain.write(0); manual_cook = 0; // Used for manaul mode
       
-     manual_selection_flag = 0; rice_selection_flag = 0; first_selection_flag = 0; pasta_selection_flag = 0;
+     manual_selection_flag = 0; rice_selection_flag = 0; nsima_selection_flag = 0; pasta_selection_flag = 0;
      
      Completed_Cook_Flag = 0; 
   
@@ -1709,5 +1709,3 @@ void Cook_complete(){
   } 
  }
 }
-
-

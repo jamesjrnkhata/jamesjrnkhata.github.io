@@ -64,7 +64,7 @@ The components researched and used were chosen to minimize the cost of the overa
 ### Software
 The portions were estimated for each carb type by cooking the dishes conventionally (pot and stove), while recording how much ingredients were used in weight. This data was then used as a standard in *Load Sensor* readings (weight) to determine how much ingredients were required for extra portions of each carb type. All the steps carried out in cooking rice; Pasta and Nsima were then implemented into Arduino Sketch.
 
-**Declaration Snippet (Nsima and Rice Only)**
+**Declaration Code Snippet (Nsima and Rice Only)**
 
 ```cpp
 
@@ -169,10 +169,220 @@ const long interval = 1000; // interval at which to blink (milliseconds)
 String Key_press; // variable to hold key presses
 char BT_press; // variable to hold key presses
 String Food_Choice; //Variable used to carry the name of the food being made
-String blank = "                ";
+String blank = "                "; // white space used to clear the LCD Display
 
 int powder_dec1, powder_dec2, powder_dec3;
 int water_dec1, water_dec2;
 
 AnalogKeypad AnKeypad(Button_analogPin);
-```  
+```
+
+**Cook Selection Code Snippet**
+```cpp
+
+// CONDITION TO CHECK IF THE DEVICE IS OPEN, IF IT IS ONLY SECONDARY FUNCTIONS CAN BE CARRIED OUT
+  if(main_hatch_state == 1 && water_hatch_state == 1 && powder_hatch_state == 1){  
+
+
+    // START NSIMA SELECTION
+    if(Key_press == "NSIMA" && selection_lock == 0 || BT_press == 'N' && selection_lock == 0){
+     Food_Choice = "NSIMA";     
+     lcd_toggle = 0;
+     water_level_flag = 0; // reset water_level_flag to accommodate for last minute changes
+     powder_level_flag = 0; // reset powder_level_flag to accommodate for last minute changes
+     nsima_selection_flag = 1;
+     rice_selection_flag = 0;
+     pasta_selection_flag = 0;
+     manual_selection_flag = 0;
+     BT_press = ' ';
+    }
+
+    // START RICE SELECTION
+    if(Key_press == "RICE" && selection_lock == 0 || BT_press == 'R' && selection_lock == 0){
+     Food_Choice = "RICE";
+     lcd_toggle = 0;          
+     water_level_flag = 0; // reset water_level_flag to accommodate for last minute changes
+     powder_level_flag = 0; // reset powder_level_flag to accommodate for last minute changes
+     rice_selection_flag = 1;
+     nsima_selection_flag = 0;      
+     pasta_selection_flag = 0;
+     manual_selection_flag = 0;
+     BT_press = ' ';
+   }
+
+    // START PASTA SELECTION    
+    if(Key_press == "PASTA" && selection_lock == 0 || BT_press == 'P' && selection_lock == 0){
+     Food_Choice = "PASTA";
+     lcd_toggle = 0;  
+     water_level_flag = 0; // reset water_level_flag to accommodate for last minute changes
+     powder_level_flag = 0; // reset powder_level_flag to accommodate for last minute changes
+     pasta_selection_flag = 1;
+     rice_selection_flag = 0;
+     nsima_selection_flag = 0;
+     manual_selection_flag = 0;
+     BT_press = ' ';
+   }   
+
+
+  // NSIMA SELECTION BLOCK
+   if(nsima_selection_flag == 1){  
+
+      Auto_Cook_Selection();
+
+      //WAIT FOR START COOK BUTTON PRESS
+      if(Key_press == "START_COOK" || BT_press == 'G'){
+
+        lcd_toggle = 3;
+        lcd_delay = 0;
+
+        water_read();
+        powder_read();
+
+        level_check(); // FUNCTION TO RUN A WATER LEVEL AND POWDER LEVEL CHECK
+        water_temp_check(); // RUN TEMPERATURE CHECK SUB ROUTINE
+        BT_press = ' ';
+
+        //  POT IS EMPTY... CONDITION TO CHECK BEFORE START COOKING
+
+        if(water_level_flag == 1 && powder_level_flag == 1 && start_Heating == 1){ //THREE CONDITIONS TO CHECK BEFORE START COOKING
+          selection_lock = 1;        
+          lcd_toggle = 4;
+          powder_hatch = 1; // lock powder door until after cook
+          water_hatch = 1; // lock water door until after cook
+          main_hatch = 1; // lock main hatch until after cook
+          BT_press = ' ';
+          lcd.setCursor(0,0);lcd.print(blank);lcd.setCursor(0,1);lcd.print(blank);lcd.setCursor(0,0);            
+         }
+      }              
+    }
+
+  // RICE SELECTION BLOCK
+   if(rice_selection_flag == 1){   
+
+      Auto_Cook_Selection();
+
+      //WAIT FOR START COOK BUTTON PRESS
+      if(Key_press == "START_COOK" || BT_press == 'G'){
+
+        lcd_toggle = 3;
+        lcd_delay = 0;
+
+        water_read();
+        powder_read();
+
+        level_check(); // FUNCTION TO RUN A WATER LEVEL AND POWDER LEVEL CHECK
+        start_Heating = 1; // SET FLAG TO START WATER BOILING ROUTINE  ; // RUN TEMPERATURE CHECK SUB ROUTINE
+        BT_press = ' ';
+
+        //  POT IS EMPTY... CONDITION TO CHECK BEFORE START COOKING
+
+        if(water_level_flag == 1 && powder_level_flag == 1 && start_Heating == 1){ //THREE CONDITIONS TO CHECK BEFORE START COOKING
+          selection_lock = 1;          
+          lcd_toggle = 4;
+          powder_hatch = 1; // lock powder door until after cook
+          water_hatch = 1; // lock water door until after cook
+          main_hatch = 1; // lock main hatch until after cook
+          BT_press = ' ';
+          lcd.setCursor(0,0);lcd.print(blank);lcd.setCursor(0,1);lcd.print(blank);lcd.setCursor(0,0);            
+         }
+      }
+      
+
+
+
+**Nsima Cook State Transition Code Snippet**
+
+```cpp
+
+void nsima_soft_firm()
+{
+    if(Simmer_Flag == 1 && Final_Cook_Flag == 0){
+     if(Third_Pour_Flag == 1 && Final_Cook_Flag == 0){
+
+       powder_read();                  
+
+       High_Stirr_Flag = 1; // Start High_stirring        
+       Low_Stirr_Flag = 0; // Stop Low_stirring               
+
+       if(powder > next_powder){             
+         if(seconds == 0 || seconds == 10 || seconds == 20 || seconds == 30 || seconds == 40 || seconds == 50){
+          servoMain.write(105);
+          delay(300);  //                 
+          servoMain.write(0);  // Turn Servo Left to 0 degrees                 
+         }
+       }
+
+       if(powder <= next_powder){                
+      Final_Cook_Flag = 1;
+      minutes = 0; // Reset minutes for next STEP                 
+       }               
+     }  
+  }   
+   // STEP 8 TURN STIRRING OFF
+   // STEP 9 TURN HEATING PLATE "LOW"
+   if(Final_Cook_Flag == 1){
+
+     //MAINTAIN THE HIGH STIRR FOR SPECIFIED TIME
+     if(minutes < 1){
+
+    //   High_Stirr_Flag = 1; // Start High_stirring        
+    //   Low_Stirr_Flag = 0; // Stop Low_stirring
+     }
+
+     //STOP THE HIGH STIRR, TURN LOW HEAT ON
+     if(minutes > 0 && minutes < 2){
+
+       Low_Stirr_Flag = 0; // Stop Low_stirring
+       High_Stirr_Flag = 0; // Stop High_stirring
+    //   digitalWrite(Stirr_High, HIGH);
+
+       Low_Heat_Flag = 1; // start Low_heating
+       High_Heat_Flag = 0;// turn off High_heating
+     //  digitalWrite(Heat_High, HIGH);
+     }
+
+     // STEP 10 CLEAR ALL FLAGS, STATES AND VARIABLES
+     //TURN LOW HEAT OFF SOUND OFF COOK COMPLETE
+     if(minutes > 2){
+
+       Low_Heat_Flag = 0; // turn off Low_heating
+       High_Heat_Flag = 0;// turn off High_heating
+     //  digitalWrite(Heat_Low, HIGH);
+       Completed_Cook_Flag = 1; // Final flag activated        
+     }                         
+   }  
+}
+
+
+void nsima_porridge_complete(){
+  if(Third_Pour_Flag == 1){
+    Completed_Cook_Flag = 1; // Final flag activated
+   }
+}
+void Cook_complete(){
+  if(Completed_Cook_Flag == 1){
+
+   // OPEN UP ALL THE LOCKS
+   powder_hatch = 0; // unlock powder door
+   water_hatch = 0; // unlock water door
+   main_hatch = 0; // unlock main hatch   
+
+   if(main_hatch_state == 0){
+     selection_lock = 0; nsima_selection_flag = 0; rice_selection_flag = 0; water_level_flag = 0; powder_level_flag = 0;               
+     Heated_flag = 0; Start_Water_Temp_Flag = 0; powder_drain_flag = 0; start_Heating = 0;
+     First_Pour_Flag = 0; Second_Pour_Flag = 0; Third_Pour_Flag = 0; Simmer_Flag = 0; Final_Cook_Flag = 0;
+     Low_Heat_Flag = 0; High_Heat_Flag = 0; Low_Stirr_Flag = 0; High_Stirr_Flag = 0;               
+     selected = 0; cook_selection = 0; portion_selection = 0; texture_selection = 0; minutes = 0;
+     current_water = 0; current_powder = 0; next_water = 0; next_powder = 0; cook_count = 0;
+     servoMain.write(0); manual_cook = 0; // Used for manaul mode
+
+     manual_selection_flag = 0; rice_selection_flag = 0; nsima_selection_flag = 0; pasta_selection_flag = 0;
+
+     Completed_Cook_Flag = 0;
+
+  //   lcd_toggle = 6; // SET TO 6 the state when the Main Hatch is opened
+  }
+ }
+}
+
+```
