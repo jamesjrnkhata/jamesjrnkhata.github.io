@@ -43,13 +43,13 @@ blank_feature_img: /images/no_image.jpg
             </li>
 
             </a>
-              {% if post.excerpt == blank %}
+              {% if post.excerpt != blank %}
                 <p class="page__meta-custom">{{ post.excerpt }}</p>
               {% else %}
                 <p class="page__meta-custom">'</p>
               {% endif %}    
 
-              {% if post.purpose == blank %}              
+              {% if post.purpose != blank %}              
                 <p class="archive__item-excerpt">{{ post.purpose | truncatewords: 25 }}
               {% else %}
                 <p class="page__meta-custom">'</p>
