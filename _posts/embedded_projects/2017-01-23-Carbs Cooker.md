@@ -210,19 +210,6 @@ AnalogKeypad AnKeypad(Button_analogPin);
      BT_press = ' ';
    }
 
-    // START PASTA SELECTION    
-    if(Key_press == "PASTA" && selection_lock == 0 || BT_press == 'P' && selection_lock == 0){
-     Food_Choice = "PASTA";
-     lcd_toggle = 0;  
-     water_level_flag = 0; // reset water_level_flag to accommodate for last minute changes
-     powder_level_flag = 0; // reset powder_level_flag to accommodate for last minute changes
-     pasta_selection_flag = 1;
-     rice_selection_flag = 0;
-     nsima_selection_flag = 0;
-     manual_selection_flag = 0;
-     BT_press = ' ';
-   }   
-
 
   // NSIMA SELECTION BLOCK
    if(nsima_selection_flag == 1){  
@@ -286,11 +273,11 @@ AnalogKeypad AnKeypad(Button_analogPin);
           lcd.setCursor(0,0);lcd.print(blank);lcd.setCursor(0,1);lcd.print(blank);lcd.setCursor(0,0);            
          }
       }
-      
+    }
+}
+```
 
-
-
-**Nsima Cook State Transition Code Snippet**
+**Nsima Cook State-Transition Code Snippet**
 
 ```cpp
 
