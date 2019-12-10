@@ -43,9 +43,19 @@ blank_feature_img: /images/no_image.jpg
             </li>
 
             </a>
-              <p class="page__meta-custom">{{ post.excerpt }}</p>
+              {{ if post.excerpt}}
+                <p class="page__meta-custom">{{ post.excerpt }}</p>
+              {{ else }}
+                <p class="page__meta-custom">'    '</p>
+              {{ endif }}    
 
-              <p class="archive__item-excerpt">{{ post.purpose | truncatewords: 25 }}
+              {{ if post.purpose }}              
+                <p class="archive__item-excerpt">{{ post.purpose | truncatewords: 25 }}
+              {{ else }}
+                <p class="page__meta-custom">'    '</p>
+              {{ endif }}
+
+
               <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
               Read more.
               </a> </p>

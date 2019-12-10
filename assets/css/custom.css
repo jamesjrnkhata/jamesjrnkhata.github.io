@@ -1,7 +1,7 @@
 #custom_container {
 
   width: auto;
-  height: 20% ;
+  height: auto ;
   margin-top: 5px;
   display: inline-block;
 }
@@ -37,8 +37,8 @@ ul.custom_post a {
 }
 
 .post_feature_img {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: cover;
