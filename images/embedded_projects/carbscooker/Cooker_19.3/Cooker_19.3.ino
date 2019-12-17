@@ -13,7 +13,7 @@ const int ONE_WIRE_BUS = 2; // Temperature sensor on pin 2
 // (not just Maxim/Dallas temperature ICs)
 OneWire oneWire(ONE_WIRE_BUS);
  
-// Pass oneWire reference to Dallas Temperature.
+// Pass our oneWire reference to Dallas Temperature.
 DallasTemperature sensors(&oneWire);
 
 HX711 scale(A2, A3);
@@ -23,21 +23,31 @@ Servo servoMain; // Define our Servo
 LiquidCrystal lcd(13, 11, 10, 6, 5, 3);
 
 // FLAGS AND STATES
-// Declare all flags to be used
-byte Heated_flag, Start_Water_Temp_Flag, start_Heating = 0; 
+byte Heated_flag, Start_Water_Temp_Flag, start_Heating = 0; // Declare all flags to be used 
 byte First_Pour_Flag, Second_Pour_Flag, Third_Pour_Flag, Simmer_Flag, Final_Cook_Flag, Completed_Cook_Flag = 0;
 byte Low_Heat_Flag, High_Heat_Flag, Low_Stirr_Flag, High_Stirr_Flag = 0;
-byte selection_lock, nsima_selection_flag, rice_selection_flag, water_level_flag, powder_level_flag = 0;
+byte selection_lock, first_selection_flag, rice_selection_flag, water_level_flag, powder_level_flag = 0;
 byte powder_drain_flag, pasta_selection_flag , manual_selection_flag, manual_cook;
 int cook_selection = 0;
 int selected = 0;
 byte portion_selection = 0;
 int texture_selection = 0;
+
 int water, powder;
 int current_water, current_powder; 
-int next_water, next_powder; 
+int next_water, next_powder;
+
+byte water_level_stall, powder_level_stall, water_read_count, powder_read_count;
+int water_temp, powder_temp;
+ 
 unsigned long system_count = 0;
 unsigned long cook_count = 0;
+
+long zero_factor_water = 7980605;
+long zero_factor_powder = 8206927;
+
+float calib_factor_water = -487;
+float calib_factor_powder = -291;
 
 byte powder_hatch_state = 1; // variable to hold the state of the powder door
 byte water_hatch_state = 1; // variable to hold the state of the water door
@@ -47,10 +57,10 @@ byte powder_hatch = 0; // powder door
 byte water_hatch = 0; // water door
 byte main_hatch = 0; // main door
 
-byte progress_bar[8] = { 0b11111, 0b11111, 0b11111, 0b11111, 0b11111, 0b11111, 0b11111, 0b11111}; // progress bar characters
+byte progress_bar[8] = { 0b11111, 0b11111, 0b11111, 0b11111, 0b11111, 0b11111, 0b11111, 0b11111};
 
-DeviceAddress WaterBoilerTemp = {0x28, 0xFF, 0x9F, 0xEA, 0x72, 0x15, 0x02, 0xCD}; // address for Water Unit Temperature
-DeviceAddress PotTemp = {0x28, 0xFF, 0x95, 0x5A, 0x10, 0x14, 0x00, 0x73}; // address for Pot Temperature
+DeviceAddress WaterBoilerTemp = {0x28, 0xFF, 0x9F, 0xEA, 0x72, 0x15, 0x02, 0xCD};
+DeviceAddress PotTemp = {0x28, 0xFF, 0x95, 0x5A, 0x10, 0x14, 0x00, 0x73};
 
 // OUTPUT PINS
 const int HeaterSwitch = 4;
@@ -62,18 +72,18 @@ const int Stirr_High = 12;
 
 // BUTTONS AND SWITCHES
 const int Button_analogPin = 19;
-//Button 1 = nsima_button
+//Button 1 = firstchoice_button
 //Button 2 = rice_button
 //Button 3 = button_portion
 
-//Button 4 = button_porridge, button_soft and button_firm
+//Button 4 = button_porridge,button_soft and button_firm
 
 //Button 5 = drain_button
 //Button 6 = start_Cook_button
 
 // LEDS AND INDICATORS
 //const int HeatedInd = 3;
-//const int nsima_Led = A5;
+//const int firstchoice_Led = A5;
 //const int rice_Led = 7;
 //const int button_portion_Led = 8;
 //const int drain_Led = 6;
@@ -83,17 +93,18 @@ const int Button_analogPin = 19;
 // Variables will change :
 int ledState = LOW; // ledState used to set the LED
 
-// Generally, sources say we should use "unsigned long" for variables that hold time
+// Generally, you should use "unsigned long" for variables that hold time
 // The value will quickly become too large for an int to store
 unsigned long previousMillis = 0; // will store last time
-unsigned long minutes = 0; // minutes time variable
-byte seconds = 0; // seconds time variable
-long mod_seconds; // modified (with modulus) seconds time variable
-byte two_second_counter; // modified (2 increment) seconds time variable 
-byte lcd_delay; // LCD adjustment 
+unsigned long minutes = 0;
+byte seconds = 0;
+long mod_seconds;
+byte two_second_counter;
+byte Current_Seconds, Next_Seconds;
+byte lcd_delay;
 byte lcd_toggle = 5; // SET TO 5 AS THE DEFAULT INACTIVE STATE
-String how_many; // number of protions to cook
-String texture; // type of cooking required (soft, firm etc.)
+String how_many;
+String texture;
 
 // constants won't change :
 const long interval = 1000; // interval at which to blink (milliseconds)
@@ -101,7 +112,7 @@ const long interval = 1000; // interval at which to blink (milliseconds)
 String Key_press; // variable to hold key presses
 char BT_press; // variable to hold key presses
 String Food_Choice; //Variable used to carry the name of the food being made
-String blank = "                "; // white space used to clear the LCD Display
+String blank = "                ";
 
 int powder_dec1, powder_dec2, powder_dec3;
 int water_dec1, water_dec2;
@@ -114,7 +125,6 @@ void setup(void)
   // start serial port
   Serial.begin(9600);
   lcd.begin(16, 2);
-  // Print a message to the LCD.
   lcd.print(" Casa-Juegos Inc");
   delay(2000);
   lcd.setCursor(0,0);
@@ -157,9 +167,13 @@ void loop(void)
 //  Serial.print(sensors.getTempC(WaterBoilerTemp));
 //  Serial.println();
  // delay(1000);
- // Serial.print("Temperature from Pot is: ");
- // Serial.print(sensors.getTempC(PotTemp));
+//  Serial.print("Pot Temperature ");
+//  Serial.print(sensors.getTempC(PotTemp));
 //  Serial.println();
+//    Serial.print("seconds: ");    
+//  Serial.println(seconds);
+ //   Serial.print("minutes: ");    
+//  Serial.println(minutes);
 
   timer(); // START TIMER TO USE FOR COOKING
   opened_hatches(); // BLOCK USED TO HANDLE HATCHES OPENING
@@ -201,7 +215,7 @@ void loop(void)
       
       manual_selection_flag = 0;
       rice_selection_flag = 0;
-      nsima_selection_flag = 0;
+      first_selection_flag = 0;
       pasta_selection_flag = 0;
 
       texture_selection = 0;
@@ -239,7 +253,7 @@ void loop(void)
         powder_level_flag = 0; // reset powder_level_flag to accommodate for last minute changes 
         manual_selection_flag = 1;
         rice_selection_flag = 0;
-        nsima_selection_flag = 0;
+        first_selection_flag = 0;
         pasta_selection_flag = 0;
         lcd_toggle = 7;
         BT_press = ' ';
@@ -275,39 +289,55 @@ void loop(void)
              lcd.print("LOW or HIGH");      
            break;           
         break;
-       }
+        }
       }
 
        if(lcd_toggle == 2){
-         lcd.setCursor(0,0);lcd.print(blank);lcd.setCursor(0,1);lcd.print(blank);lcd.setCursor(0,0);  
-         
-         if (Low_Stirr_Flag == 0 && High_Stirr_Flag == 0){
-           lcd.setCursor(0,0);
-           lcd.print("STIRRING is OFF ");
-          }
-         else if (Low_Stirr_Flag == 1){
-           lcd.setCursor(0,0);
-           lcd.print("STIRRING is LOW ");
-          }
-         else if (High_Stirr_Flag == 1){
-           lcd.setCursor(0,0);
-           lcd.print("STIRRING is HIGH");
-          }
-         
-         
-         if (Low_Heat_Flag == 0){
-           lcd.setCursor(0,1);
-           lcd.print("HEATING is OFF  ");
-          }
-         else if (Low_Heat_Flag == 1 && High_Heat_Flag == 0){
-           lcd.setCursor(0,1);
-           lcd.print("HEATING is LOW  ");
-          }
-         else if (Low_Heat_Flag == 1 && High_Heat_Flag == 1){
-           lcd.setCursor(0,1);
-           lcd.print("HEATING is HIGH ");
-          }
-
+        byte disp_var;
+        if(two_second_counter == 0){
+           disp_var  = 1;
+         }
+         else
+         {
+           disp_var  = 0;          
+         }
+   //      Serial.println(disp_var);
+        switch(disp_var){
+           case 0:        
+             lcd.setCursor(0,0);lcd.print(blank);lcd.setCursor(0,1);lcd.print(blank);lcd.setCursor(0,0);         
+             if (Low_Stirr_Flag == 0 && High_Stirr_Flag == 0){
+               lcd.setCursor(0,0);
+               lcd.print("STIRRING is OFF ");
+              }
+             else if (Low_Stirr_Flag == 1){
+               lcd.setCursor(0,0);
+               lcd.print("STIRRING is LOW ");
+              }
+             else if (High_Stirr_Flag == 1){
+               lcd.setCursor(0,0);
+               lcd.print("STIRRING is HIGH");
+              }         
+             if (Low_Heat_Flag == 0){
+               lcd.setCursor(0,1);
+               lcd.print("HEATING is OFF  ");
+              }
+             else if (Low_Heat_Flag == 1 && High_Heat_Flag == 0){
+               lcd.setCursor(0,1);
+               lcd.print("HEATING is LOW  ");
+              }
+             else if (Low_Heat_Flag == 1 && High_Heat_Flag == 1){
+               lcd.setCursor(0,1);
+               lcd.print("HEATING is HIGH ");
+              }
+           break; 
+           case 1:  
+             lcd.setCursor(0,0);lcd.print(blank);lcd.setCursor(0,1);lcd.print(blank);lcd.setCursor(0,0);
+             lcd.print("Pot Temperature");
+             lcd.setCursor(0,1);
+             lcd.print(sensors.getTempC(PotTemp));lcd.print(" "); lcd.print((char)223);lcd.print("C");      
+           break;           
+        break;
+        }
       }
 
       if(Key_press == "LOW_HEAT" || BT_press == 'L'){
@@ -372,13 +402,13 @@ void loop(void)
   if(main_hatch_state == 1 && water_hatch_state == 1 && powder_hatch_state == 1){  
           
         
-    // START NSIMA SELECTION 
-    if(Key_press == "NSIMA" && selection_lock == 0 || BT_press == 'N' && selection_lock == 0){
-     Food_Choice = "NSIMA";     
+    // START FIRST CHOICE SELECTION 
+    if(Key_press == "FIRSTCHOICE" && selection_lock == 0 || BT_press == 'N' && selection_lock == 0){
+     Food_Choice = "FIRST";     
      lcd_toggle = 0;
      water_level_flag = 0; // reset water_level_flag to accommodate for last minute changes
      powder_level_flag = 0; // reset powder_level_flag to accommodate for last minute changes
-     nsima_selection_flag = 1;
+     first_selection_flag = 1;
      rice_selection_flag = 0;
      pasta_selection_flag = 0;
      manual_selection_flag = 0;
@@ -392,7 +422,7 @@ void loop(void)
      water_level_flag = 0; // reset water_level_flag to accommodate for last minute changes
      powder_level_flag = 0; // reset powder_level_flag to accommodate for last minute changes 
      rice_selection_flag = 1;
-     nsima_selection_flag = 0;      
+     first_selection_flag = 0;      
      pasta_selection_flag = 0;
      manual_selection_flag = 0;
      BT_press = ' ';
@@ -406,14 +436,14 @@ void loop(void)
      powder_level_flag = 0; // reset powder_level_flag to accommodate for last minute changes 
      pasta_selection_flag = 1;
      rice_selection_flag = 0;
-     nsima_selection_flag = 0;
+     first_selection_flag = 0;
      manual_selection_flag = 0;
      BT_press = ' ';
    }   
       
     
-  // NSIMA SELECTION BLOCK 
-   if(nsima_selection_flag == 1){  
+  // FIRST CHOICE SELECTION BLOCK 
+   if(first_selection_flag == 1){  
 
       Auto_Cook_Selection();
       
@@ -480,40 +510,67 @@ void loop(void)
 }
 
 void water_read()
-{
-  scale.set_gain(128);
-  long value = scale.read_average(5);
-  water_level(value);
-  Serial.print("water: ");    
-  Serial.println(water);
+{ 
+ water_read_count ++;
+ scale.set_gain(128);
+ scale.set_offset(zero_factor_water);
+ scale.set_scale(calib_factor_water); //Adjust to this calibration factor
+ water = scale.get_units(10); 
+ if(water_read_count > 15){
+  water_read_count = 0;
+  water_level_stall = 0; 
+ }
+
+ if(water_read_count == 0){
+  water_temp = water;
+ }
+
+ if(water_read_count == 10 && water_temp == water){
+  water_level_stall = 1;   
+ }
+ 
 }
 
 void powder_read()
 {
-  scale.set_gain(32);
-  long value2 = scale.read_average(5);
-  powder_level(value2);
-  Serial.print("powder: ");    
-  Serial.println(powder);
+ powder_read_count ++;
+ scale.set_gain(32);
+ scale.set_offset(zero_factor_powder);
+ scale.set_scale(calib_factor_powder); //Adjust to this calibration factor
+ powder = scale.get_units(10); 
+
+ if(powder_read_count > 15){
+  powder_read_count = 0;
+  powder_level_stall = 0; 
+ }
+
+ if(powder_read_count == 0){
+  powder_temp = powder;
+ }
+
+ if(powder_read_count == 10 && powder_temp == powder){
+  powder_level_stall = 1;   
+ }
+ 
 }
 
 void heat()
 {
  if(Low_Heat_Flag == 1){
-    digitalWrite(Heat_Low, LOW);
-  }
+  digitalWrite(Heat_Low, LOW);
+ }
+ else
+ {
+  digitalWrite(Heat_Low, HIGH);  
+ } 
 
  if(High_Heat_Flag == 1){
-    digitalWrite(Heat_High, LOW);
-  }
-
- if(Low_Heat_Flag == 0){
-    digitalWrite(Heat_Low, HIGH);      
-  } 
-    
- if(High_Heat_Flag == 0){
-    digitalWrite(Heat_High, HIGH);
-  }
+  digitalWrite(Heat_High, LOW);
+ }
+ else   
+ {
+  digitalWrite(Heat_High, HIGH);
+ }
 }
 
 void stirr()
@@ -542,7 +599,7 @@ void water_temp_check()
 {
 //CHECK IF ITS THE FIRST TIME THE ROUTINE HAS BEEN CALLED
  if(start_Heating == 0){
-    if(sensors.getTempCByIndex(0) > 32 && system_count > 5 && water > 0){
+    if(sensors.getTempC(WaterBoilerTemp) > 32 && system_count > 5 && water > 400){ // 450 is the minimum boil for prototype setup
        switch(two_second_counter){
            case 0:  
              lcd.setCursor(0,0);lcd.print(blank);lcd.setCursor(0,1);lcd.print(blank);lcd.setCursor(0,0);
@@ -563,7 +620,7 @@ void water_temp_check()
         break;
        } 
     }
-    if(sensors.getTempCByIndex(0) < 32 && water > 0){   
+    if(sensors.getTempC(WaterBoilerTemp) < 32 && water > 400){   
       start_Heating = 1; // SET FLAG TO START WATER POUR & BOILING ROUTINE  
     }   
  }  
@@ -571,10 +628,20 @@ void water_temp_check()
 
 void Water_Heater()
 {
-   if (sensors.getTempCByIndex(0) < 90){    
+   byte max_boil_temp;
+   
+   if(rice_selection_flag == 1){
+     max_boil_temp = 80;    // Maximum boiling temp for rice water
+   }
+   else
+   {
+     max_boil_temp = 90;    // Maximum boiling temp for everything else
+   }
+   
+   if(sensors.getTempC(WaterBoilerTemp) < max_boil_temp){    
     digitalWrite(HeaterSwitch, LOW);   
    }
-   if (sensors.getTempCByIndex(0) >= 90 && Heated_flag == 0){
+   if(sensors.getTempC(WaterBoilerTemp) >= max_boil_temp && Heated_flag == 0){
     digitalWrite(HeaterSwitch, HIGH); // switch off Element
     Heated_flag = 1; // set water is heated flag on because boiling should only happen once // FLAG INITIALIZES THE NEXT ROUTINE
    }  
@@ -625,9 +692,7 @@ void opened_hatches()
 // REFILL WATER ONLY ALLOWED WHEN COOK HAS NOT STARTED 
     
     if(water_hatch_state == 0){
-      scale.set_gain(128);
-      long value = scale.read_average(5);
-      water_level(value);
+      water_read();  
       // mod_seconds used to display water level on every odd second
       if (mod_seconds == 1){
         lcd.setCursor(0,0);lcd.print(blank);lcd.setCursor(0,1);lcd.print(blank);lcd.setCursor(0,0);
@@ -639,14 +704,14 @@ void opened_hatches()
         }         
       }
       
-      if (water > 1500){
+      if (water > 1600){
         lcd.setCursor(0,0);lcd.print(blank);lcd.setCursor(0,1);lcd.print(blank);lcd.setCursor(0,0);
         lcd.print("Water Level : ");
         lcd.setCursor(0,1);
         lcd.print(" FULL CAPACITY !");
       }
-      if(Key_press == "NSIMA" || BT_press == 'N'){
-        // CHECK WATER LEVEL RELATIVE TO NSIMA
+      if(Key_press == "FIRSTCHOICE" || BT_press == 'N'){
+        // CHECK WATER LEVEL RELATIVE TO FIRSTCHOICE
       }
       if(Key_press == "RICE" || BT_press == 'R'){
         // CHECK WATER LEVEL RELATIVE TO RICE
@@ -659,13 +724,20 @@ void opened_hatches()
   // REFILL POWDER ONLY ALLOWED WHEN COOK HAS NOT STARTED 
  
   if(powder_hatch_state == 0){
-    scale.set_gain(32);
-    long value2 = scale.read_average(5);
-    powder_level(value2);
+    powder_read();    
+    //long value2 = scale.read_average(5);
+    //powder_level(value2);
     // mod_seconds used to display powder level on every even second
     if (mod_seconds == 0){
       lcd.setCursor(0,0);lcd.print(blank);lcd.setCursor(0,1);lcd.print(blank);lcd.setCursor(0,0);
-      lcd.print("Powder Level : "); 
+      if(rice_selection_flag == 1){
+         lcd.print("Rice Level : "); 
+       }
+      else
+       {
+         lcd.print("Powder Level : "); 
+       }  
+
       int y = powder/90;
       for(int z = 0; z < y ; z++){
         lcd.setCursor(z,1);
@@ -674,12 +746,18 @@ void opened_hatches()
     }
     if (powder > 1350){
       lcd.setCursor(0,0);lcd.print(blank);lcd.setCursor(0,1);lcd.print(blank);lcd.setCursor(0,0);
-      lcd.print("Powder Level : ");
+      if(rice_selection_flag == 1){
+         lcd.print("Rice Level : "); 
+       }
+      else
+       {
+         lcd.print("Powder Level : "); 
+       }
       lcd.setCursor(0,1);
       lcd.print(" FULL CAPACITY !");
     }
-    if(Key_press == "NSIMA" || BT_press == 'N'){
-      // CHECK HOLDER LEVEL RELATIVE TO NSIMA
+    if(Key_press == "FIRSTCHOICE" || BT_press == 'N'){
+      // CHECK HOLDER LEVEL RELATIVE TO FIRSTCHOICE
     }
     if(Key_press == "RICE" || BT_press == 'R'){
       // CHECK HOLDER LEVEL RELATIVE TO RICE
@@ -688,10 +766,24 @@ void opened_hatches()
       // CHECK HOLDER LEVEL RELATIVE TO PASTA
     }
   } 
-   //   Serial.println(water);
-  //    Serial.println();
- //     Serial.println(powder);
- //     Serial.println();
+     Serial.println(water);
+     Serial.println();
+    Serial.println(powder);
+    Serial.println();
+}
+
+void seconds_grab()
+{
+  
+ if(seconds < 55){
+  Current_Seconds = seconds;
+ }
+ else 
+ {
+   Current_Seconds = 0; 
+ }       
+ Next_Seconds = Current_Seconds + 5;
+  
 }
 
 void manual_drain(){
@@ -700,7 +792,7 @@ void manual_drain(){
   if(selection_lock == 0 && Key_press == "DRAIN_WATER" || selection_lock == 0 && BT_press == 'D'){
           
     water_read();
-    if (water > 0){
+    if (water > 60){
       Start_Water_Temp_Flag = 1;
       BT_press = ' '; 
     }
@@ -725,16 +817,18 @@ void manual_drain(){
       lcd.write(byte(0));
     }            
     
-    if(water == 0){
+    if(water < 60 || water_level_stall == 1){
       digitalWrite(waterDrain, HIGH);
       Start_Water_Temp_Flag = 0;
-      start_Heating = 0; // RESET TO START PREREQUISITES CHECK AGAIN    
+      scale.set_gain(128);
+      scale.tare();  //Reset the scale to 0
+      zero_factor_water = scale.read_average(25); //Get a baseline reading    
     }
   }
 
  if(selection_lock == 0 && Key_press == "DUMP_POWDER" || selection_lock == 0 && BT_press == 'E'){            
     powder_read();
-    if (powder > 0){
+    if (powder > 20){
       powder_drain_flag = 1;
       BT_press = ' '; 
     }
@@ -749,7 +843,7 @@ void manual_drain(){
 
   if (powder_drain_flag == 1){
     powder_read();
-    if(powder > next_powder){
+    if(powder > 20){
       servoMain.write(105);
       delay(300);  //                 
       servoMain.write(0);  // Turn Servo Left to 0 degrees
@@ -762,8 +856,12 @@ void manual_drain(){
         lcd.write(byte(0));
       }           
     }
-    if(powder == 0){       
-      powder_drain_flag = 0;        
+    if(powder < 20 || powder_level_stall){       
+      powder_drain_flag = 0;
+      scale.set_gain(32);
+      scale.tare();  //Reset the scale to 0
+      zero_factor_powder = scale.read_average(25); //Get a baseline reading 
+              
     }
   }  
 }
@@ -818,7 +916,7 @@ void Cook_Progress()
            lcd.setCursor(0,0);lcd.print(blank);lcd.setCursor(0,1);lcd.print(blank);lcd.setCursor(0,0);
            lcd.print("Press: PORRIDGE");
            lcd.setCursor(0,1);
-           if(nsima_selection_flag == 1){
+           if(first_selection_flag == 1){
             lcd.print("SOFT OR FIRM");
            }
            else
@@ -857,9 +955,17 @@ void Cook_Progress()
   
            if(powder_level_flag == 0 && mod_seconds == 1){
              lcd.setCursor(0,0);lcd.print(blank);lcd.setCursor(0,1);lcd.print(blank);lcd.setCursor(0,0);
+             if(rice_selection_flag == 1){
+               lcd.print("Rice is Low");
+               lcd.setCursor(0,1);
+               lcd.print("Add More Rice");
+             }
+             else
+             {
              lcd.print("Powder is Low");
              lcd.setCursor(0,1);
              lcd.print("Add More Powder");
+             }
          //    delay(2000);
            //  lcd_toggle = 2;   
            }          
@@ -928,7 +1034,7 @@ void Cook_Progress()
     }     
   }
 
-  if(Start_Water_Temp_Flag == 0 &&  nsima_selection_flag == 0 && powder_drain_flag == 0 && rice_selection_flag == 0 && pasta_selection_flag == 0 && manual_selection_flag == 0){
+  if(Start_Water_Temp_Flag == 0 &&  first_selection_flag == 0 && powder_drain_flag == 0 && rice_selection_flag == 0 && pasta_selection_flag == 0 && manual_selection_flag == 0 && powder_hatch_state == 1 && water_hatch_state == 1){
     
      // MAIN HATCH IS CLOSED EVERYTHING GOES BACK TO NORMAL 
       if(main_hatch_state == 1){
@@ -989,8 +1095,7 @@ void Cook_Progress()
     break;
    }
   }   
-} 
-
+}
 
 void Auto_Cook_Selection()
 {
@@ -1010,8 +1115,9 @@ void Auto_Cook_Selection()
       portion_selection = 1;
       water_level_flag = 0; // reset water_level_flag to accommodate for last minute changes
       powder_level_flag = 0; // reset powder_level_flag to accommodate for last minute changesBT_press = ' ';
-     }
-     
+     }       
+    }
+
    if(BT_press == '1'){
     lcd_delay = 0;
     lcd_toggle = 1;
@@ -1055,16 +1161,12 @@ void Auto_Cook_Selection()
     BT_press = ' ';
     water_level_flag = 0; // reset water_level_flag to accommodate for last minute changes
     powder_level_flag = 0; // reset powder_level_flag to accommodate for last minute changes      
-   }           
-       
-    }
-    // INDICATE BUTTON_PORTION SELECTION LED
-    //  digitalWrite(button_portion_Led, HIGH);
+   } 
       
       if(Key_press == "PORRIDGE" || BT_press == 'T'){
         lcd_toggle = 2;
         texture = "PORRIDGE";
-        if(nsima_selection_flag == 1){texture_selection = 100;}
+        if(first_selection_flag == 1){texture_selection = 100;}
         else if(rice_selection_flag == 1){texture_selection = 400;}
         water_level_flag = 0; // reset water_level_flag to accommodate for last minute changes
         powder_level_flag = 0; // reset powder_level_flag to accommodate for last minute changes
@@ -1073,7 +1175,7 @@ void Auto_Cook_Selection()
       if(Key_press == "SOFT" || BT_press == 'U'){
         lcd_toggle = 2;
         texture = "SOFT";            
-        if(nsima_selection_flag == 1){texture_selection = 200;}
+        if(first_selection_flag == 1){texture_selection = 200;}
         else if(rice_selection_flag == 1){texture_selection = 500;}
         water_level_flag = 0; // reset water_level_flag to accommodate for last minute changes
         powder_level_flag = 0; // reset powder_level_flag to accommodate for last minute changes  
@@ -1082,7 +1184,7 @@ void Auto_Cook_Selection()
       if(Key_press == "FIRM" || BT_press == 'V'){
         lcd_toggle = 2;
         texture = "FIRM";            
-        if(nsima_selection_flag == 1){texture_selection = 300;}
+        if(first_selection_flag == 1){texture_selection = 300;}
         else if(rice_selection_flag == 1){texture_selection = 500;}
         water_level_flag = 0; // reset water_level_flag to accommodate for last minute changes
         powder_level_flag = 0; // reset powder_level_flag to accommodate for last minute changes
@@ -1095,36 +1197,31 @@ void Auto_Cook_Selection()
 void Start_Cook()
 {
   switch (cook_selection) {
-      case 101: // THE BUTTON HAS BEEN PRESSED FOR NSIMA PORRIDGE     
+      case 101: // THE BUTTON HAS BEEN PRESSED FOR FIRSTCHOICE PORRIDGE     
        if(selection_lock == 1){
-       //  Cook_Progress(); // FUNCTION TO INDICATE FOOD COOKING PROGRESS          
-         nsima_porridge(); // RUN NSIMA PORRIDGE COOK
-         nsima_porridge_complete(); // FINALIZE COOK AS PORRIDGE         
-    //     Cook_complete(); // RUN FINALIZING FUNCTION    
+         first_porridge(); // RUN FIRST PORRIDGE COOK
+         first_porridge_complete(); // FINALIZE COOK AS PORRIDGE    
        }   
       break;
       
-      case 102: // THE BUTTON HAS BEEN PRESSED FOR NSIMA SOFT / FIRM     
+      case 102: // THE BUTTON HAS BEEN PRESSED FOR FIRSTCHOICE SOFT / FIRM     
        if(selection_lock == 1){  
-       //  Cook_Progress(); // FUNCTION TO INDICATE FOOD COOKING PROGRESS                              
-         nsima_porridge(); // RUN NSIMA PORRIDGE COOK
-         nsima_soft_firm(); // RUN NSIMA SOFT / FIRM TO COMPLETE COOK
-       //  Cook_complete(); // RUN FINALIZING FUNCTION          
+         first_porridge(); // RUN FIRST PORRIDGE COOK
+         first_soft_firm(); // RUN FIRST SOFT / FIRM TO COMPLETE COOK
        }   
       break;
 
 
       case 201: // THE BUTTON HAS BEEN PRESSED FOR RICE PORRIDGE     
        if(selection_lock == 1){
-      //   Cook_Progress(); // FUNCTION TO INDICATE FOOD COOKING PROGRESS          
+                
  
        }   
       break;
       
       case 202: // THE BUTTON HAS BEEN PRESSED FOR RICE SOFT / FIRM    
        if(selection_lock == 1){
-      //   Cook_Progress(); // FUNCTION TO INDICATE FOOD COOKING PROGRESS   
-                       
+       rice_complete();// FUNCTION TO COOK RICE                          
        }   
       break; 
                  
@@ -1136,7 +1233,7 @@ void level_check()
 {
  switch(selected){
 
-    // PORRIDGE NSIMA_SELECTION
+    // PORRIDGE FIRST_SELECTION
      
      case 101:  
       // minimum required levels are checked for cook
@@ -1188,7 +1285,7 @@ void level_check()
       cook_selection = 101;   
      break;
 
-   // SOFT NSIMA_SELECTION
+   // SOFT FIRST_SELECTION
 
      case 201:  
       // minimum required levels are checked for cook
@@ -1240,7 +1337,7 @@ void level_check()
       cook_selection = 102;         
      break;
 
-   // FIRM NSIMA_SELECTION   
+   // FIRM FIRST_SELECTION   
 
      case 301:  
       // minimum required levels are checked for cook
@@ -1348,11 +1445,11 @@ void level_check()
 
      case 501:  
       // minimum required levels are checked for cook
-      if(water >= 400){water_level_flag = 1;}
-      if(powder >= 60){powder_level_flag = 1;}      
+      if(water >= 500){water_level_flag = 1;}
+      if(powder >= 180){powder_level_flag = 1;}      
       // variables to be used for rice portion 1
-      powder_dec1 = 60; powder_dec2 = 0; powder_dec3 = 0;
-      water_dec1 = 400;  water_dec2 = 0;
+      powder_dec1 = 180; powder_dec2 = 0; powder_dec3 = 0;
+      water_dec1 = 500;  water_dec2 = 0;
       cook_selection = 202;
      break;
      
@@ -1400,125 +1497,7 @@ void level_check()
  }
 }
 
-int water_level(long value){
-  
-  if(value < 8830000){water = 0;} // 0 ml average value between water low and water high
-
-  else if(value >= 8830001 && value <= 8872388){water = 50;}
-  else if(value >= 8872389 && value <= 8876731){water = 100;}
-  else if(value >= 8876732 && value <= 8919463){water = 150;}
-  else if(value >= 8919464 && value <= 8941506){water = 200;}
-  else if(value >= 8941507 && value <= 8985593){water = 250;}
-  else if(value >= 8985594 && value <= 8998323){water = 300;}
-  else if(value >= 8998324 && value <= 9037148){water = 350;}
-  else if(value >= 9037149 && value <= 9050584){water = 400;}
-  else if(value >= 9050585 && value <= 9091748){water = 450;}
-  else if(value >= 9091749 && value <= 9107267){water = 500;}
-  else if(value >= 9107268 && value <= 9148683){water = 550;}
-  else if(value >= 9148684 && value <= 9166293){water = 600;}
-  else if(value >= 9166294 && value <= 9193847){water = 650;}
-  else if(value >= 9193848 && value <= 9220366){water = 700;}
-  else if(value >= 9220367 && value <= 9252769){water = 750;}
-  else if(value >= 9252770 && value <= 9283569){water = 800;}
-  else if(value >= 9283570 && value <= 9303586){water = 850;}
-  else if(value >= 9303587 && value <= 9346342){water = 900;}
-  else if(value >= 9346343 && value <= 9363870){water = 950;}
-  else if(value >= 9363871 && value <= 9364987){water = 1000;}
-  else if(value >= 9364988 && value <= 9366102){water = 1050;}
-  else if(value >= 9366103 && value <= 9418666){water = 1100;}
-  else if(value >= 9418667 && value <= 9428327){water = 1150;}
-  else if(value >= 9428328 && value <= 9463373){water = 1200;}
-  else if(value >= 9463374 && value <= 9479489){water = 1250;}
-  else if(value >= 9479490 && value <= 9521370){water = 1300;}
-  else if(value >= 9521371 && value <= 9551178){water = 1350;}
-  else if(value >= 9551179 && value <= 9560781){water = 1400;}
-  else if(value >= 9560782 && value <= 9570381){water = 1450;}
-  else if(value >= 9570382 && value <= 9634268){water = 1500;} // 1500 ml Max capacity of water holder, over flow may occur
-    
-  else if(value > 9634268){water = 1600;} 
-  
-  return water;
- }
-
-int powder_level(long value2){
-  
-  if(value2 < 8520782){powder = 0;} // 0 ml average value2 between powder low and water high
-  
-  else if(value2 >= 8520783 && value2 <= 8521402){powder = 30;}
-  else if(value2 >= 8521403 && value2 <= 8526664){powder = 60;}
-  else if(value2 >= 8526665 && value2 <= 8527272){powder = 90;}
-  else if(value2 >= 8527273 && value2 <= 8532933){powder = 120;}
-  else if(value2 >= 8532934 && value2 <= 8533332){powder = 150;}
-  else if(value2 >= 8533333 && value2 <= 8538719){powder = 180;}
-  else if(value2 >= 8538720 && value2 <= 8544103){powder = 210;}
-  else if(value2 >= 8544104 && value2 <= 8544393){powder = 240;}
-  else if(value2 >= 8544394 && value2 <= 8550235){powder = 270;}
-  else if(value2 >= 8550236 && value2 <= 8550568){powder = 300;}
-  else if(value2 >= 8550569 && value2 <= 8555989){powder = 330;}
-  else if(value2 >= 8555990 && value2 <= 8556161){powder = 360;}
-  else if(value2 >= 8556162 && value2 <= 8561031){powder = 390;}
-  else if(value2 >= 8561032 && value2 <= 8562933){powder = 420;}
-  else if(value2 >= 8562934 && value2 <= 8568262){powder = 450;}
-  else if(value2 >= 8568263 && value2 <= 8569285){powder = 480;}
-  else if(value2 >= 8569286 && value2 <= 8574592){powder = 510;}
-  else if(value2 >= 8574593 && value2 <= 8575976){powder = 540;}
-  else if(value2 >= 8575977 && value2 <= 8581698){powder = 570;}
-  else if(value2 >= 8581699 && value2 <= 8582393){powder = 600;}
-  else if(value2 >= 8582394 && value2 <= 8588855){powder = 630;}
-  else if(value2 >= 8588856 && value2 <= 8589392){powder = 660;}
-  else if(value2 >= 8589393 && value2 <= 8595511){powder = 690;}
-  else if(value2 >= 8595512 && value2 <= 8595827){powder = 720;}
-  else if(value2 >= 8595828 && value2 <= 8601946){powder = 750;}
-  else if(value2 >= 8601947 && value2 <= 8602312){powder = 780;}
-  else if(value2 >= 8602313 && value2 <= 8608561){powder = 810;}
-  else if(value2 >= 8608562 && value2 <= 8608914){powder = 840;}
-  else if(value2 >= 8608915 && value2 <= 8612452){powder = 870;}
-  else if(value2 >= 8612453 && value2 <= 8614715){powder = 900;}
-  else if(value2 >= 8614716 && value2 <= 8614968){powder = 930;}
-  else if(value2 >= 8614969 && value2 <= 8621238){powder = 960;}
-  else if(value2 >= 8621239 && value2 <= 8622134){powder = 990;}
-  else if(value2 >= 8622135 && value2 <= 8625943){powder = 1020;}
-  else if(value2 >= 8625944 && value2 <= 8630232){powder = 1050;}
-  else if(value2 >= 8630233 && value2 <= 8632033){powder = 1080;}
-  else if(value2 >= 8632034 && value2 <= 8637815){powder = 1110;}
-  else if(value2 >= 8637816 && value2 <= 8640187){powder = 1140;}
-  else if(value2 >= 8640188 && value2 <= 8644145){powder = 1170;}
-  else if(value2 >= 8644146 && value2 <= 8646509){powder = 1200;}
-  else if(value2 >= 8646510 && value2 <= 8648196){powder = 1230;}
-  else if(value2 >= 8648197 && value2 <= 8651908){powder = 1260;} // 1260 ml ideal max capacity of powder holder
-  else if(value2 >= 8651909 && value2 <= 8655826){powder = 1290;}
-  else if(value2 >= 8655827 && value2 <= 8660056){powder = 1320;}
-  else if(value2 >= 8660057 && value2 <= 8660757){powder = 1350;} // 1350 ml Revised ideal max capacity of powder holder
-  else if(value2 >= 8660758 && value2 <= 8661613){powder = 1380;}
-  else if(value2 >= 8661614 && value2 <= 8665562){powder = 1410;}
-  else if(value2 >= 8665563 && value2 <= 8666411){powder = 1440;}
-  else if(value2 >= 8666412 && value2 <= 8666774){powder = 1470;}
-  else if(value2 >= 8666775 && value2 <= 8672165){powder = 1500;}
-  else if(value2 >= 8672166 && value2 <= 8675031){powder = 1530;}
-  else if(value2 >= 8675032 && value2 <= 8677524){powder = 1560;}
-  else if(value2 >= 8677525 && value2 <= 8682871){powder = 1590;}
-  else if(value2 >= 8682872 && value2 <= 8689570){powder = 1620;}
-  else if(value2 >= 8689571 && value2 <= 8693683){powder = 1650;}
-  else if(value2 >= 8693684 && value2 <= 8696156){powder = 1680;}
-  else if(value2 >= 8696157 && value2 <= 8699879){powder = 1710;}
-  else if(value2 >= 8699880 && value2 <= 8701590){powder = 1740;}
-  else if(value2 >= 8701591 && value2 <= 8704000){powder = 1770;}
-  else if(value2 >= 8704001 && value2 <= 8708286){powder = 1800;}
-  else if(value2 >= 8708287 && value2 <= 8710433){powder = 1830;}
-  else if(value2 >= 8710434 && value2 <= 8715555){powder = 1860;}
-  else if(value2 >= 8715556 && value2 <= 8717804){powder = 1890;}
-  else if(value2 >= 8717805 && value2 <= 8718611){powder = 1920;}
-  else if(value2 >= 8718612 && value2 <= 8722876){powder = 1950;}
-  else if(value2 >= 8722877 && value2 <= 8725520){powder = 1980;}
-  else if(value2 >= 8725521 && value2 <= 8727198){powder = 2010;}   
-  else if(value2 >= 8727199 && value2 <= 8732738){powder = 2040;}// 2040 ml absolute Max capacity of powder holder, over flow may occur   
-  
-  else if(value2 > 8732738){powder = 2100;} 
-  
-  return powder;
- }
-
- void nsima_porridge()
+ void first_porridge()
 {   
       
    // STEP 1 POUR COLD WATER AND POUR INITIAL POWDER
@@ -1620,7 +1599,7 @@ int powder_level(long value2){
   }   
 }
 
-void nsima_soft_firm()
+void first_soft_firm()
 {
     if(Simmer_Flag == 1 && Final_Cook_Flag == 0){ 
      if(Third_Pour_Flag == 1 && Final_Cook_Flag == 0){
@@ -1679,13 +1658,151 @@ void nsima_soft_firm()
    }  
 }
 
-
-void nsima_porridge_complete(){
+void first_porridge_complete()
+{
   if(Third_Pour_Flag == 1){
     Completed_Cook_Flag = 1; // Final flag activated
-   }
+  }
 }
-void Cook_complete(){
+
+void rice_complete()
+{  
+    
+   // STEP 1 POUR RICE 
+   if(First_Pour_Flag == 0){
+    
+  //  water_read();
+    powder_read();
+    
+    if(cook_count == 0){
+      current_powder = powder;               
+      current_water = water;
+      next_powder = current_powder - powder_dec1;
+      next_water = current_water - water_dec1;
+      cook_count ++;
+     }
+
+     if(powder > next_powder){
+      servoMain.write(105);
+      delay(300);  //                 
+      servoMain.write(0);  // Turn Servo Left to 0 degrees
+     }               
+     
+    if(powder <= next_powder){
+      First_Pour_Flag = 1;               
+    //  current_powder = powder;               
+    //  current_water = water;
+    //  next_powder = current_powder - powder_dec2;
+   //   next_water = current_water - water_dec2;
+
+    }
+   }
+   
+  // STEP 2 START BOILING WATER
+   if (Heated_flag == 0 && First_Pour_Flag == 1){    
+    Water_Heater(); // Call Water Heating function
+   }
+
+        
+  // STEP 3 POUR BOILING WATER AND START HIGH HEATING WITH LOW STIRR
+   if (Heated_flag == 1 && Second_Pour_Flag == 0){  
+          
+    water_read();
+
+   
+    if(water > next_water){
+      digitalWrite(waterDrain, LOW);
+
+    }
+    else
+    {
+     digitalWrite(waterDrain, HIGH);
+     Second_Pour_Flag = 1;
+     Low_Heat_Flag = 1; // start Low_heating 
+     High_Heat_Flag = 0;// Off High_heating
+     minutes = 0;
+     seconds_grab();  
+    }
+   }
+    
+  // STEP 4 START BOILING RICE 
+    if(Second_Pour_Flag == 1 && Simmer_Flag == 0){
+           
+      if(minutes == 0){
+        
+        if(seconds >= Current_Seconds  && seconds <= Next_Seconds){
+           Low_Stirr_Flag = 1; // Enable Low_stirring
+           High_Stirr_Flag = 0; // Disable High_stirring
+         }
+        else
+        {
+          Low_Stirr_Flag = 0; // Disable Low_stirring
+          High_Stirr_Flag = 0; // Disable High_stirring
+        }         
+      }      
+      
+      if(sensors.getTempC(PotTemp) > 100.50 || minutes > 10 ){
+       Low_Heat_Flag = 0; // start Low_heating 
+       High_Heat_Flag = 0;// turn off High_heating      
+       minutes = 0;
+       Simmer_Flag = 1;       
+       seconds_grab();              
+      }
+     
+   //   if(sensors.getTempC(PotTemp) >= 99 && minutes > 0){
+    //   Low_Heat_Flag = 0; // start Low_heating 
+   //    High_Heat_Flag = 0;// turn off High_heating
+   //    Simmer_Flag = 1;            
+   //   }
+    }
+
+
+  // STEP 5 LET IT SIMMER
+  if(Simmer_Flag == 1 && Third_Pour_Flag == 0){ //AND SIMMER HAS BEEN COMPLETED
+
+    if(minutes == 0){
+        
+        if(seconds >= Current_Seconds  && seconds <= Next_Seconds){
+           Low_Stirr_Flag = 1; // Enable Low_stirring
+           High_Stirr_Flag = 0; // Disable High_stirring
+         }
+        else
+        {
+          Low_Stirr_Flag = 0; // Disable Low_stirring
+          High_Stirr_Flag = 0; // Disable High_stirring
+        } 
+         
+      }
+      
+
+    
+ //   if(sensors.getTempC(PotTemp) <= 58){
+ //     Low_Heat_Flag = 1; // start Low_heating 
+ //     High_Heat_Flag = 0;// turn off High_heating 
+ //   }
+//    if(sensors.getTempC(PotTemp) > 72 && minutes > 2){
+//      Low_Heat_Flag = 0; // Stop Low_heating 
+//      High_Heat_Flag = 0;// and High_heating       
+ //   }
+//    if(minutes > 3 && minutes < 5){
+//     if(sensors.getTempC(PotTemp) > 64 && sensors.getTempC(PotTemp) < 70){
+//      Low_Heat_Flag = 0; // Stop Low_heating 
+ //     High_Heat_Flag = 0;// and High_heating 
+  //   }
+  //  } 
+
+    if(sensors.getTempC(PotTemp) < 85 && minutes > 1){
+     Third_Pour_Flag = 1;     
+     Completed_Cook_Flag = 1;
+     Low_Heat_Flag = 0; // Stop Low_heating 
+     High_Heat_Flag = 0;// and High_heating      
+    }
+           
+  }   
+}
+
+void Cook_complete()
+{
   if(Completed_Cook_Flag == 1){
  
    // OPEN UP ALL THE LOCKS 
@@ -1694,7 +1811,7 @@ void Cook_complete(){
    main_hatch = 0; // unlock main hatch   
 
    if(main_hatch_state == 0){ 
-     selection_lock = 0; nsima_selection_flag = 0; rice_selection_flag = 0; water_level_flag = 0; powder_level_flag = 0;               
+     selection_lock = 0; water_level_flag = 0; powder_level_flag = 0;               
      Heated_flag = 0; Start_Water_Temp_Flag = 0; powder_drain_flag = 0; start_Heating = 0; 
      First_Pour_Flag = 0; Second_Pour_Flag = 0; Third_Pour_Flag = 0; Simmer_Flag = 0; Final_Cook_Flag = 0;
      Low_Heat_Flag = 0; High_Heat_Flag = 0; Low_Stirr_Flag = 0; High_Stirr_Flag = 0;               
@@ -1702,7 +1819,7 @@ void Cook_complete(){
      current_water = 0; current_powder = 0; next_water = 0; next_powder = 0; cook_count = 0; 
      servoMain.write(0); manual_cook = 0; // Used for manaul mode
       
-     manual_selection_flag = 0; rice_selection_flag = 0; nsima_selection_flag = 0; pasta_selection_flag = 0;
+     manual_selection_flag = 0; rice_selection_flag = 0; first_selection_flag = 0; pasta_selection_flag = 0;
      
      Completed_Cook_Flag = 0; 
   
@@ -1710,3 +1827,5 @@ void Cook_complete(){
   } 
  }
 }
+
+

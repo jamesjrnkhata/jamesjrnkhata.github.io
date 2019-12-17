@@ -64,10 +64,9 @@ The components researched and used were chosen to minimize the cost of the overa
 ### Software
 The portions were estimated for each carb type by cooking the dishes conventionally (pot and stove), while recording how much ingredients were used in weight. This data was then used as a standard in *Load Sensor* readings (weight) to determine how much ingredients were required for extra portions of each carb type. All the steps carried out in cooking rice; Pasta and Nsima were then implemented into Arduino Sketch.
 
+
 **Declaration Code Snippet (Nsima and Rice Only)**
-
 ```cpp
-
 #include <OneWire.h>
 #include <DallasTemperature.h>
 #include <Servo.h>
@@ -177,11 +176,11 @@ int water_dec1, water_dec2;
 AnalogKeypad AnKeypad(Button_analogPin);
 ```
 
+
 **Cook Selection Code Snippet**
 ```cpp
-
 // CONDITION TO CHECK IF THE DEVICE IS OPEN, IF IT IS ONLY SECONDARY FUNCTIONS CAN BE CARRIED OUT
-  if(main_hatch_state == 1 && water_hatch_state == 1 && powder_hatch_state == 1){  
+  if(main_hatch_state == 1 && water_hatch_state == 1 && powder_hatch_state == 1){
 
 
     // START NSIMA SELECTION
@@ -209,7 +208,6 @@ AnalogKeypad AnKeypad(Button_analogPin);
      manual_selection_flag = 0;
      BT_press = ' ';
    }
-
 
   // NSIMA SELECTION BLOCK
    if(nsima_selection_flag == 1){  
@@ -276,6 +274,7 @@ AnalogKeypad AnKeypad(Button_analogPin);
     }
 }
 ```
+
 
 **Nsima Cook State-Transition Code Snippet**
 
