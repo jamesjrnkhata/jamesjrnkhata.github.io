@@ -52,8 +52,6 @@ This section lists the hardware used and some decisions that were made in instal
 **Microcontroller (MCU)** – was responsible for interpreting sensor information and giving commands to the *Relay Modules* connected to the light switches.
 
 ### software
-
-**This section shows snippets of the code that written to run the hardware.**
 **Declaration Code Snippet**
 ```cpp
 //////////////////GUOJI HOUSE 37 AUTOMATION SKETCH ///////////////////////////////////////////
