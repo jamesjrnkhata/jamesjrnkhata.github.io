@@ -12,7 +12,9 @@ The project was one of the bespoke embedded control solutions offered to custome
 
 <h2 class="text-underline">Background / Challenge</h2>
 
-It is common practice in Malawi (Africa) for residents to turn their security lights on in the evenings and switch them off early in the mornings. Besides illumination, it is necessary (as it is believed) to put off burglars and thieves as it gives the impression of the residents being at home.  This is somewhat effective towards the intruders but not so cost effective on the electric bill. Therefore, it becomes a problem when there is no one home, which lives many people left with two options: Either asking a neighbour or relative to house sit for them or more commonly leaving their security lights on throughout the day when they are out short term or even long term (Holidays).
+It is common practice in Malawi (Africa) for residents to turn their security lights on in the evenings and switch them off early in the mornings. Besides illumination, it is necessary (as it is believed) to put off burglars and thieves as it gives the impression of the residents being at home.  This is somewhat effective towards the intruders but not so cost effective on the electric bill.
+
+The security lights on method becomes a problem when there is no one home. This lives many people left with two options: Either asking a neighbour or relative to house sit for them or more commonly leaving their security lights on throughout the day when they are out short term or even long term (holidays).
 
 <h2 class="text-underline">Requirements</h2>
 
@@ -52,7 +54,9 @@ This section lists the hardware used and some decisions that were made in instal
 
 **Microcontroller (MCU)** – was responsible for interpreting sensor information and giving commands to the *Relay Modules* connected to the light switches.
 
-### software
+### Software
+
+
 **Declaration Code Snippet**
 ```cpp
 //////////////////GUOJI HOUSE 37 AUTOMATION SKETCH ///////////////////////////////////////////
@@ -108,6 +112,8 @@ byte day;
 byte hours;
 byte minutes;
 ```
+
+
 **Main Code Snippet**
 
 ```cpp
