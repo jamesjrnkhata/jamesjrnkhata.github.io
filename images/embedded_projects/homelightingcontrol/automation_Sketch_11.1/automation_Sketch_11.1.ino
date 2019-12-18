@@ -41,9 +41,9 @@ byte security_light_flag = 0; // flag set to off by default
 byte kitchen_led_flag = 0; // flag set to off by default
 byte front_light_flag = 0; // flag set to off by default
 byte back_light_flag = 0; // flag set to off by default
-byte dark_outside; // flag set to off by default
-byte echo_hours_on; // flag set to off by default
-byte light_outside; // flag set to off by default
+byte dark_outside = 0; // flag set to off by default
+byte echo_hours_on = 0; // flag set to off by default
+byte light_outside = 0; // flag set to off by default
 
 // TIME AND DATE VARIABLES
 String month; 
@@ -109,7 +109,7 @@ void loop() {
   hours = t.hour; // get hour data from time
   minutes = t.min; // get minute data from time
   
-  On_Status(); // initialize function
+  // On_Status(); // initialize function
 
   // CONDITIONS USED TO READ COMMANDS FROM DS3231 SERIAL INPUT AND SET LIGHT AND DAY CYCLE DEPENDING ON TIME
   
@@ -141,49 +141,89 @@ void loop() {
   if(hours >= 5 && hours < 17){
     dark_outside = 0; // set flag to off
     echo_hours_on = 0; // set flag to off
-    light_outside = 1;  // set flag to on
+    light_outside = 1; // set flag to on
   }
-
+  
    // CONDITIONS USED TO CONTROL INTERAL AND EXTERNAL LIGHTS BASED ON TIME AND PIR INPUT
    
-   if(digitalRead(pir_front) == HIGH && (dark_outside == 1 || echo_hours_on == 1)){digitalWrite(front_lights, LOW); // turn on}
-   else{digitalWrite(front_lights, HIGH); turn off}
+   if(digitalRead(pir_front) == HIGH && (dark_outside == 1 || echo_hours_on == 1)){
+     digitalWrite(front_lights, LOW); // turn on
+   } 
+   else
+   {
+     digitalWrite(front_lights, HIGH);
+   } 
  
-   if(digitalRead(pir_back) == HIGH && (dark_outside == 1 || echo_hours_on == 1)){digitalWrite(back_lights, LOW); // turn on}
-   else{digitalWrite(back_lights, HIGH); turn off}
+   if(digitalRead(pir_back) == HIGH && (dark_outside == 1 || echo_hours_on == 1)){
+    digitalWrite(back_lights, LOW); // turn on
+   } 
+   else
+   {
+    digitalWrite(back_lights, HIGH); // turn off
+   }
    
-   if(digitalRead(pir_shower) == HIGH && (dark_outside == 1 || echo_hours_on == 1)){digitalWrite(shower_lights, LOW); // turn on}
-   else{digitalWrite(shower_lights, HIGH); turn off}
+   if(digitalRead(pir_shower) == HIGH && (dark_outside == 1 || echo_hours_on == 1)){
+    digitalWrite(shower_lights, LOW); // turn on
+   }
+   else
+   {
+    digitalWrite(shower_lights, HIGH); // turn off
+   }
    
-   if(digitalRead(pir_hallway) == HIGH && (dark_outside == 1 || echo_hours_on == 1)){digitalWrite(hallway_lights, LOW); // turn on}
-   else{digitalWrite(hallway_lights, HIGH); turn off}
+   if(digitalRead(pir_hallway) == HIGH && (dark_outside == 1 || echo_hours_on == 1)){
+    digitalWrite(hallway_lights, LOW); // turn on
+   }
+   else
+   {
+    digitalWrite(hallway_lights, HIGH); // turn off
+   }
 
-   if(digitalRead(pir_kitchen) == HIGH && (dark_outside == 1 || echo_hours_on == 1)){digitalWrite(kitchen_lights, LOW); // turn on}
-   else{digitalWrite(kitchen_lights, HIGH); turn off}
+   if(digitalRead(pir_kitchen) == HIGH && (dark_outside == 1 || echo_hours_on == 1)){
+    digitalWrite(kitchen_lights, LOW); // turn on
+   }
+   else
+   {
+    digitalWrite(kitchen_lights, HIGH); // turn off
+   }
 
    // condition to set ext_pir_group flag (set by any external PIRs excluding pir_front and pir_back)
    if (digitalRead(pir_extfront_right) == HIGH || digitalRead(pir_extback_right) == HIGH || digitalRead(pir_extfront_left) == HIGH || digitalRead(pir_extback_left) == HIGH){
      ext_pir_group = 1;  // set flag to on
    }
-   else{ext_pir_group = 0;  // set flag to off}
+   else
+   {
+    ext_pir_group = 0;  // set flag to off
+   }
 
    // condition to set yard_motion_flag by all external PIRs
    if((digitalRead(pir_back) == HIGH || digitalRead(pir_front) == HIGH || ext_pir_group == 1) && echo_hours_on == 1){
-    yard_motion_flag = 1; // set flag to on}
+    yard_motion_flag = 1; // set flag to on
    }
-   else{yard_motion_flag = 0; // set flag to off}
+   else
+   {
+    yard_motion_flag = 0; // set flag to off
+   }
   
-   if(dark_outside == 0 && yard_motion_flag == 1){digitalWrite(security_lights, LOW); // turn on}
-   else{digitalWrite(security_lights, HIGH); turn off} 
+   if(dark_outside == 0 && yard_motion_flag == 1){
+    digitalWrite(security_lights, LOW); // turn on
+   }
+   else
+   {
+    digitalWrite(security_lights, HIGH); // turn off
+   } 
    
-   if(dark_outside == 1){digitalWrite(security_lights, LOW); // turn on} 
-   if(light_outside == 1){digitalWrite(security_lights, HIGH); turn off}
+   if(dark_outside == 1){
+    digitalWrite(security_lights, LOW); // turn on
+   } 
+   if(light_outside == 1){
+    digitalWrite(security_lights, HIGH); // turn off
+   }
 }
 
  // OTHER FUNCTIONS 
     
  // Function used to toggle between ECHO MODE and FULL MODE
- void Mode_Switch
+ void Mode_Switch()
  {
    // ECHO MODE - TIME AND PIR CONTROLLED    
    //if (digitalRead(State_Button) == LOW){ 

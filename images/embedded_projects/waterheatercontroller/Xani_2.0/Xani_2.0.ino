@@ -6,43 +6,42 @@
 
 // initialize the library with the numbers of the interface pins
 LiquidCrystal lcd(2, 3, 4, 5, 6, 7);
+/*
+ * LCD RS pin to D2 digital [pin number 5]
+ * LCD Enable pin to D3 digital [pin number 6]
+ * LCD D4 pin to D4 digital [pin number 7]
+ * LCD D5 pin to D5 digital [pin number 8]
+ * LCD D6 pin to D6 digital [pin number 9]
+ * LCD D7 pin to D7 digital [pin number 10]
+ */
 
 // Init the DS3231 using the hardware interface
-DS3231  rtc(SDA, SCL); // pin (A4, A5) (SDA, SCL)
+DS3231  rtc(SDA, SCL); // pin (A4, A5) [pin number 23 SDA, pin number 24 SCL)]
 
 // Init a Time-data structure
 Time  t;
 
-const int water_heater = 12; // pin 15
-const int kitchen_lights = 11; // pin 14
-const int pantry_lights = 10; // pin 13
-const int hallway_lights = 9; // pin 12
-// const int downstrshallway_lights = 8; // pin 11 will combine upstairs and downstairs
-// const int downstairsbathroom_lights = 7; // pin 10 will be connected directly to Relay through transistor
-
-/*
- * LCD RS pin to D2 digital pin 5
- * LCD Enable pin to D3 digital pin 6
- * LCD D4 pin to D4 digital pin 7
- * LCD D5 pin to D5 digital pin 8
- * LCD D6 pin to D6 digital pin 9
- * LCD D7 pin to D7 digital pin 10
- */
+const int water_heater = 12; // [pin number 15]
+const int kitchen_lights = 11; // [pin number 14]
+const int pantry_lights = 10; // [pin number 13]
+const int hallway_lights = 9; // [pin number 12]
+// const int downstrshallway_lights = 8; // [pin number 11] will combine upstairs and downstairs
+// const int downstairsbathroom_lights = 7; // [pin number 10] will be connected directly to Relay through transistor
  
-const int pir_kitchen = 14; // pin 19 (A0)
-const int pir_pantry = 15; // pin 20 (A1)
-const int pir_upstairshallway = 16; // pin 21 (A2)
-const int pir_downstairshallway = 17; // pin 22 (A3)
-// const int pir_downstairsbathroom= 20; // pin 25 (A6)
-const int time_button = 8; // pin 11
-const int cancel_button = 20; // pin 25 (A6)
-const int start_button = 13; // pin 25 (A6)
+const int pir_kitchen = 14; // [pin number 19] (A0)
+const int pir_pantry = 15; // [pin number 20] (A1)
+const int pir_upstairshallway = 16; // [pin number 21] (A2)
+const int pir_downstairshallway = 17; // [pin number 22] (A3)
+// const int pir_downstairsbathroom= 20; // [pin number 25] (A6)
+const int time_button = 8; // [pin number 11]
+const int cancel_button = 20; // [pin number 25] (A6)
+const int start_button = 13; // [pin number 16]
 
-byte dark_outside;   
-byte light_outside;
-byte automatic_heat_flag;
+byte dark_outside; // flag set to off by default   
+byte light_outside; // flag set to off by default
+byte automatic_heat_flag; 
 byte manual_heat_flag;
-byte second_counter;
+
 
 // TIME AND DATE VARIABLES
 String month;
@@ -50,6 +49,7 @@ byte day;
 byte hours;
 byte minutes;
 byte seconds;
+byte second_counter;
 
 int heat_time;
 
@@ -64,10 +64,11 @@ void setup(){
   // Initialize the rtc object
   rtc.begin();
   
-  // The following lines can be uncommented to set the date and time
-//  rtc.setDOW(SUNDAY);     // Set Day-of-Week to SUNDAY
- // rtc.setTime(16, 47, 0);     // Set the time to 12:00:00 (24hr format)
- // rtc.setDate(3, 9, 2017);   // Set the date to 1st January, 2014
+  // SET TIME AND DATE
+  // The following lines can be uncommented to set the date and time (re-comment after set)
+  // rtc.setDOW(SUNDAY); // Set Day-of-Week to SUNDAY
+  // rtc.setTime(21, 27, 0); // Set the time to 12:00:00 (24hr format)
+  // rtc.setDate(7, 8, 2017); // Set the date to 1st January, 2014
   
   time_display(); // PROTOTYPING THE FUNCTION
   Manual_Waterheat(); // PROTOTYPE THE FUNCTION
