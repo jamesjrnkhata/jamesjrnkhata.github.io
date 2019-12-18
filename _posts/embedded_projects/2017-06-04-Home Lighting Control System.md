@@ -7,6 +7,7 @@ feature_img: /images/embedded_projects/homelightingcontrol/homelc_img00.jpg
 excerpt: "security, automation, lighting, embedded, control, c++, arduino"
 purpose: "The project was one of the bespoke embedded control solutions offered to customers in domestic and industrial environments in Malawi. This particular system provided an energy saving and security lighting control system."
 toc: true
+classes: wide
 ---
 The project was one of the bespoke embedded control solutions offered to customers in domestic and industrial environments in Malawi. This particular system provided an energy saving and security lighting control system.
 
@@ -37,7 +38,7 @@ The internal lights integrated with motion sensing could also work similar to th
 ### Hardware
 This section lists the hardware used and some decisions that were made in installation.
 
-*	Microcontroller
+*	Microcontroller (Arduino Uno)
 *	10A Relay Modules (5v to 240v / 10A)
 *	Photoresistors (if necessary)
 *	Real-Time Clock Module (DS32231)
