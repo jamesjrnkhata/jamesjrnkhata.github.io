@@ -37,7 +37,7 @@ ul.custom_post a {
 }
 
 .post_feature_img {
-  width: 150px;
+  width: 200px;
   height: 150px;
   background-position: 50% 50%;
   background-repeat: no-repeat;
@@ -52,7 +52,7 @@ ul.custom_post a {
   margin-top: 2em;
   color: #898c8f;
   font-family: -apple-system,BlinkMacSystemFont,"Roboto","Segoe UI","Helvetica Neue","Lucida Grande",Arial,sans-serif;
-  font-size: 0.50em;
+  font-size: 0.75em;
   margin: 0 0 4px !important;
 }
 

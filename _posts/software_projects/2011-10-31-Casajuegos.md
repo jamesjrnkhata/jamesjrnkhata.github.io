@@ -6,6 +6,7 @@ permalink: /:categories/:title/
 feature_img: /images/software_projects/casajuegoscafe/casajuegos_img00.jpg
 excerpt: "software, media, entertainment, networking, gaming"
 purpose: "The purpose of the project was to establish a start-up that could offer services as a modern video game arcade and an offline media-streaming hub at a location in Lilongwe, Malawi, South-East Africa."
+toc: true 
 images:
   - image_path: /images/software_projects/casajuegoscafe/casajuegos_img00.jpg
     title: XBOX 360 room
