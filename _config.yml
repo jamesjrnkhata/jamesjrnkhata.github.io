@@ -20,7 +20,7 @@ title                    : "James Junior Nkhata"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "James Junior Nkhata"
-description              : "Embedded and Computer Engineer"
+description              : "Electronic and Computer Engineer"
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -109,7 +109,7 @@ analytics:
 author:
   name             : "James Junior Nkhata"
   avatar           : "/images/bio-photo_2018.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Embedded and Computer Engineer"
+  bio              : "Electronic and Computer Engineer"
   location         : "Leicester, UK"
   email            :
   links:
