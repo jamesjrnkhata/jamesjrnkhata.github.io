@@ -163,27 +163,6 @@ void loop() {
   if(hours == 19 && hours == 00){
     automatic_heat_flag == 0;
   }
- 
- //digitalWrite(Kitchen_Leds, LOW);
-//  digitalWrite(Security_Lights, LOW);
-   // FUNCTION USED TO CONTROL UTILITY LIGHTS BASED ON PIR INPUT
-  // if(digitalRead(pir_Front) == HIGH && (dark_outside == 1 || echo_hours_on == 1)){digitalWrite(Front_Lights, LOW);}
- //  else{digitalWrite(Front_Lights, HIGH);}
- 
-  // if(digitalRead(pir_Back) == HIGH && (dark_outside == 1 || echo_hours_on == 1)){digitalWrite(Back_Lights, LOW);}
-  // else{digitalWrite(Back_Lights, HIGH);}
-   
-  // if(echo_hours_on == 0 && dark_outside == 1){digitalWrite(Kitchen_Leds, LOW);}
-  // else{digitalWrite(Kitchen_Leds, HIGH);}
-   
-  // if((digitalRead(pir_Back) == HIGH || digitalRead(pir_Front) == HIGH || digitalRead(Ext_pir_Group) == HIGH) && echo_hours_on == 1){yard_motion_flag = 1;}
-//   else{yard_motion_flag = 0;}
-  
- //  if(dark_outside == 0 && yard_motion_flag == 1){digitalWrite(Security_Lights, LOW);}
- //  else{digitalWrite(Security_Lights, HIGH);} 
- //  if(dark_outside == 1){digitalWrite(Security_Lights, LOW);} 
- //  if(light_outside == 1){digitalWrite(Security_Lights, HIGH);}
- 
 
 }
 
