@@ -3,7 +3,7 @@ title: "Water Heater Controller"
 date: 2017-07-09
 categories: [embedded-projects]
 permalink: /:categories/:title/
-feature_img: /images//embedded_projects/waterheatercontroller/waterheatercontroller_img00.jpg
+feature_img: /images/embedded_projects/waterheatercontroller/waterheatercontroller_img00.jpg
 excerpt: "boiler, automation, embedded, control, domestic, c++, arduino"
 purpose: "This project was an embedded controller offered to customers with Water Heaters (Geysers) with in-efficient thermostats or built-in temperature regulators. Its purpose was to elevate the need for the customer to manually switch the Water Heater on and off. "
 toc: true
