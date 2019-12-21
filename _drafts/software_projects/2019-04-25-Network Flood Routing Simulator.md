@@ -72,7 +72,7 @@ When a packet was successfully transferred to the next node it was deleted from 
 
 ### Implementation of Flood Routing Simulator in Python
 
-#### *State Chart for Flood Routing Simulation*
+#### State Chart for Flood Routing Simulation
 
 {% if image.weight = 2 %}
   <figure class="custom-figure">
@@ -83,7 +83,7 @@ When a packet was successfully transferred to the next node it was deleted from 
   </figure>
 {% endif %}
 
-#### *Main storage structures used*
+#### Main storage structures used
 Decisions had to be made for the storage structures to be used for the system. The requirements were defined as follows:
 *	A storage structure had to hold information for node connections and the links between them.
 *	A storage structure had to hold packet information on a first in first out queue basis (FIFO queue) for the node buffers.
@@ -120,7 +120,7 @@ The “routing_table” and “link_status” was also made into dictionaries. N
 
 Dictionary “link_status” held the links between the nodes as its keys and their status as its values in the network (“False” to indicate the link not in use and “True” to indicate that link was in use).
 
-#### *User Interface to represent node buffer information*
+#### User Interface to represent node buffer information
 Python’s TkInter package was used to develop the user interface for the Flood Routing Simulation program.
 
 {% if image.weight = 5 %}
