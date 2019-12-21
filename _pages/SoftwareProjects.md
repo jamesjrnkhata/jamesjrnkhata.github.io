@@ -5,6 +5,7 @@ title: "Software Projects"
 author_profile: true
 header:
   image: "/images/software_background.jpg"
+blank_feature_img: /images/no_image.jpg  
 classes: wide
 ---
 <div class="tags-expo-section">
