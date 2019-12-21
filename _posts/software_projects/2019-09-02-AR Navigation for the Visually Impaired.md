@@ -1,5 +1,5 @@
 ---
-title: "AR Navigation for the Visually Impaired"
+title: "Augmented Reality Navigation for the Blind"
 date: 2019-09-02
 categories: [software-projects]
 permalink: /:categories/:title/
