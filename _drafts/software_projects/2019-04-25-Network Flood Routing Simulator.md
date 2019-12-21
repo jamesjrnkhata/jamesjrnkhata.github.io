@@ -152,7 +152,7 @@ Below the canvas (bottom rectangle) showed the “Enter Start Node” entry fiel
 <h2 class="text-underline">Implementation</h2>
 
 ### software
-This section shows snippets from the two files (main.py and classes.py) that were used to implement the simulator in Python. Full code and full report available from <a class="custom_link" href="https://github.com/jamesjrnkhata/Network-Flood-Routing-Simulator">GitHub</a>  
+This section shows snippets from the two files (main.py and classes.py) that were used to implement the simulator in Python. Full code and full report available from <a class="custom_link" href="">GitHub</a>  
 
 **Main.py Snippet**
 ```python
