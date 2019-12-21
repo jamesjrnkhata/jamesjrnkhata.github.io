@@ -10,19 +10,19 @@ toc: true
 classes: wide
 images:
   - image_path: /images/software_projects/networkfloodrouting/networkfloodrouting_img01.jpg
-    title: "Figure 1 - Proposed Network Topology of the Flood Routing Simulation"
+    title: Figure 1 - Proposed Network Topology of the Flood Routing Simulation
     weight: 1
   - image_path: /images/software_projects/networkfloodrouting/networkfloodrouting_img02.jpg
-    title: "Figure 2 - State Chart Diagram Depicting Concurrent Processes in Nodes 1 to 18 (Per Time Interval)"
+    title: Figure 2 - State Chart Diagram Depicting Concurrent Processes in Nodes 1 to 18 (Per Time Interval)
     weight: 2
   - image_path: /images/software_projects/networkfloodrouting/networkfloodrouting_img03.jpg
-    title: "Figure 3 - Choice of Main storage structures used to implement the Flood Routing Simulation Network"
+    title: Figure 3 - Choice of Main storage structures used to implement the Flood Routing Simulation Network
     weight: 3   
   - image_path: /images/software_projects/networkfloodrouting/networkfloodrouting_img04.jpg
-    title: "Figure 4 - Node objects created by passing neighbour node numbers to the Node Class __init__ function"
+    title: Figure 4 - Node objects created by passing neighbour node numbers to the Node Class __init__ function
     weight: 4
   - image_path: /images/software_projects/networkfloodrouting/networkfloodrouting_img00.jpg
-    title: "Figure 5 - Screenshot of Python’s User interface for Flood Routing Simulator using TkInter"
+    title: Figure 5 - Screenshot of Python’s User interface for Flood Routing Simulator using TkInter
     weight: 5
 ---
 <h2 class="text-underline">Purpose</h2>
@@ -138,7 +138,15 @@ The nodes were represented by the circles with the numbers in the middle on the 
 
 Below the canvas (bottom rectangle) showed the “Enter Start Node” entry field, “Start” button, “Next Increment (Time + 1)” button, “Reset” button, Node 1 to Node 18 headers with label fields directly below (“Buffer Packet Count:” row label) and a “Buffer Contents:” label with a field label below it that span the page.
 
-
+<div class="custom-figcaption">Table 1: Items found on the Flood Routing Simulator User Interface and their purpose</div>
+| Item | Purpose |
+| :-- | :------------------------------|
+| “Enter Start Node” entry field | The field was used to select the node to insert the initial packet by specifying it with an integer value (1-18) |
+| “Start” button | The button used to start the flood routing process once a start node was entered |
+| “Next Increment (Time + 1)” button | The button used to increment time by the value of 1 |
+| “Reset” button | The button used to restart the program to insert a new packet in a different start node |
+| “Buffer Packet Count:” labels below Node 1 to Node 18 headers | Displayed the number of packets contained within the node’s buffer at that time |
+| “Buffer Contents:” (bottom label field) | Displayed the packet name strings of the packets contained within the node that had been highlighted (by moving the mouse cursor over its corresponding node on the canvas) |
 
 
 <h2 class="text-underline">Implementation</h2>
