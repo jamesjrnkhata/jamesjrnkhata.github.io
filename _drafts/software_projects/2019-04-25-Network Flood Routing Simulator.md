@@ -54,18 +54,3 @@ Controls could be applied to the network to minimise the effect of packet expone
 ## Flood Routing Simulation Algorithm
 
 The network topology had to take the initial hop count of 10 into consideration to fulfil the network diameter needed (minimum hop number between two furthest nodes). This meant the furthest nodes had to be about 10 connections away. To fulfil this requirement, 18 nodes were used and connected as shown in Figure 1.
-
-{% if image.weight = 1 %}
-  <figure class="custom-figure">
-    <img class="galley_img" src="{{ image.image_path }}" alt="{{ image.title }}">
-    <figcaption class="custom-figcaption">
-      {{ image.title }}
-    </figcaption>
-  </figure>
-{% endif %}
-
-The nodes were represented by numbered circles and the links connecting them by the lines with characters “a” to “z” as depicted in Figure 1. To keep the network neat and uniformly structured a decision was made to have a maximum of 3-links per node.
-
-Upon initializing the first packet within any node in Figure 1, its neighbours had to be identified to determine where the packet was to be copied to. Once this copy list was established, the packet was duplicated to be transmitted to the nodes in its copy list. The link connecting the current node to the next node was examined to see if it was being used by other nodes (since a link could be used for one-way transfer only during any time interval). If the link was in use, the copy process to that next node was suspended and that packet was modified (removed that copy list element from the current packet) and appended to the end of the current node’s buffer as a new packet until the next time interval.
-
-When a packet was successfully transferred to the next node it was deleted from its current node and the hop count was decremented by 1 in the next node. The process was then repeated to copy the packet from its subsequent node, to its neighbour nodes (except for the node it came from) during the next time interval.
