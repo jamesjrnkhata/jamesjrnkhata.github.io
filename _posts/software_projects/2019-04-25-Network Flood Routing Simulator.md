@@ -24,7 +24,6 @@ images:
   - image_path: /images/software_projects/networkfloodrouting/networkfloodrouting_img00.jpg
     title: Figure 5: Screenshot of Python’s User interface for Flood Routing Simulator using TkInter
     weight: 5
-
 ---
 <h2 class="text-underline">Purpose</h2>
 The assignment aimed at writing a programme in Python to simulate Flood Routing in a network with a minimum of 15 nodes and investigate the congestion caused by duplication of packets. The results obtained at each node were to be represented graphically, analysed, discussed and a proposal for a solution to reduce the duplication causing the congestion made.
