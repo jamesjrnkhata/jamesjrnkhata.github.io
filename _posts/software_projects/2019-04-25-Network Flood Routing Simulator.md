@@ -181,7 +181,309 @@ Below the canvas (bottom rectangle) showed the “Enter Start Node” entry fiel
 
 <h2 class="text-underline">Implementation</h2>
 
+### Software
+This section shows snippets from the two files (main.py and classes.py) that were used to implement the simulator in Python. Full code and full report available from <a class="custom_link" href="https://github.com/jamesjrnkhata/Network-Flood-Routing-Simulator">GitHub</a> page.  
 
+**"Main.py" Code Snippet**
+```python
+# ----------------------------------------- START OF MAIN FUNCTION --------------------------------------------------- #
+
+# FUNCTION USED TO LAUNCH THE USERINTERFACE
+def flood_start_gui():
+    # declare root as global variable to access it beyond the scope of the flood_start_gui
+    global root
+    # Create a tkinter object and call it root
+    root = Tk()
+    # -------------------------------- START OF USERINTERFACE FUNCTIONS ---------------------------------------------- #
+
+    # -------------------------------- UserInterface General Functions ----------------------------------------------- #
+    # FUNCTION USED TO DRAW CIRCLES ON THE CANVAS
+    # ref: https://stackoverflow.com/questions/17985216/draw-circle-in-tkinter-python
+    def create_circle(x, y, r):  # center coordinates, radius
+        x0 = x - r
+        y0 = y - r
+        x1 = x + r
+        y1 = y + r
+        return canvas.create_oval(x0, y0, x1, y1, outline="black", width=2)
+
+    # FUNCTION USED TO DRAW LINES THAT REPRESENT LINKS BETWEEN NODES ON THE CANVAS
+    def create_link(x0, y0, x1, y1, orient):  # start node (x,y) to end node (x,y) coordinates and orientation
+        # check to see what orientation the coordinates passed are in to adjust the line accordingly
+        # when the orientation is "horizontal"
+        if orient == "horizontal":
+            x_start = x0 + 25  # - to adjust link to the edge of the circle and not the center
+            y_start = y0
+            x_finish = x1 - 25  # - to adjust link to the edge of the circle and not the center
+            y_finish = y1
+            return canvas.create_line(x_start, y_start, x_finish, y_finish, width=2, fill="black", dash=(2, 4))
+        # when the orientation is "vertical"
+        elif orient == "vertical":
+            x_start = x0
+            y_start = y0 + 25  # - to adjust link to the edge of the circle and not the center
+            x_finish = x1
+            y_finish = y1 - 25  # - to adjust link to the edge of the circle and not the center
+            return canvas.create_line(x_start, y_start, x_finish, y_finish, width=2, fill="black", dash=(2, 4))
+        # when the orientation is "diagonal_left" (moving from a node above to a node below on its left)
+        elif orient == "diagonal-left":
+            x_start = x0 - 18  # - to adjust link to the edge of the circle and not the center
+            y_start = y0 + 18  # - to adjust link to the edge of the circle and not the center
+            x_finish = x1 + 18  # - to adjust link to the edge of the circle and not the center
+            y_finish = y1 - 18  # - to adjust link to the edge of the circle and not the center
+            return canvas.create_line(x_start, y_start, x_finish, y_finish, width=2, fill="black", dash=(2, 4))
+        # when the orientation is "diagonal_right" (moving from a node above to a node below on its right)
+        elif orient == "diagonal-right":
+            x_start = x0 + 18  # - to adjust link to the edge of the circle and not the center
+            y_start = y0 + 18  # - to adjust link to the edge of the circle and not the center
+            x_finish = x1 - 18  # - to adjust link to the edge of the circle and not the center
+            y_finish = y1 - 18  # - to adjust link to the edge of the circle and not the center
+            return canvas.create_line(x_start, y_start, x_finish, y_finish, width=2, fill="black", dash=(2, 4))
+
+    # FUNCTION USED TO RESTRICT FUNCTIONALITY OF THE USERINTERFACE TO PREVENT ABNORMAL OPERATIONS
+    def start_button_press():
+        buttonmanual.config(state="normal")
+        buttonreset.config(state="normal")
+        buttonstart.config(state="disabled")
+        entry_init.config(state="disabled")
+        label_entry.config(fg="blue")
+
+    # FUNCTION USED TO INITIALISE THE FIRST PACKET THROUGH THE USERINTERFACE AND INIT_ROUTING() NODE FUNCTION
+    def gui_init_routing():
+        #  use an exception handler for when non-integer or 1 - 18 range values are used
+        try:
+            start_node = int(entry_init.get())  # get the entry_init value and assign it to start_node
+            Classes.Node.time_counter = 1  # set time_counter to 1
+            # check if the value entered by the user is 1
+            if start_node == 1:
+                Node_1.init_routing()  # run the init_routing() function
+                start_button_press()  # run the start_button_press()
+            # check if the value entered by the user is 2
+            elif start_node == 2:
+                Node_2.init_routing()  # run the init_routing() function
+                start_button_press()  # run the start_button_press()
+            # check if the value entered by the user is 3
+            elif start_node == 3:
+                Node_3.init_routing()  # run the init_routing() function
+                start_button_press()  # run the start_button_press()
+            # check if the value entered by the user is 4
+            elif start_node == 4:
+                Node_4.init_routing()  # run the init_routing() function
+                start_button_press()  # run the start_button_press()
+            # check if the value entered by the user is 5
+            elif start_node == 5:
+                Node_5.init_routing()  # run the init_routing() function
+                start_button_press()  # run the start_button_press()
+            # check if the value entered by the user is 6
+            elif start_node == 6:
+                Node_6.init_routing()  # run the init_routing() function
+                start_button_press()  # run the start_button_press()
+            # check if the value entered by the user is 7
+            elif start_node == 7:
+                Node_7.init_routing()  # run the init_routing() function
+                start_button_press()  # run the start_button_press()
+            # check if the value entered by the user is 8
+            elif start_node == 8:
+                Node_8.init_routing()  # run the init_routing() function
+                start_button_press()  # run the start_button_press()
+            # check if the value entered by the user is 9
+            elif start_node == 9:
+                Node_9.init_routing()  # run the init_routing() function
+                start_button_press()  # run the start_button_press()
+            # check if the value entered by the user is 10
+            elif start_node == 10:
+                Node_10.init_routing()  # run the init_routing() function
+                start_button_press()  # run the start_button_press()
+            # check if the value entered by the user is 11
+            elif start_node == 11:
+                Node_11.init_routing()  # run the init_routing() function
+                start_button_press()  # run the start_button_press()
+            # check if the value entered by the user is 12
+            elif start_node == 12:
+                Node_12.init_routing()  # run the init_routing() function
+                start_button_press()  # run the start_button_press()
+            # check if the value entered by the user is 13
+            elif start_node == 13:
+                Node_13.init_routing()  # run the init_routing() function
+                start_button_press()  # run the start_button_press()
+            # check if the value entered by the user is 14
+            elif start_node == 14:
+                Node_14.init_routing()  # run the init_routing() function
+                start_button_press()  # run the start_button_press()
+            # check if the value entered by the user is 15
+            elif start_node == 15:
+                Node_15.init_routing()  # run the init_routing() function
+                start_button_press()  # run the start_button_press()
+            # check if the value entered by the user is 16
+            elif start_node == 16:
+                Node_16.init_routing()  # run the init_routing() function
+                start_button_press()  # run the start_button_press()
+            # check if the value entered by the user is 17
+            elif start_node == 17:
+                Node_17.init_routing()  # run the init_routing() function
+                start_button_press()  # run the start_button_press()
+            # check if the value entered by the user is 18
+            elif start_node == 18:
+                Node_18.init_routing()  # run the init_routing() function
+                start_button_press()  # run the start_button_press()
+
+            # if non of the values between 1 - 18 are entered
+            else:
+                messagebox.showinfo("Error", "An Integer between 1 - 18 must be Entered ")
+            # use the display_buff_count to display the Node entries in the GUI
+            display_buff_count()
+        # when a wrong data type is inputted display a warning messagebox
+        except ValueError:
+            messagebox.showwarning("Value Error", "Only Integers between 1 - 18 can be Entered ")
+```
+
+**"Classes.py" Code Snippet**
+
+```python
+# -------------------------------- START OF NODE CLASS FUNCTIONS ------------------------------------------------- #
+
+# FUNCTION USED TO INITIALISE VARIABLES IN THE CLASS
+def __init__(self, *args):
+    self.neighbor_nodes = list(args)  # variable used to unpack the tuple values passed when creating Node objects
+    self.node_buff = []  # list used to temporarily hold N_Buffer information
+    self.packet_data = []  # list used to work on N_Buffer information
+    self.current_node = 0  # variable used to hold current node value
+    self.first_buff_element = ''  # variable used to hold first buffer string name
+
+# FUNCTION USED TO INITIALISE THE FIRST PACKET INTO THE NETWORK
+def init_routing(self):
+    new_packet_name = 'pkt_' + str(self.neighbor_nodes[0])  # - create initial packet name and parse it to string
+
+    # - add initial packet to N_Buffer_OrderList
+    self.N_Buffer_OrderList[self.neighbor_nodes[0] - 1] = [new_packet_name]
+
+    # set first packet entries, packet_status_flag = False, hop_count = 10, empty copy_list and empty packet_history
+    buffer_value = {
+        new_packet_name: {
+            "packet_status_flag": False,
+            "hop_count": 10,
+            "copy_list": [],
+            "packet_history": []
+        }
+    }
+    self.N_Buffer.update(buffer_value)  # update the N_Buffer with the new packet
+
+# FUNCTION USED TO START THE SEQUENCE OF FUNCTIONS FOR EACH NODE'S PROCESSES
+def run_node_routing(self):
+    # Run node_process function for current node
+    bool_value = self.node_process()  # - Return value is set to variable bool_value
+
+    # Run packet_process function for current node
+    # bool_value is passed through the function packet_process
+    thread_copy_list = self.packet_process(bool_value)  # - Return value is set to variable thread_copy_list
+
+    # Check if thread_copy_list is empty
+    if not thread_copy_list:
+        pass  # do nothing
+
+    # else if thread_copy_list is not empty
+    else:
+        '''
+        Run "create_copy_threads" functions and pass "thread_copy_list" as its argument.
+        create_copy_threads function will create threads for the  current node (using "copy_packet" as the thread
+        function and each element of the "thread_copy_list" as an argument passing through it). '''
+        self.create_copy_threads(thread_copy_list)
+
+# FUNCTION USED TO PASS IN THREAD_COPY_LIST AND CREATE THREADS FOR COPY_PACKET FUNCTION
+def create_copy_threads(self, thread_copy_list):
+    threads = []  # - set threads to an empty list
+    # loop through contents of thread_copy_list
+    for node_number in thread_copy_list:
+        t = threading.Thread(target=self.copy_packet, args=(node_number,))  # pass thread function and argument
+        t.daemon = True  # - the thread will die when the main thread dies
+        t.start()  # - start the thread
+        threads.append(t)  # - add the threads to the threads list
+
+    # loop through the threads and run the join() function for the Main Thread to wait for them to finish executing
+    for thread in threads:
+        thread.join()
+
+# STATIC FUNCTION USED TO DETERMINE ELEMENTS PRESENT IN LIST1 BUT NOT PRESENT IN LIST2
+@staticmethod
+def remove_similar_nodes(list1, list2):
+    a = set(list1)  # - store elements of list1 into set a
+    b = set(list2)  # - store elements of list2 into set b
+    diff_values = list(a.difference(b))  # - determine what is available in set a but absent in set b
+    return diff_values  # - return the results
+
+# FUNCTION USED TO DELETE ENTRIES FROM N_BUFFER AND N_BUFFER_ORDERLIST OF THE CURRENT_NODE
+# arguments passed are packet_name and del_type (del_type has two argument options "1" and "2")
+def delete_buffer_entry(self, packet_name, del_type):
+    # if the argument passed for del_type: "1" deletion from both N_Buffer and N_Buffer_OrderList of the packet_name
+    if del_type == 1:
+        del self.N_Buffer[packet_name]  # - delete the key in N-Buffer with the packet_name value
+        temp_buff_list = self.N_Buffer_OrderList[self.current_node - 1]  # - temporarily store indexed list contents
+        del temp_buff_list[0]  # - delete the first entry of the temporarily list indexed by current_node
+        self.N_Buffer_OrderList[self.current_node - 1] = temp_buff_list  # - update N_Buffer_OrderList
+
+    # if the argument passed for del_type: "2" deletion from only the N_Buffer_OrderList of the packet_name
+    elif del_type == 2:
+        temp_buff_list = self.N_Buffer_OrderList[self.current_node - 1]  # - temporarily store indexed list contents
+        del temp_buff_list[0]  # - delete the first entry of the temporarily list indexed by current_node
+        self.N_Buffer_OrderList[self.current_node - 1] = temp_buff_list  # - update N_Buffer_OrderList
+
+        # FUNCTION USED TO EXAMINE LINK USAGE TO PROCESS PACKETS FOR COPYING INTO THE NEXT NODE
+        def packet_process(self, bool_value):
+            # check if node_process returned "False" after Packet deletion
+            if bool_value is False:
+                pass  # do nothing
+
+            # else carry on with the "packet_process" function
+            else:
+                # condition to check if packet_data has information
+                if len(self.packet_data) > 0:
+                    # - condition to check if "packet_status_flag" is True
+                    if self.packet_data[0] is True:
+
+                        #  use an exception handler to cycle through the copy_list and process the entries for copying
+                        try:
+                            # Loop through the packet_data copy_list entry and extract the corresponding routing_table route
+                            thread_copy_list = []  # - set thread_copy_list to an empty list
+                            failed_copy_list = []  # - set failed_copy_list to an empty list
+                            for x in self.packet_data[2]:
+                                '''
+                                index routing_table nested dict by [current node number] and [current copy_list value] "x".
+                                variable "link" used to store link name retrieved from routing_table. '''
+                                link = self.routing_table[self.current_node][x]
+
+                                # check if retrieved link is currently "False" in link_status dictionary
+                                if self.link_status[link] is False:
+                                    self.link_status[link] = True  # - set the link to active status
+                                    thread_copy_list.append(x)  # append x to thread_copy_list
+                                else:
+                                    failed_copy_list.append(x)  # append x to failed_copy_list
+
+                            # if failed_copy_list is empty then copy_list has been successfully passed on to copy_packet
+                            if not failed_copy_list:
+                                # delete the "first_buff_element" (self.packet_data[4]) from N_Buffer and N_Buffer_orderList
+                                self.delete_buffer_entry(self.packet_data[4], 1)
+                            # else failed_copy_list is not empty then the nodes contained had no free links
+                            else:
+                                # append the packet back to the N_Buffer with the failed_copy_list as the new "copy_list"
+                                # self.packet_data[4] is the first_buff_element
+                                buffer_value = {
+                                    self.packet_data[4]: {
+                                        "packet_status_flag": self.packet_data[0],
+                                        "hop_count": self.packet_data[1],
+                                        "copy_list": failed_copy_list,
+                                        "packet_history": self.packet_data[3]
+                                    }
+                                }
+                                self.N_Buffer.update(buffer_value)  # update the N_Buffer with the amended copy_list
+                                '''
+                                append the current node's node_cache with the updated packet string to add to the end of
+                                the N_BufferOrderList after the time increment '''
+                                Node.update_node_cache(self.current_node, self.packet_data[4])
+
+                                # delete the "first_buff_element" N_Buffer_OrderList entry only using del_type: 2
+                                self.delete_buffer_entry(self.packet_data[4], 2)
+                            return thread_copy_list  # - return thread_copy_list
+                        except IndexError:
+                            pass  # do nothing
+```
 
 <h2 class="text-underline">Conclusion</h2>
 
