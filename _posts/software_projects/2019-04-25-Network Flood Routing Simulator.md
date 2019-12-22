@@ -493,5 +493,4 @@ In this report a programme was written in Python to simulate Flood Routing in a 
 The Buffer Count and Buffer Contents for each node was represented graphically through the program’s user interface. As gradual time increments were made the Buffer Count and Buffer Contents were inspected to verify the correct behaviour expected for packet copying, packet deletion and one-way use of links per time interval. The results from the experimental data showed that the program worked as intended by the proposed flood routing algorithm.
 
 
-Full code and report available from <a class="custom_link" href="https://github.com/jamesjrnkhata/Network-Flood-Routing-Simulator">GitHub</a> page (<a class="custom_link" href="https://github.com/jamesjrnkhata/Network-Flood-Routing-Simulator">GitHub</a>Network-Flood-Routing-Simulator
-).</a>  
+Full code and report available from <a class="custom_link" href="https://github.com/jamesjrnkhata/Network-Flood-Routing-Simulator">GitHub</a> page (<a class="custom_link" href="https://github.com/jamesjrnkhata/Network-Flood-Routing-Simulator">Network-Flood-Routing-Simulator</a>).  
