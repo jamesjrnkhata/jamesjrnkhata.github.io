@@ -54,3 +54,12 @@ Controls could be applied to the network to minimise the effect of packet expone
 ## Flood Routing Simulation Algorithm
 
 The network topology had to take the initial hop count of 10 into consideration to fulfil the network diameter needed (minimum hop number between two furthest nodes). This meant the furthest nodes had to be about 10 connections away. To fulfil this requirement, 18 nodes were used and connected as shown in Figure 1.
+
+{% if image.weight == 1 %}
+  <figure class="custom-figure">
+    <img class="galley_img" src="{{ image.image_path }}" alt="{{ image.title }}">
+    <figcaption class="custom-figcaption">
+      {{ image.title }}
+    </figcaption>
+  </figure>
+{% endif %}
