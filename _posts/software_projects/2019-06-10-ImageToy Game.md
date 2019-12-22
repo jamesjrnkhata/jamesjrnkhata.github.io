@@ -33,7 +33,7 @@ Finally, it was supposed to allow the user to play the game by clicking on piece
 <h2 class="text-underline">Implementation</h2>
 
 ### Software
-This section shows a snippet of the python code file (main.py) that was used to implement the game. Full code available from <a class="custom_link" href="https://github.com/jamesjrnkhata/ImageToy-game">GitHub</a> page.  
+This section shows a snippet of the python file (main.py) that was used to implement the game. Full code available from <a class="custom_link" href="https://github.com/jamesjrnkhata/ImageToy-game">GitHub</a> page.  
 
 **"Main.py" Code Snippet**
 ```python
