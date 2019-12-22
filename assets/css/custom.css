@@ -102,6 +102,7 @@ ul.custom_post a {
   color: #898c8f;
   font-family: Georgia,Times,serif;
   font-size: .75em;
+  display: block;
 }
 
 .galley_img:hover{
