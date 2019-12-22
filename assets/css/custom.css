@@ -71,7 +71,7 @@ ul.custom_post a {
 	width: 100%;
 }
 
-.photo-gallery-2col, .photo-gallery-2col li {
+.photo-gallery-2col, .photo-gallery-2col li, .photo-gallery-3col, .photo-gallery-3col li  {
 	list-style: none;
 	padding: 0;
 }
@@ -83,11 +83,6 @@ ul.custom_post a {
 
 .photo-gallery-2col li img {
 	width: 100%;
-}
-
-.photo-gallery-3col, .photo-gallery-3col li {
-	list-style: none;
-	padding: 0;
 }
 
 .photo-gallery-3col li {
