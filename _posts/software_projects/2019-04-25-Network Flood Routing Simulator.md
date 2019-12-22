@@ -12,7 +12,7 @@ images:
   - image_path: /images/software_projects/networkfloodrouting/networkfloodrouting_img01.jpg
     title: "Figure 1 - Proposed Network Topology of the Flood Routing Simulation"
     weight: 1
-  - image_path: /images/software_projects/networkfloodrouting/networkfloodrouting_img02.jpg
+  - image_path: /images/software_projects/networkfloodrouting/networkfloodrouting_img02.png
     title: "Figure 2 - State Chart Diagram Depicting Concurrent Processes in Nodes 1 to 18 (Per Time Interval)"
     weight: 2
   - image_path: /images/software_projects/networkfloodrouting/networkfloodrouting_img03.jpg
