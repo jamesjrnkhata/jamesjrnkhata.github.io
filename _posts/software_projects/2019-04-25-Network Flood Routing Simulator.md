@@ -65,3 +65,13 @@ The network topology had to take the initial hop count of 10 into consideration 
         </figure>
       </li>
     </ul>
+
+    <ul class="photo-gallery">
+      {% for image in page.images %}
+        {% if image.weight == 1 %}  
+        <li>
+          <img class="galley_img" src="{{ image.image_path }}" alt="{{ image.title }}">
+        </li>
+        {% endif %}  
+      {% endfor %}  
+    </ul>
