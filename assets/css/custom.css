@@ -97,6 +97,13 @@ ul.custom_post a {
   text-align: center !important;
 }
 
+.custom-tablecaption {
+  margin-bottom: 0.5em;
+  color: #898c8f;
+  font-family: Georgia,Times,serif;
+  font-size: .75em;
+}
+
 .galley_img:hover{
     color: #424242;
   -webkit-transition: all .3s ease-in;
