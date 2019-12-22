@@ -3,7 +3,7 @@ title: "Network Flood Routing Simulator (18 Nodes)"
 date: 2019-04-25
 categories: [software-projects]
 permalink: /:categories/:title/
-feature_img: "/images/software_projects/networkfloodrouting/networkfloodrouting_img00.jpg"
+feature_img: /images/software_projects/networkfloodrouting/networkfloodrouting_img00.jpg
 excerpt: "python, networking, flooding, packets, software, tkinter, threading"
 purpose: "The assignment aimed at writing a programme in Python to simulate Flood Routing in a network with a minimum of 15 nodes and investigate the congestion caused by duplication of packets."
 toc: true
