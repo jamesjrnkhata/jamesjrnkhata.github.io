@@ -33,3 +33,33 @@ The flood routing simulation was to work using discrete time intervals, where tr
 The nodes needed a buffer that could queue additional packets generated. The nodes were to be connected to each other through links and although the links were bi-directional, only one-way transmission could be made by each link during any time interval.
 
 Each packet was to have a counter that represented its hop-count (the amount of times the packet could be copied over before being terminated). The counter was initialised at 10 (n = 10) and decremented by ‘1’ on each hop the packet made from one node to another. If the counter reached ‘0’, the packet was to be discarded.
+
+<h2 class="text-underline">Procedure</h2>
+
+## Flooding
+
+Flooding worked by having a node forward its incoming packets to all its communication ports except for the one it arrived from. To have it redistributed, the packet had to be multiplied at the node and then forwarded to its next nodes. The exponential growth of these packets as they travelled from node to node and the restrictions of each node’s packet forwarding ability led to duplication and congestion of the network. If left uncontrolled the packets would multiply continuously and render the network unusable.
+
+Controls could be applied to the network to minimise the effect of packet exponential growth by giving each packet a time-to-live (TTL) or hop count. Another method to make sure the packets did not multiply indefinitely was for the packet to keep track of the nodes it had visited as stated by Leon-Garcia and Widjaja (2003).
+
+## Specifications
+
+*	Transmissions between nodes were to be done during time intervals and each link could only be used one way.
+*	The nodes were to copy the packets to their neighbour nodes except the one they received the packet from.
+*	The nodes were to have buffers to store any additional packets. The buffers were to work on a first in first out queue basis (FIFO queue).
+*	Each packet needed a counter for its time-to-live (n = 10), and this number had to be related to the network diameter. Network diameter was the minimum hop number between two furthest nodes according to Leon-Garcia and Widjaja (2003).
+*	Packets were to be discarded once the counter reached zero.
+*	A packet was to be initialised from a node (inserted) to start the flooding algorithm.
+
+## Flood Routing Simulation Algorithm
+
+The network topology had to take the initial hop count of 10 into consideration to fulfil the network diameter needed (minimum hop number between two furthest nodes). This meant the furthest nodes had to be about 10 connections away. To fulfil this requirement, 18 nodes were used and connected as shown in Figure 1.
+
+{% if image.weight = 1 %}
+  <figure class="custom-figure">
+    <img class="galley_img" src="{{ image.image_path }}" alt="{{ image.title }}">
+    <figcaption class="custom-figcaption">
+      {{ image.title }}
+    </figcaption>
+  </figure>
+{% endif %}
