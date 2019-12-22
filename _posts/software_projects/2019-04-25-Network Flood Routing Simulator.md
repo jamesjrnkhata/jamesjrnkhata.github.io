@@ -172,6 +172,7 @@ Below the canvas (bottom rectangle) showed the “Enter Start Node” entry fiel
 | Item | Purpose |
 
 <span class="custom-tablecaption">Table 1: Items found on the Flood Routing Simulator User Interface and their purpose</span>
+
 | Item | Purpose |
 | ------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
 | “Enter Start Node” entry field | The field was used to select the node to insert the initial packet by specifying it with an integer value (1-18) |
