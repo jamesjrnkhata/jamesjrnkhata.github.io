@@ -57,7 +57,7 @@ The network topology had to take the initial hop count of 10 into consideration 
 <ul class="photo-gallery">
   <li>
     <figure class="custom-figure">
-      <img src="{{site.url}} {{/images/software_projects/networkfloodrouting/networkfloodrouting_img01.jpg }}" alt="{{ Figure 1 }}">
+      <img src="{{site.url}} /images/software_projects/networkfloodrouting/networkfloodrouting_img01.jpg" alt="{{ Figure 1 }}">
       <figcaption class="custom-figcaption">
         Figure 1 - Proposed Network Topology of the Flood Routing Simulation
       </figcaption>
