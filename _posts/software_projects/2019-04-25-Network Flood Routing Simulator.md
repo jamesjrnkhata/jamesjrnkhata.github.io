@@ -169,7 +169,7 @@ Below the canvas (bottom rectangle) showed the “Enter Start Node” entry fiel
 
 <div class="custom-figcaption">Table 1: Items found on the Flood Routing Simulator User Interface and their purpose</div>
 | Item | Purpose |
-| :-- | :------------------------------|
+| :--- | :------------------------------|
 | “Enter Start Node” entry field | The field was used to select the node to insert the initial packet by specifying it with an integer value (1-18) |
 | “Start” button | The button used to start the flood routing process once a start node was entered |
 | “Next Increment (Time + 1)” button | The button used to increment time by the value of 1 |
