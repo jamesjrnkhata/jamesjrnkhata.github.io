@@ -57,7 +57,7 @@ ul.custom_post a {
 }
 
 
-.photo-gallery, .photo-gallery li {
+.photo-gallery, .photo-gallery li, .photo-gallery-2col, .photo-gallery-2col li, .photo-gallery-3col, .photo-gallery-3col li {
 	list-style: none;
 	padding: 0;
 }
@@ -69,11 +69,6 @@ ul.custom_post a {
 
 .photo-gallery li img {
 	width: 100%;
-}
-
-.photo-gallery-2col, .photo-gallery-2col li, .photo-gallery-3col, .photo-gallery-3col li  {
-	list-style: none;
-	padding: 0;
 }
 
 .photo-gallery-2col li {
