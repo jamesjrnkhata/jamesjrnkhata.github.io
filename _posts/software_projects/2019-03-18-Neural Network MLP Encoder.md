@@ -37,6 +37,8 @@ The MLP had an input layer of four units, a hidden layer of two units and an out
 
 The system was supposed to take a four-unit input pattern encode it using the hidden layer and output a four-unit output pattern as shown in the table below.
 
+<span class="custom-tablecaption">Table 1: Input to Desired Output patterns for the 4-2-4 Encoder</span>
+
 | Input Pattern | Desired Output Pattern |
 | ------------- | ---------------------- |
 | 1  0  0  0 | 1  0  0  0 |
