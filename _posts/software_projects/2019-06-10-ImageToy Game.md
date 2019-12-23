@@ -4,7 +4,7 @@ date: 2019-06-10
 categories: [software-projects]
 permalink: /:categories/:title/
 feature_img: /images/software_projects/imagetoygame/imagetoygame_img00.jpg
-excerpt: "imagetoy, python, game, tkinter, software, pil, math, random"
+excerpt: "python, imagetoy, game, tkinter, software, pil, math, random"
 purpose: "This assignment was about implementing a graphical user interface to create an ImageToy game. This was an electronic version of an old children’s game, which re-created a jumbled up picture by moving one piece at a time."
 toc: true
 classes: wide
