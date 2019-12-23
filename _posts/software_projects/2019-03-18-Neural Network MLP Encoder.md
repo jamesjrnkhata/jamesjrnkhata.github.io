@@ -3,13 +3,13 @@ title: "Neural Network Multi-Layer Perceptron (MLP) 4-2-4 Encoder"
 date: 2019-03-18
 categories: [software-projects]
 permalink: /:categories/:title/
-feature_img: /images/software_projects/carparkmanagementsystem/carparkmanagementsystem_img00.jpg
+feature_img: /images/software_projects/neuralnetworkmlpencoder/neuralnetworkmlpencoder_img00.jpg
 excerpt: "python, machine learnning, neural network, software, encoder, ebp"
 purpose: "This laboratory (lab) aimed at building an Error Back-Propagation training algorithm (EBP) for a multi-layer perceptron (MLP) 4-2-4 encoder using Python."
 toc: true
 classes: wide
 images:
-  - image_path: /images/software_projects/carparkmanagementsystem/carparkmanagementsystem_img00.jpg
+  - image_path: /images/software_projects/neuralnetworkmlpencoder/neuralnetworkmlpencoder_img00.jpg
     title: "Figure 1 - MLP 4-2-4 Encoder Structure"
     weight: 1
 ---
