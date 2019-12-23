@@ -26,7 +26,7 @@ This assignment was about implementing a graphical user interface to create an I
 
 <h2 class="text-underline">Purpose</h2>
 
-The aim of the assignment was to implement the ImageToy as a Python application. The application was supposed to be able to load any image stored as a gif or jpeg file and display it. The user was required to enter the number of pieces in which to shuffle the image. The application would then randomly shuffle all of the pieces of the image. The number of pieces in the shuffled image, and hence the difficulty of reconstructing the image, was left as a user choice. It needed to make it possible to ‘unshuffle’ the shuffled image back to its original form by moving image blocks into the adjacent gap.
+The aim of the assignment was to implement the ImageToy game as a Python application. The application was supposed to be able to load any image stored as a gif or jpeg file and display it. The user was required to enter the number of pieces in which to shuffle the image. The application would then randomly shuffle all of the pieces of the image. The number of pieces in the shuffled image, and hence the difficulty of reconstructing the image, was left as a user choice. It needed to make it possible to ‘unshuffle’ the shuffled image back to its original form by moving image blocks into the adjacent gap.
 
 Finally, it was supposed to allow the user to play the game by clicking on pieces to move them. Clearly, only if the user clicks on a piece adjacent to the gap was the piece be moved. It was required as part of the assignment to avoid having to store the original image and its shuffled version as separate images as this was very inefficient.
 
