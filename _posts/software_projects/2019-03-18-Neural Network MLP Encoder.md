@@ -25,7 +25,7 @@ The MLP had an input layer of four units, a hidden layer of two units and an out
     {% if image.weight == 1 %}
       <li>
         <figure class="custom-figure">
-          <img class="galley_img-center" src="{{ image.image_path }}" alt="{{ image.title }}">
+          <img class="galley_img" src="{{ image.image_path }}" alt="{{ image.title }}">
           <figcaption class="custom-figcaption">
             {{ image.title }}
           </figcaption>

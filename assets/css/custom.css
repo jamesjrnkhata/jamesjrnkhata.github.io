@@ -105,12 +105,6 @@ ul.custom_post a {
   display: block;
 }
 
-.gallery_img-center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .galley_img:hover {
     color: #424242;
   -webkit-transition: all .3s ease-in;
