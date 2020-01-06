@@ -69,6 +69,7 @@ ul.custom_post a {
 
 .photo-gallery li img {
 	width: 100%;
+  height: auto;
 }
 
 .photo-gallery-2col li {
@@ -78,6 +79,7 @@ ul.custom_post a {
 
 .photo-gallery-2col li img {
 	width: 100%;
+  height: auto;
 }
 
 .photo-gallery-3col li {
@@ -87,6 +89,7 @@ ul.custom_post a {
 
 .photo-gallery-3col li img {
 	width: 100%;
+  height: auto;
 }
 
 .custom-figure {
