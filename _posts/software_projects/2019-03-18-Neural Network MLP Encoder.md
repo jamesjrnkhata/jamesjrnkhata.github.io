@@ -4,7 +4,7 @@ date: 2019-03-18
 categories: [software-projects]
 permalink: /:categories/:title/
 feature_img: /images/software_projects/neuralnetworkmlpencoder/neuralnetworkmlpencoder_img00.jpg
-excerpt: "python, machine learnning, neural network, software, encoder, ebp"
+excerpt: "matlab, machine learnning, neural network, software, encoder, ebp"
 purpose: "This assignment aimed at building an Error Back-Propagation training algorithm (EBP) for a multi-layer perceptron (MLP) 4-2-4 encoder using Python."
 toc: true
 classes: wide
@@ -16,16 +16,16 @@ images:
 
 <h2 class="text-underline">Purpose</h2>
 
-This assignment aimed at building an Error Back-Propagation training algorithm (EBP) for a multi-layer perceptron (MLP) 4-2-4 encoder using Python.
+This assignment aimed at building an Error Back-Propagation training algorithm (EBP) for a multi-layer perceptron (MLP) 4-2-4 encoder using Matlab.
 
 The MLP had an input layer of four units, a hidden layer of two units and an output layer of four units. 	
 
-<ul class="photo-gallery-2col">
+<ul class="photo-gallery">
   {% for image in page.images %}
     {% if image.weight == 1 %}
       <li>
         <figure class="custom-figure">
-          <img class="galley_img" src="{{ image.image_path }}" alt="{{ image.title }}">
+          <img src="{{ image.image_path }}" alt="{{ image.title }}">
           <figcaption class="custom-figcaption">
             {{ image.title }}
           </figcaption>
