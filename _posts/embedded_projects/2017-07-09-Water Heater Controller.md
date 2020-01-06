@@ -118,7 +118,7 @@ The user would determine the times they wanted their water to be hot and the con
     {% if image.weight >= 2 and image.weight <= 3 %}
       <li>
         <figure class="custom-figure">
-          <img src="{{ image.image_path }}" alt="{{ image.title }}">
+          <img class="galley_img" src="{{ image.image_path }}" alt="{{ image.title }}">
           <figcaption class="custom-figcaption">
             {{ image.title }}
           </figcaption>
