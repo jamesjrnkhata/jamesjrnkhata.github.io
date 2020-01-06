@@ -115,7 +115,7 @@ The user would determine the times they wanted their water to be hot and the con
 
 <ul class="photo-gallery-2col">
   {% for image in page.images %}
-    {% if image.weight == 2 and image.weight == 3 %}
+    {% if image.weight >= 2 and image.weight <= 3 %}
       <li>
         <figure class="custom-figure">
           <img src="{{ image.image_path }}" alt="{{ image.title }}">
