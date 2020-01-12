@@ -12,8 +12,8 @@ main:
   - title: "Software Development"
     url: /software-projects/
 
-  - title: "Web Development"
-    url: /web-projects/
+  #- title: "Web Development"
+  #  url: /web-projects/
   # - title: "About"
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
   # - title: "Sample Posts"
