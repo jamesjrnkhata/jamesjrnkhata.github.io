@@ -1,0 +1,77 @@
+---
+layout: archive
+permalink: /data-analysis-projects/
+title: "Data Analysis Projects"
+author_profile: true
+header:
+  image: "/images/data-analysis_background.jpg"
+blank_feature_img: /images/no_image.jpg
+classes: wide  
+---
+
+<div class="tags-expo-section">
+
+  {% for tag in site.categories %}
+
+    {% if tag[0] == "data-analysis-projects" %}
+
+
+      <ul class="custom_post" >
+
+        {% for post in tag[1] %}
+        <div id="custom_container">
+          <div id="container_left">
+          {% if post.feature_img %}
+            <div class="post_feature_img" style="background-image: url({{ post.feature_img }})">
+            </div>
+          {% else %}
+            <div class="post_feature_img" style="background-image: url({{ page.blank_feature_img }})">
+            </div>
+          {% endif %}  
+
+
+          </div>
+
+          <div id="container_right">
+            <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
+
+            <li>
+
+              {{ post.title }}
+
+            <small class="post-date">({{ post.date | date_to_string }})</small>
+
+            </li>
+
+            </a>
+              {% if post.excerpt != blank %}
+                <p class="page__meta-custom">{{ post.excerpt }}</p>
+              {% else %}
+                <p class="page__meta-custom">'</p>
+              {% endif %}    
+
+              {% if post.purpose != blank %}              
+                <p class="archive__item-excerpt">{{ post.purpose | truncatewords: 25 }}
+              {% else %}
+                <p class="page__meta-custom">'</p>
+              {% endif %}
+
+
+              <a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
+              Read more.
+              </a> </p>
+
+          </div>
+        </div>
+
+        {% endfor %}
+
+      </ul>
+
+
+
+    {% endif %}
+
+  {% endfor %}
+
+</div>
