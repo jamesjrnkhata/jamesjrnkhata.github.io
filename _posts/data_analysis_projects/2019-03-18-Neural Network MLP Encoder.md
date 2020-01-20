@@ -53,7 +53,7 @@ The system was supposed to take a four-unit input pattern encode it using the hi
 
 To train a Multi-layer perceptron encoder, Forward propagation was carried out were the input pattern was passed into the system through the input layer (layer I) nodes. The sum of the values from layer I were used as input for the hidden layer (layer J). The values of outputs from layer I were each multiplied with their corresponding Weights (W1) value before summing them up and then adding a set of Bias (Bias_J) values, before using them as input for the hidden layer (layer K) nodes. Using expression:
 
-$$y= (W1’ * input) + Bias_J$$
+$$y=(W1*input)+Bias_J$$
 
 These Weights and Bias were used to influence the system later when training it. The hidden layer then passed its values as Input to the Outer layer (layer K).
 
