@@ -130,9 +130,12 @@ The process was then carried out for the different input and desired output patt
 
 To utilise the vector calculations of MATLAB the weights were stored in matrix form. Weights W1 (between layer I and layer J) were initialised into a 4x2 matrix while Weights W2 (between layer J and layer K) were initialised as 2x4 matrix.
 
-|        |       |     |
-| ------ | ----  | ----  |
-| W1  =  | W<sub>11</sub> | W<sub>12</sub> | 
+| W1 Matrix |        |
+| ---- | ----  |
+| W<sub>11</sub> | W<sub>12</sub> |
+| W<sub>21</sub> | W<sub>22</sub> |
+| W<sub>31</sub> | W<sub>32</sub> |
+| W<sub>41</sub> | W<sub>42</sub> |  
 
 <h2 class="text-underline">Implementation</h2>
 
