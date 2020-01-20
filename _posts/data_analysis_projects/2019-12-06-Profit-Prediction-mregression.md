@@ -4,7 +4,7 @@ date: 2019-12-06
 categories: [data-analysis-projects]
 permalink: /:categories/:title/
 feature_img: /images/data_analysis_projects/profitpredictionmodel/profitpredictionmodel_img00.jpg
-excerpt: "python, machine learning, regression, multiple linear regression, statistics, backward elimination"
+excerpt: "python, machine learning, regression, multiple linear regression, backward elimination"
 purpose: "This assignment aimed at building a Multiple Linear Regression model based on 50 Start Up's Data to predict profit effects based on departmental expenditure and the state the business is operating in."
 toc: true
 classes: wide
