@@ -78,7 +78,7 @@ The influence of changes in the Weights (W1 and W2) were determined through part
     {% if image.weight == 2 %}
       <li>
         <figure class="custom-figure">
-          <img class="galley_img" src="{{ image.image_path }}" alt="{{ image.title }}">
+          <img src="{{ image.image_path }}" alt="{{ image.title }}">
           <figcaption class="custom-figcaption">
             {{ image.title }}
           </figcaption>
