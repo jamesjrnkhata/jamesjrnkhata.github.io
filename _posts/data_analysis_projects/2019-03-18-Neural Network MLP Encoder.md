@@ -278,7 +278,7 @@ The Learn_Rate was set to -.01 as an initial value.
 
 ### Software
 **MATLAB Code to Implement Neural Network MLP Encoder**
-```Matlab
+```matlab
 %----------- Lab 4 � Neural Networks - Mini-Batch ------------------------%
 
 %------------------ Instructor: Dr Peter Jancovic ------------%
