@@ -73,7 +73,7 @@ Error Back-Propagation (EBP) was then used to make the adjustments to the Weight
 
 The influence of changes in the Weights (W1 and W2) were determined through partial derivation of the functions of the Forward propagation of the system.
 
-<ul class="photo-gallery-2col">
+<ul class="photo-gallery">
   {% for image in page.images %}
     {% if image.weight == 2 %}
       <li>
