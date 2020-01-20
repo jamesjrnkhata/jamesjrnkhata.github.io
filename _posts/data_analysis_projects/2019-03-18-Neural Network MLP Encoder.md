@@ -64,6 +64,7 @@ These Weights and Bias were used to influence the system later when training it.
 For the output layer (layer K), to use the values from the hidden layer, hidden layer values were passed through an activation function (sigmoid function). Using dot product expression for Element-wise calculation:
 
 *Out_J = 1./(1+exp(-y))*
+
 Sigmoid function was used to determine if the node’s output activates (fires) or not to influence its following node. The input values to layer K nodes were also multiplied with a different set of their corresponding Weights (W2) summed up and then added to another set of Bias (Bias_K).
 
 *Out_K = (W2' * Out_J) + Bias_K*
