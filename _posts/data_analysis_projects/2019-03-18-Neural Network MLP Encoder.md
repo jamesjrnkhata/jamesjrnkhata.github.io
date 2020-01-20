@@ -208,11 +208,14 @@ The Error matrix (difference between the output results and the desired output r
 
 The Error matrix was then used to compute the values for the small deltak (𝛿k) for all the training input patterns by expression:
 
-*deltak = Error.* (Out_K.* (1 - Out_K));*
-
+```math
+deltak = Error.* (Out_K.* (1 - Out_K));
+```
 Small deltaj was computed by the expression:
 
-#deltaj = (W2* deltak).* (Out_J.* (1 - Out_J));#
+```math
+deltaj = (W2* deltak).* (Out_J.* (1 - Out_J));
+```
 
 To compute big DELTA_K and DELTA_J, extractions had to be made in the larger matrices for all the input pattern calculations of Out_J matrix with deltak matrix and input matrix with deltaj matrix respectively. This was possible because the values of columns 1 of Out_J and deltak corresponded to the calculations of Input pattern 1 (1,0,0,0), those of column 2 to input pattern 2 (0,1,0,0), column 3 for input pattern 3 (0,0,1,0) and column 4 for input pattern 4 (0,0,0,1). This was the same for deltaj matrix and input matrix.
 
