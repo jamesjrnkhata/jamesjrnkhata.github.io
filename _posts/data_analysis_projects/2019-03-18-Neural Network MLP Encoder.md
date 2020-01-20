@@ -90,28 +90,28 @@ The influence of changes in the Weights (W1 and W2) were determined through part
 
 Small delta k (𝛿K) for each node of layer K was determined by the expression:
 
-𝛿k = Ok * (1 – Ok) (Ok – tk)
+𝛿<sub>k</sub> = O<sub>k</sub> * (1 – O<sub>k</sub>) (O<sub>k</sub> – t<sub>k</sub>)
 
-were OK was the Actual Output and tk was the Target Output of that specific node. Changes for weights (W2) between layer J and K (Wjk) were then calculated by the expression:
+were OK was the Actual Output and t<sub>k</sub> was the Target Output of that specific node. Changes for weights (W2) between layer J and K (W<sub>jk</sub>) were then calculated by the expression:
 
-𝛿E / 𝛿Wjk = Oj 𝛿k
+𝛿E / 𝛿W<sub>jk</sub> = O<sub>j</sub> 𝛿<sub>k</sub>
 
-were Oj was the output from the previous node (hidden layer). Small delta j (𝛿j) for each node of layer J was determined by the expression:
+were O<sub>j</sub> was the output from the previous node (hidden layer). Small delta j (𝛿<sub>j</sub>) for each node of layer J was determined by the expression:
 
-𝛿j = Oj * (1 – Oj) * ∑ 𝛿k Wjk
+𝛿<sub>j</sub> = O<sub>j</sub> * (1 – O<sub>j</sub>) * ∑ 𝛿<sub>k</sub> W<sub>jk</sub>
 
-were Oj was the output from hidden layer (layer J) and ∑𝛿k Wjk was the sum of all layer K nodes connected to corresponding layer J node. Changes for weights (W1) between layer I and J (Wij) were then calculated by the expression:
+were O<sub>j</sub> was the output from hidden layer (layer J) and ∑𝛿<sub>k</sub> W<sub>jk</sub> was the sum of all layer K nodes connected to corresponding layer J node. Changes for weights (W1) between layer I and J (W<sub>ij</sub>) were then calculated by the expression:
 
-𝛿E / 𝛿Wij = Oi 𝛿j
+𝛿E / 𝛿W<sub>ij</sub> = O<sub>i</sub> 𝛿<sub>j</sub>
 
-were Oi was the outputs from the input layer (layer I) nodes connected to that node of layer J. The weights (W1 and W2) were then updated (replaced) using expressions:
+were O<sub>i</sub> was the outputs from the input layer (layer I) nodes connected to that node of layer J. The weights (W1 and W2) were then updated (replaced) using expressions:
 
 <span class="custom-tablecaption">Table 2: Expressions used to update the values of weights W1 and W2</span>
 
 | Weights  | Weight Updating Expression |
 | ------------- | :--------------------: |
-| W2 (W<sub>jk</sub>) | Wjk = Wjk + (- learning rate * Oj 𝛿k) |
-| W1 (Wij) | Wij = Wij + (- learning rate * Oi 𝛿J) |
+| W2 (W<sub>jk</sub>) | W<sub>jk</sub> = W<sub>jk</sub> + (- learning rate * O<sub>j</sub> 𝛿<sub>k</sub>) |
+| W1 (W<sub>ij</sub>) | W<sub>ij</sub> = W<sub>ij</sub> + (- learning rate * O<sub>i</sub> 𝛿<sub>J</sub>) |
 
 
 
