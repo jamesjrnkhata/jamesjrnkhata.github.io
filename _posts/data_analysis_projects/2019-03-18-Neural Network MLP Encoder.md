@@ -98,9 +98,8 @@ The influence of changes in the Weights (W1 and W2) were determined through part
 
 Small delta k (𝛿<sub>K</sub>) for each node of layer K was determined by the expression:
 
-```math
 𝛿<sub>k</sub> = O<sub>k</sub> * (1 – O<sub>k</sub>) (O<sub>k</sub> – t<sub>k</sub>)
-```
+
 were OK was the Actual Output and t<sub>k</sub> was the Target Output of that specific node. Changes for weights (W2) between layer J and K (W<sub>jk</sub>) were then calculated by the expression:
 
 𝛿E / 𝛿W<sub>jk</sub> = O<sub>j</sub> 𝛿<sub>k</sub>
@@ -173,8 +172,9 @@ To further take advantage of MATLAB’s capabilities, a parallel approach to car
 
 For the input y to the hidden layer J, given by the expression:
 
+```math
 y = (W1’ * input) + Bias_J;
-
+```
 <ul class="photo-gallery">
   {% for image in page.images %}
     {% if image.weight == 3 %}
@@ -207,30 +207,35 @@ The parallel matrix calculations demonstrated in Figure 3 (simultaneous calculat
 
 The Error matrix (difference between the output results and the desired output results) was computed for all the training input patterns by expression:
 
+```math
 Error = Actual Output – Target Output
-
+```
 The Error matrix was then used to compute the values for the small deltak (𝛿k) for all the training input patterns by expression:
 
+```math
 deltak = Error.* (Out_K.* (1 - Out_K));
-
+```
 Small deltaj was computed by the expression:
 
+```math
 deltaj = (W2 * deltak).* (Out_J.* (1 - Out_J));
-
+```
 To compute big DELTA_K and DELTA_J, extractions had to be made in the larger matrices for all the input pattern calculations of Out_J matrix with deltak matrix and input matrix with deltaj matrix respectively. This was possible because the values of columns 1 of Out_J and deltak corresponded to the calculations of Input pattern 1 (1,0,0,0), those of column 2 to input pattern 2 (0,1,0,0), column 3 for input pattern 3 (0,0,1,0) and column 4 for input pattern 4 (0,0,0,1). This was the same for deltaj matrix and input matrix.
 
 Instead of a loop to cycle and extract the 4 different input pattern data separately, a simple range function was used on the matrix to specify and extract the column data needed for the four DELTA_K’s. Example:  
 
+```math
 DELTA_K1 = Out_J(:,1) * deltak(:,1)';
-
+```
 For Input pattern 1 data. This was repeated four times substituting the value 1 for the number that corresponded to the input pattern column we desired and storing them in 2x4 matrix for DELTA_K1, DELTA_K2, DELTA_K3 and DELTA_K4.
 
 The same process was done for DELTA_J using the expressions:
 
+```math
 Tran_DELTA_J1 = deltaj(:,1) * input(:,1)';
 
 DELTA_J1 = Tran_DELTA_J1';
-
+```
 For Input pattern 1 data. Repeating the value change to get 4x2 matrices for DELTA_J1, DELTA_J2, DELTA_J3 and DELTA_J4.
 
 The resulting matrices DELTA_K and DELTA_J were the gradient adjustments needed for matrices W1 and W2 in this current iteration of the Error Back-Propagation of the multi-layer perceptron (MLP) 4-2-4 encoder.
@@ -252,31 +257,38 @@ The adjustments for the Bias (Bias_J and Bias_K) were stored in a similar way an
 
 To update the weights W1 matrix for use in the next iteration, the four DELTA_K’s were added together:
 
+```math
 DELTA_K_SUM = DELTA_K1 + DELTA_K2 + DELTA_K3 + DELTA_K4;
-
+```
 and then the new expression was used to adjust W2 weights:
 
+```math
 W2 = W2 + (learn_rate * DELTA_K_SUM);
-
+```
 For weights W2 matrix, the matrix DELTA_J_SUM:
 
+```math
 DELTA_J_SUM = DELTA_J1 + DELTA_J2 + DELTA_J3 + DELTA_J4;
-
+```
 was used to adjust W1 weights
 
+```math
 W1 = W1 + (learn_rate * DELTA_J_SUM);
-
+```
 For the Bias (Bias_J and Bias_K), a similar procedure was carried out for:
 
+```math
 Bias_K_SUM = Bias_K1 + Bias_K2 + Bias_K3 + Bias_K4;
 
 Bias_J_SUM = Bias_J1 + Bias_J2 + Bias_J3 + Bias_J4;
-
+```
 To adjust the Bias_K and Bias_J respectively for the next iteration:
 
+```math
 Bias_K = Bias_K + (learn_rate * Bias_K_SUM);
 
 Bias_J = Bias_J + (learn_rate * Bias_J_SUM);
+```
 
 The Learn_Rate was set to -.01 as an initial value.
 
