@@ -12,7 +12,7 @@ images:
   - image_path: /images/data_analysis_projects/neuralnetworkmlpencoder/neuralnetworkmlpencoder_img00.jpg
     title: "Figure 1 - MLP 4-2-4 Encoder Structure"
     weight: 1
-  - image_path: /images/data_analysis_projects/neuralnetworkmlpencoder/neuralnetworkmlpencoder_img00.jpg
+  - image_path: /images/data_analysis_projects/neuralnetworkmlpencoder/neuralnetworkmlpencoder_img01.jpg
     title: "Figure 2 - How Weights affect Errors (Neural Network Tutorial 2014)"
     weight: 2
 ---

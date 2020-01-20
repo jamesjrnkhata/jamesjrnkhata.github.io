@@ -19,7 +19,7 @@ The assignment aimed at building a Multiple Linear Regression model based on 50 
 
 <h2 class="text-underline">Implementation</h2>
 
-**"The Code used to implement the model**
+**"The Code used to implement the Multiple Regression model**
 ```python
 # Multiple Linear Regression
 
