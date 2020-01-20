@@ -8,7 +8,6 @@ excerpt: "python, machine learning, regression, multiple linear regression, stat
 purpose: "This assignment aimed at building a Multiple Linear Regression model based on 50 Start Up's Data to predict profit effects based on departmental expenditure and the state the business is operating in."
 toc: true
 classes: wide
-
 ---
 
 <h2 class="text-underline">Purpose</h2>
