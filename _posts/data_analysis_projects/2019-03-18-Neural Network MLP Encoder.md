@@ -96,7 +96,7 @@ The influence of changes in the Weights (W1 and W2) were determined through part
   {% endfor %}  
 </ul>
 
-Small delta k (𝛿K) for each node of layer K was determined by the expression:
+Small delta k (𝛿<sub>K</sub>) for each node of layer K was determined by the expression:
 
 ```math
 𝛿<sub>k</sub> = O<sub>k</sub> * (1 – O<sub>k</sub>) (O<sub>k</sub> – t<sub>k</sub>)
