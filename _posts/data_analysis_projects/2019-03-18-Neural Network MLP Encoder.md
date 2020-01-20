@@ -4,7 +4,7 @@ date: 2019-03-18
 categories: [data-analysis-projects]
 permalink: /:categories/:title/
 feature_img: /images/data_analysis_projects/neuralnetworkmlpencoder/neuralnetworkmlpencoder_img00.jpg
-excerpt: "matlab, machine learnning, neural network, software, encoder, ebp"
+excerpt: "matlab, deep learning, neural network, software, encoder, ebp"
 purpose: "This assignment aimed at building an Error Back-Propagation training algorithm (EBP) for a multi-layer perceptron (MLP) 4-2-4 encoder using Python."
 toc: true
 classes: wide
