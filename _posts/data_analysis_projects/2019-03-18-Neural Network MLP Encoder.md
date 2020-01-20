@@ -188,8 +188,9 @@ For the input y to the hidden layer J, given by the expression:
 
 The results from multiplying the transposed W1 weights matrix with a 4x4 matrix (each input pattern as a column vector) was a 2x4 matrix with each column being the results that would have been from carrying out each pattern one at a time and summing them up. That is for example in Input pattern 1 (1,0,0,0):
 
-*W<sub>11</sub> * 1 + W<sub>21</sub> * 0 + W<sub>31</sub> * 0 + W<sub>41</sub> * 0 + b<sub>11</sub> = R1,1 (Input y for top node in pattern 1)
-W<sub>12</sub> * 1 + W<sub>22</sub> * 0 + W<sub>32</sub> * 0 + W<sub>42</sub> * 0 + b<sub>21</sub> = R2,1 (Input y for bottom node in pattern 1)*
+*W<sub>11</sub> * 1 + W<sub>21</sub> * 0 + W<sub>31</sub> * 0 + W<sub>41</sub> * 0 + b<sub>11</sub> = R1,1 (Input y for top node in pattern 1)*
+
+*W<sub>12</sub> * 1 + W<sub>22</sub> * 0 + W<sub>32</sub> * 0 + W<sub>42</sub> * 0 + b<sub>21</sub> = R2,1 (Input y for bottom node in pattern 1)*
 
 In doing this all the calculations for the other input patterns were carried out at the same time.
 
@@ -211,7 +212,7 @@ The Error matrix was then used to compute the values for the small deltak (𝛿k
 
 Small deltaj was computed by the expression:
 
-*deltaj = (W2 * deltak).* (Out_J.* (1 - Out_J));*
+#deltaj = (W2* deltak).* (Out_J.* (1 - Out_J));#
 
 To compute big DELTA_K and DELTA_J, extractions had to be made in the larger matrices for all the input pattern calculations of Out_J matrix with deltak matrix and input matrix with deltaj matrix respectively. This was possible because the values of columns 1 of Out_J and deltak corresponded to the calculations of Input pattern 1 (1,0,0,0), those of column 2 to input pattern 2 (0,1,0,0), column 3 for input pattern 3 (0,0,1,0) and column 4 for input pattern 4 (0,0,0,1). This was the same for deltaj matrix and input matrix.
 
@@ -225,9 +226,9 @@ For Input pattern 1 data. This was repeated four times substituting the value 1 
 The same process was done for DELTA_J using the expressions:
 
 
-*Tran_DELTA_J1 = deltaj(:,1) * input(:,1)';
+*Tran_DELTA_J1 = deltaj(:,1) * input(:,1)';*
 
-DELTA_J1 = Tran_DELTA_J1';*
+*DELTA_J1 = Tran_DELTA_J1';*
 
 For Input pattern 1 data. Repeating the value change to get 4x2 matrices for DELTA_J1, DELTA_J2, DELTA_J3 and DELTA_J4.
 
