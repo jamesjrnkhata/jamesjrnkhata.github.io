@@ -49,14 +49,17 @@ The system was supposed to take a four-unit input pattern encode it using the hi
 <h2 class="text-underline">Procedure</h2>
 
 To train a Multi-layer perceptron encoder, Forward propagation was carried out were the input pattern was passed into the system through the input layer (layer I) nodes. The sum of the values from layer I were used as input for the hidden layer (layer J). The values of outputs from layer I were each multiplied with their corresponding Weights (W1) value before summing them up and then adding a set of Bias (Bias_J) values, before using them as input for the hidden layer (layer K) nodes. Using expression:
+
 y= (W1’ * input) + Bias_J
 
 These Weights and Bias were used to influence the system later when training it. The hidden layer then passed its values as Input to the Outer layer (layer K).
 
 For the output layer (layer K), to use the values from the hidden layer, hidden layer values were passed through an activation function (sigmoid function). Using dot product expression for Element-wise calculation:
+
 Out_J = 1./(1+exp(-y))
 
 Sigmoid function was used to determine if the node’s output activates (fires) or not to influence its following node. The input values to layer K nodes were also multiplied with a different set of their corresponding Weights (W2) summed up and then added to another set of Bias (Bias_K).
+
 Out_K = (W2' * Out_J) + Bias_K
 
 The resulting values were the outputs for layer K and the system. These outputs were then compared to the Desired Output pattern (Target Output) and calculating the difference between the two to determine the Error.
