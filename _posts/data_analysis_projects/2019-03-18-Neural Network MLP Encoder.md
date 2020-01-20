@@ -278,7 +278,6 @@ To adjust the Bias_K and Bias_J respectively for the next iteration:
 
 *Bias_J = Bias_J + (learn_rate * Bias_J_SUM);*
 
-The Learn_Rate was set to -.01 as an initial value.
 
 <h2 class="text-underline">Implementation</h2>
 
