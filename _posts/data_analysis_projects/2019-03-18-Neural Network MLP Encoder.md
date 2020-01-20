@@ -113,7 +113,26 @@ were O<sub>i</sub> was the outputs from the input layer (layer I) nodes connecte
 | W2 (W<sub>jk</sub>) | W<sub>jk</sub> = W<sub>jk</sub> + (- learning rate * O<sub>j</sub> 𝛿<sub>k</sub>) |
 | W1 (W<sub>ij</sub>) | W<sub>ij</sub> = W<sub>ij</sub> + (- learning rate * O<sub>i</sub> 𝛿<sub>J</sub>) |
 
+Bias had a simpler expression to differentiate as it was just treated as an output of 1 and its updating expression was given by small delta l (𝛿l) of that layer:
 
+𝛿E / 𝛿θ = 𝛿<sub>l</sub>
+
+<span class="custom-tablecaption">Table 3: Expressions used to update the values of Bias_J and Bias_K</span>
+
+| Bias  | Bias Updating Expression |
+| ------------- | :--------------------: |
+| Bias_K (layer K) | Bias_K = Bias_K + (- learning rate * 𝛿<sub>k</sub>) |
+| Bias_J (layer J) | Bias_J = Bias_J + (- learning rate * 𝛿<sub>j</sub>) |
+
+The process was then carried out for the different input and desired output pattern pairs through multiple iterations, using gradient decent to adjust the weights and bias values towards a low Error function.
+
+### Initialization of weights in MATLAB
+
+To utilise the vector calculations of MATLAB the weights were stored in matrix form. Weights W1 (between layer I and layer J) were initialised into a 4x2 matrix while Weights W2 (between layer J and layer K) were initialised as 2x4 matrix.
+
+|        |       |     |
+| ------ | ----  | ----  |
+| W1  =  | W<sub>11</sub> | W<sub>12</sub> | 
 
 <h2 class="text-underline">Implementation</h2>
 
