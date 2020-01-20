@@ -130,12 +130,33 @@ The process was then carried out for the different input and desired output patt
 
 To utilise the vector calculations of MATLAB the weights were stored in matrix form. Weights W1 (between layer I and layer J) were initialised into a 4x2 matrix while Weights W2 (between layer J and layer K) were initialised as 2x4 matrix.
 
-| W1 Matrix |        |
-| ---- | ----  |
+| W1 matrix |        |
+| ---- | ---- |
 | W<sub>11</sub> | W<sub>12</sub> |
 | W<sub>21</sub> | W<sub>22</sub> |
 | W<sub>31</sub> | W<sub>32</sub> |
 | W<sub>41</sub> | W<sub>42</sub> |  
+
+| W2 matrix |    |    |    |  
+| ---- | ---- | ---- | ---- |
+| W<sub>11</sub> | W<sub>12</sub> | W<sub>13</sub> | W<sub>14</sub> |
+| W<sub>21</sub> | W<sub>22</sub> | W<sub>23</sub> | W<sub>24</sub> |
+
+The matrices were initialised using the function “rand()” to generate uniformly distributed random numbers in the interval (0,1) for both matrices.
+
+Bias (Bias_J and Bias_K) were also initialised in a similar way, however, using the function “zeros()” to initialise them as zeros. Bias_J (between layer I and layer J) and Bias_K (between layer J and layer K).
+
+| Bias_J vector |                                                         
+| ---- |
+| b<sub>11</sub> |
+| b<sub>21</sub> |
+
+| Bias_K vector |
+| ---- |
+| b<sub>11</sub> |
+| b<sub>21</sub> |
+| b<sub>31</sub> |
+| b<sub>41</sub> |
 
 <h2 class="text-underline">Implementation</h2>
 
