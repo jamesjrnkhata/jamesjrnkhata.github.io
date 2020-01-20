@@ -63,16 +63,20 @@ These Weights and Bias were used to influence the system later when training it.
 
 For the output layer (layer K), to use the values from the hidden layer, hidden layer values were passed through an activation function (sigmoid function). Using dot product expression for Element-wise calculation:
 
+```math
 Out_J = 1./(1+exp(-y))
-
+```
 Sigmoid function was used to determine if the node’s output activates (fires) or not to influence its following node. The input values to layer K nodes were also multiplied with a different set of their corresponding Weights (W2) summed up and then added to another set of Bias (Bias_K).
 
+```math
 Out_K = (W2' * Out_J) + Bias_K
+```
 
 The resulting values were the outputs for layer K and the system. These outputs were then compared to the Desired Output pattern (Target Output) and calculating the difference between the two to determine the Error.
 
+```math
 Error = Actual Output – Target Output
-
+```
 Error Back-Propagation (EBP) was then used to make the adjustments to the Weights and Bias to reduce the Error in turn training the system to work as desired.
 
 The influence of changes in the Weights (W1 and W2) were determined through partial derivation of the functions of the Forward propagation of the system.
@@ -94,8 +98,9 @@ The influence of changes in the Weights (W1 and W2) were determined through part
 
 Small delta k (𝛿K) for each node of layer K was determined by the expression:
 
+```math
 𝛿<sub>k</sub> = O<sub>k</sub> * (1 – O<sub>k</sub>) (O<sub>k</sub> – t<sub>k</sub>)
-
+```
 were OK was the Actual Output and t<sub>k</sub> was the Target Output of that specific node. Changes for weights (W2) between layer J and K (W<sub>jk</sub>) were then calculated by the expression:
 
 𝛿E / 𝛿W<sub>jk</sub> = O<sub>j</sub> 𝛿<sub>k</sub>
