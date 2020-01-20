@@ -268,15 +268,15 @@ was used to adjust W1 weights
 For the Bias (Bias_J and Bias_K), a similar procedure was carried out for:
 
 
-*Bias_K_SUM = Bias_K1 + Bias_K2 + Bias_K3 + Bias_K4;
+*Bias_K_SUM = Bias_K1 + Bias_K2 + Bias_K3 + Bias_K4;*
 
-Bias_J_SUM = Bias_J1 + Bias_J2 + Bias_J3 + Bias_J4;*
+*Bias_J_SUM = Bias_J1 + Bias_J2 + Bias_J3 + Bias_J4;*
 
 To adjust the Bias_K and Bias_J respectively for the next iteration:
 
-*Bias_K = Bias_K + (learn_rate * Bias_K_SUM);
+*Bias_K = Bias_K + (learn_rate * Bias_K_SUM);*
 
-Bias_J = Bias_J + (learn_rate * Bias_J_SUM);*
+*Bias_J = Bias_J + (learn_rate * Bias_J_SUM);*
 
 The Learn_Rate was set to -.01 as an initial value.
 
