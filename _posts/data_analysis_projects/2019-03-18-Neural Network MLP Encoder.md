@@ -15,6 +15,9 @@ images:
   - image_path: /images/data_analysis_projects/neuralnetworkmlpencoder/neuralnetworkmlpencoder_img01.jpg
     title: "Figure 2 - How Weights affect Errors (Neural Network Tutorial 2014)"
     weight: 2
+  - image_path: /images/data_analysis_projects/neuralnetworkmlpencoder/neuralnetworkmlpencoder_img02.jpg
+    title: "Figure 3 - Simultaneous Calculations for the Input to the hidden layer from all 4 input patterns"
+    weight: 3    
 ---
 
 <h2 class="text-underline">Purpose</h2>
@@ -157,6 +160,89 @@ Bias (Bias_J and Bias_K) were also initialised in a similar way, however, using 
 | b<sub>21</sub> |
 | b<sub>31</sub> |
 | b<sub>41</sub> |
+
+### Forward propagation in MATLAB
+
+To further take advantage of MATLAB’s capabilities, a parallel approach to carrying out the forward propagation was adopted in the MATLAB code. By carrying out large matrix multiplications instead of running each instance of passing a single input and output pattern through the encoder through an internal loop, all patterns could be carried out simultaneously (Neural Network Tutorial 2014).
+
+For the input y to the hidden layer J, given by the expression:
+
+y = (W1’ * input) + Bias_J;
+
+<ul class="photo-gallery">
+  {% for image in page.images %}
+    {% if image.weight == 3 %}
+      <li>
+        <figure class="custom-figure">
+          <img src="{{ image.image_path }}" alt="{{ image.title }}">
+          <figcaption class="custom-figcaption">
+            {{ image.title }}
+          </figcaption>
+        </figure>  
+      </li>
+    {% endif %}  
+  {% endfor %}  
+</ul>
+
+The results from multiplying the transposed W1 weights matrix with a 4x4 matrix (each input pattern as a column vector) was a 2x4 matrix with each column being the results that would have been from carrying out each pattern one at a time and summing them up. That is for example in Input pattern 1 (1,0,0,0):
+
+W<sub>11</sub> * 1 + W<sub>21</sub> * 0 + W<sub>31</sub> * 0 + W<sub>41</sub> * 0 + b<sub>11</sub> = R1,1 (Input y for top node in pattern 1)
+W<sub>12</sub> * 1 + W<sub>22</sub> * 0 + W<sub>32</sub> * 0 + W<sub>42</sub> * 0 + b<sub>21</sub> = R2,1 (Input y for bottom node in pattern 1)
+
+In doing this all the calculations for the other input patterns were carried out at the same time.
+
+Because the values of the output converge to 0 and 1 but never equal to them 0.9 and 0.1 were used instead.
+
+The 1 in the Bias part of the calculation was omitted (1 * Bias_J) as the Bias were added on to the expression “y = W1’ * input” but since they were initialised as zeros they would not have much of an impact during the first iteration. This was also done for Bias_K in computing the input to the outer layer.
+
+The parallel matrix calculations demonstrated in Figure 3 (simultaneous calculations for the Input to the hidden layer from all 4 input patterns) was maintained for the other stages of the forward propagation. That is in calculating output from the hidden layer using expression “Out_J = 1./(1+exp(-y))” and Input to the outer layer using expression “Out_K = (W2' * Out_J) + Bias_K.”.
+
+### Back-propagation of error in MATLAB
+
+The Error matrix (difference between the output results and the desired output results) was computed for all the training input patterns by expression:
+
+Error = Actual Output – Target Output
+
+The Error matrix was then used to compute the values for the small deltak (𝛿k) for all the training input patterns by expression:
+
+deltak = Error.* (Out_K.* (1 - Out_K));
+
+Small deltaj was computed by the expression:
+
+deltaj = (W2 * deltak).* (Out_J.* (1 - Out_J));
+
+To compute big DELTA_K and DELTA_J, extractions had to be made in the larger matrices for all the input pattern calculations of Out_J matrix with deltak matrix and input matrix with deltaj matrix respectively. This was possible because the values of columns 1 of Out_J and deltak corresponded to the calculations of Input pattern 1 (1,0,0,0), those of column 2 to input pattern 2 (0,1,0,0), column 3 for input pattern 3 (0,0,1,0) and column 4 for input pattern 4 (0,0,0,1). This was the same for deltaj matrix and input matrix.
+
+Instead of a loop to cycle and extract the 4 different input pattern data separately, a simple range function was used on the matrix to specify and extract the column data needed for the four DELTA_K’s. Example:  
+
+DELTA_K1 = Out_J(:,1) * deltak(:,1)';
+
+For Input pattern 1 data. This was repeated four times substituting the value 1 for the number that corresponded to the input pattern column we desired and storing them in 2x4 matrix for DELTA_K1, DELTA_K2, DELTA_K3 and DELTA_K4.
+
+The same process was done for DELTA_J using the expressions:
+
+Tran_DELTA_J1 = deltaj(:,1) * input(:,1)';
+
+DELTA_J1 = Tran_DELTA_J1';
+
+For Input pattern 1 data. Repeating the value change to get 4x2 matrices for DELTA_J1, DELTA_J2, DELTA_J3 and DELTA_J4.
+
+The resulting matrices DELTA_K and DELTA_J were the gradient adjustments needed for matrices W1 and W2 in this current iteration of the Error Back-Propagation of the multi-layer perceptron (MLP) 4-2-4 encoder.
+
+The adjustments for the Bias (Bias_J and Bias_K) were stored in a similar way and since the bias adjustments were the small deltas of that layer given by expression:
+
+𝛿E / 𝛿θ = 𝛿<sub>l</sub>
+
+<span class="custom-tablecaption">Table 4: Bias_K and Bias_J gradient adjustment values for the different input patterns</span>
+
+| Input Pattern | Bias_K adjustments matrix | Bias_J adjustments matrix |
+| ------------- | ------------------------- | ------------------------- |
+| [1,0,0,0]<sup>T</sup> |	Bias_K1 = deltak(:,1)	| Bias_J1 = deltaj(:,1) |
+| [0,1,0,0]<sup>T</sup>	| Bias_K2 = deltak(:,2)	| Bias_J2 = deltaj(:,2) |
+| [0,0,1,0]<sup>T</sup>	| Bias_K3 = deltak(:,3)	| Bias_J3 = deltaj(:,3) |
+| [0,0,0,1]<sup>T</sup>	| Bias_K4 = deltak(:,4)	| Bias_J4 = deltaj(:,4) |
+
+
 
 <h2 class="text-underline">Implementation</h2>
 
