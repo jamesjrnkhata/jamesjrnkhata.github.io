@@ -242,10 +242,237 @@ The adjustments for the Bias (Bias_J and Bias_K) were stored in a similar way an
 | [0,0,1,0]<sup>T</sup>	| Bias_K3 = deltak(:,3)	| Bias_J3 = deltaj(:,3) |
 | [0,0,0,1]<sup>T</sup>	| Bias_K4 = deltak(:,4)	| Bias_J4 = deltaj(:,4) |
 
+### Updating of Weights and Bias
 
+To update the weights W1 matrix for use in the next iteration, the four DELTA_K’s were added together:
+
+DELTA_K_SUM = DELTA_K1 + DELTA_K2 + DELTA_K3 + DELTA_K4;
+
+and then the new expression was used to adjust W2 weights:
+
+W2 = W2 + (learn_rate * DELTA_K_SUM);
+
+For weights W2 matrix, the matrix DELTA_J_SUM:
+
+DELTA_J_SUM = DELTA_J1 + DELTA_J2 + DELTA_J3 + DELTA_J4;
+
+was used to adjust W1 weights
+
+W1 = W1 + (learn_rate * DELTA_J_SUM);
+
+For the Bias (Bias_J and Bias_K), a similar procedure was carried out for:
+
+Bias_K_SUM = Bias_K1 + Bias_K2 + Bias_K3 + Bias_K4;
+
+Bias_J_SUM = Bias_J1 + Bias_J2 + Bias_J3 + Bias_J4;
+
+To adjust the Bias_K and Bias_J respectively for the next iteration:
+
+Bias_K = Bias_K + (learn_rate * Bias_K_SUM);
+
+Bias_J = Bias_J + (learn_rate * Bias_J_SUM);
+
+The Learn_Rate was set to -.01 as an initial value.
 
 <h2 class="text-underline">Implementation</h2>
 
 ### Software
+**MATLAB Code to Implement Neural Network MLP Encoder**
+```Matlab
+%----------- Lab 4 � Neural Networks - Mini-Batch ------------------------%
 
+%------------------ Instructor: Dr Peter Jancovic ------------%
+%------------------ Written by:	James J Nkhata ---------------%
+
+%-------------------------- HOUSE KEEPING --------------------------------%
+
+clear variables; % Used to clear all the variables
+                 % in the current work place.
+close all; % Used to close all external windows.
+clc; % Used to clear the Command Window on running the script.
+%-------------------------------------------------------------------------%
+
+%----------------------------- DEFINE UNITS ------------------------------%
+% Input pattern - Columns as each training pattern
+input = [0.9 0.1 0.1 0.1 % input 4x4 Matrix [1,0,0,0]--------------%
+         0.1 0.9 0.1 0.1 %------------------[0,1,0,0]--------------%
+         0.1 0.1 0.9 0.1 %------------------[0,0,1,0]--------------%
+         0.1 0.1 0.1 0.9]; %----------------[0,0,0,1]--------------%
+
+% Output pattern (Target) - Columns as each training pattern
+Out_TRGT = [0.9 0.1 0.1 0.1 % Target output Out_TRGT 4x4 Matrix [1,0,0,0]-%
+            0.1 0.9 0.1 0.1 %-----------------------------------[0,1,0,0]-%
+            0.1 0.1 0.9 0.1 %-----------------------------------[0,0,1,0]-%
+            0.1 0.1 0.1 0.9]; %---------------------------------[0,0,0,1]-%                    
+
+% Intialising Weight Matrix W1 and W2 randomly %
+% Create 4x2 matrix and intialise it with random values using a heuristic.
+W1 = -0.5773 + (0.5773-(-0.5773)).*rand(4,2); % Create a 4x2 matrix using  
+                                              % Xavier intialisation
+                                              % sqrt(2/(Nj + Nk)).
+
+W2 = rand(2,4);% Create a 2x4 matrix and intialise it with uniformly  
+               % distributed random  numbers in the interval (0,1).
+
+Bias_J = zeros(2,1); % Create a 2x1 matrix and initailise with
+                    % zeros for Bias_J (Layer J - Hidden Layer).
+Bias_K = zeros(4,1); % Create a 4x1 matrix and initailise with
+                    % zeros for Bias_K (Layer K - Output Layer).                     
+
+iterations = 100000; % Value used to set the number of iterations to
+                     % run for training the system.
+
+learn_rate = -.0001; % The value for learning rate is set by this variable.
+
+N_Errors = (iterations);% A variable used to store the Error value for
+                        % each iteration.
+%-------------------------------------------------------------------------%
+
+%---------------------- BEGIN THE TRAINING ITERATION(S) ------------------%
+for n=1:1:iterations  
+
+%----------------------- LEARN RATE ADJUSTMENTS --------------------------%
+% Lines of conditional statements used to easy the effects of the
+% learn_rate as the system increments through iterations.
+if n >=20    
+    learn_rate = -.001; % set learn_rate to -0.001.
+elseif n >= 100
+    learn_rate = -.001; % set learn_rate to -0.001.
+elseif n >= 5000
+    learn_rate = -.01; % set learn_rate to -0.01.
+elseif n >= 50000
+    learn_rate = -.1; % set learn_rate to -.1.    
+end   
+
+%----------------------- FORWARD PROPAGATION -----------------------------%
+
+% INPUT TO THE HIDDEN LAYER
+y = (W1' * input) + Bias_J; % Transpose W1 to align with input matrix
+                            % and then add Bias_J matrix.
+
+% OUTPUT FROM THE HIDDEN LAYER %
+Out_J = 1./(1+exp(-y)); % Output of the hidden layer is the sigmoid
+                        % normalization function of y (dot product
+                        % to multiply with the vector).
+
+% INPUT TO THE OUTER LAYER %        
+Out_K = (W2' * Out_J) + Bias_K; % Transpose W2 matrix to align with Out_J
+                                % matrix and then add Bias_K matrix to get  
+                                % the Out_K (Actual Output).
+
+%----------------------- ERROR BACK-PROPAGATION --------------------------%
+% CALCULATE THE ERROR (ACTUAL OUTPUT - TARGET OUTPUT) OF ENCODER %
+Error = Out_K  - Out_TRGT; % Difference between the Actual Output matrix
+                           % and the Target Output matrix.
+
+Sum_Error = (sumsqr(Error))/2; %  ?(Actual Output � Target Output)^2 / 2.
+
+% Generate N_Errors matrix for  n (iterations) vs Error %
+N_Errors(n,1) = n; % store values of n in the first column of the matrix.
+N_Errors(n,2) =  Sum_Error;% store Error values for each iteration of n
+                           % in the first column of the matrix.
+
+% Small delta k (deltak) is calculated for output layer
+deltak = Error.* (Out_K.*(1 - Out_K)); % Each Element of the Error is
+                                        % multiplied by the sigmoid
+                                        % dervative of that particular
+                                        % node using Element-wise(.*).  
+
+% Small delta j (deltaj) is calculated for hidden layer
+deltaj = (W2 * deltak).*(Out_J.*(1 - Out_J)); % Each Element of the Error  
+                                            % is multiplied by the layer J
+                                            % dervative of that particular
+                                            % node using Element-wise(.*).
+
+%----------------------- WEIGHT AND BIAS ADJUSTMENTS ---------------------%                                        
+% Pick out Columns of Out_J with deltak matrix for DELTA_K and input matrix
+% with deltaj for DELTA_J. The column picked corresponds to the training
+% input pattern. Column 1 to input pattern 1 (0,1,0,0), those of column 2  
+% to input pattern 2(0,1,0,0), column 3 for input pattern 3 (0,0,1,0) and  
+% column 4 for input pattern 4 (0,0,0,1).
+
+% Input pattern 1 (1,0,0,0)
+DELTA_K1 = Out_J(:,1) * deltak(:,1)';%DELTA_K for Input pattern (1,0,0,0).
+Tran_DELTA_J1 = deltaj(:,1) * input(:,1)'; % transpose to 4x2 to match W1.
+DELTA_J1 = Tran_DELTA_J1'; % DELTA_J for Input pattern (1,0,0,0).
+
+% Input pattern 2 (0,1,0,0)
+DELTA_K2 = Out_J(:,2) * deltak(:,2)';%DELTA_K for Input pattern (0,1,0,0).
+Tran_DELTA_J2 = deltaj(:,2) * input(:,2)'; % transpose to 4x2 to match W1.
+DELTA_J2 = Tran_DELTA_J2'; % DELTA_J for Input pattern (0,1,0,0).
+
+% Input pattern 3 (0,0,1,0)
+DELTA_K3 = Out_J(:,3) * deltak(:,3)';%DELTA_K for Input pattern (0,0,1,0).
+Tran_DELTA_J3 = deltaj(:,3) * input(:,3)'; % transpose to 4x2 to match W1.
+DELTA_J3 = Tran_DELTA_J3'; % DELTA_J for Input pattern (0,0,1,0).
+
+% Input pattern 4 (0,0,0,1)
+DELTA_K4 = Out_J(:,4) * deltak(:,4)';%DELTA_K for Input pattern (0,0,0,1).
+Tran_DELTA_J4 = deltaj(:,4) * input(:,4)'; % transpose to 4x2 to match W1.
+DELTA_J4 = Tran_DELTA_J4'; % DELTA_J for Input pattern (0,0,0,1).
+
+Bias_K1 = deltak(:,1);  Bias_J1 = deltaj(:,1); % Store (1,0,0,0) Bias.
+Bias_K2 = deltak(:,2);  Bias_J2 = deltaj(:,2); % Store (0,1,0,0) Bias.
+Bias_K3 = deltak(:,3);  Bias_J3 = deltaj(:,3); % Store (0,0,1,0) Bias.
+Bias_K4 = deltak(:,4);  Bias_J4 = deltaj(:,4); % Store (0,0,0,1) Bias.
+
+%---------------------- CALCULATE THE DELTA SUMS -------------------------%
+% Sum up the values for DELTA_K and the values of DELTA_J
+DELTA_K_SUM = DELTA_K1 + DELTA_K2 + DELTA_K3 + DELTA_K4; % DELTA_K_SUM.
+DELTA_J_SUM = DELTA_J1 + DELTA_J2 + DELTA_J3 + DELTA_J4; % DELTA_J_SUM.
+
+%---------------------- CALCULATE THE BIAS SUMS --------------------------%
+% Sum up the values for DELTA_K and the values of DELTA_J
+Bias_K_SUM = Bias_K1 + Bias_K2 + Bias_K3 + Bias_K4; % Bias_K_SUM.
+Bias_J_SUM = Bias_J1 + Bias_J2 + Bias_J3 + Bias_J4; % Bias_J_SUM.
+
+%-------------------------------------------------------------------------%
+
+%----- UPDATE THE WEIGHTS USING DELTA SUM, BIAS SUM AND LEARNING RATE ----%
+
+W2 = W2 + (learn_rate * DELTA_K_SUM); % Update W2 weights matrix.
+W1 = W1 + (learn_rate * DELTA_J_SUM); % Update W1 weights matrix.
+Bias_K = Bias_K + (learn_rate * Bias_K_SUM); % Update Bias_K vector.
+Bias_J = Bias_J + (learn_rate * Bias_J_SUM); % Update Bias_J vector.
+%-------------------------------------------------------------------------%
+
+end
+%----------------------- END THE TRAINING ITERATION(S) -------------------%    
+%-------------------------------------------------------------------------%
+
+%--------------- PLOT ERROR AS FUNCTION OF n (iterations) ----------------%
+plot (N_Errors(:,1), N_Errors(:,2), 'r'); % Plot column 1 (n) vs column 2
+                                          % (Errors)for each iteration
+                                          % using a red line.
+xlabel('n - iterations'); % Label for the X-axis.
+ylabel('Error'); % Label for the X-axis.
+title('Error as a Function of n (iterations)'); % Title of the graph.
+
+
+%----------------------- COMMAND WINDOW PRINT OUTS -----------------------%
+
+%--------------------- Print Trained System Results ----------------------%
+
+fprintf('------- Trained System Results -------\n\n');
+fprintf('Number of Iterations : ');
+disp(iterations);
+fprintf('Learning Rate: ');
+disp(learn_rate);
+fprintf('Trained Bias J:\n');
+disp(Bias_J);
+fprintf('Trained Bias K:\n');
+disp(Bias_K);
+fprintf('Trained W1:\n');
+disp(W1);
+fprintf('Trained W2:\n');
+disp(W2);
+fprintf('Trained Encoder Output:\n');
+disp(Out_K);
+fprintf('Final Error: ');
+disp(Sum_Error);
+
+fprintf('------- End of System Results -------');
+%-------------------------------------------------------------------------%    
+
+```
 <h2 class="text-underline">Conclusion</h2>
