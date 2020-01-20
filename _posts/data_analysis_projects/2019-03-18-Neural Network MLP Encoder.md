@@ -12,6 +12,9 @@ images:
   - image_path: /images/data_analysis_project/neuralnetworkmlpencoder/neuralnetworkmlpencoder_img00.jpg
     title: "Figure 1 - MLP 4-2-4 Encoder Structure"
     weight: 1
+  - image_path: /images/data_analysis_project/neuralnetworkmlpencoder/neuralnetworkmlpencoder_img00.jpg
+    title: "Figure 2 - How Weights affect Errors (Neural Network Tutorial 2014)"
+    weight: 2
 ---
 
 <h2 class="text-underline">Purpose</h2>
@@ -69,6 +72,46 @@ Error = Actual Output – Target Output
 Error Back-Propagation (EBP) was then used to make the adjustments to the Weights and Bias to reduce the Error in turn training the system to work as desired.
 
 The influence of changes in the Weights (W1 and W2) were determined through partial derivation of the functions of the Forward propagation of the system.
+
+<ul class="photo-gallery-col">
+  {% for image in page.images %}
+    {% if image.weight == 2 %}
+      <li>
+        <figure class="custom-figure">
+          <img class="galley_img" src="{{ image.image_path }}" alt="{{ image.title }}">
+          <figcaption class="custom-figcaption">
+            {{ image.title }}
+          </figcaption>
+        </figure>  
+      </li>
+    {% endif %}  
+  {% endfor %}  
+</ul>
+
+Small delta k (𝛿K) for each node of layer K was determined by the expression:
+
+𝛿k = Ok * (1 – Ok) (Ok – tk)
+
+were OK was the Actual Output and tk was the Target Output of that specific node. Changes for weights (W2) between layer J and K (Wjk) were then calculated by the expression:
+
+𝛿E / 𝛿Wjk = Oj 𝛿k
+
+were Oj was the output from the previous node (hidden layer). Small delta j (𝛿j) for each node of layer J was determined by the expression:
+
+𝛿j = Oj * (1 – Oj) * ∑ 𝛿k Wjk
+
+were Oj was the output from hidden layer (layer J) and ∑𝛿k Wjk was the sum of all layer K nodes connected to corresponding layer J node. Changes for weights (W1) between layer I and J (Wij) were then calculated by the expression:
+
+𝛿E / 𝛿Wij = Oi 𝛿j
+
+were Oi was the outputs from the input layer (layer I) nodes connected to that node of layer J. The weights (W1 and W2) were then updated (replaced) using expressions:
+
+<span class="custom-tablecaption">Table 2: Expressions used to update the values of weights W1 and W2</span>
+
+| Weights  | Weight Updating Expression |
+| ------------- | :--------------------: |
+| W2 (W<sub>jk</sub>) | Wjk = Wjk + (- learning rate * Oj 𝛿k) |
+| W1 (Wij) | Wij = Wij + (- learning rate * Oi 𝛿J) |
 
 
 
