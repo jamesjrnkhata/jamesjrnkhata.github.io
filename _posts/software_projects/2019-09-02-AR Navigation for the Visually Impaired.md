@@ -9,7 +9,7 @@ purpose: "The purpose of this study was to develop a Mobile device Augmented Rea
 toc: true
 classes: wide
 ---
-The purpose of the study was to evaluate the accuracy of Augmented Reality Software Development Kit (SDK), **ARKit’s** *Ray-casting* as an approach to evaluate how far real-world objects are detected in an indoor environment.  The aim was to explore the feasibility of combining *Cloud computing* with **ARKit** *SDK’s* for the purpose of obstacle avoidance and navigation for the blind using an **iOS** (*Apple* mobile operating system) mobile device.   
+The purpose of the study was to evaluate the accuracy of Augmented Reality Software Development Kit (SDK), **ARKit’s** *Ray-casting* as an approach to evaluate how far real-world objects are detected in an indoor environment.  The aim was to explore the feasibility of combining *Cloud computing* with **ARKit's** *SDK* for the purpose of obstacle avoidance and navigation for the blind using an **iOS** (*Apple* mobile operating system) mobile device.   
 
 <h2 class="text-underline">Methodology</h2>
 
