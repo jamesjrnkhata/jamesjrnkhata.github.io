@@ -17,11 +17,11 @@ Augmented Reality **ARKit** *Ray-Casting* is used to detect real-world objects a
 
 <h2 class="text-underline">Background Work</h2>
 
-## Augmented reality
+### Augmented reality
 
-## AR Cloud computing
+### AR Cloud computing
 
-## Raycasting
+### Raycasting
 
 <h2 class="text-underline">Implementation</h2>
 
