@@ -13,7 +13,9 @@ The purpose of the study was to evaluate the accuracy of Augmented Reality Softw
 
 <h2 class="text-underline">Methodology</h2>
 
-Augmented Reality **ARKit** *Ray-Casting* is used to detect real-world objects and place *virtual Marker GameObjects* as way points for navigation in an **AR scene**. **Unity** *Physics Ray-Casting* is used to detect the user’s previously placed Markers while audio and vibration cues give information to the user to aid in navigating the environment. **Placenote’s** *Cloud-based mapping engine* is used to provide a consistent method to store the positons of Marker objects in the *AR rendered environment*. In similar, Monocular camera Depth estimation projects, methods have been used that involved image size ratio comparison upon movement, predictions based on semantic information and image to keyframe matching. Most related projects of mobile device navigation solutions have required external sensors, embedded beacon placement, pre-exiting building plans to familiarise the device to the environment.
+Augmented Reality **ARKit** *Ray-Casting* was used to detect real-world objects and place *virtual Marker GameObjects* as way points for navigation in an **AR scene**. **Unity** *Physics Ray-Casting* was used to detect the user’s previously placed Markers while audio and vibration cues give information to the user to aid in navigating the environment. **Placenote’s** *Cloud-based mapping engine* was used to provide a consistent method to store the positions of Marker objects in the *AR rendered environment*.
+
+In similar, Monocular camera Depth estimation projects, methods have been used that involved image size ratio comparison upon movement, predictions based on semantic information and image to keyframe matching. Most related projects of mobile device navigation solutions have required external sensors, embedded beacon placement, pre-exiting building plans to familiarise the device to the environment.
 
 <h2 class="text-underline">Background Work</h2>
 
