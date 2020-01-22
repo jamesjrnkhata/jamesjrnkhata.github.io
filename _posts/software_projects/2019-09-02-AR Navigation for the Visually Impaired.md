@@ -9,11 +9,13 @@ purpose: "The purpose of this study was to develop a Mobile device Augmented Rea
 toc: true
 classes: wide
 ---
-The purpose of the study was to evaluate the accuracy of Augmented Reality Software Development Kit (SDK), ARKit’s Ray-casting as an approach to evaluate how far real-world objects are detected in an indoor environment.  The aim was to explore the feasibility of combining Cloud computing with ARKit SDK’s for the purpose of obstacle avoidance and navigation for the blind using an iOS (Apple mobile operating system) mobile device.   
+The purpose of the study was to evaluate the accuracy of Augmented Reality Software Development Kit (SDK), **ARKit’s** *Ray-casting* as an approach to evaluate how far real-world objects are detected in an indoor environment.  The aim was to explore the feasibility of combining *Cloud computing* with **ARKit** *SDK’s* for the purpose of obstacle avoidance and navigation for the blind using an **iOS** (*Apple* mobile operating system) mobile device.   
+
+<h2 class="text-underline">Methodology</h2>
+
+Augmented Reality **ARKit** *Ray-Casting* is used to detect real-world objects and place *virtual Marker GameObjects* as way points for navigation in an **AR scene**. **Unity** *Physics Ray-Casting* is used to detect the user’s previously placed Markers while audio and vibration cues give information to the user to aid in navigating the environment. **Placenote’s** *Cloud-based mapping engine* is used to provide a consistent method to store the positons of Marker objects in the *AR rendered environment*. In similar, Monocular camera Depth estimation projects, methods have been used that involved image size ratio comparison upon movement, predictions based on semantic information and image to keyframe matching. Most related projects of mobile device navigation solutions have required external sensors, embedded beacon placement, pre-exiting building plans to familiarise the device to the environment.
 
 <h2 class="text-underline">Background Work</h2>
-
-Augmented Reality ARKit Ray-Casting is used to detect real-world objects and place virtual Marker GameObjects as way points for navigation in an AR scene. Unity Physics Ray-Casting is used to detect the user’s previously placed Markers while audio and vibration cues give information to the user to aid in navigating the environment. Placenote’s Cloud-based mapping engine is used to provide a consistent method to store the positons of Marker objects in the AR rendered environment. In similar, Monocular camera Depth estimation projects, methods have been used that involved image size ratio comparison upon movement, predictions based on semantic information and image to keyframe matching. Most related projects of mobile device navigation solutions have required external sensors, embedded beacon placement, pre-exiting building plans to familiarise the device to the environment. 
 
 ## Augmented reality
 
