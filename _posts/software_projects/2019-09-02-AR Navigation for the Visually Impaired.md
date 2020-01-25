@@ -37,7 +37,7 @@ images:
     title: "Figure 9 - Distance Detection to Object 3 (Ride on Toy Car)"
     weight: 9
   - image_path: /images/software_projects/arnavigationfortheblind/arnavigationfortheblind_img09.jpg
-    title: "Figure 10 - Distance Detection to Object 4 (Backpack) "
+    title: "Figure 10 - Distance Detection to Object 4 (Backpack)"
     weight: 10                            
 ---
 The purpose of the study was to evaluate the accuracy of Augmented Reality Software Development Kit (SDK), **ARKit**’s *Ray-casting* as an approach to detect how far real-world objects are in an indoor environment.  The aim was to explore the feasibility of combining *Cloud Computing* with **ARKit**’s *SDK* for the purpose of obstacle avoidance and navigation for the blind using an **iOS** (*Apple* mobile operating system) mobile device.   
