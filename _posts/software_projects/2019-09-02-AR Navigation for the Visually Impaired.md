@@ -8,6 +8,13 @@ excerpt: "c#, arkit, unity, assistive technology, ar, xcode, blind, navigation, 
 purpose: "The purpose of this study was to develop a Mobile device Augmented Reality based Assistive Technology (AT) for indoor navigation by blind users. Augmented Reality ARKit Ray-Casting is used to detect real-world objects and place virtual Marker GameObjects as way points for navigation in an AR scene."
 toc: true
 classes: wide
+images:
+  - image_path: /images/software_projects/arnavigationfortheblind/arnavigationfortheblind_img01.jpg
+    title: "Figure 1 - Prospective Projection (c) Computer Graphics"
+    weight: 1   
+  - image_path: /images/software_projects/arnavigationfortheblind/arnavigationfortheblind_img02.jpg
+    title: "Figure 2 - In gravity-only alignment, X and Z directions are relative to the device's initial orientation"
+    weight: 2  
 ---
 The purpose of the study was to evaluate the accuracy of Augmented Reality Software Development Kit (SDK), **ARKit’s** *Ray-casting* as an approach to detect how far real-world objects are in an indoor environment.  The aim was to explore the feasibility of combining *Cloud Computing* with **ARKit's** *SDK* for the purpose of obstacle avoidance and navigation for the blind using an **iOS** (*Apple* mobile operating system) mobile device.   
 
@@ -30,7 +37,23 @@ Cloud AR is the latest trend in AR computing as it provides a solution to multi 
 ### Ray-casting
 Ray-casting is a useful way of detecting objects within the scene based on its onscreen image [35].
 
-The full Thesis on <a class="custom_link" href="https://github.com/jamesjrnkhata/AR-Navigation-for-the-Visually-Impaired">*Augmented Reality Navigation for the Visually Impaired*</a> can be found on <a class="custom_link" href="https://github.com/jamesjrnkhata/AR-Navigation-for-the-Visually-Impaired">GitHub</a>. This details the Literature Review, Methodology, Background Work, Implementation, Evaluation and Results Obtained by the auhtor (James Junior Nkhata).  
+<ul class="photo-gallery-3col">
+  {% for image in page.images %}
+    {% if image.weight >= 1 and image.weight <= 2 %}
+      <li>
+        <figure class="custom-figure">
+          <img class="galley_img" src="{{ image.image_path }}" alt="{{ image.title }}">
+          <figcaption class="custom-figcaption">
+            {{ image.title }}
+          </figcaption>
+        </figure>  
+      </li>
+    {% endif %}  
+  {% endfor %}  
+</ul>
+
+
+The full Thesis (and citations) on <a class="custom_link" href="https://github.com/jamesjrnkhata/AR-Navigation-for-the-Visually-Impaired">*Augmented Reality Navigation for the Visually Impaired*</a> can be found on <a class="custom_link" href="https://github.com/jamesjrnkhata/AR-Navigation-for-the-Visually-Impaired">GitHub</a> page. This details the Literature Review, Methodology, Background Work, Implementation, Evaluation and Results Obtained by the auhtor (James Junior Nkhata).  
 <h2 class="text-underline">Implementation</h2>
 
 **Unity** is a real-time development platform [30]. Unity is capable of providing a developer with cross-platform features necessary to produce 3D (3 dimensional), 2D, VR (virtual reality) and Augmented Reality (AR) applications for devices running on different operating systems (Windows, iOS and Android). Unity uses hierarchy component–based design structure that can help speed up development [31]. It supports C# (C sharp) scripting API (application programming interface) natively.
