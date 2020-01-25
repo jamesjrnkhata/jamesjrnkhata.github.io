@@ -11,10 +11,10 @@ A driven and capable problem solver with a good grasp of a variety of skills to 
 
 Technical skills include:
 
-	* Python, C++, C#, some experience with C and MATLAB
-  * Problem solving using a variety of Analytical, Statistical and Machine Learning techniques
-  * Object Oriented Programming
-  * Small Embedded Systems
-  * Proven experience in Maintenance Engineering
+* Python, C++, C#, some experience with C and MATLAB
+* Problem solving using a variety of Analytical, Statistical and Machine Learning techniques
+* Object Oriented Programming
+* Small Embedded Systems
+* Proven experience in Maintenance Engineering
 
 Interests involve keeping up-to-date with Consumer Electronics, Physical Fitness, Automation and Innovations in Renewable Energy.
