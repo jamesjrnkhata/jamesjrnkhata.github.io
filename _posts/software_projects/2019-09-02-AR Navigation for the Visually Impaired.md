@@ -215,7 +215,7 @@ Due to **Placenote**'s limited support at the time of the writing the thesis (03
 
 ### Software
 
-Full code available from <a class="custom_link" href="https://github.com/jamesjrnkhata/AR-Navigation-for-the-Visually-Impaired">GitHub</a> page (<a class="custom_link" href="https://github.com/jamesjrnkhata/AR-Navigation-for-the-Visually-Impaired">AR-Navigation-for-the-Visually-Impaired</a>).
+C# code for the Application is available in the <a href="#audiomanagercs-script">Appendix</a> section of the post. The full project code with all assets for Unity, ARkit and Placenote for the <a class="custom_link" href="https://github.com/jamesjrnkhata/AR-Navigation-for-the-Visually-Impaired">*AR-Navigation-for-the-Visually-Impaired*</a> are available on <a class="custom_link" href="https://github.com/jamesjrnkhata/AR-Navigation-for-the-Visually-Impaired">GitHub</a> page.
 
 <h2 class="text-underline">Results and Evaluation</h2>
 
@@ -225,7 +225,7 @@ When a ‘*hit*’ occurred, **ARKit**’s HitTest returned an array that contai
 
 The approach involved using a tape measure to establish a ground truth (exact value) for measurements between the device (running the augmented reality navigation for the visually impaired application) and an object in the real-space environment. Another measurement was then carried out simultaneously using **ARKit**’s HitTest ‘*hitResult.distance*’ property between the object and the device.  This was to be done at varied distances (0.5, 1, 1.5 and 2 meters), while using the different ARHitTestResultTypes. This expected to have two outcomes, the first was to determine the best suited ARHitTestResultType’s for each tested object type in the real-space, and the second was to determine the accuracy of the combined efforts of the ARHitTestResultTypes compared to the tape measure’s readings.
 
-The obtained results were then later processed and the *Data Analysed* using calculations such as **Absolute Error**, **Percentage Error**, **Mean Absolute Percentage Error (MAPE)** and **Mean Absolute Deviation (MAD)**.
+The obtained results were then later processed and the *Data Analyse* was carried out using calculations such as *Absolute Error*, *Percentage Error*, *Mean Absolute Percentage Error (MAPE)* and *Mean Absolute Deviation (MAD)*.
 
 <ul class="photo-gallery-2col">
   {% for image in page.images %}
