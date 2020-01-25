@@ -207,7 +207,7 @@ Map Loading was carried out in a similar manner as Map saving, however a differe
 
 #### Navigation and Distance Detection
 
-using the two types of ray-casting methods available (Unity's Physics and ARKit's HitTest), the user was expected to infer a path way to navigate the environment by using the information they provided as guides. **ARKit**’s *HitTest* ray-cast was used to notify the user of the distances of objects around them in the environment, while **Unity**’s *Physics* ray-cast was used to detect previously placed marker GameObjects in the AR scene. If the device was facing the direction where a marker was present, the physics ray-cast would return a ‘hit’ with the marker’s collider, notifying the user with a vibration and audio signal from the device. This gave the user an idea of the way to go. By getting within a certain range of the marker GameObject, the coroutine ‘*RadiusActivator*’ in the ‘**MarkerManager.cs**’ script would deactivate the current marker and activate the next marker in the scene.
+Using the two types of ray-casting methods available (Unity's Physics and ARKit's HitTest), the user was expected to infer a path way to navigate the environment by using the information they provided as guides. **ARKit**’s *HitTest* ray-cast was used to notify the user of the distances of objects around them in the environment, while **Unity**’s *Physics* ray-cast was used to detect previously placed marker GameObjects in the AR scene. If the device was facing the direction where a marker was present, the physics ray-cast would return a ‘hit’ with the marker’s collider, notifying the user with a vibration and audio signal from the device. This gave the user an idea of the way to go. By getting within a certain range of the marker GameObject, the coroutine ‘*RadiusActivator*’ in the ‘**MarkerManager.cs**’ script would deactivate the current marker and activate the next marker in the scene.
 
 ### Hardware
 
@@ -219,7 +219,7 @@ Full code available from <a class="custom_link" href="https://github.com/jamesjr
 
 <h2 class="text-underline">Results and Evaluation</h2>
 
-In this section, the author discussed how **ARKit**’s distance estimation method was evaluated. When a camera image was processed by **ARKit**, a 2D point corresponded to multiple points on a 3D line and returned all the objects detected along that line depending on the ARHitTestResultType specified.
+This section discusses how **ARKit**’s distance estimation method was evaluated. When a camera image was processed by **ARKit**, a 2D point corresponded to multiple points on a 3D line and returned all the objects detected along that line depending on the ARHitTestResultType specified.
 
 When a ‘*hit*’ occurred, **ARKit**’s HitTest returned an array that contained the intersection information for all the objects detected sorted from the closest to the camera to the furthest [44]. By using the ‘*hitResult.distance*’ property, the distance to the first point of intersection could be found which was used to determine how far the nearest obstacle in the real-space was to the camera.
 
@@ -270,3 +270,243 @@ The full set of results obtained can be found on <a class="custom_link" href="ht
  <h2 class="text-underline">Conclusion</h2>
 
 The study investigated the feasibility of a mobile device application for iOS devices to assist visually impaired individuals navigate through indoor environment using audio and vibration feedback. The usability and limitations of the interface was determined, and future work recommended to be carried out. The research findings suggest that it is possible to accurately measure the distance between a mobile device’s monocular camera and the physical objects in the real-world environment using Augmented Reality (AR) ARKit SDK’s Ray-casting, hence, the more studies required to address the gaps in existing knowledge.
+
+<h2 class="text-underline">Appendix</h2>
+
+**AudioManager.cs script**
+
+```c#
+using UnityEngine;
+using System.Collections;
+
+namespace MapSaveAndLoadManager
+{
+    public class AudioManager : MonoBehaviour
+    {
+
+        // handle for AppState
+        private TouchManager _appState;               
+
+
+        public static AudioClip areaIdentifiedAudio; // Area Identified Audio
+
+        public static AudioClip beepAudio; // Beep Audio
+
+        public static AudioClip buzzAudio; // Buzz Audio
+
+        public static AudioClip createMapAudio; // Create Map Audio
+
+        public static AudioClip errorAudio; // Error Audio
+
+        public static AudioClip exitAudio; // Exit Audio             
+
+        public static AudioClip extendingMapAudio; // Extending Map Audio
+
+        public static AudioClip helpAudio; // Help Audio
+
+        public static AudioClip helpMapCreationAudio; // Help Map Creation Audio
+
+        public static AudioClip helpExtendingMapAudio; // Help Extending Map Audio
+
+        public static AudioClip helpMainMenuAudio; // Help Main Menu Audio
+
+        public static AudioClip helpNavigationModeAudio; // Help Navigation Mode Audio
+
+        public static AudioClip initializedAudio; // Intialized Audio
+
+        public static AudioClip initializingAudio; // Intializing Audio
+
+        public static AudioClip loadingFailedAudio; // Loading Failed Audio
+
+        public static AudioClip loadingMapAudio; // Loading Map Audio
+
+        public static AudioClip mainMenuAudio; // Main Menu Audio
+
+        public static AudioClip navigationMarkersLoadedAudio; // Navigation Markers Loaded Audio
+
+        public static AudioClip navigationScreenAudio; // Navigation Screen Audio
+
+        public static AudioClip noMapFoundAudio; // No Map Found Audio
+
+        public static AudioClip notIntializedAudio; // Not Initialized Audio
+
+        public static AudioClip poorLightingAudio; // Poor Lighting Audio
+
+        public static AudioClip savingAudio; // Saving Audio
+
+        public static AudioClip savingFailedAudio; // Saving Failed Audio
+
+        public static AudioClip searchingAreaAudio; // Searching Area Audio
+
+        // create an AudioSource Handler
+        public static AudioSource audioSource;
+
+        private bool isAudioPlayed = false;
+
+
+        void Awake()
+        {
+            areaIdentifiedAudio = Resources.Load<AudioClip>("Audio/AreaIdentified"); // Area Identified Audio (Assets/Resources/Audio/AreaIdentified.mp3)
+            beepAudio = Resources.Load<AudioClip>("Audio/beep_default"); // Beep Audio (Assets/Resources/Audio/beep_default.mp3)
+            buzzAudio = Resources.Load<AudioClip>("Audio/buzz"); // Buzz Audio (Assets/Resources/Audio/buzz.mp3)
+            createMapAudio = Resources.Load<AudioClip>("Audio/CreateMap"); // Create Map Audio (Assets/Resources/Audio/CreateMap.mp3)
+            errorAudio = Resources.Load<AudioClip>("Audio/Error"); // Error Audio (Assets/Resources/Audio/Error.mp3)
+            exitAudio = Resources.Load<AudioClip>("Audio/Exit"); // Exit Audio (Assets/Resources/Audio/Exit.mp3)
+            extendingMapAudio = Resources.Load<AudioClip>("Audio/ExtendingMap"); // Extending Map Audio (Assets/Resources/Audio/ExtendingMap.mp3)
+            helpAudio = Resources.Load<AudioClip>("Audio/Help"); // Help Audio (Assets/Resources/Audio/Help.mp3)
+            helpMapCreationAudio = Resources.Load<AudioClip>("Audio/Help_MapCreation"); // Help Map Creation Audio (Assets/Resources/Audio/Help_ MapCreation.mp3)
+            helpExtendingMapAudio = Resources.Load<AudioClip>("Audio/Help_ExtendingMap"); // Help Extending Map Audio (Assets/Resources/Audio/Help_ExtendingMap.mp3)
+            helpMainMenuAudio = Resources.Load<AudioClip>("Audio/Help_MainMenu"); // Help Main Menu Audio (Assets/Resources/Audio/Help_MainMenu.mp3)
+            helpNavigationModeAudio = Resources.Load<AudioClip>("Audio/Help_NavigationMode2"); // Help Navigation Mode Audio (Assets/Resources/Audio/Help_NavigationMode2.mp3)
+            initializedAudio = Resources.Load<AudioClip>("Audio/Initialized"); // Intialized Audio (Assets/Resources/Audio/Initialized.mp3)
+            initializingAudio = Resources.Load<AudioClip>("Audio/Initializing"); // Intializing Audio (Assets/Resources/Audio/Initializing.mp3)
+            loadingFailedAudio = Resources.Load<AudioClip>("Audio/LoadingFailed"); // Loading Failed Audio (Assets/Resources/Audio/LoadingFailed.mp3)
+            loadingMapAudio = Resources.Load<AudioClip>("Audio/LoadingMap"); // Loading Map Audio (Assets/Resources/Audio/LoadingMap.mp3)
+            mainMenuAudio = Resources.Load<AudioClip>("Audio/MainMenu"); // Main Menu Audio (Assets/Resources/Audio/MainMenu.mp3)
+            navigationMarkersLoadedAudio = Resources.Load<AudioClip>("Audio/NavigationMarkersLoaded"); // Navigation Markers Loaded Audio (Assets/Resources/Audio/NavigationMarkersLoaded.mp3)
+            navigationScreenAudio = Resources.Load<AudioClip>("Audio/NavigationScreen"); // Navigation Screen Audio (Assets/Resources/Audio/NavigationScreen.mp3)
+            noMapFoundAudio = Resources.Load<AudioClip>("Audio/NoMapFound"); // No Map Found Audio (Assets/Resources/Audio/NoMapFound.mp3)
+            notIntializedAudio = Resources.Load<AudioClip>("Audio/NotIntialized"); // Not Initialized Audio (Assets/Resources/Audio/NotIntialized.mp3)
+            poorLightingAudio = Resources.Load<AudioClip>("Audio/PoorLighting"); // Poor Lighting Audio (Assets/Resources/Audio/PoorLighting.mp3)
+            savingAudio = Resources.Load<AudioClip>("Audio/Saving"); // Saving Audio (Assets/Resources/Audio/Saving.mp3)
+            savingFailedAudio = Resources.Load<AudioClip>("Audio/SavingFailed"); // Saving Failed Audio (Assets/Resources/Audio/SavingFailed.mp3)
+            searchingAreaAudio = Resources.Load<AudioClip>("Audio/SearchingArea"); // Searching Area Audio (Assets/Resources/Audio/SearchingArea.mp3)
+
+            audioSource = GetComponent<AudioSource>(); // assign the handle to the AudioSource component   
+
+            audioSource.PlayOneShot(initializingAudio); // play initializingAudio
+            PlayAfterDelay(helpAudio, 6f); // PLAY prompt on how to acess help information after 6 second delay from app start
+        }
+        void Start()
+        {
+
+
+            _appState = GetComponent<TouchManager>(); // assign the handle to the _appState    
+
+            PlayAfterDelay(mainMenuAudio, 2f); // PLAY main menu notification sound after 2 second delay
+        }
+
+
+        public void AppStateNotification()
+        {
+            if (_appState.currentState == TouchManager.AppState.Home)
+            {
+                PlayAfterDelay(mainMenuAudio, 1f); // PLAY main menu notification sound after 1 second delay
+            }
+
+            if (_appState.currentState == TouchManager.AppState.MapLoad)
+            {
+                PlayAfterDelay(loadingMapAudio, 1f); // PLAY map load notification sound after 1 second delay
+            }
+
+            if (_appState.currentState == TouchManager.AppState.MapCreate)
+            {
+                PlayAfterDelay(createMapAudio, 1f); // PLAY map create notification sound after 1 second delay
+            }
+
+            if (_appState.currentState == TouchManager.AppState.Navigate)
+            {
+                PlayAfterDelay(navigationScreenAudio, 1f); // PLAY navigation mode notification sound after 1 second delay
+            }
+
+            if (_appState.currentState == TouchManager.AppState.MapExtend)
+            {
+                PlayAfterDelay(extendingMapAudio, 1f); // PLAY map extending notification sound after 1 second delay
+            }
+        }
+
+        public void AppStateHelpNotifications()
+        {           
+            if (_appState.currentState == TouchManager.AppState.Home)
+            {
+                // PLAY Main Menu Help Audio
+                audioSource.PlayOneShot(helpMainMenuAudio);                
+            }
+
+            if (_appState.currentState == TouchManager.AppState.MapCreate)
+            {
+                // PLAY Map Creation Help
+                audioSource.PlayOneShot(helpMapCreationAudio);
+            }
+
+            if (_appState.currentState == TouchManager.AppState.Navigate)
+            {
+                // PLAY Navigation Mode Help
+                audioSource.PlayOneShot(helpNavigationModeAudio);
+            }
+
+            if (_appState.currentState == TouchManager.AppState.MapExtend)
+            {
+                // PLAY Extending Map Help
+                audioSource.PlayOneShot(helpExtendingMapAudio);
+            }            
+        }
+
+        // Function used to take physDistance and play proximity sound based on distance
+        public void ObjectDistanceAlarm(double physDistance)
+        {
+            // check if the distance reading is greater than 0
+            if (physDistance > 0)
+            {
+                float metersToCm = (float)physDistance * 100f; // convert decimal value in meters to float value in centimeters
+                float CmtoTime = Mathf.Round(metersToCm / 20f); // divide by 10f to get a single beep for every 10cm
+                                                                //or divide by 20f to get a single beep for every 20 cm
+                int repeatTime = Mathf.FloorToInt(CmtoTime); // convert the results into an integer
+
+                if (!isAudioPlayed)
+                {
+                    StartCoroutine(PlaySoundWithLoopValue(beepAudio, repeatTime)); // start the PlaySoundWithLoopValue coroutine with repeatTime
+                }                
+            }
+        }
+
+        // Function used to notify when a marker has been detected by the Physics raycast
+        public void MarkerDetectionAlarm()
+        {
+            audioSource.PlayOneShot(buzzAudio, .1f); // Play buzzAudio at Volume 10
+
+        }
+
+        // Function used to start the Coroutine "PlaySoundWithDelay" with a delay before the clip
+        public void PlayAfterDelay(AudioClip clip, float delay)
+        {
+            StartCoroutine(PlaySoundWithDelay(clip, delay, false));
+        }
+
+        // Coroutine used to play a passed audio clip with a float delay value and a boolean "false" to play the clip after the delay and "true" to play the clip before the delay.
+        public IEnumerator PlaySoundWithDelay(AudioClip clip, float delay, bool isPlayBeforeDelay)
+        {
+            if (isPlayBeforeDelay)
+            {
+                audioSource.PlayOneShot(clip);
+                yield return new WaitForSeconds(delay);                
+            }
+            else
+            {
+                yield return new WaitForSeconds(delay);
+                audioSource.PlayOneShot(clip);
+            }            
+        }
+        // coroutine used to loop through a clip with a second pause in between
+        public IEnumerator PlaySoundWithLoop(AudioClip clip)
+        {                           
+            audioSource.PlayOneShot(clip);
+            yield return new WaitForSeconds(1f);
+            StartCoroutine(PlaySoundWithLoop(clip));                        
+        }
+
+        //coroutine used to repeat a clip while disabling any further play back until it completes
+        public IEnumerator PlaySoundWithLoopValue(AudioClip clip, int repeatTime)
+        {
+            for (int x = 0; x < repeatTime; x++)
+            {
+                isAudioPlayed = true;
+                audioSource.PlayOneShot(clip);
+                yield return new WaitForSeconds(0.3f);               
+            }
+            yield return new WaitForSeconds(1f);
+            isAudioPlayed = false;            
+        }
+    }
+}
+```
