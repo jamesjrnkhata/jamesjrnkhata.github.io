@@ -289,7 +289,7 @@ The study investigated the feasibility of a mobile device application for iOS de
 
 [35] ‘Camera Rays’, https://docs.unity3d.com/2019.3/Documentation/Manual/CameraRays.html, accessed September 2019
 
-[39] ‘ARKit | Apple Developer Documentation’, https://developer.apple.com/documentation/arkit, accessed August 2019
+[39] ‘ARKit / Apple Developer Documentation’, https://developer.apple.com/documentation/arkit, accessed August 2019
 
 [44] ‘HitTest’, https://developer.apple.com/documentation/arkit/arframe/2875718-hittest?language=objc, accessed August 2019
 
