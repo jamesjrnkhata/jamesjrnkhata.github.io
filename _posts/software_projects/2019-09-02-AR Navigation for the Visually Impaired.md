@@ -257,7 +257,7 @@ The obtained results were then later processed and the *Data Analysed* using cal
   {% endfor %}  
 </ul>
 
-The full set of results obtained can be found on <a class="custom_link" href="https://github.com/jamesjrnkhata/AR-Navigation-for-the-Visually-Impaired">*Augmented Reality Navigation for the Visually Impaired (Thesis)*</a> can be found on <a class="custom_link" href="https://github.com/jamesjrnkhata/AR-Navigation-for-the-Visually-Impaired">GitHub</a> page.
+The full set of results obtained from <a class="custom_link" href="https://github.com/jamesjrnkhata/AR-Navigation-for-the-Visually-Impaired">*Augmented Reality Navigation for the Visually Impaired (Thesis)*</a> can be found on <a class="custom_link" href="https://github.com/jamesjrnkhata/AR-Navigation-for-the-Visually-Impaired">GitHub</a> page.
 
 <h2 class="text-underline">Discussion</h2>
 
@@ -265,7 +265,7 @@ The full set of results obtained can be found on <a class="custom_link" href="ht
 
  From the calculations carried out from the recorded results, the author suspected there were inaccuracies experienced because of the method of manually holding the tape measure with the device running the application. This led to slight hand movements that altered the readings. Another error in our readings came from the inconsistencies in the area where the RayHit Indicator Quad was placed and a reading was taken. They were instances were different areas had to be used for similar pairs because a reading could not be obtained depending on the type of ARHitTestType that was being used.
 
- The in-depth discussion of the project can be found on <a class="custom_link" href="https://github.com/jamesjrnkhata/AR-Navigation-for-the-Visually-Impaired">*Augmented Reality Navigation for the Visually Impaired (Thesis)*</a> can be found on <a class="custom_link" href="https://github.com/jamesjrnkhata/AR-Navigation-for-the-Visually-Impaired">GitHub</a> page.
+ The in-depth discussion of the <a class="custom_link" href="https://github.com/jamesjrnkhata/AR-Navigation-for-the-Visually-Impaired">*Augmented Reality Navigation for the Visually Impaired (Thesis)*</a> can be found on <a class="custom_link" href="https://github.com/jamesjrnkhata/AR-Navigation-for-the-Visually-Impaired">GitHub</a> page.
 
  <h2 class="text-underline">Conclusion</h2>
 
@@ -273,7 +273,7 @@ The study investigated the feasibility of a mobile device application for iOS de
 
 <h2 class="text-underline">Appendix</h2>
 
-**AudioManager.cs script**
+### "AudioManager.cs" Script
 
 ```c#
 using UnityEngine;
@@ -285,7 +285,7 @@ namespace MapSaveAndLoadManager
     {
 
         // handle for AppState
-        private TouchManager _appState;               
+        private TouchManager _appState;         
 
 
         public static AudioClip areaIdentifiedAudio; // Area Identified Audio
