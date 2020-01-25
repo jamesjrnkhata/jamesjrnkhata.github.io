@@ -215,7 +215,9 @@ Due to **Placenote**'s limited support at the time of the writing the thesis (03
 
 ### Software
 
-C# code for the Application is available in the <a href="#audiomanagercs-script">Appendix</a> section of the post. The full project code with all assets for Unity, ARkit and Placenote for the <a class="custom_link" href="https://github.com/jamesjrnkhata/AR-Navigation-for-the-Visually-Impaired">*AR-Navigation-for-the-Visually-Impaired*</a> are available on <a class="custom_link" href="https://github.com/jamesjrnkhata/AR-Navigation-for-the-Visually-Impaired">GitHub</a> page.
+Code (C#) for the application is available in the <a href="#audiomanagercs-script">Appendix</a> section of this post.
+
+The full project code with all assets for Unity, ARkit and Placenote for the <a class="custom_link" href="https://github.com/jamesjrnkhata/AR-Navigation-for-the-Visually-Impaired">*AR-Navigation-for-the-Visually-Impaired*</a> are available on <a class="custom_link" href="https://github.com/jamesjrnkhata/AR-Navigation-for-the-Visually-Impaired">GitHub</a> page.
 
 <h2 class="text-underline">Results and Evaluation</h2>
 
@@ -508,5 +510,1414 @@ namespace MapSaveAndLoadManager
             isAudioPlayed = false;            
         }
     }
+}
+```
+
+### "DistanceDetectionManager.cs" Script
+
+```c#
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.XR.iOS;
+
+namespace MapSaveAndLoadManager
+{
+    public class DistanceDetectionManager : MonoBehaviour
+    {            
+
+        public Text physDistanceReading; // display on screen for Debugging and testing
+        public double physDistance = 0;
+
+        public GameObject rayHitIndicator; // GameObject used to indicator a HitTest intersection point
+        private Pose rayHitPose; // pose type variable         
+        private bool rayHitPoseIsValid = false; // flag used to indicate if a pose detected by a HitTest exists
+
+        // Handle for enum HitTestResultTypeChoice in TouchManager
+        private TouchManager _hitTest;
+        void Start()
+        {
+            _hitTest = GetComponent<TouchManager>(); // assign the handle to the TouchManager component
+        }
+
+        // Function used to start the first part of finding the distance between the centre coordinates of the phone screen to the physical objects in the real space
+        public void DistanceFinder()
+            {
+            float width = Screen.width / 2; // calculate the midpoint of the screen's resolution width (x coordinates)
+            float height = Screen.height / 2; // calculate the midpoint of the screen's resolution height (y coordinates)
+
+            // run ScreenToViewportPoint() function on main camera using the center of the mobile device's width and height as its parameters
+            var screenPosition = Camera.main.ScreenToViewportPoint(new Vector2(width, height));
+            ARPoint point = new ARPoint
+            {
+                x = screenPosition.x,
+                y = screenPosition.y
+            };
+            // condition to check if the enumerator ARHitTestResultTypeChoice state is set to ExistingPlaneUsingExtent
+            if (_hitTest.desiredResultType == TouchManager.ARHitTestResultTypeChoice.ExistingPlaneUsingExtent)
+            {
+                ARHitTestResultType resultType = ARHitTestResultType.ARHitTestResultTypeExistingPlaneUsingExtent;
+                if (DistanceFinderHitTestWithResultType(point, resultType))
+                {                 
+                    return;
+                }
+            }
+
+            // condition to check if the enumerator ARHitTestResultTypeChoice state is set to ExistingPlaneUsingGeometry
+            else if (_hitTest.desiredResultType == TouchManager.ARHitTestResultTypeChoice.ExistingPlaneUsingGeometry)
+            {
+                ARHitTestResultType resultType = ARHitTestResultType.ARHitTestResultTypeExistingPlaneUsingGeometry;
+                if (DistanceFinderHitTestWithResultType(point, resultType))
+                {
+                    return;
+                }
+            }
+
+            // condition to check if the enumerator ARHitTestResultTypeChoice state is set to ExistingPlane
+            else if (_hitTest.desiredResultType == TouchManager.ARHitTestResultTypeChoice.ExistingPlane)
+            {
+                ARHitTestResultType resultType = ARHitTestResultType.ARHitTestResultTypeExistingPlane;
+                if (DistanceFinderHitTestWithResultType(point, resultType))
+                {
+                    return;
+                }
+            }
+
+            // condition to check if the enumerator ARHitTestResultTypeChoice state is set to EstimatedHorizontalPlane
+            else if (_hitTest.desiredResultType == TouchManager.ARHitTestResultTypeChoice.EstimatedHorizontalPlane)
+            {
+                ARHitTestResultType resultType = ARHitTestResultType.ARHitTestResultTypeEstimatedHorizontalPlane;
+                if (DistanceFinderHitTestWithResultType(point, resultType))
+                {
+                    return;
+                }
+            }
+
+            // condition to check if the enumerator ARHitTestResultTypeChoice state is set to EstimatedVerticalPlane
+            else if (_hitTest.desiredResultType == TouchManager.ARHitTestResultTypeChoice.EstimatedVerticalPlane)
+            {
+                ARHitTestResultType resultType = ARHitTestResultType.ARHitTestResultTypeEstimatedVerticalPlane;
+                if (DistanceFinderHitTestWithResultType(point, resultType))
+                {
+                    return;
+                }
+            }
+
+            // condition to check if the enumerator ARHitTestResultTypeChoice state is set to FeaturePoint
+            else if (_hitTest.desiredResultType == TouchManager.ARHitTestResultTypeChoice.FeaturePoint)
+            {
+                ARHitTestResultType resultType = ARHitTestResultType.ARHitTestResultTypeFeaturePoint;
+                if (DistanceFinderHitTestWithResultType(point, resultType))
+                {
+                    return;
+                }
+            }
+            // condition to check if the enumerator ARHitTestResultTypeChoice state is set to AllResultTypes
+            else if (_hitTest.desiredResultType == TouchManager.ARHitTestResultTypeChoice.AllResultTypes)
+            {
+                // prioritize results types
+                ARHitTestResultType[] resultTypes = {
+                        ARHitTestResultType.ARHitTestResultTypeExistingPlaneUsingExtent,                        
+                        ARHitTestResultType.ARHitTestResultTypeExistingPlaneUsingGeometry,
+                        ARHitTestResultType.ARHitTestResultTypeExistingPlane,
+                        ARHitTestResultType.ARHitTestResultTypeEstimatedVerticalPlane,
+                        ARHitTestResultType.ARHitTestResultTypeEstimatedHorizontalPlane,
+                        ARHitTestResultType.ARHitTestResultTypeFeaturePoint
+                    };
+
+                foreach (ARHitTestResultType resultType in resultTypes)
+                {
+                    if (DistanceFinderHitTestWithResultType(point, resultType))
+                    {
+                        Debug.Log("Found a hit test result");
+                        return;
+                    }
+                }
+            }
+
+        }
+
+        // Adapted from: "https://www.youtube.com/watch?v=Ml2UakwRxjk&t=908s" - Getting Started With ARFoundation in Unity (ARKit, ARCore)
+        // Function used to complete the  DistanceFinder() functions distance detection
+        bool DistanceFinderHitTestWithResultType(ARPoint point, ARHitTestResultType resultTypes)
+        {
+            // Perform a HitTest on the parameters of the specified screen position (point) and ARHitTestResultType (resultTypes)
+            List<ARHitTestResult> hitResults = UnityARSessionNativeInterface.GetARSessionNativeInterface().HitTest(point, resultTypes); // Save the HitTest result in an ARHitTestResult List hitResults
+
+            if (hitResults.Count > 0)
+            {
+                rayHitPoseIsValid = hitResults.Count > 0; // rayHitPoseIsValid if the HitTest has more than 0 hits
+
+                foreach (var hitResult in hitResults)
+                {
+
+                    Debug.Log("Got hit!");
+
+                    if (rayHitPoseIsValid)
+                    {
+                        //Transform from ARKit frame of reference to Unity World frame of reference  
+                        rayHitPose.position = UnityARMatrixOps.GetPosition(hitResult.worldTransform); // HitTest results worldTransform postion coordinates
+                        rayHitPose.rotation = UnityARMatrixOps.GetRotation(hitResult.worldTransform); // HitTest results worldTransform rotation coordinates
+
+                        // the rayHitIndicator will not turn on device rotation, because the orientation is set to the direction the device was facing when ARKit started up
+                        // the following three lines help to fix the rotation issue and make the rayHitIndicator turn as the device turns
+                        var cameraForward = Camera.main.transform.forward;
+                        var cameraBearing = new Vector3(cameraForward.x, 0, cameraForward.z).normalized;
+                        rayHitPose.rotation = Quaternion.LookRotation(cameraBearing);
+
+                        rayHitIndicator.transform.SetPositionAndRotation(rayHitPose.position, rayHitPose.rotation); // function used to simulatenously set the Position and Rotation
+                        rayHitIndicator.SetActive(true); // show rayHitIndicator
+                    }
+                    else
+                    {
+                        rayHitIndicator.SetActive(false); // hide rayHitIndicator
+                    }
+
+                    physDistance = (Math.Round(hitResult.distance * 100)) / 100; // set the physDistance from hitResult.distance and round it to two decimal places
+                    physDistanceReading.text = "Phys Dist: " + physDistance.ToString(); // use the physDistanceReading User Interface text object to display the distance
+
+                    // Give an audio indicator for distance readings
+                    GetComponent<AudioManager>().ObjectDistanceAlarm(physDistance); // AudioManager function ObjectDistanceAlarm() used to play distance notification sound
+
+                    return true;
+                }
+            }
+            else
+            {
+                physDistanceReading.text = " "; // Clear the "Phys Distance" reading if there is no hit
+                rayHitIndicator.SetActive(false); // hide rayHitIndicator if there is no hit
+            }
+            return false;
+        }
+    }
+}
+```
+
+### "MapSaveAndLoadManager.cs" Script
+
+```c#
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System;
+using UnityEngine.UI;
+using UnityEngine.XR.iOS;
+using System.Runtime.InteropServices;
+using System.IO;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+
+namespace MapSaveAndLoadManager
+{
+    public class MapSaveAndLoadManager : MonoBehaviour, PlacenoteListener
+    {
+
+        [SerializeField] Text mLabelText; // display on screen for Debugging and testing
+        [SerializeField] PlacenoteARGeneratePlane mPlaneGenerator; // used to visual planes for debugging and testing
+
+
+        // Unity ARKit Session handler
+        private UnityARSessionNativeInterface mSession;
+
+        // Handle for enum AppState in TouchManager
+        private TouchManager _appState;
+
+        private LibPlacenote.MapInfo mCurrMapInfo;   // variable used for current map info
+
+        private string mCurrMapId; // string used to hold the last saved MapID
+        private LibPlacenote.MapMetadata downloadedMetaData; // variable used for map metadata info
+
+
+        private bool mARKitInit = false; // Boolean for Intializing ARKit
+        private bool localizedFirstTime = false; // Boolean used to manipulate map loading behaviour
+
+        // Use this for initialization
+        void Start()
+        {
+            _appState = GetComponent<TouchManager>(); // assign the handle to the TouchManager component
+
+            _appState.currentState = TouchManager.AppState.Home; // change state to AppState.Home         
+
+            downloadedMetaData = new LibPlacenote.MapMetadata(); // assign a varaible for the MapMetadata
+            Input.location.Start(); // property for accessing mobile device GPS location information
+
+            // assign an Session instance for ARKit
+            mSession = UnityARSessionNativeInterface.GetARSessionNativeInterface();
+            StartARKit(); // Start ARKit using the Unity ARKit Plugin
+            FeaturesVisualizer.EnablePointcloud();
+            LibPlacenote.Instance.RegisterListener(this);
+
+            // start to generate and display planes with PlacenoteARGeneratePlane's StartPlaneDetection()
+            mPlaneGenerator.StartPlaneDetection();
+            // check if LibPlacnote has been initialized
+            if (LibPlacenote.Instance.Initialized())
+            {
+
+                GetComponent<AudioManager>().PlayAfterDelay(AudioManager.initializedAudio, 1f);
+            }
+
+        }
+
+        // Function used to Exit the current state the application is in.
+        public void OnExitClick()
+        {
+            if (_appState.currentState != TouchManager.AppState.MapExtend)
+            {
+                LibPlacenote.Instance.StopSession(); // Stop Session
+            //    if(_appState.currentState != TouchManager.AppState.MapLoad)
+            //    {
+                    AudioManager.audioSource.PlayOneShot(AudioManager.exitAudio); // PLAY exit notification sound
+            //    }
+                _appState.currentState = TouchManager.AppState.Home; // change state to AppState.Home
+
+
+                GetComponent<AudioManager>().AppStateNotification(); // run Audio Manager AppStateNotification() function
+
+                FeaturesVisualizer.DisablePointcloud(); // Disable FeaturesVisualizer
+                FeaturesVisualizer.clearPointcloud(); // Clear PointCloud Data
+                GetComponent<MarkerManager>().ClearModels(); // Clear ModelInfoList and ModelObjList on Exit (OnExitClick)
+                GetComponent<MarkerManager>().DestroyMarkers("destinationMarker"); // Clear all Marker GameObjects in the scene that have the string tag "destinationMarker"
+
+                ConfigureSession(true, true); // continue plane detection and delete existing planes                              
+
+            }
+            else if (_appState.currentState == TouchManager.AppState.MapExtend)
+            {
+                _appState.currentState = TouchManager.AppState.Navigate; // change state to AppState.Navigate
+                GetComponent<AudioManager>().AppStateNotification(); // run Audio Manager AppStateNotification() function
+
+                GetComponent<MarkerManager>().InitNavigation(); // INTIALIZE MARKER ACTIVATOR OCCLUSION COROUTINE AND FUNCTIONS                            
+
+                LibPlacenote.Instance.StartSession();
+                FeaturesVisualizer.EnablePointcloud(); // re-enable pointcloud Feature Visualizer
+
+                ConfigureSession(true, false); // Start Plane Detection, dont delete existing planes
+
+            }
+        }
+
+
+        // Load map and relocalize. Check OnStatusChange function for behaviour upon relocalization
+        public void OnLoadMapClicked()
+        {
+            _appState.currentState = TouchManager.AppState.MapLoad; // change state to AppState.MapLoad
+            GetComponent<AudioManager>().AppStateNotification(); // run Audio Manager AppStateNotification() function
+
+            LibPlacenote.Instance.StopSession();
+            ConfigureSession(false, true); // Stop Plane Detection, delete existing planes
+            FeaturesVisualizer.DisablePointcloud(); // disable FeaturesVisualizer
+
+            if (!LibPlacenote.Instance.Initialized())
+            {
+                mLabelText.text = "SDK not yet initialized";
+                return;
+            }
+
+            // Reading the last saved MapID from file
+            mCurrMapId = LoadMapIDFromFile();
+
+            LibPlacenote.Instance.LoadMap(mCurrMapId,
+            (completed, faulted, percentage) =>
+            {
+                if (completed)
+                {
+                    // Get the meta data as soon as the map is downloaded
+                    LibPlacenote.Instance.GetMetadata(mCurrMapId, (LibPlacenote.MapMetadata obj) =>
+                    {
+                        if (obj != null)
+                        {
+                            downloadedMetaData = obj;
+
+                            FeaturesVisualizer.clearPointcloud(); //  clear PointCloud Data
+
+                            // Now trying to localize the map
+                            mLabelText.text = "Trying to Localize Map: " + mCurrMapId;
+                            AudioManager.audioSource.PlayOneShot(AudioManager.searchingAreaAudio); // PLAY searchingAreaAudio for trying to localize notification sound
+                            LibPlacenote.Instance.StartSession(); // Start the session
+                        }
+                        else
+                        {
+                            mLabelText.text = "Failed to download meta data";
+
+                            AudioManager.audioSource.PlayOneShot(AudioManager.noMapFoundAudio); // PLAY no map information found notification sound
+
+                            return;
+                        }
+                    });
+
+                }
+                else if (faulted)
+                {
+                    mLabelText.text = "Failed to load ID: " + mCurrMapId;
+
+                    AudioManager.audioSource.PlayOneShot(AudioManager.loadingFailedAudio); // PLAY loading map failed notification sound
+
+                    // Exit and go to AppState.Home
+                    _appState.currentState = TouchManager.AppState.Home;
+                    OnExitClick(); // Exit
+                }
+                else
+                {
+                    mLabelText.text = "Download Progress: " + percentage.ToString("F2") + "/1.0)"; // for debugging and testing
+                }
+            }
+
+            );
+        }
+
+        /* COMMENTED OUT MAP DELETING AS THERE IS NO NEED FOR IT CURRENTLY. KEPT FOR FUTURE WORK
+        public void OnDeleteMapClicked()
+        {
+            if (!LibPlacenote.Instance.Initialized())
+            {
+                Debug.Log("SDK not yet initialized");
+                return;
+            }
+
+            mLabelText.text = "Deleting Map ID: " + mCurrMapId;
+            LibPlacenote.Instance.DeleteMap(mCurrMapId, (deleted, errMsg) =>
+            {
+                if (deleted)
+                {
+                    mLabelText.text = "Deleted ID: " + mCurrMapId;
+                }
+                else
+                {
+                    mLabelText.text = "Failed to delete ID: " + mCurrMapId;
+                }
+            });
+        }
+        */
+
+        public void OnNewMapClick()
+        {
+            if (!LibPlacenote.Instance.Initialized())
+            {
+                AudioManager.audioSource.PlayOneShot(AudioManager.notIntializedAudio); // PLAY not intialized notification sound
+                Debug.Log("SDK not yet initialized");
+                return;
+            }
+
+            _appState.currentState = TouchManager.AppState.MapCreate; // change state to AppState.MapCreate
+
+            GetComponent<AudioManager>().AppStateNotification(); // run Audio Manager AppStateNotification() function
+
+            GetComponent<MarkerManager>().ClearModels(); // Clear ModelInfoList and ModelObjList
+
+            // start plane detection
+            ConfigureSession(true, true); // Start Plane Detection, delete existing planes
+
+            // start to generate and display planes with PlacenoteARGeneratePlane's StartPlaneDetection()
+            mPlaneGenerator.StartPlaneDetection();
+
+            FeaturesVisualizer.EnablePointcloud(); // enable FeaturesVisualizer
+            LibPlacenote.Instance.StartSession(); // start session
+
+        }
+
+        // Initialize ARKit.
+        private void StartARKit()
+        {
+            mLabelText.text = "Initializing ARKit"; // for debugging and testing
+            Application.targetFrameRate = 60; // set framerate
+            ConfigureSession(true, false); // start Start Plane Detection, do not delete existing planes
+        }
+
+        // Function used to configure the ARKit session and toggle PlaneDetection and Plane Clearing
+        private void ConfigureSession(bool togglePlaneDetection, bool clearOldPlanes)
+        {
+
+            ARKitWorldTrackingSessionConfiguration config = new ARKitWorldTrackingSessionConfiguration();
+
+            if (togglePlaneDetection)
+            {
+                if (UnityARSessionNativeInterface.IsARKit_1_5_Supported())
+                {
+                    config.planeDetection = UnityARPlaneDetection.HorizontalAndVertical;
+                }
+                else
+                {
+                    config.planeDetection = UnityARPlaneDetection.Horizontal;
+                }
+
+            }
+            else
+            {
+                config.planeDetection = UnityARPlaneDetection.None;
+            }
+
+            if (clearOldPlanes)
+            {
+                mPlaneGenerator.ClearPlanes();
+            }
+
+            config.alignment = UnityARAlignment.UnityARAlignmentGravity;
+            config.getPointCloudData = true;
+            config.enableLightEstimation = true;
+            UnityARSessionRunOption options = new UnityARSessionRunOption();
+            /* DESCRIPTION OF THE CONFIG OPTIONS AVAILABLE FOR RESETTING TRACKING AND REMOVING EXISTING ANCHORS
+            ARSessionRunOptionResetTracking - The session does not continue device position/ motion tracking from the previous configuration.            
+            ARSessionRunOptionRemoveExistingAnchors - Any anchor objects associated with the session in its previous configuration are removed.*/
+
+            //options = UnityARSessionRunOption.ARSessionRunOptionRemoveExistingAnchors | UnityARSessionRunOption.ARSessionRunOptionResetTracking;
+            options = UnityARSessionRunOption.ARSessionRunOptionRemoveExistingAnchors;
+            mSession.RunWithConfigAndOptions(config, options);
+
+        }
+
+        public void OnSaveMapClick()
+        {
+            if (!LibPlacenote.Instance.Initialized())
+            {
+                AudioManager.audioSource.PlayOneShot(AudioManager.notIntializedAudio); // PLAY not intialized notification sound
+                Debug.Log("SDK not yet initialized");
+
+                return;
+            }
+
+            bool useLocation = Input.location.status == LocationServiceStatus.Running;
+            LocationInfo locationInfo = Input.location.lastData;
+
+            mLabelText.text = "Saving...";
+            AudioManager.audioSource.PlayOneShot(AudioManager.savingAudio); // PLAY map saving notification sound
+            LibPlacenote.Instance.SaveMap(
+                (mapId) =>
+                {
+                    LibPlacenote.Instance.StopSession();
+                    FeaturesVisualizer.DisablePointcloud(); // Disable pointcloud Featture Visualizer
+
+
+                    mLabelText.text = "Saved Map ID: " + mapId;
+
+                    LibPlacenote.MapMetadataSettable metadata = CreateMetaDataObject();
+
+                    LibPlacenote.Instance.SetMetadata(mapId, metadata, (success) =>
+                    {
+                        if (success)
+                        {
+                            mLabelText.text = "Meta data successfully saved";
+                        }
+                        else
+                        {
+                            mLabelText.text = "Meta data failed to save";
+                            AudioManager.audioSource.PlayOneShot(AudioManager.errorAudio); // PLAY error notification sound
+                        }
+                    });
+
+                    SaveMapIDToFile(mapId);
+
+                },
+                (completed, faulted, percentage) =>
+                {
+
+                    if (completed)
+                    {
+                        mLabelText.text = "Upload Complete:";
+                        _appState.currentState = TouchManager.AppState.Navigate; // put app in AppState.Navigate for map following
+                        GetComponent<AudioManager>().AppStateNotification(); // run Audio Manager AppStateNotification() function
+                        FeaturesVisualizer.EnablePointcloud(); // re-enable pointcloud Feature Visualizer                        
+
+                        GetComponent<MarkerManager>().InitNavigation(); // INTIALIZE MARKER ACTIVATOR OCCLUSION COROUTINE AND FUNCTIONS
+
+                        ConfigureSession(true, false); // Start Plane Detection, dont delete existing planes
+
+                    }
+                    else if (faulted)
+                    {
+                        mLabelText.text = "Upload of Map failed";
+                        AudioManager.audioSource.PlayOneShot(AudioManager.savingFailedAudio); // PLAY saving failed notification sound
+                    }
+                    else
+                    {
+                        mLabelText.text = "Upload Progress: " + percentage.ToString("F2") + "/1.0)";
+
+                    }
+
+                }
+            );
+        }
+
+
+        public void OnExtendMapClick()
+        {
+            LibPlacenote.Instance.StartSession(true); // true flag is used to  extend a previously created map, after a successful localization
+            _appState.currentState = TouchManager.AppState.MapExtend; // set to AppState.MapExtend
+            GetComponent<AudioManager>().AppStateNotification(); // run Audio Manager AppStateNotification() function
+
+        }
+
+
+        // Function used to create Map MetaData that contains GameObject and location data
+        public LibPlacenote.MapMetadataSettable CreateMetaDataObject()
+        {
+            LibPlacenote.MapMetadataSettable metadata = new LibPlacenote.MapMetadataSettable();
+
+            metadata.name = "AR Nav Map";
+
+            // get GPS location of device to save with map
+            bool useLocation = Input.location.status == LocationServiceStatus.Running;
+            LocationInfo locationInfo = Input.location.lastData;
+            if (useLocation)
+            {
+                metadata.location = new LibPlacenote.MapLocation();
+                metadata.location.latitude = locationInfo.latitude;
+                metadata.location.longitude = locationInfo.longitude;
+                metadata.location.altitude = locationInfo.altitude;
+            }
+
+            JObject userdata = new JObject(); // create JObject varaible
+
+            // Get JSON Model data created from MarkerManager.cs
+            JObject modelList = GetComponent<MarkerManager>().Models2JSON();
+            userdata["modelList"] = modelList; // add to an entry field in the userdata referenced by the "modelist" string
+
+
+            metadata.userdata = userdata; // assign userdata to metadata.userdata
+            return metadata;
+        }
+
+        // Function used to mapid
+        public void SaveMapIDToFile(string mapid)
+        {
+            string filePath = Application.persistentDataPath + "/mapIDFile.txt";
+            StreamWriter sr = File.CreateText(filePath);
+            sr.WriteLine(mapid);
+            sr.Close();
+        }
+
+        // Function used to load from mapid
+        public string LoadMapIDFromFile()
+        {
+            string savedMapID;
+            // read history file
+            FileInfo historyFile = new FileInfo(Application.persistentDataPath + "/mapIDFile.txt");
+            StreamReader sr = historyFile.OpenText();
+            string text;
+            do
+            {
+                text = sr.ReadLine();
+                if (text != null)
+                {
+                    // Create drawing command structure from string.
+                    savedMapID = text;
+                    return savedMapID;
+
+                }
+            } while (text != null);
+            return null;
+        }
+
+        // Callback used to publish the computed poses along with its corresponding ARKit pose to listeners
+        public void OnPose(Matrix4x4 outputPose, Matrix4x4 arkitPose) { }
+
+        // Function used to handle status changes
+        public void OnStatusChange(LibPlacenote.MappingStatus prevStatus, LibPlacenote.MappingStatus currStatus)
+        {
+            Debug.Log("prevStatus: " + prevStatus.ToString() + " currStatus: " + currStatus.ToString());
+            if (currStatus == LibPlacenote.MappingStatus.RUNNING && prevStatus == LibPlacenote.MappingStatus.LOST)
+            {
+
+                // Placenote has successfully localized your map
+
+                mLabelText.text = "Localized State!";
+
+                if (!localizedFirstTime)
+                {
+                    //localizedFirstTime = true;
+
+                    mLabelText.text = "Localized: loaded shapes";
+
+                    JToken modelData = downloadedMetaData.userdata; // retrieve metadata
+                    GetComponent<MarkerManager>().LoadModelsFromJSON(modelData); // load models from the JSON
+
+                    _appState.currentState = TouchManager.AppState.Navigate; // put app in AppState.Navigate for map following
+                    GetComponent<AudioManager>().AppStateNotification(); // run Audio Manager AppStateNotification() function
+
+                    ConfigureSession(true, false); // Start Plane Detection, dont delete existing planes
+                    FeaturesVisualizer.EnablePointcloud(); // enable FeatureVisualizer
+
+                    GetComponent<MarkerManager>().InitNavigation(); // INTIALIZE MARKER ACTIVATOR OCCLUSION COROUTINE AND FUNCTIONS
+
+                    // stops the Placenote loading session
+                    LibPlacenote.Instance.StopSession();
+
+                }
+            }
+            else if (currStatus == LibPlacenote.MappingStatus.RUNNING && prevStatus == LibPlacenote.MappingStatus.WAITING)
+            {
+                // Started a new mapping Session
+
+                mLabelText.text = "Mapping";
+
+            }
+            else if (currStatus == LibPlacenote.MappingStatus.LOST)
+            {
+                // Lost map, trying to localize again
+
+                mLabelText.text = "Searching for position lock";
+
+
+            }
+            else if (currStatus == LibPlacenote.MappingStatus.WAITING)
+            {
+                // After stop session is called.
+            }
+        }
+    }
+}
+```
+
+### "MarkerManager.cs" Script
+
+```c#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.XR.iOS;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using UnityEngine.UI;
+
+namespace MapSaveAndLoadManager
+{
+
+    // Classes to hold model information
+
+    [System.Serializable]
+    public class ModelInfo
+    {
+        public float px; //position.x
+        public float py; //position.y
+        public float pz; //position.z
+        public float qx; //rotation.x
+        public float qy; //rotation.y
+        public float qz; //rotation.z
+        public float qw; //rotation.w
+        public bool visited; // flag for visited status
+    }
+
+    [System.Serializable]
+    public class ModelList
+    {
+        public ModelInfo[] models;
+    }
+
+     // Main Class for Managing Models
+    public class MarkerManager : MonoBehaviour
+    {
+
+        public GameObject modelPrefab; // 1 prefab ("marker") attached in the inspector
+
+        public static List<ModelInfo> ModelInfoList = new List<ModelInfo>();
+        public static List<GameObject> ModelObjList = new List<GameObject>();
+
+
+        // UI Debugging and Testing GameObjects         
+        public Text objDistanceReading;        
+        public Text tagReading;        
+        public float objDistance = 0;
+
+        public static bool isMarkerFlag = false; // Flag used to toggle between detecting a marker for adding and removing
+        public RaycastHit objectHit; // a public variable used to hold Physics Raycast (Unity world space) returned data
+
+        // Handle for enum AppState in TouchManager
+        private TouchManager _appState;
+
+        Vector3 cameraPos; // User postion Vector3 (x, y and z)
+        float distanceRadius = 1f; // start the distance radius to search for markers at 1 meter
+        float maxDistanceRadius = 5f; // maximum distance radius set to 5 meters
+
+        float distanceCameraToMarker = 0f; // set variable used to hold result between object to camera distance "distanceCameraToMarker" variable to 0.
+
+
+        void Start()
+        {
+            _appState = GetComponent<TouchManager>(); // assign the handle to the TouchManager component            
+        }
+
+
+        void Update()
+        {
+            MarkerDirectionFinder(); // run the MarkerDirectionFinder() function on every update
+            UserPosition(); // run the Update UserPosition() function on every update
+        }
+
+        //Function used to retrieve the position coordinates of the user in the world space
+        void UserPosition()
+        {
+            cameraPos = Camera.main.transform.position; // current position of the camera
+        }
+
+        // Function used to check for a gameObject marker (destinationMarker) in the scene
+            public void MarkerDirectionFinder()
+        {      
+            var screenCenter = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f));
+
+            if (Physics.Raycast(screenCenter, out objectHit, maxDistanceRadius*2))
+            {
+
+                if (objectHit.transform.tag == "destinationMarker") // marker tag is set to the "marker" prefab through the inspector of Unity
+                {
+                    // vibrate the iPhone if a destination marker is hit by the physics raycast
+                    Handheld.Vibrate();
+
+                    // ipad DOESNT VIBRATE so if a destination marker is hit by the physics raycast play sound too.
+                    GetComponent<AudioManager>().MarkerDetectionAlarm();
+
+                    isMarkerFlag = true; // set markerFlag to true to indicate a marker has been hit by the raycast
+
+                    objDistance = (Mathf.Round(objectHit.distance * 100)) / 100;  // set the objDistance from objectHit.distance and round it to two decimal places
+                    objDistanceReading.text = "Object Dist: " + objDistance.ToString(); // display on screen for Debugging and testing
+                }
+
+            }
+            else
+            {
+                objDistanceReading.text = " "; // clear display on screen for Debugging and testing
+                //tagReading.text = " ";
+                isMarkerFlag = false; // set isMarkerFlag to false when it is not hit by the raycast
+            }
+        }
+
+        // The HitTest to Add a Marker
+        public void AddMarker()
+        {           
+
+                Debug.Log("Not touching a UI button. Moving on.");
+
+            // add marker object
+            float width = Screen.width / 2; // calculate the midpoint of the screen's resolution width (x coordinates)
+            float height = Screen.height / 2; // calculate the midpoint of the screen's resolution height (y coordinates)
+
+            // run ScreenToViewportPoint() function on main camera using the center of the mobile device's width and height as its parameters
+            var screenPosition = Camera.main.ScreenToViewportPoint(new Vector2(width, height));
+            ARPoint point = new ARPoint
+                {                     
+                    x = screenPosition.x,
+                    y = screenPosition.y
+                };
+
+                // Place Object Markers on Horizontal planes (floor placement) or FeaturePoints
+                // prioritize results types
+                ARHitTestResultType[] resultTypes = {
+                        //ARHitTestResultType.ARHitTestResultTypeExistingPlaneUsingExtent,
+                        //ARHitTestResultType.ARHitTestResultTypeExistingPlane,
+                        ARHitTestResultType.ARHitTestResultTypeEstimatedHorizontalPlane,
+
+                        //ARHitTestResultType.ARHitTestResultTypeEstimatedVerticalPlane,
+                        ARHitTestResultType.ARHitTestResultTypeFeaturePoint
+                    };
+
+                foreach (ARHitTestResultType resultType in resultTypes)
+                {
+                    if (AddMarkerHitTestWithResultType(point, resultType))
+                    {
+                        Debug.Log("Found a hit test result");
+                        return;
+                    }
+                }
+
+        }
+
+        // Boolean function used to carryout a ARKit hitTest and convert the Pose to Unity and Placenote's frame of reference
+        bool AddMarkerHitTestWithResultType(ARPoint point, ARHitTestResultType resultTypes)
+        {
+            // Perform a HitTest on the parameters of the specified screen position (point) and ARHitTestResultType (resultTypes)
+            List<ARHitTestResult> hitResults = UnityARSessionNativeInterface.GetARSessionNativeInterface().HitTest(point, resultTypes); // Save the HitTest result in an ARHitTestResult List hitResults
+
+            if (hitResults.Count > 0)
+            {
+                foreach (var hitResult in hitResults)
+                {
+
+                    Debug.Log("Got hit!");
+
+                    //Transform from ARKit frame of reference to Unity World frame of reference (ARKit uses right hand coordinates and Unity uses left hand coordinates)
+                    Vector3 position = UnityARMatrixOps.GetPosition(hitResult.worldTransform); // HitTest results worldTransform postion coordinates
+                    Quaternion rotation = UnityARMatrixOps.GetRotation(hitResult.worldTransform); // HitTest results worldTransform rotation coordinates
+
+                    //Transform to placenote frame of reference (planes are detected in ARKit frame of reference)
+                    Matrix4x4 worldTransform = Matrix4x4.TRS(position, rotation, Vector3.one); // create a translation, rotation and scale matrix (4 x 4 Matrix) using the converted unity world coordinates and Vector3(1, 1, 1)
+                    Matrix4x4? placenoteTransform = LibPlacenote.Instance.ProcessPose(worldTransform); // Return a transform in the current ARKit frame transformed into the inertial frame w.r.t the current Placenote Map
+
+                    Vector3 hitPosition = PNUtility.MatrixOps.GetPosition(placenoteTransform.Value); // Get Position coordinates from the ARKit frame coordinates
+                    Quaternion hitRotation = PNUtility.MatrixOps.GetRotation(placenoteTransform.Value);  // Get Rotation coordinates from the ARKit frame coordinates
+
+                    // create model info object
+                    ModelInfo modelInfo = new ModelInfo();
+                    modelInfo.px = hitPosition.x;
+                    modelInfo.py = hitPosition.y;
+                    modelInfo.pz = hitPosition.z;
+                    modelInfo.qx = hitRotation.x;
+                    modelInfo.qy = hitRotation.y;
+                    modelInfo.qz = hitRotation.z;
+                    modelInfo.qw = hitRotation.w;
+                    modelInfo.visited = false; // set the visited object boolean to false
+
+                    AddModel(modelInfo);
+
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // Function used to remove marker GameObject hit by a raycast
+        public void RemoveMarker()
+        {
+            if (objectHit.collider != null)
+            {
+                if (ModelObjList != null)
+                {
+                    foreach (var obj in ModelObjList)
+                    {
+                        if (obj.name == objectHit.collider.gameObject.GetInstanceID().ToString())
+                        {
+                            var indexValue = ModelObjList.IndexOf(obj);
+                            ModelObjList.Remove(obj);
+                            Destroy(objectHit.collider.gameObject);
+                            if(ModelInfoList != null)
+                            {
+                                ModelInfoList.RemoveAt(indexValue);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+        // Function used to initialise the InitNavigation used to control marker activation and deactivation instantiated in the map
+        public void InitNavigation()
+        {
+
+            if (ModelInfoList != null)
+            {
+                StartCoroutine("HideAllModels"); // run coroutine (IEnumerator HideAllModels)
+            }
+        }
+
+        // Function used to start ShowAllModels Coroutine
+        public void ShowModelsMapExtend()
+        {
+            StartCoroutine("ShowAllModels");
+        }
+
+        // coroutine used to  hide all the marker GameObjects within the environment
+        IEnumerator HideAllModels()
+        {
+            distanceRadius = 1f; // start the distance at 1 meter
+            foreach (GameObject item in ModelObjList)
+            {
+                item.SetActive(false); // deactivate all the loaded marker gameObjects
+            }            
+            yield return new WaitForSeconds(0.5f);
+
+            StartCoroutine("RadiusActivatior"); // run coroutine (IEnumerator RadiusActivatior)
+        }
+
+        // coroutine used to show all the marker GameObjects hidden within the environment
+        IEnumerator ShowAllModels()
+        {
+
+            foreach (GameObject item in ModelObjList)
+            {
+                item.SetActive(true); // activate all the loaded marker gameObjects
+            }            
+            yield return new WaitForSeconds(0.5f);
+
+        }
+
+        // coroutine used to handle marker GameObject Occlusion and navigation session Visted markers
+        // Adapted from: "https://www.youtube.com/watch?v=kvI2NmlkRUo" Unity Tutorial - Deactivate objects when far from player.
+        IEnumerator RadiusActivatior()
+        {
+
+            tagReading.text = ModelInfoList.Count.ToString();
+            int markersInRadiusCount = 0;
+            for(int x = 0; x < ModelInfoList.Count ; x++)
+            {
+                // float
+                distanceCameraToMarker = Vector3.Distance(cameraPos, ModelObjList[x].transform.position);
+                tagReading.text = "diff: " + distanceCameraToMarker.ToString() + " visited " + ModelInfoList[x].visited;
+                yield return new WaitForSeconds(2f);
+                // check if any marker gameObjects are within the current distanceRadius of the camera
+                if (distanceCameraToMarker < distanceRadius)
+                {
+                    // check if the current marker gameObject's ModelInfoList visited flag is false (I.e. that user has not navigated through it yet)
+                    if (ModelInfoList[x].visited == false)
+                    {
+                        ModelObjList[x].SetActive(true); // activate the current marker
+                        markersInRadiusCount++; // increment markersInRadiusCount whenever a marker is within distanceRadius and ModelInfoList[x].visited is false (if true it does not count)    
+                    }
+
+                }
+                // if previously in range marker gameObjects are out of range of the distanceRadius
+                else
+                {
+                    // check if the current marker gameObject's ModelInfoList visited flag is false (I.e. that user has not navigated through it yet)
+                    if (ModelInfoList[x].visited == false)
+                    {
+                        ModelObjList[x].SetActive(false); // deactivate the current marker as it is far away to be used
+                    }
+                }
+
+                // if the distance between the current gameObject marker and the user (CameraPos) is less than or equal to 60 cm
+                if (distanceCameraToMarker <= 0.60f)
+                {
+                    ModelObjList[x].SetActive(false); // Deactivate the gameObject if its within 20 cm of the camera's position
+                    ModelInfoList[x].visited = true; // Set visited flag to true
+                }
+
+            }
+            // check if no gameObject markers in ModelInfoList and ModelObjList where detected in the current distanceRadius
+            if (markersInRadiusCount == 0)
+            {
+                // if distanceRadius is less than maxDistanceRadius                
+                if (distanceRadius < maxDistanceRadius)
+                {
+                    distanceRadius += 1f; // extend the range by 1 meter
+                }
+                // if distance radius is equal to maxDistanceRadius
+                else if (distanceRadius == maxDistanceRadius)
+                {
+                    // reset distance radius to 1 meter
+                    distanceRadius = 1f;
+                }
+            }
+            tagReading.text = "Distance Radius " + distanceRadius.ToString();
+
+            yield return new WaitForSeconds(0.5f);
+
+            // condition to check if the currentState is still in "Navigate"
+            if (_appState.currentState == TouchManager.AppState.Navigate)
+            {
+                StartCoroutine("RadiusActivatior"); // re-run coroutine (IEnumerator RadiusActivation)
+            }
+
+        }        
+
+        // ADDING, DESTROYING AND JSON CONVERSION OF MARKER MODELS
+        #region Create, Delete convert and Models with JSON
+        // Function used to instantiate gameObjects from modelInfo as well add the information and object to the "ModelInfoList" and "ModelObjList"
+        public void AddModel(ModelInfo modelInfo)
+        {
+
+            GameObject newModel = Instantiate(modelPrefab); // instantiate from [System.Serializable] prefab
+
+            newModel.transform.position = new Vector3(modelInfo.px, modelInfo.py, modelInfo.pz); // set the position of the newModel object
+            newModel.transform.rotation = new Quaternion(modelInfo.qx, modelInfo.qy, modelInfo.qz, modelInfo.qw); // set the rotation of the newModel object
+
+            newModel.name = newModel.GetInstanceID().ToString(); // use the GetInstance() to add the unique object identifier as name property for ModelObjList important to add and remove markers without looping through            
+
+            ModelObjList.Add(newModel); // add current model to ModelObjList            
+            ModelInfoList.Add(modelInfo); // add current modelInfo to ModelInfoList
+        }
+
+        public void ClearModels()
+        {
+            foreach (var obj in ModelObjList)
+            {
+                Destroy(obj);
+            }
+            ModelObjList.Clear();
+            ModelInfoList.Clear();
+        }
+
+        // Function used to destroy all the GameObjects in the scene that have the passed string tag name
+        public void DestroyMarkers(string tag)
+        {
+            GameObject[] markergameObjects = GameObject.FindGameObjectsWithTag(tag);
+            if(markergameObjects != null)
+            {
+                foreach (GameObject marker in markergameObjects)
+                {
+                    GameObject.Destroy(marker);
+                }
+            }
+        }
+
+
+        // Helper Functions to convert (Serialize and Deserialize) models to and from JSON objects
+        // Create JSON file from "ModelInfoList"
+        public JObject Models2JSON()
+        {
+            ModelList modelList = new ModelList();
+            modelList.models = new ModelInfo[ModelInfoList.Count];
+            for (int i = 0; i < ModelInfoList.Count; i++)
+            {
+                modelList.models[i] = ModelInfoList[i];
+            }
+
+            return JObject.FromObject(modelList);
+        }
+
+        // Load and deserialize GameObjects from mapMetadata
+        public void LoadModelsFromJSON(JToken mapMetadata)
+        {
+            ClearModels();
+
+            if (mapMetadata is JObject && mapMetadata["modelList"] is JObject)
+            {
+                ModelList modelList = mapMetadata["modelList"].ToObject<ModelList>();
+                if (modelList.models == null)
+                {
+                    Debug.Log("no models added");
+                    return;
+                }
+
+                // foreach loop used to load models from JSON back to "ModelObjList" and the scene as GameObjects
+                foreach (var modelInfo in modelList.models)
+                {
+                    AddModel(modelInfo);
+                }
+            }
+
+        }
+    #endregion
+    }
+
+}
+```
+
+### "TouchManager.cs" Script
+
+```c#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.XR.iOS;
+using UnityEngine.UI;
+
+namespace MapSaveAndLoadManager
+{
+
+    public class TouchManager : MonoBehaviour
+    {
+        // Create enum for the different states of the app
+        public enum AppState
+        {
+            Home,
+            MapLoad,
+            MapCreate,
+            Navigate,
+            MapExtend
+        }
+
+        public AppState currentState; // create a variable "currentState" for the app states
+
+        // Create enum for the different states between ARHitTestResultType Result Types for "DistanceDetectionManager.cs" Physical Distance
+        public enum ARHitTestResultTypeChoice
+        {
+            AllResultTypes = 0,
+            ExistingPlaneUsingExtent = 1,
+            ExistingPlaneUsingGeometry = 2,
+            ExistingPlane = 3,
+            EstimatedHorizontalPlane = 4,
+            EstimatedVerticalPlane = 5,
+            FeaturePoint = 6
+        }
+
+        public ARHitTestResultTypeChoice desiredResultType = 0; // create a variable "desiredResultType" for the HitTestResultTypeChoice
+
+        // Touch and Swipe
+        public float maxTime = 1f; // 1 second
+        public float minSwipeDist = 100; // 100 pixels
+        public bool screenSwiped = false;
+
+        float swipeDistance;
+        float touchTime;
+
+        float startTime;
+        float endTime;
+
+        Vector3 startPos;
+        Vector3 endPos;
+
+        public Text displayAppState;
+        public Text displayHitTestResultTypeChoice;
+
+
+        void Update()
+        {
+            DisplaySystemState(); // Run the DisplaySystemState() function
+
+
+            // Check if the screen is touched
+
+            // ONE FINGER TOUCH COMMANDS
+            #region ONE FINGER TOUCH
+            // check if only one finger is detected on the screen
+            if (Input.touchCount == 1)
+            {
+                Touch touch = Input.GetTouch(0);
+                if (touch.phase == TouchPhase.Moved)
+                {
+                    screenSwiped = true;
+                }
+                if (touch.phase == TouchPhase.Began)
+                {
+                    startTime = Time.time;
+                    startPos = touch.position;
+
+                }
+                else if (touch.phase == TouchPhase.Ended)
+                {
+                    endTime = Time.time;
+                    endPos = touch.position;
+
+                    swipeDistance = (endPos - startPos).magnitude;
+                    touchTime = endTime - startTime;
+
+                    if (touchTime < maxTime && swipeDistance > minSwipeDist && screenSwiped == true)
+                    {
+                        Swipe();
+                        screenSwiped = false;
+                    }
+                    else if (touchTime > 0 && touchTime < 2 && screenSwiped == false)
+                    {
+                           GetComponent<DistanceDetectionManager>().DistanceFinder();                        
+                    }
+
+                    else
+                    {
+                        screenSwiped = false;
+                    }
+
+                }
+                // Screen held down with one touch
+                else if (touch.phase == TouchPhase.Stationary)
+                {
+                    if ((Time.time - startTime) > 2)
+                    {
+                        GetComponent<DistanceDetectionManager>().DistanceFinder();
+                    }
+
+                }
+            }
+            #endregion
+
+            // TWO FINGER TOUCH COMMANDS
+            #region TWO FINGER TOUCH
+            // two finger touch on the phone/tablet screen should place a marker on the EstimatedHorizontalPlane
+            else if (Input.touchCount == 2)
+            {
+                Touch touch0 = Input.GetTouch(0);
+                Touch touch1 = Input.GetTouch(1);
+                if (touch0.phase == TouchPhase.Began && touch1.phase == TouchPhase.Began)
+                {
+                    startTime = Time.time;
+                }
+                else if (touch0.phase == TouchPhase.Ended || touch1.phase == TouchPhase.Ended)
+                {
+                    endTime = Time.time;
+                    touchTime = endTime - startTime;
+
+                    // check if the touchTime is greater than 0 , less than 2 seconds and currentState is on AppState.MapCreate or AppState.MapExtend
+                    if (((touchTime > 0 && touchTime < 2) && (currentState == AppState.MapCreate || currentState == AppState.MapExtend)))
+                    {
+                        // Add a marker to a HitTest Result if isMarkerFlag is false
+                        if (MarkerManager.isMarkerFlag == false)
+                        {
+                            GetComponent<MarkerManager>().AddMarker();
+                        }
+                        // Destroy a HitTest Result detected marker if isMarkerFlag is set to true
+                        if (MarkerManager.isMarkerFlag == true)
+                        {
+                            GetComponent<MarkerManager>().RemoveMarker();
+                        }
+                    }
+
+                    // check if the two finger touchTime is greater than 2 seconds
+                    if (touchTime > 2)
+                    {
+                        GetComponent<AudioManager>().AppStateHelpNotifications(); // run AppStateHelpNotification() function
+
+                    }
+
+                }
+
+            }
+            #endregion
+            // THREE FINGER TOUCH COMMANDS
+            #region THREE FINGER TOUCH
+            // three finger touch on the phone/tablet screen should Save the map
+            else if (Input.touchCount == 3)
+            {
+                Touch touch0 = Input.GetTouch(0);
+                Touch touch1 = Input.GetTouch(1);
+                Touch touch2 = Input.GetTouch(2);
+                if (touch0.phase == TouchPhase.Began && touch1.phase == TouchPhase.Began && touch2.phase == TouchPhase.Began)
+                {
+                    startTime = Time.time;
+                }
+                else if (touch0.phase == TouchPhase.Ended || touch1.phase == TouchPhase.Ended || touch2.phase == TouchPhase.Ended)
+                {
+                    endTime = Time.time;
+                    touchTime = endTime - startTime;
+
+                    // check if the touchTime is less than the maxTime
+                    if (touchTime > 0 && touchTime < 2)
+                    {
+                        // Run SwitchDesiredResultType() function used to toggle between "DistanceDetectionManager.cs" HitTestResultTypeChoice for Physical Distance ARHitTestResultType Result Types:
+                        // AllResultTypes = 0, ExistingPlaneUsingExtent = 1, ExistingPlane = 2, EstimatedHorizontalPlane = 3, EstimatedVerticalPlane = 4, FeaturePoint = 5
+
+                        SwitchDesiredResultType();
+
+                    }
+
+                }
+
+            }
+            #endregion    
+        }
+
+        private void Swipe()
+        {
+            Vector2 touchDistance = endPos - startPos;
+
+            // Horizontal Swipe
+            if (Mathf.Abs(touchDistance.x) > Mathf.Abs(touchDistance.y))
+            {
+
+                // Right Swipe to create a new map (if the currentState is AppState.Home Only)
+                if (touchDistance.x > 0 && currentState == AppState.Home)
+                {                    
+                    GetComponent<MapSaveAndLoadManager>().OnNewMapClick(); // run the OnNewMapClick() function
+                    if (MarkerManager.ModelInfoList != null && MarkerManager.ModelObjList != null)
+                    {
+                        GetComponent<MarkerManager>().ClearModels();
+                    }
+
+                }
+                // Right Swipe to extend the current map (if the currentState is AppState.Navigate)
+                if (touchDistance.x > 0 && currentState == AppState.Navigate)
+                {
+                    // START UP CREATE MAPPING WITHOUT THE MODEL CLEARING
+                    GetComponent<MapSaveAndLoadManager>().OnExtendMapClick(); // run the OnExtendMapClick() function
+                    if (MarkerManager.ModelInfoList != null && MarkerManager.ModelObjList != null)
+                    {
+                        // REACTIVATE ALL MODELS WITHIN THE SCENE
+                        GetComponent<MarkerManager>().ShowModelsMapExtend();
+                    }
+
+                }
+                // Left Swipe (if the currentState is Not AppState.Home)
+                if (touchDistance.x < 0 && currentState != AppState.Home)
+                {                    
+                     GetComponent<MapSaveAndLoadManager>().OnExitClick(); // swipe left to exit from current task
+                }
+            }
+
+            // Vertical Swipe
+            else if (Mathf.Abs(touchDistance.x) < Mathf.Abs(touchDistance.y))
+            {
+
+                // Up Swipe (if the currentState is AppState.MapCreate or AppState.MapExtend)
+                if (touchDistance.y > 0 &&(currentState == AppState.MapCreate || currentState == AppState.MapExtend))
+                {                    
+                    GetComponent<MapSaveAndLoadManager>().OnSaveMapClick(); // swipe up to save map
+                }
+                // Down Swipe (if the currentState is AppState.Home or AppState.Navigate to prevent the user from accidentally load map during map creation or map extending )
+                if (touchDistance.y < 0 && (currentState == AppState.Home || currentState == AppState.Navigate))
+                {                 
+                    GetComponent<MapSaveAndLoadManager>().OnLoadMapClicked(); // swipe down to load map                    
+                }
+            }
+        }
+        // Function used to toggle between HitTestResultTypeChoice Options
+        public void SwitchDesiredResultType()
+        {
+            switch (desiredResultType)
+            {
+                case ARHitTestResultTypeChoice.AllResultTypes:
+                    desiredResultType = ARHitTestResultTypeChoice.EstimatedHorizontalPlane;
+                    break;
+                case ARHitTestResultTypeChoice.EstimatedHorizontalPlane:
+                    desiredResultType = ARHitTestResultTypeChoice.EstimatedVerticalPlane;
+                    break;
+                case ARHitTestResultTypeChoice.EstimatedVerticalPlane:
+                    desiredResultType = ARHitTestResultTypeChoice.ExistingPlane;
+                    break;
+                case ARHitTestResultTypeChoice.ExistingPlane:
+                    desiredResultType = ARHitTestResultTypeChoice.ExistingPlaneUsingExtent;
+                    break;
+
+                case ARHitTestResultTypeChoice.ExistingPlaneUsingExtent:
+                    desiredResultType = ARHitTestResultTypeChoice.ExistingPlaneUsingGeometry;
+                    break;
+
+                case ARHitTestResultTypeChoice.ExistingPlaneUsingGeometry:
+                    desiredResultType = ARHitTestResultTypeChoice.FeaturePoint;
+                    break;
+                case ARHitTestResultTypeChoice.FeaturePoint:
+                    desiredResultType = ARHitTestResultTypeChoice.AllResultTypes;
+                    break;
+                default:
+                    desiredResultType = ARHitTestResultTypeChoice.AllResultTypes;
+                    break;
+            }
+        }
+        public void DisplaySystemState()
+        {
+            // Condtional statements to display AppState
+            if (currentState == AppState.Home)
+            {
+                displayAppState.text = "Mode: " + "Home";
+            }
+            else if (currentState == AppState.MapCreate)
+            {
+                displayAppState.text = "Mode: " + "Map Creation";
+            }
+            else if (currentState == AppState.Navigate)
+            {
+                displayAppState.text = "Mode: " + "Navigation";
+            }
+            else if (currentState == AppState.MapExtend)
+            {
+                displayAppState.text = "Mode: " + "Extending Map";
+            }
+
+            // Condtional statements to display selected HitTestResultTypeChoice
+            if (desiredResultType == ARHitTestResultTypeChoice.AllResultTypes)
+            {
+                displayHitTestResultTypeChoice.text = "AllResultTypes";
+            }
+            else if (desiredResultType == ARHitTestResultTypeChoice.EstimatedHorizontalPlane)
+            {
+                displayHitTestResultTypeChoice.text = "EstimatedHorizontalPlane";
+            }
+            else if (desiredResultType == ARHitTestResultTypeChoice.EstimatedVerticalPlane)
+            {
+                displayHitTestResultTypeChoice.text = "EstimatedVerticalPlane";
+            }
+            else if (desiredResultType == ARHitTestResultTypeChoice.ExistingPlane)
+            {
+                displayHitTestResultTypeChoice.text = "ExistingPlane";
+            }
+            else if (desiredResultType == ARHitTestResultTypeChoice.ExistingPlaneUsingExtent)
+            {
+                displayHitTestResultTypeChoice.text = "ExistingPlaneUsingExtent";
+            }
+
+            else if (desiredResultType == ARHitTestResultTypeChoice.ExistingPlaneUsingGeometry)
+            {
+                displayHitTestResultTypeChoice.text = "ExistingPlaneUsingGeometry";
+            }
+
+            else if (desiredResultType == ARHitTestResultTypeChoice.FeaturePoint)
+            {
+                displayHitTestResultTypeChoice.text = "FeaturePoint";
+            }
+
+        }
+
+    }
+
 }
 ```
