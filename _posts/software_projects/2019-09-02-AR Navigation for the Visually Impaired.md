@@ -40,17 +40,17 @@ images:
     title: "Figure 10 - Distance Detection to Object 4 (Backpack) "
     weight: 10                            
 ---
-The purpose of the study was to evaluate the accuracy of Augmented Reality Software Development Kit (SDK), **ARKit’s** *Ray-casting* as an approach to detect how far real-world objects are in an indoor environment.  The aim was to explore the feasibility of combining *Cloud Computing* with **ARKit's** *SDK* for the purpose of obstacle avoidance and navigation for the blind using an **iOS** (*Apple* mobile operating system) mobile device.   
+The purpose of the study was to evaluate the accuracy of Augmented Reality Software Development Kit (SDK), **ARKit**’s *Ray-casting* as an approach to detect how far real-world objects are in an indoor environment.  The aim was to explore the feasibility of combining *Cloud Computing* with **ARKit**’s *SDK* for the purpose of obstacle avoidance and navigation for the blind using an **iOS** (*Apple* mobile operating system) mobile device.   
 
 <h2 class="text-underline">Methodology</h2>
 
-Augmented Reality **ARKit** *Ray-Casting* was used to detect real-world objects and place *virtual Marker GameObjects* as way points for navigation in an *AR scene*. **Unity** *Physics Ray-Casting* was used to detect the user’s previously placed Markers while audio and vibration cues give information to the user to aid in navigating the environment. **Placenote’s** *Cloud-based mapping engine* was used to provide a consistent method to store the positions of Marker objects in the *AR rendered environment*.
+Augmented Reality **ARKit** *Ray-Casting* was used to detect real-world objects and place *virtual Marker GameObjects* as way points for navigation in an *AR scene*. **Unity** *Physics Ray-Casting* was used to detect the user’s previously placed Markers while audio and vibration cues give information to the user to aid in navigating the environment. **Placenote***’s *Cloud-based mapping engine* was used to provide a consistent method to store the positions of Marker objects in the *AR rendered environment*.
 
 In similar, Monocular camera Depth estimation projects, methods have been used that involved image size ratio comparison upon movement, predictions based on semantic information and image to keyframe matching. Most related projects of mobile device navigation solutions have required external sensors, embedded beacon placement, pre-exiting building plans to familiarise the device to the environment.
 
 <h2 class="text-underline">Background Work</h2>
 
-### Augmented Reality
+### Augmented Reality (AR)
 Spatial computing is a way a human can interact with a device that stores and manipulates references to real objects [15]. Augmented reality is a form of Spatial computing that works on two fundamental concepts, identifying features [16] and being able to track and recognize the environment from camera frames. In AR, devices use a process called Simultaneous Localization and Mapping (SLAM) to know more about its position in the world.
 
 SLAM is a popular model used in robotics for autonomy. Landmarks are detected using sensors and these are compared with a map to localize the robot while trying to add other detected landmarks to the map according to Shelley [17].  
@@ -109,7 +109,7 @@ The application was built using **Unity** *editor 2019.1.8f1* to manage the user
 
 As the application was intended for individuals that are blind, a suitable interface had to be designed to make it accessible.
 
-The application was given a short product name of ‘AR Nav App’ through unity’s ‘Project Settings – Player – Product Name’ entry field. This allowed the user to launch the deployed application on an AR supported iOS device by using a short voice command (‘launch AR Nav’) through Apple’s Siri assistant.
+The application was given a short product name of ‘*AR Nav App*’ through unity’s ‘Project Settings – Player – Product Name’ entry field. This allowed the user to launch the deployed application on an AR supported iOS device by using a short voice command (‘*launch AR Nav*’) through Apple’s Siri assistant.
 
 <ul class="photo-gallery">
   {% for image in page.images %}
@@ -201,7 +201,7 @@ A custom ‘*markerActivator*’ coroutine was used to only activate marker Game
 
 Marker pose data and GPS location data were the elements that made up a map. Creating a map involved starting a mapping session through Placenote’s ‘*LibPlacenote.Instance.StartSession()*’ function. Map saving used the ‘*LibPlacenote.Instance.SaveMap()*’ callback that used ‘*MapMetadataSettable()*’ function to convert marker GameObject and GPS location into a serializable format by using the JSON [64]. To extend the map, ‘*LibPlacenote.Instance.StartSession(true)*’ function with the ‘*true*’ Boolean was used. <a class="custom_link" href="#mapsaveandloadmanagercs-script">‘**MapSaveAndLoadManager.cs**’</a> script managed all the mapping functions.  
 
-#### Map Loading
+#### Loading a Map
 
 Map Loading was carried out in a similar manner as Map saving, however a different callback ‘*LibPlacenote.Instance.LoadMap*’ and the map metadata was de-serialized. In its current implementation the application would use its last used Map ID to query for a map load. This meant maps could only be loaded if they were the last one used (‘*/mapIDFile.txt*’).
 
@@ -272,6 +272,33 @@ The full set of results obtained from <a class="custom_link" href="https://githu
  <h2 class="text-underline">Conclusion</h2>
 
 The study investigated the feasibility of a mobile device application for iOS devices to assist visually impaired individuals navigate through indoor environment using audio and vibration feedback. The usability and limitations of the interface was determined, and future work recommended to be carried out. The research findings suggest that it is possible to accurately measure the distance between a mobile device’s monocular camera and the physical objects in the real-world environment using Augmented Reality (AR) ARKit SDK’s Ray-casting, hence, the more studies required to address the gaps in existing knowledge.
+
+<h2 class="text-underline">Reference</h2>
+
+[15] Greenwold, S.: ‘Spatial computing’. Master Thesis, Graduate School of Science in Media Arts and Sciences, Massachusetts Institute of Technology, Massachusetts, 2003
+
+[16] Lowe, D.G.: ‘Distinctive image features from scale-invariant keypoints’, International journal of computer vision, 2004, 60 (2), pp. 91-92
+
+[17] Shelley, M.A.: ‘Monocular visual inertial odometry on a mobile device’. Master's thesis, Institut für Informatik, TU München, Germany, 2014
+
+[21] ‘ARKit and ARCore will not usher massive adoption of mobile AR’, https://medium.com/super-ventures-blog/arkit-and-arcore-will-not-usher-massive-adoption-of-mobile-ar-da3d87f7e5ad, accessed September 2019
+
+[30] ‘Unit’, https://unity.com, accessed August 2019
+
+[31] ‘What is Unity’, https://conceptartempire.com/what-is-unity, accessed September 2019
+
+[35] ‘Camera Rays’, https://docs.unity3d.com/2019.3/Documentation/Manual/CameraRays.html, accessed September 2019
+
+[39] ‘ARKit | Apple Developer Documentation’, https://developer.apple.com/documentation/arkit, accessed August 2019
+
+[44] ‘HitTest’, https://developer.apple.com/documentation/arkit/arframe/2875718-hittest?language=objc, accessed August 2019
+
+[49] ‘What is Placenote SDK?’, https://placenote.com/docs/unity/about, accessed September 2019
+
+[63] ‘Placenote ARKit Features’, https://placenote.com/docs/unity/tutorials/arkit-integration, accessed September 2019
+
+[64] ‘JSON’, https://www.json.org, accessed September 2019
+
 
 <h2 class="text-underline">Appendix</h2>
 
