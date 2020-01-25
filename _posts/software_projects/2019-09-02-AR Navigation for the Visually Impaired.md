@@ -9,7 +9,7 @@ purpose: "The purpose of this study was to develop a Mobile device Augmented Rea
 toc: true
 classes: wide
 ---
-The purpose of the study was to evaluate the accuracy of Augmented Reality Software Development Kit (SDK), **ARKit’s** *Ray-casting* as an approach to evaluate how far real-world objects are detected in an indoor environment.  The aim was to explore the feasibility of combining *Cloud Computing* with **ARKit's** *SDK* for the purpose of obstacle avoidance and navigation for the blind using an **iOS** (*Apple* mobile operating system) mobile device.   
+The purpose of the study was to evaluate the accuracy of Augmented Reality Software Development Kit (SDK), **ARKit’s** *Ray-casting* as an approach to detect how far real-world objects are in an indoor environment.  The aim was to explore the feasibility of combining *Cloud Computing* with **ARKit's** *SDK* for the purpose of obstacle avoidance and navigation for the blind using an **iOS** (*Apple* mobile operating system) mobile device.   
 
 <h2 class="text-underline">Methodology</h2>
 
@@ -30,14 +30,14 @@ Cloud AR is the latest trend in AR computing as it provides a solution to multi 
 ### Ray-casting
 Ray-casting is a useful way of detecting objects within the scene based on its onscreen image [35].
 
-The full Thesis on *Augmented Reality Navigation for the Visually Impaired* can be found on <a class="custom_link" href="https://github.com/jamesjrnkhata/AR-Navigation-for-the-Visually-Impaired">GitHub</a>. This details the Literature Review, Methodology, Background Work, Implementation, Evaluation and Results Obtained by the auhtor (James Junior Nkhata).  
+The full Thesis on <a class="custom_link" href="https://github.com/jamesjrnkhata/AR-Navigation-for-the-Visually-Impaired">*Augmented Reality Navigation for the Visually Impaired*</a> can be found on <a class="custom_link" href="https://github.com/jamesjrnkhata/AR-Navigation-for-the-Visually-Impaired">GitHub</a>. This details the Literature Review, Methodology, Background Work, Implementation, Evaluation and Results Obtained by the auhtor (James Junior Nkhata).  
 <h2 class="text-underline">Implementation</h2>
 
 **Unity** is a real-time development platform [30]. Unity is capable of providing a developer with cross-platform features necessary to produce 3D (3 dimensional), 2D, VR (virtual reality) and Augmented Reality (AR) applications for devices running on different operating systems (Windows, iOS and Android). Unity uses hierarchy component–based design structure that can help speed up development [31]. It supports C# (C sharp) scripting API (application programming interface) natively.
 
 **ARKit** is Apple’s proprietary SDK used to produce Augmented Reality (AR) experience by integrating iOS device camera and motion features [39].
 
-**Placenote** is a Cloud-based mapping engine that extends ARKit functionality while providing a way to save AR content in physical locations, indoors and outdoors [49]. Placenote uses ARKit’s tracking functionality and a custom implementation of point cloud mapping and localization that provides enhanced persistence (removing reliance for ARKit’s persistence functionality) and simple to use cloud backend (manageable online as well as through Unity scripts). 
+**Placenote** is a Cloud-based mapping engine that extends ARKit functionality while providing a way to save AR content in physical locations, indoors and outdoors [49]. Placenote uses ARKit’s tracking functionality and a custom implementation of point cloud mapping and localization that provides enhanced persistence (removing reliance for ARKit’s persistence functionality) and simple to use cloud backend (manageable online as well as through Unity scripts).
 
 The application was built using **Unity** *editor 2019.1.8f1* to manage the user interface, custom Marker *GameObject* manipulation (creation and deletion) as well as integration with the **ARKit** and **Placenote** *SDKs*. *ARKit 2.0* was used to add AR functionality to the application through *Unity-ARKit-Plugin* (only one compatible with Placenote as of the writing of this thesis). *Placenote 1.6.12* was used to add Cloud-based mapping engine to the application. *Apple’s* voice-controlled voice assistant *Siri* feature included with most post 12 October 2011 iOS devices was also an attractive feature to utilise for launching the augmented reality navigation for visually impaired application.
 
