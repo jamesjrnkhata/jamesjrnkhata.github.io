@@ -16,7 +16,7 @@ images:
     title: "Figure 2 - In gravity-only alignment, X and Z directions are relative to the device's initial orientation"
     weight: 2  
   - image_path: /images/software_projects/arnavigationfortheblind/arnavigationfortheblind_img03.jpg
-    title: "Figure 3 - AR Navigation for the Viusally Impaired Overview"
+    title: "Figure 3 - Augmented Reality Navigation for the Viusally Impaired Overview"
     weight: 3   
   - image_path: /images/software_projects/arnavigationfortheblind/arnavigationfortheblind_img04.jpg
     title: "Figure 4 - Touch Commands and their corresponding actions (for each mode)"
