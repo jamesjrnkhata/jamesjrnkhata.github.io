@@ -18,4 +18,3 @@ Technical skills include:
 * Proven experience in Maintenance Engineering
 
 Interests involve keeping up-to-date with Consumer Electronics, Physical Fitness, Automation and Innovations in Renewable Energy.
-f 
