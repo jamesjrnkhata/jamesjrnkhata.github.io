@@ -7,7 +7,7 @@ header:
 
 I am an Electronic and Computer Engineer who resides in Leicester, United Kingdom.
 
-A driven and capable problem solver with a good grasp of a variety of skills to leverage. My professional ambition is to continue developing in the dynamic industry of Microelectronics, Computing and Data Analysis to build a stronger base from the experience gained in both business and personal endeavours.
+A driven and capable problem solver with a good grasp over a variety of skills to leverage. My professional ambition is to continue developing in the dynamic industry of Microelectronics, Computing and Data Analysis to build a stronger base from the experience gained in both business and personal endeavours.
 
 Technical skills include:
 
