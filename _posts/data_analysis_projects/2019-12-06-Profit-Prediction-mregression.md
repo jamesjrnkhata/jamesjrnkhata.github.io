@@ -1,5 +1,5 @@
 ---
-title: Start Up Profit Prediction Model
+title: Multiple Linear Regression Model
 date: 2019-12-06
 categories: [data-analysis-projects]
 permalink: /:categories/:title/
