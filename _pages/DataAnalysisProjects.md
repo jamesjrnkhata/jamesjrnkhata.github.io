@@ -4,7 +4,7 @@ permalink: /data-analysis-projects/
 title: "Data Analysis Projects"
 author_profile: true
 header:
-  image: "/images/data_analysis_background.jpg"
+  image: "/images/data_analysis_background2.jpg"
 blank_feature_img: /images/no_image.jpg
 classes: wide  
 ---
