@@ -40,12 +40,8 @@ The stakeholders were identified, and the specifications were clarified. Further
 
 |               |                        |
 | ------------- | :--------------------: |
-| Staff | •	Surveillance cameras for protection of self and vehicle |
-|        |  •	Discount parking to other sites as a visitor |
-|        |  •	Designated parking for employees  |
-| 0  1  0  0 | 0  1  0  0 |
-| 0  0  1  0 | 0  0  1  0 |
-| 0  0  0  1 | 0  0  0  1 |
+| Staff | •	Surveillance cameras for protection of self and vehicle   •	Discount parking to other sites as a visitor   •	Designated parking for employees  |
+
 
 <h2 class="text-underline">Use-Case Model</h2>
 
