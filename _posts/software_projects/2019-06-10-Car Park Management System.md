@@ -163,10 +163,43 @@ Entity:
   {% endfor %}  
 </ul>
 
+###	CRC Cards
+
+<span class="custom-tablecaption">Table 3: Class Responsibility Collaboration Cards</span>
+
 | <strong>Class: Terminal</strong> |                |
 | -------------------------------------- | --------------------- |
 | <strong>Responsibilities | <strong>Collaborators</strong> |
 |The terminal class was responsible for dispensing visitor ID, scanning ID (staff ID and visitor ID when existing), handling payment transactions, displaying information, detecting a car’s presence and establishing a call to security. The terminal class displayed relevant information regarding the calculated duration of their stay (visitor), the cost and the eligibility of using that car park (staff). The terminal class read its sensor information to detect a car next to the terminal. The terminal class also issued a visitor ID when the button (dispense button) was pressed. Scanning of an ID was also done by the terminal class (into the car park by staff and out of the car park for both visitor as well as staff). The terminal class took payments for visitor ID when the duration in the car park was longer than the designated short stay period. The terminal class let the user (visitor/staff) talk to a member of security by pressing a button (intercom).      | Car park Controller |
+
+| <strong>Class: Real-Time Clock</strong> |                |
+| -------------------------------------- | --------------------- |
+| <strong>Responsibilities | <strong>Collaborators</strong> |
+| The real-time clock class was responsible for keeping track of how long the staff and visitor were in the car park. When a user was let through the barrier into the car park the time they got in would be documented, when they left the car park the real-time clock class would document the current time they have scanned their ID and process the time spent for charging in minutes. | Car park Controller |
+
+| <strong>Class: Barrier</strong> |                |
+| -------------------------------------- | --------------------- |
+| <strong>Responsibilities | <strong>Collaborators</strong> |
+| The barrier class was responsible for raising and lowering the barrier. The barrier class responded to control signals from the Car park Controller to either raise the barrier or lower the barrier. | Car park Controller  |
+
+| <strong>Class: Remote Connection</strong> |                |
+| -------------------------------------- | --------------------- |
+| <strong>Responsibilities | <strong>Collaborators</strong> |
+| The remote connection class was responsible for establishing a link between the security’s remote location and the Car park Controller. The security user to the Car park Controller established a communication connection (example internet), this was then used to send request signals to raise and lower the barrier. | Car park Controller |
+
+| <strong>Class: Car park Controller</strong> |                |
+| -------------------------------------- | --------------------- |
+| <strong>Responsibilities | <strong>Collaborators</strong> |
+| The car park controller class was responsible for facilitating payment transactions, deciding when to raise and lower the barrier. The car park controller class responded to signals from the user interface and the remote link from the security (user). The car park controller class would determine how much time was spent in the car park and charge the user accordingly. The car park controller would allow the system administrator access and modify the database. The car park controller class would determine when to raise and lower the barrier based on:
+<br>1.	The signal from the car detected by the obstacle sensor was received as well as the signal from the remote connection. The barriers were raised and once the obstacle sensor cleared, the barrier was lowered. 
+<br>2.	A signal was received from the obstacle sensor when a car was detected and data from the scanner unit of the terminal when an ID was scanned. The scanner data was used to verify access with the database. After confirmation, the barriers were raised and once the obstacle sensor cleared, the barrier was lowered.
+<br>3.	A signal was received from the obstacle sensor when a car was detected. A button press would issue out an ID. After collection, the barriers would be raised and once the obstacle sensor cleared, the barrier would be lowered. When visitor existed the car park, the entry cost would have to be settled by payment before raising and lowering of the barrier.
+| Barrier, Database, Terminal, Remote Connection, Real-Time Clock |
+
+| <strong>Class: Database</strong> |                |
+| -------------------------------------- | --------------------- |
+| <strong>Responsibilities | <strong>Collaborators</strong> |
+| | Car park Controller |
 
 ###	CRC Cards
 
