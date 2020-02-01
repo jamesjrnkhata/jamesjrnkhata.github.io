@@ -24,6 +24,15 @@ images:
   - image_path: /images/software_projects/carparkmanagementsystem/carparkmanagementsystem_img05.jpg
     title: "Figure 3 - Sequence Diagram (Car Park Management System)"
     weight: 5        
+  - image_path: /images/software_projects/carparkmanagementsystem/carparkmanagementsystem_img06.jpg
+    title: "Figure 4 - State Chart Diagram (Car Park Management System) 1"
+    weight: 6
+  - image_path: /images/software_projects/carparkmanagementsystem/carparkmanagementsystem_img07.jpg
+    title: "Figure 4 - State Chart Diagram (Car Park Management System)"
+    weight: 7    
+  - image_path: /images/software_projects/carparkmanagementsystem/carparkmanagementsystem_img08.jpg
+    title: "Figure 5 - "
+    weight: 8      
 ---
 
 <h2 class="text-underline">Introduction</h2>
@@ -221,10 +230,8 @@ The sequence diagram (excluding the Collaboration Diagram as it represented the 
   {% for image in page.images %}
     {% if image.weight == 3 %}
       <li>
-        <figure class="custom-figure">
-          <img src="{{ image.image_path }}" alt="{{ image.title }}">          
-          {{ image.title }}          
-        </figure>  
+        <img src="{{ image.image_path }}" alt="{{ image.title }}">          
+        {{ image.title }}                    
       </li>
     {% endif %}  
   {% endfor %}  
