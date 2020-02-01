@@ -16,16 +16,16 @@ images:
     title: "Figure 2 - Class Diagram (Stereotypes)"
     weight: 2
   - image_path: /images/software_projects/carparkmanagementsystem/carparkmanagementsystem_img03.jpg
-    title: "Figure 3 - Sequence Diagram (Car Park Management System) 1"
+    title: ""
     weight: 3
   - image_path: /images/software_projects/carparkmanagementsystem/carparkmanagementsystem_img04.jpg
-    title: "Figure 3 - Sequence Diagram (Car Park Management System) 2"
+    title: ""
     weight: 4    
   - image_path: /images/software_projects/carparkmanagementsystem/carparkmanagementsystem_img05.jpg
     title: "Figure 3 - Sequence Diagram (Car Park Management System)"
     weight: 5        
   - image_path: /images/software_projects/carparkmanagementsystem/carparkmanagementsystem_img06.jpg
-    title: "Figure 4 - State Chart Diagram (Car Park Management System) 1"
+    title: ""
     weight: 6
   - image_path: /images/software_projects/carparkmanagementsystem/carparkmanagementsystem_img07.jpg
     title: "Figure 4 - State Chart Diagram (Car Park Management System)"
