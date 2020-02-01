@@ -55,11 +55,11 @@ The potential requirements were identified with their predicted costs and priori
 
 | Concept | Necessity | Cost | Priority |
 | --------------------------------------------------- | -------------- |  -------------- | -------------- |
-| Scan identity card for staff | High |	Medium	| Medium |
-| Confirm permission to enter car park	| High	| Medium | High |
-| Charge parking to pay-roll for staff |	Medium	High	High
-| Allow car into the car park 	| Medium	Medium	Medium
-| Allow car out of the car park 	| Medium	Medium	Medium
+| Scan identity card for staff | High |	Medium | Medium |
+| Confirm permission to enter car park | High | Medium | High |
+| Charge parking to pay-roll for staff |	Medium | High	| High |
+| Allow car into the car park | Medium | Medium |	Medium |
+| Allow car out of the car park | Medium | Medium	| Medium |
 | Avoid lowering barrier on cars (detect car)	| High | Medium | High |
 | Charge visitors long-stay parking	| Medium | Medium	| Medium |
 | Do not charge visitor for short-stay parking	| Medium | Medium	| Medium |
