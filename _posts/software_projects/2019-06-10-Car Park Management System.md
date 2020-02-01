@@ -15,7 +15,15 @@ images:
   - image_path: /images/software_projects/carparkmanagementsystem/carparkmanagementsystem_img02.jpg
     title: "Figure 2 - Class Diagram (Stereotypes)"
     weight: 2
-
+  - image_path: /images/software_projects/carparkmanagementsystem/carparkmanagementsystem_img03.jpg
+    title: "Figure 3 - Sequence Diagram (Car Park Management System) 1"
+    weight: 3
+  - image_path: /images/software_projects/carparkmanagementsystem/carparkmanagementsystem_img04.jpg
+    title: "Figure 3 - Sequence Diagram (Car Park Management System) 2"
+    weight: 4    
+  - image_path: /images/software_projects/carparkmanagementsystem/carparkmanagementsystem_img05.jpg
+    title: "Figure 3 - Sequence Diagram (Car Park Management System)"
+    weight: 5        
 ---
 
 <h2 class="text-underline">Introduction</h2>
@@ -206,6 +214,54 @@ Potential Method Identification
 | Car park Controller <br>1.	VerifyEntry() <br>2.	CalculateDuration()	| Real-Time Clock <br>1.	GetTime() |
 | Terminal <br>1. GetSensorData() <br>2.	UpdateDisplay()<br>3.	CheckIDCollection()	| Remote Connection <br>1.	Connect() |
 | Database <br>1.	GetDatabaseInformation() <br>2.	SetStartTime() <br>3.	SetEndTime() <br>4.	SetDuration()	| Barrier <br>1.	OpenBarrier() <br>2.	CloseBarrier() |
+
+The sequence diagram (excluding the Collaboration Diagram as it represented the same information) was the choice of interaction diagram used to show the order of interactions between the objects and the messages sent as time progressed in the system.
+
+<ul class="photo-gallery">
+  {% for image in page.images %}
+    {% if image.weight == 3 %}
+      <li>
+        <figure class=" ">
+          <img src="{{ image.image_path }}" alt="{{ image.title }}">
+          <figcaption class="custom-figcaption">
+            {{ image.title }}
+          </figcaption>
+        </figure>  
+      </li>
+    {% endif %}  
+  {% endfor %}  
+</ul>
+
+<ul class="photo-gallery">
+  {% for image in page.images %}
+    {% if image.weight == 4 %}
+      <li>
+        <figure class=" ">
+          <img src="{{ image.image_path }}" alt="{{ image.title }}">
+          <figcaption class="custom-figcaption">
+            {{ image.title }}
+          </figcaption>
+        </figure>  
+      </li>
+    {% endif %}  
+  {% endfor %}  
+</ul>
+
+<ul class="photo-gallery">
+  {% for image in page.images %}
+    {% if image.weight == 5 %}
+      <li>
+        <figure class="custom-figure">
+          <img src="{{ image.image_path }}" alt="{{ image.title }}">
+          <figcaption class="custom-figcaption">
+            {{ image.title }}
+          </figcaption>
+        </figure>  
+      </li>
+    {% endif %}  
+  {% endfor %}  
+</ul>
+
 
 ###	State Chart Diagram
 
