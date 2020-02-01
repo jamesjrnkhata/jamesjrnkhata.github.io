@@ -195,7 +195,7 @@ Entity:
 | <strong>Class: Database</strong> |                |
 | -------------------------------------- | --------------------- |
 | <strong>Responsibilities | <strong>Collaborators</strong> |
-| | Car park Controller |
+| The database class was responsible for storing information to do with authorizing (staff) and charging of the long-stay periods spent in the car park. When a query was received to access information relative to a specific ID, table entry results would be returned in response to the query. The query results would then be used to confirm access into a car park or not. On exiting the car park, a table entry would be added to that of the ID counting how much time was spent in the car park, this count would be forwarded to the respective company to be deducted from their payroll monthly.  For visitor ID the query would be made in the database in relation to time spent in the car park and used to produce a cost. After payment, the cost table entry would be marked as settled giving access out of the car park. | Car park Controller |
 
 ###	CRC Cards
 
