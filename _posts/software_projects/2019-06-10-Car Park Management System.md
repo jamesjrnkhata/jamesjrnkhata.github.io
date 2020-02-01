@@ -8,6 +8,14 @@ excerpt: "uml, oop, ood, software, car park, management"
 purpose: "This report outlined the steps taken towards the development of the car park management system through an object-oriented design approach using Unified Modelling Language (UML) notation."
 toc: true
 classes: wide
+images:
+  - image_path: /images/software_projects/carparkmanagementsystem/carparkmanagementsystem_img01.jpg
+    title: "Figure 1 - Use-Case Diagram"
+    weight: 1
+  - image_path: /images/software_projects/carparkmanagementsystem/carparkmanagementsystem_img02.jpg
+    title: "Figure 2 - State Chart Diagram Depicting Concurrent Processes in Nodes 1 to 18 (Per Time Interval)"
+    weight: 2
+
 ---
 
 <h2 class="text-underline">Introduction</h2>
@@ -73,7 +81,35 @@ The potential requirements were identified with their predicted costs and priori
 
 The costs associated with incorporating the potential requirements were justified to fall within the intended budget for the car park management system. Therefore, the design was able to include all the potential requirements.
 
+<ul class="photo-gallery">
+  {% for image in page.images %}
+    {% if image.weight == 1 %}
+      <li>
+        <figure class="custom-figure">
+          <img src="{{ image.image_path }}" alt="{{ image.title }}">
+          <figcaption class="custom-figcaption">
+            {{ image.title }}
+          </figcaption>
+        </figure>  
+      </li>
+    {% endif %}  
+  {% endfor %}  
+</ul>
+
+The use-case diagram in figure 2.1.1 depicted the relationship between the actors and use cases. The relationships were divided into three general scenarios, accessing the car park software by the System Administrator, entering the car park (left of the diagram) and existing the car park (right side of the diagram).
+
+In the scenario of entering the car park, the visitor had used a different set of use cases to enter the car park from the staff hence why the diagram depicted them sharing the open/close barrier use case. Exiting the car park shared a similar depiction in the use-case diagram for the visitor and staff actors where they used different use-cases from each other to exit the car park.
+
 ###	Scenario Descriptions
+
+|                                  |                                                                                     |
+| -------------------------------- | ----------------------------------------------------------------------------------- |
+| User (visitor) at car park entry: | An obstacle sensor would pick up the user’s (visitor) car arriving at the entrance of the car park. The user would request for a parking ID (ticket) by pushing a button on a panel located near the entrance. When the ID was issued, the system would wait for the user to collect the ID. After ID collection, the barrier would be raised. When the obstacle sensor was cleared of the car while barrier was up the barrier would be brought down. |
+| User (staff) at car park entry: | An obstacle sensor would pick up the user’s (staff) car arriving at the entrance of the car park. The user would present their ID card to a scanner on a panel located near the entrance. The ID would be verified by checking the details on a database that stored access for staff users to each car park. If the authorization fails, then the ID would be returned to the user informing them on a Display that they are not eligible to use the car park. When authorization, then the ID would be issued back to the user. When the ID was collected, the barrier would be raised. When the obstacle sensor was cleared of the car while barrier was up the barrier would be brought down. |
+| User (system administrator) accessing car park software: | An obstacle sensor would pick up the user’s (visitor) car arriving at the exit of the car park. The user would present their ID card (visitor’s ID) to a scanner on a panel located near the exit. If the time accumulated on the card was below the set short-stay duration, then the barrier would be raised and panel would retain the ID. If the time accumulated on the card was above the set short-stay period, then the cost for the time spent over (long-stay) would be calculated. The amount would be displayed to the user with a prompt for them to pay through cash / card payment terminal. After payment was made and authorised, the barrier would be raised. When the ID was collected, the barrier will be raised. When the obstacle sensor was cleared of the car while barrier was up the barrier would be brought down. An inquiry button would be available to contact Security for assistance. |
+| User (staff) at car park exit: | An obstacle sensor would pick up the user’s (staff) car arriving at the exit of the car park. The user would present their ID card (staff ID) to the scanner on a panel located near the exit. If the time accumulated on the card was below the set short-stay duration, then no charge would be made to their account (through their payroll). If the time accumulated on the card was above the set short-stay period, then the cost for the time spent over (long-stay) would be calculated and then charged to their account.  Their ID card would be returned to them. When the ID was collected, the barrier will be raised. When the obstacle sensor was cleared of the car while barrier was up the barrier would be brought down. An enquiry button would be available to contact Security for assistance. |
+| User (security) remote accessing the barriers: | A remote connection to the desired car park barriers (entry or exit) controller would be established. The status of the obstacle sensors for that barrier would be read. The barriers would be remotely raised. The barrier would be remotely lowered. |
+
 
 ###	Class Identification
 
