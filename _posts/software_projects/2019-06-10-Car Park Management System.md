@@ -36,16 +36,42 @@ The assumptions made were verified and validated after further elicitation of th
 
 The stakeholders were identified, and the specifications were clarified. Further requirements were obtained from stakeholders, these included:
 
-<span class="custom-tablecaption">Table 1.2.1 Stakeholder Requirements for the Car Park Management System</span>
+<span class="custom-tablecaption">Table 1: Stakeholder Requirements for the Car Park Management System</span>
 
-|               |                        |
-| ------------- | :--------------------: |
-| Staff | •	Surveillance cameras for protection of self and vehicle<br> * Discount parking to other sites as a visitor <br> *	Designated parking for employees |
+|               |                       |
+| ------------- | --------------------- |
+| Staff | •	Surveillance cameras for protection of self and vehicle <br> • Discount parking to other sites as a visitor <br> • Designated parking for employees |
+| Visitors | • Cheaper rates for long-stay parking <br> •	Availability of disabled parking bays and accessibility |
+| Security | • Intercom (telephone) to each car park entrance or exit for assistance |
 
 
 <h2 class="text-underline">Use-Case Model</h2>
 
 ###	Brain storm
+
+The potential requirements were identified with their predicted costs and priority.
+
+<span class="custom-tablecaption">Table 2: Prioritisation of Potential requirements</span>
+
+| Concept | Necessity | Cost | Priority |
+| --------------------------------------------------- | -------------- |  -------------- | -------------- |
+| Scan identity card for staff | High |	Medium	| Medium |
+| Confirm permission to enter car park	| High	| Medium | High |
+| Charge parking to pay-roll for staff |	Medium	High	High
+| Allow car into the car park 	| Medium	Medium	Medium
+| Allow car out of the car park 	| Medium	Medium	Medium
+| Avoid lowering barrier on cars (detect car)	| High | Medium | High |
+| Charge visitors long-stay parking	| Medium | Medium	| Medium |
+| Do not charge visitor for short-stay parking	| Medium | Medium	| Medium |
+| Dispense visitor’s identity card (parking ticket)	| High | Medium	| Medium |
+| Scan visitor’s ticket on leaving the car park	| High |Low	| Medium |
+| Accept payment from payment machine	| Medium | High |	Medium |
+| Display time spent in car park | Low | Low | Low |
+| Remotely control barrier | High | Medium	| High |
+| Allow authorised access and changes to database	| High | High	| High |
+
+
+The costs associated with incorporating the potential requirements were justified to fall within the intended budget for the car park management system. Therefore, the design was able to include all the potential requirements.
 
 ###	Scenario Descriptions
 
