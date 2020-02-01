@@ -199,6 +199,14 @@ Entity:
 
 ###	Sequence Diagram
 
+Potential Method Identification
+
+|                                   |                                   |
+| --------------------------------- | --------------------------------- |
+| Car park Controller <br>1.	VerifyEntry() <br>2.	CalculateDuration()	| Real-Time Clock <br>1.	GetTime() |
+| Terminal <br>1. GetSensorData() <br>2.	UpdateDisplay()<br>3.	CheckIDCollection()	| Remote Connection <br>1.	Connect() |
+| Database <br>1.	GetDatabaseInformation() <br>2.	SetStartTime() <br>3.	SetEndTime() <br>4.	SetDuration()	| Barrier <br>1.	OpenBarrier() <br>2.	CloseBarrier() |
+
 ###	State Chart Diagram
 
 
