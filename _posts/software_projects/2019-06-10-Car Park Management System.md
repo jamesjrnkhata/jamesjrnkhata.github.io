@@ -96,7 +96,7 @@ The costs associated with incorporating the potential requirements were justifie
   {% endfor %}  
 </ul>
 
-The use-case diagram in figure 2.1.1 depicted the relationship between the actors and use cases. The relationships were divided into three general scenarios, accessing the car park software by the System Administrator, entering the car park (left of the diagram) and existing the car park (right side of the diagram).
+The use-case diagram in figure 1 depicted the relationship between the actors and use cases. The relationships were divided into three general scenarios, accessing the car park software by the System Administrator, entering the car park (left of the diagram) and existing the car park (right side of the diagram).
 
 In the scenario of entering the car park, the visitor had used a different set of use cases to enter the car park from the staff hence why the diagram depicted them sharing the open/close barrier use case. Exiting the car park shared a similar depiction in the use-case diagram for the visitor and staff actors where they used different use-cases from each other to exit the car park.
 
@@ -113,7 +113,41 @@ In the scenario of entering the car park, the visitor had used a different set o
 
 ###	Class Identification
 
+To identify the classes from the scenario descriptions all the nouns were listed from each scenario.
+
+<span class="custom-tablecaption">Table 2: List of Nouns from the Scenario Descriptions</span>
+
+|                                                                         |                                                                                     |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| Nouns identified were: | Car, Entry, Exit, Car Park, Visitor, Staff, Security, System Administrator, User, Parking ID, Staff ID, Panel, Display, Button, Inquiry Button, System, Barrier, Scanner, Obstacle Sensor, Payment Terminal, Remote Connection, Remotely,  Database, Account, Charge, Pay-roll, Status, Side, Details, Authorization, Information, Access, Time, Cost, Amount, Card, ID, ID Card. |
+| Nouns that described items that were external to the software to be designed were: | Car, Visitor, User, Staff, Security, System Administrator, Entry, Exit and Car Park. |
+| Nouns that were synonymous and hence repeated were: | Authorization and Access. <br>Information and Details. <br>Card, ID, ID Card, Parking ID and Staff ID. |
+| Nouns that were events carried out in the system (that could later be identified as methods) were: | Charge and Authorize. |
+| Nouns that could be identified as attributes of the system were: | Details, Information, Amount, Cost, Time and Status. |  
+
+Most of the nouns that were identified in the sub groups above were eliminated from the list of potential classes. The remaining nouns were further refined to achieve the minimal set of classes:
+
+The noun “system” was renamed to “Car park Controller”. Payment terminal, panel, scanner, button, inquiry button, obstacle sensor and display were integrated into one “Terminal”.  The terminal was to be used by the staff and visitor. The remote access was used by the security (user).
+
 ###	Stereotypical Classes
+
+The minimum set of classes were defined as:
+
+Boundary:
+
+*	Terminal – This was set to boundary class because it had payment terminal, buttons, display and obstacle sensor, which were used for the actor to interface with the system.
+*	Barrier – This was set as a boundary class because it allowed the actors to interact with other use cases of the system (start timing the user and let the user further interact with the car park).  
+*	Remote Connection – This was set as a boundary class because it bridged the security user (remotely to the system).
+
+Control:
+
+*	Car park Controller – This was set as a control class because it was responsible for controlling coordination and sequencing of the objects within the system.
+
+Entity:
+
+*	Database – The database was set to entity class because it was used to store information to do with users.
+*	Real-Time Clock – Was set in the entity class because it managed timing information.  
+
 
 ###	CRC Cards
 
