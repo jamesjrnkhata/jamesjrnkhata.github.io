@@ -163,10 +163,9 @@ Entity:
   {% endfor %}  
 </ul>
 
-|                                        |                       |
-| -------------------------------------- | --------------------- |
 | <strong>Class: Terminal</strong> |                |
-| <strong>Responsibilities | Collaborators</strong> |
+| <strong>Responsibilities | <strong>Collaborators</strong> |
+| -------------------------------------- | --------------------- |
 |The terminal class was responsible for dispensing visitor ID, scanning ID (staff ID and visitor ID when existing), handling payment transactions, displaying information, detecting a car’s presence and establishing a call to security. The terminal class displayed relevant information regarding the calculated duration of their stay (visitor), the cost and the eligibility of using that car park (staff). The terminal class read its sensor information to detect a car next to the terminal. The terminal class also issued a visitor ID when the button (dispense button) was pressed. Scanning of an ID was also done by the terminal class (into the car park by staff and out of the car park for both visitor as well as staff). The terminal class took payments for visitor ID when the duration in the car park was longer than the designated short stay period. The terminal class let the user (visitor/staff) talk to a member of security by pressing a button (intercom).      | Car park Controller |
 
 ###	CRC Cards
