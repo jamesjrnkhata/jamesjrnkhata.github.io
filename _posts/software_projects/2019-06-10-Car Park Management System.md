@@ -230,8 +230,12 @@ The sequence diagram (excluding the Collaboration Diagram as it represented the 
   {% for image in page.images %}
     {% if image.weight == 3 %}
       <li>
-        <img src="{{ image.image_path }}" alt="{{ image.title }}">          
-        {{ image.title }}                    
+        <figure class="custom-figure">
+          <img src="{{ image.image_path }}" alt="{{ image.title }}">
+          <figcaption class="custom-figcaption">
+            {{ image.title }}
+          </figcaption>
+        </figure>  
       </li>
     {% endif %}  
   {% endfor %}  
@@ -242,8 +246,10 @@ The sequence diagram (excluding the Collaboration Diagram as it represented the 
     {% if image.weight == 4 %}
       <li>
         <figure class="custom-figure">
-          <img src="{{ image.image_path }}" alt="{{ image.title }}">          
-          {{ image.title }}          
+          <img src="{{ image.image_path }}" alt="{{ image.title }}">
+          <figcaption class="custom-figcaption">
+            {{ image.title }}
+          </figcaption>
         </figure>  
       </li>
     {% endif %}  
@@ -275,8 +281,10 @@ The state chart was used to describe the different states of the system driven b
     {% if image.weight == 6 %}
       <li>
         <figure class="custom-figure">
-          <img src="{{ image.image_path }}" alt="{{ image.title }}">          
-          {{ image.title }}          
+          <img src="{{ image.image_path }}" alt="{{ image.title }}">
+          <figcaption class="custom-figcaption">
+            {{ image.title }}
+          </figcaption>
         </figure>  
       </li>
     {% endif %}  
