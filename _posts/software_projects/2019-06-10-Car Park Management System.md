@@ -308,6 +308,11 @@ The state chart was used to describe the different states of the system driven b
 
 <h2 class="text-underline">Analysis Model</h2>
 
+This part of the report worked on refining the information obtained from the Use-case model. This came in the form of technical definitions (developer oriented) of the methods, attributes, behaviour and non-functional requirements of the system.
+
+The identified stereotypical classes from the Use-case model were reconsidered. From the list of Terminal, Barrier, Remote Connection, Car park Controller, Database and Real-Time Clock classes, the potential attributes and methods were listed for each class. These were:
+
+
 ###	Attributes
 
 ###	Methods
