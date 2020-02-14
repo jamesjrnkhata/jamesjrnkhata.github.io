@@ -312,6 +312,37 @@ This part of the report worked on refining the information obtained from the Use
 
 The identified stereotypical classes from the Use-case model were reconsidered. From the list of Terminal, Barrier, Remote Connection, Car park Controller, Database and Real-Time Clock classes, the potential attributes and methods were listed for each class. These were:
 
+| From Terminal Class |     |
+| ------------------- | ---------------------------- |
+| Potential attributes: | CarSensorStatus, IDButtonPressed, HelpButtonPressed |
+| Potential methods: |	GetSensorData(), UpdateDisplay(), CheckIDCollection(), <br> RequestID(), CallSecurity(), ScanID() |
+
+| From Barrier Class |     |
+| ------------------- | ---------------------------- |
+| Potential attributes: | BarrierStatus, BarrierOpen, BarrierClosed |
+| Potential methods: | OpenBarrier(), CloseBarrier() |
+
+| From Remote Connection Class |     |
+| ------------------- | ---------------------------- |
+| Potential attributes: | UserName, UserPassword |
+| Potential methods: | Connect() |
+
+| From Car park Controller Class |     |
+| ------------------- | ---------------------------- |
+| Potential attributes: | ScannerStatus, DispenseIDStatus, ChargeAmount |
+| Potential methods: | VerifyEntry(), CalculateDuration(), ProcessPayment() |
+
+| From Database Class |     |
+| ------------------- | ---------------------------- |
+| Potential attributes: | EntryStatus, UserIDNumber, ShortStayPeriod, ParkingRate |
+| Potential methods: | GetDatabaseInformation(), SetStartTime(), SetEndTime(), <br> SetDuration(), editDatabaseEntry() |
+
+| From Real-Time Clock Class |     |
+| ------------------- | ---------------------------- |
+| Potential attributes: | Time, Date |
+| Potential methods: | GetTime(), SetTime(), SetDate() |
+
+The attributes and methods listed above were carefully considered with reference to the Use-case model’s Sequence Diagram and the Class Responsibility Collaboration (CRC) cards from a software-developing point of view.  
 
 ###	Attributes
 

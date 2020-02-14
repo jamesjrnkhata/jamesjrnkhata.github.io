@@ -142,9 +142,15 @@ The user would determine the times they wanted their water to be hot and the con
 
 ### Software
 
-**Declaration Code Snippet**
+
+**Code written in Arduino**
+
 ```cpp
-/////////THOKO HOUSE AREA 6 AUTOMATION SKETCH ///////////////////////////////////////////
+////////////////////////// WATER HEATER CONTROLLER /////////////////////////////////////////
+//////////////////// THOKO HOUSE AREA 6 AUTOMATION SKETCH //////////////////////////////////
+////////////////////////////// CASA-JUEGOS INC /////////////////////////////////////////////
+/////////////////////////// written by: JAMES JR NKHATA ////////////////////////////////////
+
 #include <DS3231.h>
 #include <Wire.h>
 #include <LiquidCrystal.h>
@@ -185,10 +191,109 @@ byte second_counter; // used for displaying seconds count on the LCD Display
 
 int heat_time; // variable to hold the 30 minute heating durations
 
-```
-**Manual Heat Function Code Snippet**
+void setup(){
+  // set up the LCD's number of columns and rows:
+  lcd.begin(16, 2);
 
-```cpp
+  // start serial port at baud rate 9600
+  Serial.begin(9600);
+  // Uncomment the next line if you are using an Arduino Leonardo
+  //while (!Serial) {}
+
+  // Initialize the rtc object
+  rtc.begin();
+
+  // SET TIME AND DATE
+  // The following lines can be uncommented to set the date and time (re-comment after set)
+  // rtc.setDOW(SUNDAY); // Set Day-of-Week to SUNDAY
+  // rtc.setTime(21, 27, 0); // Set the time to 12:00:00 (24hr format)
+  // rtc.setDate(7, 8, 2017); // Set the date to 1st January, 2014
+
+  Time_Display(); // prototyping the Time_Display function
+  Manual_Waterheat(); // prototyping the Manual_Waterheat function
+
+  pinMode(water_heater, OUTPUT); // initialize digital pin 12 as an Output.
+
+  pinMode(time_button, INPUT); // initialize digital pin 08 as an Input.
+  pinMode(cancel_button, INPUT); // initialize digital pin 20 as an Input.
+  pinMode(start_button, INPUT); // initialize digital pin 13 as an Input.
+
+  digitalWrite(water_heater, LOW); // initialize water_heater to "off" (ACTIVE LOW SIGNAL REQUIRED TO SWITCH ON)
+}
+
+void loop() {
+  // Get data from the DS3231
+  t = rtc.getTime();
+  month = rtc.getMonthStr();
+  day = t.dow; // retrieved as an integer.
+  hours = t.hour;
+  minutes = t.min;
+  seconds = t.sec;
+
+  Time_Display(); // execute Time_Display function
+  Manual_Waterheat(); //execute Manual_Waterheat function
+
+ // condition to check if manual_heat_flag is active or automatic_heat_flag is active else switch the water_heater off
+ if(manual_heat_flag == 1){
+  digitalWrite(water_heater, HIGH);
+  }
+ else if(automatic_heat_flag == 1){
+  digitalWrite(water_heater, HIGH);
+  }
+ else
+ {
+   digitalWrite(water_heater, HIGH);
+ }
+
+  // CONDITIONS USED TO SET DAILY AUTOMATIC HEATING TIMES
+  // switch on at 18:00
+  if(hours == 18 && minutes >= 0){
+    automatic_heat_flag == 1;
+  }
+  // switch off at 19:00
+  if(hours == 19 && minutes >= 0){
+    automatic_heat_flag == 0;
+  }
+}
+
+// FUNCTION USED TO DISPLAY TIME TO LCD DISPLAY
+// Display adjustments made to propely display on the LCD Display
+void Time_Display()
+{
+lcd.setCursor(0,0);
+  if (hours < 10){
+    lcd.setCursor(0,0);
+    lcd.print('0');
+    lcd.print(hours);
+  }
+  else
+  {
+    lcd.print(hours);  
+  }
+
+  lcd.print(":");  
+    if (minutes < 10){
+    lcd.setCursor(3,0);
+    lcd.print('0');
+    lcd.print(minutes);
+  }
+  else
+  {
+    lcd.print(minutes);  
+  }
+
+  lcd.print(":");
+  if (seconds < 10){
+    lcd.setCursor(6,0);
+    lcd.print('0');
+    lcd.print(seconds);
+  }
+  else
+  {
+    lcd.print(seconds);  
+  }
+}
+
 //FUNCTION USED TO MANUAL SWITCH THE WATER HEATER ON FOR AN INCREMENT OF 30 MINUTES (MAXIMUM 120 MINUTES)
 void Manual_Waterheat(){
 
@@ -237,7 +342,6 @@ void Manual_Waterheat(){
    }
   }   
 }
-
 ```
 
 <h2 class="text-underline">Gallery</h2>
