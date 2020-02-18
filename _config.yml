@@ -203,7 +203,7 @@ incremental: false
 # Markdown Processing
 kramdown:
   input: GFM
-  hard_wrap: true
+  hard_wrap: false
   auto_ids: true
   footnote_nr: 1
   entity_output: as_char
@@ -212,7 +212,7 @@ kramdown:
   enable_coderay: false
   syntax_highlighter_opts:
     block:
-      line_numbers: true
+      line_numbers: false
 
 
 # Sass/SCSS
