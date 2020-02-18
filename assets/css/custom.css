@@ -77,14 +77,14 @@ ul.custom_post a {
 }
 
 .photo-gallery-2col li img {
-	/*width: 100%; */
-  width: 449px;
+	width: 100%;
   height: 312px;
 }
 
 .photo-gallery-3col li {
 	display: inline-block;
 	width: 32%;
+  height: 200px;
 }
 
 .photo-gallery-3col li img {
