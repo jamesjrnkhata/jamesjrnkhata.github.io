@@ -315,7 +315,7 @@ The identified stereotypical classes from the Use-case model were reconsidered. 
 | From Terminal Class |     |
 | ------------------- | ---------------------------- |
 | Potential attributes: | CarSensorStatus, IDButtonPressed, HelpButtonPressed |
-| Potential methods: |	GetSensorData(), UpdateDisplay(), CheckIDCollection(), <br> RequestID(), CallSecurity(), ScanID() |
+| Potential methods: |	GetSensorData(), UpdateDisplay(), CheckIDCollection(), RequestID(), CallSecurity(), ScanID() |
 
 | From Barrier Class |     |
 | ------------------- | ---------------------------- |
@@ -335,7 +335,7 @@ The identified stereotypical classes from the Use-case model were reconsidered. 
 | From Database Class |     |
 | ------------------- | ---------------------------- |
 | Potential attributes: | EntryStatus, UserIDNumber, ShortStayPeriod, ParkingRate |
-| Potential methods: | GetDatabaseInformation(), SetStartTime(), SetEndTime(), <br> SetDuration(), editDatabaseEntry() |
+| Potential methods: | GetDatabaseInformation(), SetStartTime(), SetEndTime(), SetDuration(), editDatabaseEntry() |
 
 | From Real-Time Clock Class |     |
 | ------------------- | ---------------------------- |
@@ -345,6 +345,8 @@ The identified stereotypical classes from the Use-case model were reconsidered. 
 The attributes and methods listed above were carefully considered with reference to the Use-case model’s Sequence Diagram and the Class Responsibility Collaboration (CRC) cards from a software-developing point of view.  
 
 ###	Attributes
+
+<span class="custom-tablecaption">Table 4: Attributes derived from refined Use-Case Model's Sequence Diagram and CRC Cards</span>
 
 ###	Methods
 
