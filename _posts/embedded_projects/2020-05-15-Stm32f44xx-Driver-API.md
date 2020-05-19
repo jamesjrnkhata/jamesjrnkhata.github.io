@@ -1,10 +1,10 @@
 ---
-title: "Stm32f446RE Driver API"
+title: "Stm32f446RE Driver APIs"
 date: 2020-05-15
 categories: [embedded-projects]
 permalink: /:categories/:title/
 feature_img: /images/embedded_projects/stm32f446redriverapi/stm32f446redriverapi_img00.jpg
-excerpt: "embedded c, spi, i2c, stm32, nucleo, gpio"
+excerpt: "embedded c, stm32f446re, stm32cubdeide, spi, i2c, stm32, nucleo, gpio"
 purpose: "Developing bare-metal drivers for Stm32 microcontrollers. Focusing on general purpose input and output (gpio), and simple communication protocols such as SPI, I2C, USART and UART."
 toc: true
 classes: wide
