@@ -1,5 +1,5 @@
 ---
-title: "Stm32f446RE Driver APIs"
+title: "STM32F446RE Driver APIs"
 date: 2020-05-15
 categories: [embedded-projects]
 permalink: /:categories/:title/
