@@ -1,3 +1,4 @@
+---
 title: "Remote Allotment Irrigation System"
 date: 2020-07-17
 categories: [embedded-projects]
