@@ -17,7 +17,7 @@ classes: wide
 * power source
 * control - manual and schedule
 
-<h2 class="text-underline">Solution</h2>
+<h2 class="text-underline">Design</h2>
 
 <h2 class="text-underline">Implementation</h2>
 
