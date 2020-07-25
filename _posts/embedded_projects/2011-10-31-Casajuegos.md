@@ -5,7 +5,7 @@ categories: [embedded-projects]
 permalink: /:categories/:title/
 feature_img: /images/embedded_projects/casajuegoscafe/casajuegos_img00.jpg
 excerpt: "windows, embedded, media, entertainment, networking, gaming"
-purpose: "The purpose of the project was to establish a start-up that could offer services as a modern video game arcade and an offline media-streaming hub at a location in Lilongwe, Malawi, South-East Africa."
+purpose: "The purpose of the project was to offer services as a modern video game arcade and an offline media-streaming hub at a location in Lilongwe, Malawi, South-East Africa."
 toc: true
 classes: wide
 images:
@@ -70,7 +70,7 @@ images:
     title: College Outdoor Screening Demo 2
     weight: 19    
 ---
-The purpose of the project was to establish a start-up that could offer services as a modern video game arcade and an offline media-streaming hub at a location in Lilongwe, Malawi, South-East Africa.
+The purpose of the project was to offer services as a modern video game arcade and an offline media-streaming hub at a location in Lilongwe, Malawi, South-East Africa.
 
 <h2 class="text-underline">Structure of the Café</h2>
 
