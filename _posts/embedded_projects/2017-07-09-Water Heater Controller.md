@@ -5,7 +5,7 @@ categories: [embedded-projects]
 permalink: /:categories/:title/
 feature_img: /images/embedded_projects/waterheatercontroller/waterheatercontroller_img00.jpg
 excerpt: "c++, boiler, automation, embedded, control, domestic, arduino"
-purpose: "This project was an embedded controller offered to customers with Water Heaters (Geysers) with in-efficient thermostats or built-in temperature regulators. Its purpose was to alleviate the need for the customer to manually switch the Water Heater on and off. "
+purpose: "This project was an embedded controller offered to customers with Water Heaters (Geysers) with inefficient thermostats or built-in temperature regulators. Its purpose was to alleviate the need for the customer to manually switch the Water Heater on and off. "
 toc: true
 classes: wide
 images:
@@ -64,7 +64,7 @@ images:
     title: "Figure 18"
     weight: 18                
 ---
-This project was an embedded controller offered to customers with Water Heaters (Geysers) with in-efficient thermostats or built-in temperature regulators. Its purpose was to elevate the need for the customer to manually switch the Water Heater on and off.
+This project was an embedded controller offered to customers with Water Heaters (Geysers) with inefficient thermostats or built-in temperature regulators. Its purpose was to elevate the need for the customer to manually switch the Water Heater on and off.
 
 <h2 class="text-underline">Background / Challenge</h2>
 
