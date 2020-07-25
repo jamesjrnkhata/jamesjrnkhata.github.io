@@ -24,7 +24,7 @@ The incentive behind designing the Carb Cooker was to:
 
  [![Nsima Cooking](http://img.youtube.com/vi/e3Qg-X7DNN8/0.jpg)](https://www.youtube.com/watch?v=e3Qg-X7DNN8 "Nsima Cooking")
 
- Rice, Pasta and Nsima all require adding different amount of water and heating at various temperatures each with its own timings. Changes on the amount of water or timing can alter the resulting cooked product, either making it too soft, soggy or slightly hard. Nsima requires cold water initially and then hot water later through the cooking stages. Pasta requires hot water while rice can be cooked with either cold or hot depending on how well cooked it is desired. The designing of the auto-cooker had to consider these requirements.
+ Rice, Pasta and Nsima all require adding different amount of water and heating at various temperatures each with its own timings. Changes on the amounts of water or timing can alter the resulting cooked product, either making it too soft, soggy or slightly hard. Nsima requires cold water initially and then hot water later through the cooking stages. Pasta requires hot water while rice can be cooked with either cold or hot depending on how well cooked it is desired. The designing of the auto-cooker had to consider these requirements.
 
  The solution required a modular design and control over each stage of the cooking process. This was achieved by breaking the cooker down into units responsible for feeding water, feeding raw rice / pasta, feeding maize flour, heating, user interface and stirring the contents of the non-stick cooking pot. The decision was made to use a microcontroller to integrate the units and control the cooking processes. The design used a combination of AC and DC (with a step-down transformer) powered components.
 
