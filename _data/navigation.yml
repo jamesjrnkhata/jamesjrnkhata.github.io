@@ -6,10 +6,10 @@ main:
   - title: "Data Analysis"
     url: /data-analysis-projects/
 
-  - title: "Embedded Systems"
+  - title: "Electronic / Embedded"
     url: /embedded-projects/
 
-  - title: "Software Development"
+  - title: "Software"
     url: /software-projects/
 
   #- title: "Web Development"

@@ -1,7 +1,7 @@
 ---
 layout: archive
 permalink: /embedded-projects/
-title: "Embedded Projects"
+title: "Electronic / Embedded Projects"
 author_profile: true
 header:
   image: "/images/embedded_background.jpg"
