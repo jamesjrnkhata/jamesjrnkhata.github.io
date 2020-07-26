@@ -22,7 +22,11 @@ The challenges that the project potentially faced were:
 
 <h2 class="text-underline">Design</h2>
 
+[![Nsima Cooking](http://img.youtube.com/vi/e3Qg-X7DNN8/0.jpg)](https://www.youtube.com/watch?v=e3Qg-X7DNN8 "Nsima Cooking")
+
 ### Power Source
+
+In-order to power the system an off-grid power source was decided upon to be used for the Pump. This would include
 
 * power source (autonomous off-grid system)
 
