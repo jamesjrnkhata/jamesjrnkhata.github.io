@@ -12,12 +12,16 @@ classes: wide
 
 
 <h2 class="text-underline">Challenge</h2>
-* Security of equipment
-* water source
-* power source
-* control - manual and schedule
+The system was supposed to be used for monitor and autonomously watering the vegetables planted at an Allotment in a remote location. As the Allotment was in an area that was far from the owner's residence, access to water and electricity was not possible.  However a stream ran through the length of the Allotment which was decided to be used as the source for watering the vegetables using a Water Pump.
+
+The challenges that the project potentially faced were:
+* Power Source - Depending on the type of water pump used, a method of powering the pump was required.  
+* Watering Control - A way to register when the ground was watered, when it needed watering and a method to start watering without the need for the user to visit the Allotment.
+* Security of Equipment - Although the Allotment was in a gated area, further consideration was supposed to be taken for the security and protection of the components (pump, controller etc) as the Allotment was located in a public area surrounded by other Allotment owners. This would leave the components susceptible to theft, vandalism or weather.  
+
 
 <h2 class="text-underline">Design</h2>
+* power source (autonomous off-grid system)
 
 <h2 class="text-underline">Implementation</h2>
 
