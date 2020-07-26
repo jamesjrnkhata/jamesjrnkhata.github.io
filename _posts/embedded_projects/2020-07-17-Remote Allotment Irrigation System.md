@@ -12,7 +12,7 @@ classes: wide
 
 
 <h2 class="text-underline">Challenge</h2>
-The system was supposed to be used for monitor and autonomously watering the vegetables planted at an Allotment in a remote location. As the Allotment was in an area that was far from the owner's residence, access to water and electricity was not possible.  However a stream ran through the length of the Allotment which was decided to be used as the source for watering the vegetables using a Water Pump.
+The system was intended to be used for monitoring the soil moisture and autonomously watering the vegetables planted at an Allotment in a remote location. As the Allotment was in an area that was far from the owner's residence, access to water and electricity was not possible.  However a stream ran through the length of the Allotment which was decided to be used as the source for watering the vegetables using a Water Pump.
 
 The challenges that the project potentially faced were:
 * Power Source - Depending on the type of water pump used, a method of powering the pump was required.  
@@ -21,10 +21,20 @@ The challenges that the project potentially faced were:
 
 
 <h2 class="text-underline">Design</h2>
+
+### Power Source
+
 * power source (autonomous off-grid system)
+
+### Water Controller
+
+### Security
+
 
 <h2 class="text-underline">Implementation</h2>
 
 <h2 class="text-underline">Hardware</h2>
 
 <h2 class="text-underline">Software</h2>
+
+<h2 class="text-underline">Gallery</h2>
