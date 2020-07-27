@@ -1,5 +1,5 @@
 ---
-title: "STM32F446RE Driver APIs Part 1 (GPIO, SPI, I2C, USART and UART)"
+title: "STM32F446RE Driver APIs Part 1 (GPIO, SPI, I2C and USART)"
 date: 2020-05-15
 categories: [embedded-projects]
 permalink: /:categories/:title/
