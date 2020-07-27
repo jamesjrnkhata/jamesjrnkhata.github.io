@@ -22,7 +22,8 @@ The incentive behind designing the Carb Cooker was to:
 
 <a class="custom_link" target="" href="https://en.wikipedia.org/wiki/Ugali">Nsima </a>is a type of maize flour porridge made in Africa. It is also known as **Ugali pap**, **Ngima**, **Obusuma**, **Kimnyet**, **Mieliepap**, **Nshima**, **Phutu**, **Sadza**, **Kwon**, and other names in different African countries. Process of cooking it may differ with individuals form different countries. However, it is mainly cooked in boiling water or milk until it reaches a stiff or firm dough-like consistency.
 
- [![Nsima Cooking](http://img.youtube.com/vi/e3Qg-X7DNN8/0.jpg)](https://www.youtube.com/watch?v=e3Qg-X7DNN8 "Nsima Cooking")
+<!-- youtube clip " " -->
+<div class="youtube-player" data-id="e3Qg-X7DNN8"></div>
 
  Rice, Pasta and Nsima all require adding different amount of water and heating at various temperatures each with its own timings. Changes on the amounts of water or timing can alter the resulting cooked product, either making it too soft, soggy or slightly hard. Nsima requires cold water initially and then hot water later through the cooking stages. Pasta requires hot water while rice can be cooked with either cold or hot depending on how well cooked it is desired. The designing of the auto-cooker had to consider these requirements.
 
