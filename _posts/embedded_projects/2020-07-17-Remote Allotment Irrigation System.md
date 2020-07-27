@@ -25,7 +25,7 @@ The user required the system to be able to water an area of roughly 100 square f
 <h2 class="text-underline">Design</h2>
 
 ### Security
-The user had a shed built on the location which was 16 meters from the stream (water source). It was decided that shed would be used to house and protect the components (solar panels etc) from theft, vandalism and weather elements.  
+The user had a shed built on the location which was 16 meters from the stream (water source). It was decided that the shed would be used to house and protect the components (solar panels etc) from theft, vandalism and weather elements.  
 
 ### Power Source
 
