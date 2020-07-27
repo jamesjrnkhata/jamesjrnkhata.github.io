@@ -36,7 +36,7 @@ In-order to power the system an off-grid power source was decided upon to be use
 
 [![Nsima Cooking](http://img.youtube.com/vi/e3Qg-X7DNN8/0.jpg)](https://www.youtube.com/watch?v=e3Qg-X7DNN8 "Nsima Cooking")
 
-<div class="youtube-player" data-id="https://www.youtube.com/watch?v=e3Qg-X7DNN8"></div>
+<div class="youtube-player" data-id="e3Qg-X7DNN8"></div>
 
 <h2 class="text-underline">Hardware</h2>
 
