@@ -8,6 +8,29 @@ excerpt: "c++, irrigation, esp8266, iot, cayenne, mqtt, remote-control, renewabl
 purpose: "The aim of this project was to provide an automated solution for watering of vegetables in an allotment situated in a remote location with no direct access to water plumbing or electricity."
 toc: true
 classes: wide
+images:
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img02.jpg
+    title: "Figure 1 - "
+    weight: 2
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img03.jpg
+    title: "Figure 2 - "
+    weight: 3
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img013.jpg
+    title: "Figure 3 - "
+    weight: 4
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img014.jpg
+    title: "Figure 4 - "
+    weight: 5    
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img016.jpg
+    title: "Figure 5 - "
+    weight: 6       
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img018.jpg
+    title: "Figure 6 - "
+    weight: 7    
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img019.jpg
+    title: "Figure 7 - "
+    weight: 8      
+
 ---
 
 
@@ -24,24 +47,93 @@ The user required the system to be able to water an area of roughly 100 square f
 
 <h2 class="text-underline">Design</h2>
 
-### Security
-The user had a shed built on the location which was 16 meters from the stream (water source). It was decided that the shed would be used to house and protect the components (solar panels etc) from theft, vandalism and weather elements.  
+### Hardware
 
-### Power Source
+*Security*
+The user had a shed built on the location which was 16 meters from the stream (water source). It was decided that the shed would be used to house and protect the components (Controller, Pump, Solar Panel, Battery etc) from theft, vandalism and weather elements.  
 
-In-order to power the system the decision of an off-grid solution seemed the more feasible option. This would comprise of solar panel(s), charge controller, Inverter (for a 240 volt Pump if needed) and Deep Cycle Battery (for deep discharges). Through analysing the user's needs and the distance from the water stream to the shed (16 meters),  it was determined that a 12 Volt (12V) DC Pump would be more than adequate for the job. 12V was also ideal as it would make it easier and efficient to power more devices without the need for extra components such as step-down transformers such as a 240 volt system.
+<ul class="photo-gallery-2col">
+  {% for image in page.images %}
+    {% if image.weight >= 2 and image.weight <= 3 %}
+      <li>
+        <figure class="custom-figure">
+          <img class="galley_img" src="{{ image.image_path }}" alt="{{ image.title }}">
+          <figcaption class="custom-figcaption">
+            {{ image.title }}
+          </figcaption>
+        </figure>  
+      </li>
+    {% endif %}  
+  {% endfor %}  
+</ul>
+
+*Power Source*
+
+In-order to power the system the decision of an off-grid solution seemed the more feasible option. This would comprise of solar panel(s), charge controller, Inverter (for a 240 volt Pump if needed) and Deep Cycle Battery (for deep discharges). Through analysing the user's needs and the distance from the water stream to the shed (16 meters),  it was determined that a 12 Volt (12V) DC Centrifugal Pump running on a 12v Deep Cycle Battery (Wet Cell) would be more than adequate for the job. 12V was also ideal as it would make it easier and efficient to power more devices without the need for extra components such as step-down transformers such as a 240 volt system.
 
 Sizing of the Battery Bank and Solar panels was calculated and determined by the number of components being powered and the length of use required by the user.
 
-### Water Controller
-* Wi-Fi, MQTT, Soil Moisture Sensor, ESP8266, Cayenne, Relay Modules,  
+A 12V Centrifugal Pump with an Automatic Pressure Control Switch was also preferred as it would allow the user to be able to control the water flow by simply opening valves (or tap) without fusing with the pump.  
+
+*System Controller*
+The Scheduling and Remote switching Controller solution was going to be achieved by integration of components such as: Feather Huzzah (ESP8266) MCU, Wi-Fi Modem (Hotpsot), MQTT through Cayenne Iot platform, Soil Moisture Sensor and Relay Modules.
+
+<ul class="photo-gallery-3col">
+  {% for image in page.images %}
+    {% if image.weight >= 4 and image.weight <= 6 %}
+      <li>
+        <figure class="custom-figure">
+          <img class="galley_img" src="{{ image.image_path }}" alt="{{ image.title }}">
+          <figcaption class="custom-figcaption">
+            {{ image.title }}
+          </figcaption>
+        </figure>  
+      </li>
+    {% endif %}  
+  {% endfor %}  
+</ul>
+
+*System Layout*
+
+**PLUMBING CHART**
+<ul class="photo-gallery">
+  {% for image in page.images %}
+    {% if image.weight == 7 %}
+      <li>
+        <figure class="custom-figure">
+          <img src="{{ image.image_path }}" alt="{{ image.title }}">
+          <figcaption class="custom-figcaption">
+            {{ image.title }}
+          </figcaption>
+        </figure>  
+      </li>
+    {% endif %}  
+  {% endfor %}  
+</ul>
 
 
+### Software
+
+**FLOWCHART**
+<ul class="photo-gallery">
+  {% for image in page.images %}
+    {% if image.weight == 8 %}
+      <li>
+        <figure class="custom-figure">
+          <img src="{{ image.image_path }}" alt="{{ image.title }}">
+          <figcaption class="custom-figcaption">
+            {{ image.title }}
+          </figcaption>
+        </figure>  
+      </li>
+    {% endif %}  
+  {% endfor %}  
+</ul>
 
 <h2 class="text-underline">Implementation</h2>
 
 <!-- youtube clip " " -->
-<div class="youtube-player" data-id="e3Qg-X7DNN8"></div>
+<div class="youtube-player" data-id="lPfLFi2TlY0"></div>
 
 * Wi-Fi, MQTT, Soil Moisture Sensor, ESP8266, Cayenne, Relay Modules,
 
