@@ -15,19 +15,19 @@ images:
   - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img03.jpg
     title: "Figure 2 - "
     weight: 3
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img013.jpg
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img13.jpg
     title: "Figure 3 - "
     weight: 4
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img014.jpg
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img14.jpg
     title: "Figure 4 - "
     weight: 5    
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img016.jpg
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img16.jpg
     title: "Figure 5 - "
     weight: 6       
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img018.jpg
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img18.jpg
     title: "Figure 6 - "
     weight: 7    
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img019.jpg
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img19.jpg
     title: "Figure 7 - "
     weight: 8      
 
