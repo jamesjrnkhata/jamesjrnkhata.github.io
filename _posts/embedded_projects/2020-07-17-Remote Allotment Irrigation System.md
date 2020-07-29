@@ -32,18 +32,7 @@ The system was intended to be used for monitoring the soil moisture and autonomo
 The challenges that the project potentially faced were:
 * Power Source - Depending on the type of water pump used, a method of powering the pump was required.  
 * Watering Control - A way to register when the ground was watered, when it needed watering and a method to start watering without the need for the user to visit the Allotment.
-* Security of Equipment - Although the Allotment was in a gated area, further consideration was supposed to be taken for the security and protection of the components (pump, controller etc) as the Allotment was located in a public area surrounded by other Allotment owners. This would leave the components susceptible to theft, vandalism or weather.  
-
-<h2 class="text-underline">Requirements</h2>
-The user required the system to be able to water an area of roughly 100 square feet autonomously. They also wanted the system to be able to have capabilities of attaching a hose pipe for hand watering and also filling up Rain Barrels and Water Butts.
-
-<h2 class="text-underline">Design</h2>
-
-### Hardware
-
-*Security*
-
-The user had a shed built on the location which was 16 meters from the stream (water source). It was decided that the shed would be used to house and protect the components (Controller, Pump, Solar Panel, Battery etc) from theft, vandalism and weather elements.  
+* Security of Equipment - Although the Allotment was in a gated area, further consideration was supposed to be taken for the security and protection of the components (pump, controller etc) as the Allotment was located in a public area surrounded by other Allotment owners. This would leave the components susceptible to theft, vandalism or weather.
 
 <ul class="photo-gallery">
   {% for image in page.images %}
@@ -59,6 +48,17 @@ The user had a shed built on the location which was 16 meters from the stream (w
     {% endif %}  
   {% endfor %}  
 </ul>
+
+<h2 class="text-underline">Requirements</h2>
+The user required the system to be able to water an area of roughly 100 square feet autonomously. They also wanted the system to be able to have capabilities of attaching a hose pipe for hand watering and also filling up Rain Barrels and Water Butts.
+
+<h2 class="text-underline">Design</h2>
+
+### Hardware
+
+*Security*
+
+The user had a shed built on the location which was 16 meters from the stream (water source). It was decided that the shed would be used to house and protect the components (Controller, Pump, Solar Panel, Battery etc) from theft, vandalism and weather elements.  
 
 *Power Source*
 
