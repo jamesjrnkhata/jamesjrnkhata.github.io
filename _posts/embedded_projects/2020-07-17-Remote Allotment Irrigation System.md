@@ -90,6 +90,7 @@ The Scheduling and Remote switching Controller solution was going to be achieved
 *System Layout*
 
 **PLUMBING CHART**
+
 <ul class="photo-gallery">
   {% for image in page.images %}
     {% if image.weight == 4 %}
