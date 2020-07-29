@@ -50,7 +50,7 @@ The challenges that the project potentially faced were:
 </ul>
 
 <h2 class="text-underline">Requirements</h2>
-The user required the system to be able to water an area of roughly 100 square feet autonomously. They also wanted the system to be able to have capabilities of attaching a hose pipe for hand watering and also filling up Rain Barrels and Water Butts.
+The user required the system to be able to water an area of roughly 100 square feet autonomously. They also wanted the system to be able to have capabilities of attaching a hose pipe for hand watering and also filling up Rain Barrels / Water Butts.
 
 <h2 class="text-underline">Design</h2>
 
