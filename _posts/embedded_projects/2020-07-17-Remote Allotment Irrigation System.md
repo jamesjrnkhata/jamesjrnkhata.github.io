@@ -10,7 +10,7 @@ toc: true
 classes: wide
 images:
   - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img02.jpg
-    title: "Figure 1 - "
+    title: "Figure 1 - Water stream running along the length of the Allotment"
     weight: 1
   - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img13.jpg
     title: "Figure 2 - "
