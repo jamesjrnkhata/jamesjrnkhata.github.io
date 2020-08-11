@@ -127,7 +127,7 @@ Through Analysis of the User's requirements, the following specifications were d
 *	Prompt the user to Cancel a Scheduled watering session if it may rain.
 *	Allow the user to Cancel watering sessions.
 *	Allow the user to Manually start a watering session.
-*	Only start 48 hr counter when the soil is dry (by a determined soil moisture threshold).
+*	Only start 48 hour counter when the soil is dry (by a determined Soil Moisture Threshold).
 *	Collect a few samples of Soil Moisture Sensor readings and calculate the average value every hour.
 
 <ul class="photo-gallery">
