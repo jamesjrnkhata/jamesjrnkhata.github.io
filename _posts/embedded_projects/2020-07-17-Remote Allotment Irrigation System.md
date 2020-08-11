@@ -151,7 +151,8 @@ Through Analysis of the User's requirements, the following specifications were d
     </embed>
 </object>
 
-<embed src="https://drive.google.com/drive/folders/1-BJkH0Ok_3atBuuKAYONl3tWdmF7jCgG" width="500" height="375">
+<embed src="https://drive.google.com/viewerng/
+viewer?embedded=true&url=https://jamesjrnkhata.github.io/embedded-projects/beckyallotmentsystem/Software-Requirements.pdf" width="500" height="375">
 
 <h2 class="text-underline">Implementation</h2>
 
