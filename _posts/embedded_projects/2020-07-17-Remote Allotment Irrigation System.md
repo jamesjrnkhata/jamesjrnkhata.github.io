@@ -21,9 +21,6 @@ images:
   - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img18.jpg
     title: "Figure 4 - "
     weight: 4    
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img19.jpg
-    title: "System Controller Software Flowchart"
-    weight: 5  
 ---
 
 <!-- youtube clip " " -->
@@ -148,9 +145,9 @@ Through Analysis of the User's requirements, the following specifications were d
 <embed src="https://drive.google.com/viewerng/
 viewer?embedded=true&url=https://jamesjrnkhata.github.io/images/embedded_projects/beckyallotmentsystem/Software-Requirements.pdf" width="1024" height="768">
 
-<figcaption class="custom-figcaption">
+<div class="custom-figcaption">
   System Controller Software Flowchart
-</figcaption>
+</div>
 
 <h2 class="text-underline">Implementation</h2>
 
