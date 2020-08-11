@@ -145,14 +145,8 @@ Through Analysis of the User's requirements, the following specifications were d
   {% endfor %}  
 </ul>
 
-<object data="https://jamesjrnkhata.github.io/embedded-projects/beckyallotmentsystem/Software-Requirements.pdf" type="application/pdf" width="700px" height="700px">
-    <embed src="https://jamesjrnkhata.github.io/embedded-projects/beckyallotmentsystem/Software-Requirements.pdf">
-        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://jamesjrnkhata.github.io/embedded-projects/beckyallotmentsystem/Software-Requirements.pdf">Download PDF</a>.</p>
-    </embed>
-</object>
-
 <embed src="https://drive.google.com/viewerng/
-viewer?embedded=true&url=https://jamesjrnkhata.github.io/embedded-projects/beckyallotmentsystem/Software-Requirements.pdf" width="500" height="375">
+viewer?embedded=true&url=https://jamesjrnkhata.github.io/embedded-projects/images/beckyallotmentsystem/Software-Requirements.pdf" width="500" height="375">
 
 <h2 class="text-underline">Implementation</h2>
 
