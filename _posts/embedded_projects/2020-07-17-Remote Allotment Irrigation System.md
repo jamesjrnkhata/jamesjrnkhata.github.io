@@ -89,20 +89,8 @@ The Scheduling and Remote switching Controller solution was going to be achieved
 
 **System Plumbing Layout**
 
-<ul class="photo-gallery">
-  {% for image in page.images %}
-    {% if image.weight == 4 %}
-      <li>
-        <figure class="custom-figure">
-          <img src="{{ image.image_path }}" alt="{{ image.title }}">
-          <figcaption class="custom-figcaption">
-            {{ image.title }}
-          </figcaption>
-        </figure>  
-      </li>
-    {% endif %}  
-  {% endfor %}  
-</ul>
+<embed src="https://drive.google.com/viewerng/
+viewer?embedded=true&url=https://jamesjrnkhata.github.io/images/embedded_projects/beckyallotmentsystem/Plumbing-Layout.pdf" width="1024" height="768">
 
 The system's plumbing was design to serve 5 functions:
 1. Draw water from the *Stream (Inline Valve - Inlet 1 Opened)* to the *Sprinkler* Manually *(Inline Valve - Outlet 1 Opened)* or Automatically *(Solenoid Valve)* by User Remote / Schedule (through System Controller MCU).
@@ -142,12 +130,10 @@ Through Analysis of the User's requirements, the following specifications were d
   {% endfor %}  
 </ul>
 
+**System Controller Software Flowchart**
+
 <embed src="https://drive.google.com/viewerng/
 viewer?embedded=true&url=https://jamesjrnkhata.github.io/images/embedded_projects/beckyallotmentsystem/Software-Requirements.pdf" width="1024" height="768">
-
-<div class="custom-figcaption">
-  System Controller Software Flowchart
-</div>
 
 <h2 class="text-underline">Implementation</h2>
 
