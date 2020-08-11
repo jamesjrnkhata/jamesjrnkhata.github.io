@@ -56,7 +56,7 @@ The user required the system to be able to water an area of roughly 100 square f
 
 ### Hardware
 
-*Security*
+##### Security
 
 The user had a shed built on the location which was 16 meters from the stream (water source). It was decided that the shed would be used to house and protect the components (Controller, Pump, Solar Panel, Battery etc) from theft, vandalism and weather elements.  
 
@@ -67,6 +67,30 @@ In-order to power the system the decision of an off-grid solution seemed the mor
 Sizing of the Battery Bank and Solar panels was calculated and determined by the number of components being powered and the length of use required by the user.
 
 A 12V Centrifugal Pump with an Automatic Pressure Control Switch was also preferred as it would allow the user to be able to control the water flow by simply opening valves (or tap) without fusing with the pump.  
+
+*System Plumbing Layout*
+
+<ul class="photo-gallery">
+  {% for image in page.images %}
+    {% if image.weight == 4 %}
+      <li>
+        <figure class="custom-figure">
+          <img src="{{ image.image_path }}" alt="{{ image.title }}">
+          <figcaption class="custom-figcaption">
+            {{ image.title }}
+          </figcaption>
+        </figure>  
+      </li>
+    {% endif %}  
+  {% endfor %}  
+</ul>
+
+The system's plumbing was design to serve 5 functions:
+1. Draw water from the Stream (Inline Valve - Inlet 1 Opened) to the Sprinkler Manually (Inline Valve - Outlet 1 Opened) or Automatically (Solenoid Valve) by User / Schedule (through System Controller MCU).
+2. Draw water from the Stream (Inline Valve - Inlet 1 Opened) to the Garden Tap for hand watering / hose attachment.
+3. Draw water from the Stream (Inline Valve - Inlet 1 Opened) to fill up the Water Drum (Inline Valve - Outlet 2).
+4. Draw water from the Drum (Inline Valve - Inlet 2 Opened) to the Sprinkler Manually or Automatically.
+5. Draw water from the Drum (Inline Valve - Inlet 2 Opened) to the Garden Tap.  
 
 *System Controller*
 
@@ -87,24 +111,6 @@ The Scheduling and Remote switching Controller solution was going to be achieved
   {% endfor %}  
 </ul>
 
-*System Layout*
-
-**PLUMBING CHART**
-
-<ul class="photo-gallery">
-  {% for image in page.images %}
-    {% if image.weight == 4 %}
-      <li>
-        <figure class="custom-figure">
-          <img src="{{ image.image_path }}" alt="{{ image.title }}">
-          <figcaption class="custom-figcaption">
-            {{ image.title }}
-          </figcaption>
-        </figure>  
-      </li>
-    {% endif %}  
-  {% endfor %}  
-</ul>
 
 
 ### Software

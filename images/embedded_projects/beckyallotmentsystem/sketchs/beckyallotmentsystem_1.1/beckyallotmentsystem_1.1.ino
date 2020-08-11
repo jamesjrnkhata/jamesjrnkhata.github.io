@@ -52,6 +52,8 @@ uint16_t soilMoisture;
  #define WATER_PROCESS_SCHED_BUTTON_CHANNEL           3  /*!< Used to start a “Watering Process” scheduled routine >*/
  #define MANUAL_WATER_BUTTON_CHANNEL                  4  /*!< Used to start Watering Process Manually >*/
  #define CANCEL_WATER_BUTTON_CHANNEL                  5  /*!< Used to Cancel next scheduling or currently Watering Process >*/
+
+ #define USER_SCHED_WATER_BUTTON_CHANNEL              17  /*!< Used to manually schedule Watering the next day >*/
  
  #define CANCEL_WATERING_BUTTON_FLAG_CHANNEL          6  /*!< Used to reset the state of the Cancel Watering Button Cayenne Button press >*/
  #define STATUS_CHECK_SCHEDULE_BUTTON_FLAG_CHANNEL    7  /*!< Used to reset the state of the Check Schedule Button Cayenne Button press >*/
@@ -535,7 +537,13 @@ void Status_Check_Process(uint8_t setSampleHours)
       // START WATERING PROCESS (Set Auto watering flag)
       autoWateringFlag = 1;
     }
-  }        
+  }
+  // USER HAS MANUALLY SCHEDULED WATERING
+  else if()
+  {
+      // START WATERING PROCESS (Set Auto watering flag)
+      autoWateringFlag = 1;         
+  }
 }
 
 /************************************************************************************************************************************************************
@@ -675,7 +683,7 @@ void Watering_Cycle(void)
   }
 
   // start opening the valve first  
-  if( hours < 1 && startWateringFlag)
+  if( hours < 2 && startWateringFlag)
   {
     digitalWrite(SPRINKLER_VALVE_RELAY ,LOW);
     digitalWrite(PUMP_RELAY ,LOW);
@@ -690,7 +698,7 @@ void Watering_Cycle(void)
       Notification_Cancel_Watering();    
     }
   }
-  else if( hours > 0 && startWateringFlag)
+  else if( hours > 1 && startWateringFlag)
   {    
     StopWatering();
         
@@ -716,6 +724,9 @@ void StopWatering(void)
 {
   // switch off Sprinkler Solenoid and Pump
   digitalWrite(SPRINKLER_VALVE_RELAY ,HIGH);
+  // delay for 10 seconds to let the pressure switch kick in and build the pressure in the pipes
+
+  delay(10000);
   digitalWrite(PUMP_RELAY ,HIGH);  
 
   Serial.print("STOP WATERING");
@@ -737,7 +748,7 @@ void StopWatering(void)
   wateringStatus = 0;
 
   minutes = 0;
-  hours = 0;
+  hours = 0;  
 }
 
 /************************************************************************************************************************************************************
