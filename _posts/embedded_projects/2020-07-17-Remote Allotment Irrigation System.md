@@ -10,7 +10,7 @@ toc: true
 classes: wide
 images:
   - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img02.jpg
-    title: "Figure 1 - Water stream running along the length of the Allotment"
+    title: "Water stream running along the length of the Allotment"
     weight: 1
   - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img13.jpg
     title: "Figure 2 - "
@@ -22,7 +22,7 @@ images:
     title: "Figure 4 - "
     weight: 4    
   - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img19.jpg
-    title: "Figure 5 - "
+    title: "System Controller Software Flowchart"
     weight: 5  
 ---
 
@@ -56,11 +56,11 @@ The user required the system to be able to water an area of roughly 100 square f
 
 ### Hardware
 
-##### Security
+**Security**
 
 The user had a shed built on the location which was 16 meters from the stream (water source). It was decided that the shed would be used to house and protect the components (Controller, Pump, Solar Panel, Battery etc) from theft, vandalism and weather elements.  
 
-*Power Source*
+**Power Source**
 
 In-order to power the system the decision of an off-grid solution seemed the more feasible option. This would comprise of solar panel(s), charge controller, Inverter (for a 240 volt Pump if needed) and Deep Cycle Battery (for deep discharges). Through analysing the user's needs and the distance from the water stream to the shed (16 meters),  it was determined that a 12 Volt (12V) DC Centrifugal Pump running on a 12v Deep Cycle Battery (Wet Cell) would be more than adequate for the job. 12V was also ideal as it would make it easier and efficient to power more devices without the need for extra components such as step-down transformers such as a 240 volt system.
 
@@ -68,31 +68,7 @@ Sizing of the Battery Bank and Solar panels was calculated and determined by the
 
 A 12V Centrifugal Pump with an Automatic Pressure Control Switch was also preferred as it would allow the user to be able to control the water flow by simply opening valves (or tap) without fusing with the pump.  
 
-*System Plumbing Layout*
-
-<ul class="photo-gallery">
-  {% for image in page.images %}
-    {% if image.weight == 4 %}
-      <li>
-        <figure class="custom-figure">
-          <img src="{{ image.image_path }}" alt="{{ image.title }}">
-          <figcaption class="custom-figcaption">
-            {{ image.title }}
-          </figcaption>
-        </figure>  
-      </li>
-    {% endif %}  
-  {% endfor %}  
-</ul>
-
-The system's plumbing was design to serve 5 functions:
-1. Draw water from the Stream (Inline Valve - Inlet 1 Opened) to the Sprinkler Manually (Inline Valve - Outlet 1 Opened) or Automatically (Solenoid Valve) by User / Schedule (through System Controller MCU).
-2. Draw water from the Stream (Inline Valve - Inlet 1 Opened) to the Garden Tap for hand watering / hose attachment.
-3. Draw water from the Stream (Inline Valve - Inlet 1 Opened) to fill up the Water Drum (Inline Valve - Outlet 2).
-4. Draw water from the Drum (Inline Valve - Inlet 2 Opened) to the Sprinkler Manually or Automatically.
-5. Draw water from the Drum (Inline Valve - Inlet 2 Opened) to the Garden Tap.  
-
-*System Controller*
+**System Controller**
 
 The Scheduling and Remote switching Controller solution was going to be achieved by integration of components such as: Feather Huzzah (ESP8266) MCU, Wi-Fi Modem (Hotpsot), MQTT through Cayenne Iot platform, Soil Moisture Sensor and Relay Modules.
 
@@ -111,7 +87,29 @@ The Scheduling and Remote switching Controller solution was going to be achieved
   {% endfor %}  
 </ul>
 
+**System Plumbing Layout**
 
+<ul class="photo-gallery">
+  {% for image in page.images %}
+    {% if image.weight == 4 %}
+      <li>
+        <figure class="custom-figure">
+          <img src="{{ image.image_path }}" alt="{{ image.title }}">
+          <figcaption class="custom-figcaption">
+            {{ image.title }}
+          </figcaption>
+        </figure>  
+      </li>
+    {% endif %}  
+  {% endfor %}  
+</ul>
+
+The system's plumbing was design to serve 5 functions:
+1. Draw water from the *Stream (Inline Valve - Inlet 1 Opened)* to the *Sprinkler* Manually *(Inline Valve - Outlet 1 Opened)* or Automatically (Solenoid Valve) by User Remote / Schedule (through System Controller MCU).
+2. Draw water from the *Stream (Inline Valve - Inlet 1 Opened)* to the *Garden Tap* for hand watering / hose attachment.
+3. Draw water from the *Stream (Inline Valve - Inlet 1 Opened)* to fill up the *Water Drum (Inline Valve - Outlet 2)*.
+4. Draw water from the *Drum (Inline Valve - Inlet 2 Opened)* to the Sprinkler Manually or Automatically.
+5. Draw water from the *Drum (Inline Valve - Inlet 2 Opened)* to the Garden Tap.  
 
 ### Software
 
