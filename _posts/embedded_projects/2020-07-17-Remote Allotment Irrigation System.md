@@ -108,13 +108,27 @@ The Scheduling and Remote switching Controller solution was going to be achieved
 </ul>
 
 The system's plumbing was design to serve 5 functions:
-1. Draw water from the *Stream (Inline Valve - Inlet 1 Opened)* to the *Sprinkler* Manually *(Inline Valve - Outlet 1 Opened)* or Automatically (Solenoid Valve) by User Remote / Schedule (through System Controller MCU).
+1. Draw water from the *Stream (Inline Valve - Inlet 1 Opened)* to the *Sprinkler* Manually *(Inline Valve - Outlet 1 Opened)* or Automatically *(Solenoid Valve)* by User Remote / Schedule (through System Controller MCU).
 2. Draw water from the *Stream (Inline Valve - Inlet 1 Opened)* to the *Garden Tap* for hand watering / hose attachment.
 3. Draw water from the *Stream (Inline Valve - Inlet 1 Opened)* to fill up the *Water Drum (Inline Valve - Outlet 2)*.
 4. Draw water from the *Drum (Inline Valve - Inlet 2 Opened)* to the Sprinkler Manually or Automatically.
 5. Draw water from the *Drum (Inline Valve - Inlet 2 Opened)* to the Garden Tap.  
 
 ### Software
+
+**System Requirements**
+
+Through Analysis of the User's requirements, the following specifications were determined for the *System Controller*:
+
+*	Have a Main Shut off Button for the system.
+*	Use Soil Moisture Sensor to determine when to water automatically.
+*	Have a minimum of two days in between watering sessions for scheduled watering.
+*	Give the user information on Soil Moisture Sensor readings.
+*	Prompt the user to Cancel a Scheduled watering session if it may rain.
+*	Allow the user to Cancel watering sessions.
+*	Allow the user to Manually start a watering session.
+*	Only start 48 hr counter when the soil is dry (by a determined soil moisture threshold).
+*	Collect a few samples of Soil Moisture Sensor readings and calculate the average value every hour.
 
 <ul class="photo-gallery">
   {% for image in page.images %}
@@ -130,6 +144,12 @@ The system's plumbing was design to serve 5 functions:
     {% endif %}  
   {% endfor %}  
 </ul>
+
+<object data="http://yoursite.com/the.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="http://yoursite.com/the.pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="http://yoursite.com/the.pdf">Download PDF</a>.</p>
+    </embed>
+</object>
 
 <h2 class="text-underline">Implementation</h2>
 
