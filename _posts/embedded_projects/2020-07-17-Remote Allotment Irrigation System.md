@@ -151,6 +151,9 @@ Through Analysis of the User's requirements, the following specifications were d
     </embed>
 </object>
 
+<embed src="https://drive.google.com/viewerng/
+viewer?embedded=true&url=http://example.com/the.pdf" width="500" height="375">
+
 <h2 class="text-underline">Implementation</h2>
 
 <!-- youtube clip " " -->
