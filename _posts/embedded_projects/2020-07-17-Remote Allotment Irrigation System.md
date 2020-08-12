@@ -92,6 +92,7 @@ The Scheduling and Remote switching Controller solution was going to be achieved
 <embed src="https://drive.google.com/viewerng/
 viewer?embedded=true&url=https://jamesjrnkhata.github.io/images/embedded_projects/beckyallotmentsystem/Plumbing-Layout.pdf" width="1024" height="768">
 
+
 The system's plumbing was design to serve 5 functions:
 1. Draw water from the *Stream (Inline Valve - Inlet 1 Opened)* to the *Sprinkler* Manually *(Inline Valve - Outlet 1 Opened)* or Automatically *(Solenoid Valve)* by User Remote / Schedule (through System Controller MCU).
 2. Draw water from the *Stream (Inline Valve - Inlet 1 Opened)* to the *Garden Tap* for hand watering / hose attachment.
