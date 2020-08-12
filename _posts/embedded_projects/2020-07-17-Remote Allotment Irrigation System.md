@@ -141,9 +141,10 @@ viewer?embedded=true&url=https://jamesjrnkhata.github.io/images/embedded_project
 <!-- youtube clip " " -->
 <div class="youtube-player" data-id="lPfLFi2TlY0"></div>
 
-* Wi-Fi, MQTT, Soil Moisture Sensor, ESP8266, Cayenne, Relay Modules,
 
 ### Hardware
+
+* Wi-Fi, MQTT, Soil Moisture Sensor, ESP8266, Cayenne, Relay Modules,
 
 ### Software
 
