@@ -148,6 +148,8 @@ viewer?embedded=true&url=https://jamesjrnkhata.github.io/images/embedded_project
 
 ### Software
 
+**Code**
+
 ```cpp
 ////////////////////////// ALLOTMENT WATER SYSTEM CONTROLLER ///////////////////////////////
 ///////////////////////// FEATHER HUZZAH USING CAYENNE MQTT ////////////////////////////////
@@ -296,38 +298,6 @@ void loop() {
     // 1. if the reading is below 0% or above 100% register as sensor error handler
   }
 
-  // *****DEBUG *************** //
-
-  //Serial.print("systemOffButton ");
-  //Serial.println(systemOffButton);
-
-  //Serial.print("statusCheckButton ");
-  //Serial.println(statusCheckButton);
-
-  //Serial.print("waterProcessButton ");
-  //Serial.println(waterProcessButton);
-
-  //Serial.print("manualWaterButton ");
-  //Serial.println(manualWaterButton);
-
-  //Serial.print("cancelWaterButton ");
-  //Serial.println(cancelWaterButton);
-
-
- // Serial.print("Soil Moisture ");
-//  Serial.println(soilMoisture);
-
-  Serial.print("Seconds ");
-  Serial.println(seconds);
-
-  Serial.print("Minutes ");
-  Serial.println(minutes);
-
-  Serial.print("Hours ");
-  Serial.println(hours);
-
-  // ******************************* //
-
 /************************************************************************************************************************************************************/
   // ***** CHECK IF SOIL WAS WATERED / IT RAINED **** //
 /************************************************************************************************************************************************************/  
@@ -366,14 +336,6 @@ void loop() {
       // 2. try another sample collection ?
     }
 
-
-    //**DEBUG
-    Serial.print("totalSampleValues ");
-    Serial.println(totalSampleValues);
-
-    Serial.print("totalSampleHours ");
-    Serial.println(totalSampleHours);
-    //**
   }
 
 /************************************************************************************************************************************************************/
@@ -571,13 +533,6 @@ uint16_t Soil_Moisture_Reading(void)
     sampleCount += 1;
     delay(1000); // add a 1 second delay between every Soil Moisture reading
 
-    //**DEBUG
-    Serial.print("sampleValues ");
-    Serial.println(sampleValue);
-
-    Serial.print("sampleCount ");
-    Serial.println(sampleCount);
-    //**    
   }  
 
   seconds += samples; // advance the seconds by the amount taken by the sample taking
@@ -737,8 +692,7 @@ void Watering_Process(void)
       if(cancelWaterButton)
       {
         // Reset Auto Watering Flag
-        autoWateringFlag = 0;
-        Serial.println("autoWateringFlag is reset");
+        autoWateringFlag = 0;        
 
         // reset water processs schedule button by sending reset flag back to cayenne system    
         Notification_Reset_Water_Process_Sched();
@@ -750,8 +704,6 @@ void Watering_Process(void)
       {
         // set watering flag
         wateringFlag = 1;
-        Serial.println("wateringFlag is set");
-        Serial.println("");
       }      
     }     
   }
