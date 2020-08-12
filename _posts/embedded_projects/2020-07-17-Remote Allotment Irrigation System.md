@@ -23,8 +23,8 @@ images:
     weight: 4    
 ---
 
-<!-- youtube clip " " -->
-<div class="youtube-player" data-id="lPfLFi2TlY0"></div>
+<!-- youtube clip " Wtering Remotely with Sprinkler Overview " -->
+<div class="youtube-player" data-id="xIbFuU9a_e8"></div>
 
 <h2 class="text-underline">Challenges</h2>
 The system was intended to be used for monitoring the soil moisture and autonomously watering the vegetables planted at an Allotment in a remote location. As the Allotment was in an area that was far from the owner's residence, access to water and electricity was not possible.  However a stream ran through the length of the Allotment which was decided to be used as the source for watering the vegetables using a Water Pump.
