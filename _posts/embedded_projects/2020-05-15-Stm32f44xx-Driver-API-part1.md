@@ -32,7 +32,7 @@ images:
   {% endfor %}  
 </ul>
 
-<h2 class="text-underline">Microcontroller specific</h2>
+<h2 class="text-underline">MicroController specific</h2>
 
 ```
 /*
