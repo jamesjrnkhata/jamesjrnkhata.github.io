@@ -24,7 +24,7 @@ images:
 ---
 
 <!-- youtube clip "Watering Remotely with Sprinkler Overview" -->
-<div class="youtube-player" data-id="4arRe6cnxJQ"></div>
+<div class="youtube-player" data-id="jSFKTJ85NKs"></div>
 
 <h2 class="text-underline">Challenges</h2>
 The system was intended to be used for monitoring the soil moisture and autonomously watering the vegetables planted at an Allotment in a remote location. As the Allotment was in an area that was far from the owner's residence, access to water and electricity was not possible.  However a stream ran through the length of the Allotment which was decided to be used as the source for watering the vegetables using a Water Pump.
@@ -109,8 +109,9 @@ Through Analysis of the User's requirements, the following specifications were d
 *	Have a Main Shut off Button for the system.
 *	Use Soil Moisture Sensor to determine when to water automatically.
 *	Have a minimum of two days in between watering sessions for scheduled watering.
+*	Cancel a Scheduled watering session if it rains adequately.
 *	Give the user information on Soil Moisture Sensor readings.
-*	Prompt the user to Cancel a Scheduled watering session if it may rain.
+* Notify the User of system operations such as schedules, cancellations and watering status.  
 *	Allow the user to Cancel watering sessions.
 *	Allow the user to Manually start a watering session.
 *	Only start 48 hour counter when the soil is dry (by a determined Soil Moisture Threshold).
