@@ -206,6 +206,7 @@ void loop() {
     }
     else if (value >= 85 && !(wateringFlag))
     {
+      // Start wait_five_minutes()
       // Check if the average soil moisture reading is greater than the passed threshold in %
       // and the wateringFlag is not SET
       Reset_Moist_Sample_Collect(); // reset the hourly sensor collection
@@ -496,6 +497,11 @@ void Flag_State_Change(uint8_t flag, uint8_t trigger)
   //2. only change if trigger changes state
 }
 
+void Wait_Minutes(uint8_t waitTime)
+{
+  
+}
+
 void Sensor_Error_Handler(void)
 {
 
@@ -659,8 +665,7 @@ void ManualWatering(void)
  * @Note              -
  */
 void Watering_Cycle(void)
-{ 
-  
+{   
 
   if( (wateringFlag && autoWateringFlag) || (wateringFlag && manualWateringFlag))
   {
