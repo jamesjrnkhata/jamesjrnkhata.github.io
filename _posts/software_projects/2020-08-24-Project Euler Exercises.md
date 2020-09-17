@@ -5,7 +5,7 @@ categories: [software-projects]
 permalink: /:categories/:title/
 feature_img: /images/software_projects/projecteuler/projecteuler_img00.jpg
 excerpt: "c++, problems, coding, data structures, algorithms"
-purpose: "This project aims at attempting the coding problems set on "projecteuler.net" in-order to improve on problem solving and coding skills in C++."
+purpose: "This project aims at attempting the coding problems set on 'projecteuler.net' in-order to improve on problem solving and coding skills in C++."
 toc: true
 classes: wide
 images:
