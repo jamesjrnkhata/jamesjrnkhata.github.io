@@ -1148,7 +1148,7 @@ void Notification_Watering_Tomorrow(void)
 
 <ul class="photo-gallery-3col">
   {% for image in page.images %}
-    {% if image.weight >= 8 and image.weight <= 25 %}  
+    {% if image.weight >= 8 and image.weight <= 37 %}  
       <li>
         <img class="galley_img" src="{{ image.image_path }}" alt="{{ image.title }}">
       </li>
