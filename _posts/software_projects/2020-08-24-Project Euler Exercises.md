@@ -25,7 +25,47 @@ Find the sum of all the multiples of 3 or 5 below 1000.
 
 ### Solution
 ```cpp
+// Problem01.cpp
+// by: James Jr Nkhata
 
+#include <iostream>
+
+using namespace std;
+
+// Function used to calculate all the multiples of the number1 and number2 below the upper limit
+int sum(int number1, int number2, int max_value)
+{
+    int result = 0;
+
+    // loop from 1 to the max_value
+    for (int x = 1; x < max_value; x++)
+    {
+        // find if the current number is either divisible by number1 or number2 without a reminder
+        // or will either calculate for one or the other to compensate for numbers counted twice
+        if( !(x % number1) || !(x % number2) )
+        {
+            // increment result with x
+            result += x;            
+        }        
+    }
+
+    // return result
+    return result;
+}
+
+int main()
+{
+    // set the highest number (upper limit) of values to list
+    int max_value = 1000;
+
+    // call function sum and pass the numbers of the multiples required with the upper limit
+    // store returned answer in total_sum variable
+    int total_sum = sum(3,5, max_value);    
+
+    cout << "Total sum is " << total_sum;
+
+    return 0;
+}
 ```
 
 <h2 class="text-underline">Problem 2</h2>
@@ -40,7 +80,49 @@ By considering the terms in the Fibonacci sequence whose values do not exceed fo
 
 ### Solution
 ```cpp
+// Problem02.cpp
+// by: James Jr Nkhata
 
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    // value to not exceed
+    int max_value = 4000000;
+
+    // varaible to hold sum, initialized to 2 as the calculation will start from the second term
+    long int sum = 2;
+
+    // variable used to hold a number temporarily when updating a position
+    long int temp_n = 0;
+
+    // initalize the first and second term
+    long int num1 = 1, num2 = 2;
+
+    // check if adding the previous two terms exceeds the max_value
+    while ((num1 + num2) <= max_value)
+    {
+        // check if the generated value is even
+        if (!((num1 + num2) % 2))
+        {
+            // add the generated value to sum
+            sum += (num1 + num2);
+        }
+
+        // hold the value of num2 in temp_n
+        temp_n = num2;
+
+        //update num2 with the new generated term
+        num2 = num1 + num2;
+
+        // update num1 with the value in temp_n
+        num1 = temp_n;
+
+    }
+    cout << "\nSum is " << sum;
+}
 ```
 
 <h2 class="text-underline">Problem 4</h2>
@@ -52,7 +134,102 @@ Find the largest palindrome made from the product of two 3-digit numbers.
 
 ### Solution
 ```cpp
+// Problem04.cpp
+// by: James Junior Nkhata
 
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Function used to check if the passed string is a palindrome
+int PalinCheck( string prodNum)
+{
+	// string variable used to hold the reverse prodNum string
+	string revNum;
+
+	// resize the revNum function to accomodate for the size of prodNum
+	revNum.resize(prodNum.length());
+
+	// use reverse iterator to help in reversing the characters of the string
+	string::reverse_iterator iter;
+
+	// counter used to iterate through the values of revNum
+	int counter = 0;
+
+	// loop throught the characters in the prodNum string backwards
+	for(iter = prodNum.rbegin() ; iter != prodNum.rend(); iter++)
+	{
+		// Dereference the contents of the iterator of prodNam
+		revNum[counter] = *iter;
+
+		// increment counter;
+		counter++;		
+	}
+
+	// add a null character at the end of revNum
+	revNum[counter] = '\0';
+
+	// compare string prodNum and revNum (a match resolves to 0 so the result is !NOT )
+	if( !(prodNum.compare(revNum)) )
+	{
+		// return 1 for Palindrome
+		return 1;
+	}
+	else
+	{
+		// return 0 for NOT a Palindrome
+		return 0;
+	}
+
+}
+
+int main()
+{
+	// set the maximum digit number
+	int max_digit = 999;
+
+	// variables to hold the product and the maximum product as calculations are carried out
+	int product, product_max = 0;
+
+	//variables to hold the possible maximum numbers
+	int i_max, j_max;
+
+	// string variable used to check if the product is a palindrome
+	string result;
+
+	// loop through all the possible calculations of the two digits i and j
+	for (int i = 1; i <= max_digit; i++)
+    {
+	   for (int j = 1; j <= max_digit; j++)
+	   {
+		   // multiply the two values of i and j
+		   product = i * j;
+
+		   // typecast the resulting product into a string to use string methods to manipulate the product value
+		   result = to_string(product);
+
+		   // check if the first and last digit of result are the same and product is greater than product_max
+		   // will help in skipping the values that are i and j interchaged (1x2)/(2x1)
+		   if ((result[0] == result[result.length() - 1]) && product > product_max)
+		   {
+			   // call function PalinCheck() to check if the product is a palindrome
+			   if (PalinCheck(result))
+			   {
+				   // if the PalinCheck returns true (1), update the max values
+				   i_max = i;
+				   j_max = j;
+				   product_max = product;
+			   }
+		   }		   		   
+	   }	   
+    }
+
+	// print out the max values
+	cout << i_max << " x " << j_max << " = " << product_max << endl;
+
+	return 0;
+}
 ```
 
 <h2 class="text-underline">Problem 5</h2>
@@ -66,7 +243,145 @@ What is the smallest positive number that is evenly divisible by all of the numb
 
 ### Solution
 ```cpp
+// Problem05.cpp
+// by: James Junior Nkhata
 
+#include <iostream>
+
+using namespace std;
+
+// Range of numbers
+const int range_begin = 1;
+const int range_end = 20;
+
+// Array to hold prime numbers within the range
+int prime_numbers_list[range_end];
+
+// Array to hold the number range with the first entry initialised to {1}
+int number_list[range_end - 1] = {1};
+
+
+// Function used to extract prime numbers from a given range (start to end)
+// Updates the prime_number_list[] array with the prime values found and returns the 'number' of prime values found
+// Also generates a number_list[] array of the values in the range (with the exception of the end number)
+int Prime_Number_Extractor(int start_num, int end_num)
+{    
+    // counter to iterate through the prime_number_list
+    int prime_counter = 0;
+
+    for(int i = start_num; i <= end_num; i++ )
+    {
+        // Reset count to 0 for every number checked
+        int count = 0;
+        for (int j = 1; j <= i; j++)
+        {
+            // condition to disregard the number 1 as a prime number and only count as a prime number if it is divisible by itself as well as 1
+            if (i == 1)
+            {
+                break;
+            }
+            else if (!(i % j))
+            {
+                // count how many times it is divisible
+                count++;
+
+                // break out of the internal loop if count exeeds 2 to speed up the process
+                if (count > 2) break;
+            }
+        }
+        // if the count is exactly 2 then it is a prime number
+        if (count == 2)
+        {          
+            // is a prime number
+
+            // add the number (i) to the prime_numbers_list array
+            prime_numbers_list[prime_counter] = i;
+
+            //increment prime_counter to point to the next index
+            prime_counter++;
+        }
+
+        // generate number_list array with all the numbers to use when determining the Least Common Multiple (LCM), starting from index 1
+        number_list[i] = i + 1;
+    }
+
+    // check if any prime numbers were found and return the value to use to iterate through the prime_numbers_list
+    //otherwise return 0    
+    if(prime_counter > 0)
+    {
+        return prime_counter;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+// Function used to find the Smallest Positive number Evenly divisibe through the LCM from a list of Prime Numbers obtained from the range and Numbers in the range
+int Prime_Factorizor(int prime_factor_number)
+{
+    //variables to use in determining the the Smallest Positive number Evenly divisibe
+    int product = 1;
+    int denominator, counter;
+
+    // loop to access the prime numbers list
+    for (int x = 0; x < prime_factor_number; x++)
+    {
+        // hold the current prime number in the variable denominator
+        denominator = prime_numbers_list[x];
+
+        // set the counter to 1 to start looping through and dividing the values in the number list with the denominator
+        counter = 1;
+
+        while(counter > 0)
+        {
+            // reset the counter to 0 to determine if the values of the number list are divisible or not
+            counter = 0;
+
+            // loop to access the numbers in the numbers list
+            for(int y = 0; y < range_end - 1; y++)
+            {
+                // check if the value in the number list [y] is evenly divisible by the denominator
+                // if it is update the number_list[y] value with the result from the division of number_list[y] / denominator
+                if( !(number_list[y] % denominator))
+                {
+                    number_list[y] /= denominator;
+
+                    // increment counter
+                    counter++;
+                }                
+            }
+
+            // check if any numbers were evenly divisible by the end of the number list range
+            // if so then repeat the process and use the denominator value as one of the multiples for the product
+            // otherwise exit the number list loop and while loop and move to the next denominator value  
+            if(counter > 0)
+            {
+                // use denominator value as one of the multiples for the product
+                product *= denominator;                
+            }
+        }
+    }    
+    return product;
+}
+
+int main()
+{
+    // 1. Smallest Positive number Evenly divisibe using Least Common Multiple (LCM) and Prime Factorization
+
+    // Extract prime numbers from the range using function Prime_Number_Extractor
+    int prime_factor_number = Prime_Number_Extractor(range_begin, range_end);
+
+    // check prime factors are found
+    if(prime_factor_number > 0)
+    {
+        int smallest_number = Prime_Factorizor(prime_factor_number);
+
+        cout << "Smallest Positive number Evenly divisibe by " << range_begin << " to " << range_end << " is " << smallest_number << endl;
+    }   
+
+    return 0;
+}
 ```
 
 <h2 class="text-underline">Problem 7</h2>
@@ -79,7 +394,82 @@ What is the 10 001st prime number?
 
 ### Solution
 ```cpp
+// VectareProblem07.cpp
+// by: James Junior Nkhata
 
+#include <iostream>
+
+using namespace std;
+
+// Range of numbers
+const int range_begin = 1;
+const int range_end = INT_MAX;
+
+// Function used to extract a prime number based on a position from a given range (start to end)
+// range_end is used to put a limit on the maximum number to search until so it does not run indefintely
+int Prime_Number_Extractor(int range_begin, int range_end, int prime_position)
+{
+    // counter to iterate through the prime_number_list
+    int prime_counter = 0;
+
+    for (int i = range_begin; i <= range_end; i++)
+    {
+        // Reset count to 0 for every number checked
+        int count = 0;
+
+        for (int j = 1; j <= i; j++)
+        {
+            // condition to disregard the number 1 as a prime number and only count as a prime number if it is divisible by itself as well as 1
+            if (i == 1)
+            {
+                break;
+            }
+            else if (!(i % j))
+            {
+                // increment count
+                count++;
+
+                // break out of the internal loop if count exeeds 2 to speed up the process
+                if (count > 2) break;
+            }
+        }
+
+        // if count is exactly 2 then i is a prime number
+        if (count == 2)
+        {
+            // is a prime number
+            //increment prime_counter to point to the next index
+            prime_counter++;
+
+            if (prime_counter == prime_position)
+            {
+                //cout << prime_position << " is " << j << endl;
+                return i;
+            }
+        }
+    }
+    return 0;
+}
+
+int main()
+{
+    // the prime number position to return
+    int nth_prime_number = 10001;
+
+    // call the Prime_Number_Extractor function with parameters range_begin, range_end and nth_prime_number and save the return value in result
+    int result = Prime_Number_Extractor(range_begin, range_end, nth_prime_number);
+
+    // check if the value was obtained else ask to increase the "MAX_INT"
+    if(result)
+    {
+        cout << "The " << nth_prime_number << "th prime number is " << result << endl;
+    }
+    else
+    {
+        cout << "The value of range_end " << range_end << " is too small to find the " << nth_prime_number << "prime number, increase it to increase the range" << endl;
+    }
+    return 0;
+}
 ```
 
 <h2 class="text-underline">Problem 15</h2>
@@ -105,10 +495,66 @@ Starting in the top left corner of a 2×2 grid, and only being able to move to t
 
 How many such routes are there through a 20×20 grid?
 
-
 ### Solution
 ```cpp
+// VectareProblem15.cpp
+// by: James Junior Nkhata
 
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    // Number of Routes through a grid
+    // using Modified Unique Path / Path Counting (Dynamic Programming)
+
+    // Declare grid size
+    const int rows = 20, cols = 20;
+
+    // Row and Cols adjusted to compensate for moving from line to line as opposed to from within a grid to the next grid    
+    const int max_rows = rows + 1, max_cols = cols + 1;
+
+    // using data type (unsigned long long int) to accommodate for the large values to be stored for large grids
+    unsigned long long int grid[max_rows][max_cols];
+
+    // loop used to pad the first row and column with the value 1
+    for (int i = 0; i < max_rows; i++)
+    {
+        for (int j = 0; j < max_cols; j++)
+        {            
+            if (i == 0 || j == 0)
+            {
+                grid[i][j] = 1;
+            }            
+        }       
+    }
+
+    // loop used to fill the remainder of the Matrix (submatrix) with the path count from the previous lines (grid lines)
+    for (int i = 1; i < max_rows; i++)
+    {
+        for (int j = 1; j < max_cols; j++)
+        {
+            // update the current cell / grid with the count number in the cell above and the cell on the left
+            grid[i][j] = grid[i - 1][j] + grid[i][j - 1];
+        }        
+    }
+
+    /* used to display the value updates in the matrix
+    for (int i = 0; i < max_rows; i++)
+    {
+        for (int j = 0; j < max_cols; j++)
+        {
+            cout << grid[i][j] << " ";
+        }
+        cout << endl;
+    }
+    */
+
+    cout << "\nThere are exactly " << grid[max_rows-1][max_cols-1] << " routes through a " << rows << "x" << cols << " grid" << endl;
+
+    return 0;
+}
 ```
 
 
@@ -133,5 +579,133 @@ Find the maximum total from top to bottom in <a class="custom_link" href="https:
 
 ### Solution
 ```cpp
+// VectareProblem67.cpp
+// by: James Junior Nkhata
 
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
+
+using namespace std;
+
+// input filestream object
+ifstream infile;
+
+// stringstream object
+stringstream strStream;
+
+// set the size of the matrix
+const int row = 100, col = 100;
+
+// create multidimensional array in Heap as Stack is easily exceeded
+auto* grid = new int[row][col];
+
+// Function used to extract the numbers from a file and return a square matrix
+void Document_To_Square_Matrix()
+{
+	// open file
+	infile.open("triangle.txt");
+	if (!(infile))
+	{
+		cout << "File cannot be opened" << endl;
+		exit(1); // terminate with an error
+	}
+
+	// variables to navigate through the grid matrix during file extraction
+	int row_counter = 0, col_counter = 0;
+
+	// variables used to extract from the file
+	string line;
+	string temp_str;
+	int temp_int;
+
+	for (int i = 0; i < row; i++)
+	{
+		for (int j = 0; j < col; j++)
+		{
+			// fill matrix with zeros
+			grid[i][j] = 0;
+		}
+	}
+
+	// start extracting values from the '.txt' file
+	while (!(infile.eof()))
+	{
+		// get each line of the '.txt' file and store it in the string line
+		getline(infile, line);
+
+		// reset the stream flags
+		strStream.clear();
+
+		// transfer the string line into the string stream strSteam
+		strStream << line;
+
+		// reset column counter
+		col_counter = 0;
+
+		while (!(strStream.eof()))
+		{
+			// separate the words from the strStream word by word and put them into temp_str
+			strStream >> temp_str;
+
+			// try to convert the words in temp_str into integers
+			if (stringstream(temp_str) >> temp_int)
+			{
+				// save the converted value into the grid matrix
+				grid[row_counter][col_counter] = temp_int;
+			}
+			// clear temp_str for the next iteration
+			temp_str = " ";
+
+			//increment the col_counter to point to the next column
+			col_counter++;
+		}
+
+		// condition to check if the last row of grid matrix has been reached
+		if (row_counter < row)
+		{
+			row_counter++;
+		}
+	}
+
+	// close file
+	infile.close();
+/*
+	// Print out resulting square matrix
+	for (int i = 0; i < row; i++)
+	{
+		for (int j = 0; j < col; j++)
+		{
+			cout << grid[i][j] << " ";
+		}
+		cout << endl;
+	}
+*/
+}
+
+int main()
+{
+	// attempt to extract the numbers from the file and return a square matrix
+	Document_To_Square_Matrix();
+
+	for( int r = row - 2, max_col = col-1; r > 0 || max_col > 0; r--, max_col-- )
+	{
+		for (int c = 0; c < max_col; c++)
+		{
+			if(grid[r][c] + grid[r+1][c] > grid[r][c] + grid[r + 1][c + 1])
+			{				
+				grid[r][c] = grid[r][c] + grid[r + 1][c];				
+			}
+			else
+			{				
+				grid[r][c] = grid[r][c] + grid[r + 1][c + 1];
+			}
+		}
+	}
+
+	cout << "\nmaximum total from top to bottom of the triangle with " <<row <<" row(s) is " << grid[0][0] << endl;
+
+	return 0;
+}
 ```
