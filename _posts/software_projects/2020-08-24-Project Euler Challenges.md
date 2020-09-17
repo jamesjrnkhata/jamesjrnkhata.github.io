@@ -1,10 +1,10 @@
 ---
-title: "Project Euler Exercises"
+title: "Project Euler Challenges"
 date: 2020-08-24
 categories: [software-projects]
 permalink: /:categories/:title/
 feature_img: /images/software_projects/projecteuler/projecteuler_img00.jpg
-excerpt: "c++, problems, coding, data structures, algorithms"
+excerpt: "c++, challenges, problems, coding, data structures, algorithms"
 purpose: "This project aims at attempting the coding problems set on projecteuler.net in-order to improve on problem solving and coding skills in C++."
 toc: true
 classes: wide
@@ -671,17 +671,6 @@ void Document_To_Square_Matrix()
 
 	// close file
 	infile.close();
-/*
-	// Print out resulting square matrix
-	for (int i = 0; i < row; i++)
-	{
-		for (int j = 0; j < col; j++)
-		{
-			cout << grid[i][j] << " ";
-		}
-		cout << endl;
-	}
-*/
 }
 
 int main()

@@ -21,6 +21,110 @@ images:
   - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img18.jpg
     title: "Figure 4 - "
     weight: 4    
+
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img43.jpg
+    title: " "
+    weight: 5
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img44.jpg
+    title: " "
+    weight: 6
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img45.jpg
+    title: " "
+    weight: 7
+
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img04.jpg
+    title: " "
+    weight: 8
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img06.jpg
+    title: " "
+    weight: 9
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img07.jpg
+    title: " "
+    weight: 10             
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img20.jpg
+    title: " "
+    weight: 11
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img23.jpg
+    title: " "
+    weight: 12
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img25.jpg
+    title: " "
+    weight: 13
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img32.jpg
+    title: " "
+    weight: 14
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img33.jpg
+    title: " "
+    weight: 15
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img36.jpg
+    title: " "
+    weight: 16
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img38.jpg
+    title: " "
+    weight: 17
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img42.jpg
+    title: " "
+    weight: 18
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img46.jpg
+    title: " "
+    weight: 19             
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img47.jpg
+    title: " "
+    weight: 20
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img48.jpg
+    title: " "
+    weight: 21
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img49.jpg
+    title: " "
+    weight: 22
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img50.jpg
+    title: " "
+    weight: 23
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img55.jpg
+    title: " "
+    weight: 24
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img58.jpg
+    title: " "
+    weight: 25            
+
+
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img59.jpg
+    title: " "
+    weight: 26
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img60.jpg
+    title: " "
+    weight: 27
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img64.jpg
+    title: " "
+    weight: 28             
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img65.jpg
+    title: " "
+    weight: 29
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img67.jpg
+    title: " "
+    weight: 30
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img68.jpg
+    title: " "
+    weight: 31
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img70.jpg
+    title: " "
+    weight: 32
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img71.jpg
+    title: " "
+    weight: 33
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img73.jpg
+    title: " "
+    weight: 34  
+
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img74.jpg
+    title: " "
+    weight: 35
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img75.jpg
+    title: " "
+    weight: 36
+  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img76.jpg
+    title: " "
+    weight: 37      
 ---
 
 <!-- youtube clip "Watering Remotely with Sprinkler Overview" -->
@@ -145,11 +249,55 @@ viewer?embedded=true&url=https://jamesjrnkhata.github.io/images/embedded_project
 
 ### Hardware
 
-* Wi-Fi, MQTT, Soil Moisture Sensor, ESP8266, Cayenne, Relay Modules,
+* Wi-Fi, MQTT Broker, Soil Moisture Sensor, ESP8266, Cayenne, Relay Modules,
 
 ### Software
 
 **CAYENNE MQTT**
+<ul class="photo-gallery">
+  {% for image in page.images %}
+    {% if image.weight == 5 %}
+      <li>
+        <figure class="custom-figure">
+          <img src="{{ image.image_path }}" alt="{{ image.title }}">
+          <figcaption class="custom-figcaption">
+            {{ image.title }}
+          </figcaption>
+        </figure>  
+      </li>
+    {% endif %}  
+  {% endfor %}  
+</ul>
+
+<ul class="photo-gallery">
+  {% for image in page.images %}
+    {% if image.weight == 6 %}
+      <li>
+        <figure class="custom-figure">
+          <img src="{{ image.image_path }}" alt="{{ image.title }}">
+          <figcaption class="custom-figcaption">
+            {{ image.title }}
+          </figcaption>
+        </figure>  
+      </li>
+    {% endif %}  
+  {% endfor %}  
+</ul>
+
+<ul class="photo-gallery">
+  {% for image in page.images %}
+    {% if image.weight == 7 %}
+      <li>
+        <figure class="custom-figure">
+          <img src="{{ image.image_path }}" alt="{{ image.title }}">
+          <figcaption class="custom-figcaption">
+            {{ image.title }}
+          </figcaption>
+        </figure>  
+      </li>
+    {% endif %}  
+  {% endfor %}  
+</ul>
 
 **Code**
 
@@ -997,3 +1145,13 @@ void Notification_Watering_Tomorrow(void)
 ```
 
 <h2 class="text-underline">Gallery</h2>
+
+<ul class="photo-gallery-3col">
+  {% for image in page.images %}
+    {% if image.weight >= 8 and image.weight <= 25 %}  
+      <li>
+        <img class="galley_img" src="{{ image.image_path }}" alt="{{ image.title }}">
+      </li>
+    {% endif %}  
+  {% endfor %}  
+</ul>
