@@ -4,8 +4,8 @@ date: 2020-08-24
 categories: [software-projects]
 permalink: /:categories/:title/
 feature_img: /images/software_projects/projecteuler/projecteuler_img00.jpg
-excerpt: "c++, problems, coding"
-purpose: "This project aims at attempting the coding problems set on https://projecteuler.net/ in-order to improve on problem solving and coding skills in C++."
+excerpt: "c++, problems, coding, data structures, algorithms"
+purpose: "This project aims at attempting the coding problems set on "projecteuler.net" in-order to improve on problem solving and coding skills in C++."
 toc: true
 classes: wide
 images:
@@ -13,7 +13,7 @@ images:
     weight: 1
 ---
 
-This project aims at attempting the coding problems set on https://projecteuler.net/ in-order to improve on problem solving and coding skills in C++.
+This project aims at attempting the coding problems set on <a class="custom_link" href="https://projecteuler.net/">*ProjectEuler.Net*</a> in-order to improve on problem solving and coding skills in C++.
 
 <h2 class="text-underline">Problem 1</h2>
 
@@ -210,7 +210,7 @@ int main()
 		   result = to_string(product);
 
 		   // check if the first and last digit of result are the same and product is greater than product_max
-		   // will help in skipping the values that are i and j interchaged (1x2)/(2x1)
+		   // will help in skipping the values that are i and j interchanged (1x2)/(2x1)
 		   if ((result[0] == result[result.length() - 1]) && product > product_max)
 		   {
 			   // call function PalinCheck() to check if the product is a palindrome
@@ -285,7 +285,7 @@ int Prime_Number_Extractor(int start_num, int end_num)
                 // count how many times it is divisible
                 count++;
 
-                // break out of the internal loop if count exeeds 2 to speed up the process
+                // break out of the internal loop if count exceeds 2 to speed up the process
                 if (count > 2) break;
             }
         }
