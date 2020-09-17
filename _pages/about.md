@@ -13,7 +13,7 @@ Technical skills include:
 
 * Embedded C/C++, C#, Python and MATLAB
 * Good understanding of Analogue and Digital Electronic Circuits
-* Problem solving using a variety of Analytical, Statistical and Machine Learning techniques to a very high technical standard
+* Problem solving using a variety of Analytical and Statistical techniques to a very high technical standard
 * Object Oriented Programming
 * Embedded Systems
 * Proven experience in Maintenance Engineering
