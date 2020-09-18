@@ -143,7 +143,7 @@ Find the largest palindrome made from the product of two 3-digit numbers.
 using namespace std;
 
 // Function used to check if the passed string is a palindrome
-int PalinCheck( string prodNum)
+int PalinCheck(string prodNum)
 {
 	// string variable used to hold the reverse prodNum string
 	string revNum;
