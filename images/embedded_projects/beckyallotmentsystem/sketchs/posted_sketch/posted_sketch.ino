@@ -1,307 +1,3 @@
----
-title: "Remote Allotment Irrigation System"
-date: 2020-07-17
-categories: [embedded-projects]
-permalink: /:categories/:title/
-feature_img: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img00.jpg
-excerpt: "c++, irrigation, esp8266, iot, cayenne, mqtt, remote-control, renewable-energy"
-purpose: "The aim of this project was to provide an automated solution for watering of vegetables in an allotment situated in a remote location with no direct access to water plumbing or electricity."
-toc: true
-classes: wide
-images:
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img02.jpg
-    title: "Water stream running along the length of the Allotment"
-    weight: 1
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img13.jpg
-    title: "Figure 2 - "
-    weight: 2
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img16.jpg
-    title: "Figure 3 - "
-    weight: 3       
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img18.jpg
-    title: "Figure 4 - "
-    weight: 4    
-
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img43.jpg
-    title: " "
-    weight: 5
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img44.jpg
-    title: " "
-    weight: 6
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img45.jpg
-    title: " "
-    weight: 7
-
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img04.jpg
-    title: " "
-    weight: 8
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img06.jpg
-    title: " "
-    weight: 9
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img07.jpg
-    title: " "
-    weight: 10             
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img20.jpg
-    title: " "
-    weight: 11
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img23.jpg
-    title: " "
-    weight: 12
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img25.jpg
-    title: " "
-    weight: 13
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img32.jpg
-    title: " "
-    weight: 14
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img33.jpg
-    title: " "
-    weight: 15
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img36.jpg
-    title: " "
-    weight: 16
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img38.jpg
-    title: " "
-    weight: 17
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img42.jpg
-    title: " "
-    weight: 18
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img46.jpg
-    title: " "
-    weight: 19             
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img47.jpg
-    title: " "
-    weight: 20
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img48.jpg
-    title: " "
-    weight: 21
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img49.jpg
-    title: " "
-    weight: 22
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img50.jpg
-    title: " "
-    weight: 23
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img55.jpg
-    title: " "
-    weight: 24
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img58.jpg
-    title: " "
-    weight: 25            
-
-
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img59.jpg
-    title: " "
-    weight: 26
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img60.jpg
-    title: " "
-    weight: 27
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img64.jpg
-    title: " "
-    weight: 28             
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img65.jpg
-    title: " "
-    weight: 29
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img67.jpg
-    title: " "
-    weight: 30
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img68.jpg
-    title: " "
-    weight: 31
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img70.jpg
-    title: " "
-    weight: 32
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img71.jpg
-    title: " "
-    weight: 33
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img73.jpg
-    title: " "
-    weight: 34  
-
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img74.jpg
-    title: " "
-    weight: 35
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img75.jpg
-    title: " "
-    weight: 36
-  - image_path: /images/embedded_projects/beckyallotmentsystem/beckyallotmentsystem_img76.jpg
-    title: " "
-    weight: 37      
----
-
-<!-- youtube clip "Watering Remotely with Sprinkler Overview" -->
-<div class="youtube-player" data-id="jSFKTJ85NKs"></div>
-
-<h2 class="text-underline">Challenges</h2>
-The system was intended to be used for monitoring the soil moisture and autonomously watering the vegetables planted at an Allotment in a remote location. As the Allotment was in an area that was far from the owner's residence, access to water and electricity was not possible.  However a stream ran through the length of the Allotment which was decided to be used as the source for watering the vegetables using a Water Pump.
-
-The challenges that the project potentially faced were:
-* Power Source - Depending on the type of water pump used, a method of powering the pump was required.  
-* Watering Control - A way to register when the ground was watered, when it needed watering and a method to start watering without the need for the user to visit the Allotment.
-* Security of Equipment - Although the Allotment was in a gated area, further consideration was supposed to be taken for the security and protection of the components (pump, controller etc) as the Allotment was located in a public area surrounded by other Allotment owners. This would leave the components susceptible to theft, vandalism or weather.
-
-<ul class="photo-gallery">
-  {% for image in page.images %}
-    {% if image.weight == 1 %}
-      <li>
-        <figure class="custom-figure">
-          <img src="{{ image.image_path }}" alt="{{ image.title }}">
-          <figcaption class="custom-figcaption">
-            {{ image.title }}
-          </figcaption>
-        </figure>  
-      </li>
-    {% endif %}  
-  {% endfor %}  
-</ul>
-
-<h2 class="text-underline">Requirements</h2>
-The user required the system to be able to water an area of roughly 100 square feet autonomously. They also wanted the system to be able to have capabilities of attaching a hose pipe for hand watering and also filling up Rain Barrels / Water Butts.
-
-<h2 class="text-underline">Design</h2>
-
-### Hardware
-
-**Security**
-
-The user had a shed built on the location which was 16 meters from the stream (water source). It was decided that the shed would be used to house and protect the components (Controller, Pump, Solar Panel, Battery etc) from theft, vandalism and weather elements.  
-
-**Power Source**
-
-In-order to power the system the decision of an off-grid solution seemed the more feasible option. This would comprise of solar panel(s), charge controller, Inverter (for a 240 volt Pump if needed) and Deep Cycle Battery (for deep discharges). Through analysing the user's needs and the distance from the water stream to the shed (16 meters),  it was determined that a 12 Volt (12V) DC Centrifugal Pump running on a 12v Deep Cycle Battery (Wet Cell) would be more than adequate for the job. 12V was also ideal as it would make it easier and efficient to power more devices without the need for extra components such as step-down transformers such as a 240 volt system.
-
-Sizing of the Battery Bank and Solar panels was calculated and determined by the number of components being powered and the length of use required by the user.
-
-A 12V Centrifugal Pump with an Automatic Pressure Control Switch was also preferred as it would allow the user to be able to control the water flow by simply opening valves (or tap) without fusing with the pump.  
-
-**System Controller**
-
-The Scheduling and Remote switching Controller solution was going to be achieved by integration of components such as: Feather Huzzah (ESP8266) MCU, Wi-Fi Modem (Hotpsot), MQTT through Cayenne Iot platform, Soil Moisture Sensor and Relay Modules.
-
-<ul class="photo-gallery-2col">
-  {% for image in page.images %}
-    {% if image.weight >= 2 and image.weight <= 3 %}
-      <li>
-        <figure class="custom-figure">
-          <img class="galley_img" src="{{ image.image_path }}" alt="{{ image.title }}">
-          <figcaption class="custom-figcaption">
-            {{ image.title }}
-          </figcaption>
-        </figure>  
-      </li>
-    {% endif %}  
-  {% endfor %}  
-</ul>
-
-**System Plumbing Layout**
-
-<embed src="https://drive.google.com/viewerng/
-viewer?embedded=true&url=https://jamesjrnkhata.github.io/images/embedded_projects/beckyallotmentsystem/Plumbing-Layout.pdf" width="1024" height="768">
-
-
-The system's plumbing was design to serve 5 functions:
-1. Draw water from the *Stream (Inline Valve - Inlet 1 Opened)* to the *Sprinkler* Manually *(Inline Valve - Outlet 1 Opened)* or Automatically *(Solenoid Valve)* by User Remote / Schedule (through System Controller MCU).
-2. Draw water from the *Stream (Inline Valve - Inlet 1 Opened)* to the *Garden Tap* for hand watering / hose attachment.
-3. Draw water from the *Stream (Inline Valve - Inlet 1 Opened)* to fill up the *Water Drum (Inline Valve - Outlet 2)*.
-4. Draw water from the *Drum (Inline Valve - Inlet 2 Opened)* to the Sprinkler Manually or Automatically.
-5. Draw water from the *Drum (Inline Valve - Inlet 2 Opened)* to the Garden Tap.  
-
-### Software
-
-**System Requirements**
-
-Through Analysis of the User's requirements, the following specifications were determined for the *System Controller*:
-
-*	Have a Main Shut off Button for the system.
-*	Use Soil Moisture Sensor to determine when to water automatically.
-*	Have a minimum of two days in between watering sessions for scheduled watering.
-*	Cancel a Scheduled watering session if it rains adequately.
-*	Give the user information on Soil Moisture Sensor readings.
-* Notify the User of system operations such as schedules, cancellations and watering status.  
-*	Allow the user to Cancel watering sessions.
-*	Allow the user to Manually start a watering session.
-*	Only start 48 hour counter when the soil is dry (by a determined Soil Moisture Threshold).
-*	Collect a few samples of Soil Moisture Sensor readings and calculate the average value every hour.
-
-<ul class="photo-gallery">
-  {% for image in page.images %}
-    {% if image.weight == 5 %}
-      <li>
-        <figure class="custom-figure">
-          <img src="{{ image.image_path }}" alt="{{ image.title }}">
-          <figcaption class="custom-figcaption">
-            {{ image.title }}
-          </figcaption>
-        </figure>  
-      </li>
-    {% endif %}  
-  {% endfor %}  
-</ul>
-
-**System Controller Software Flowchart**
-
-<embed src="https://drive.google.com/viewerng/
-viewer?embedded=true&url=https://jamesjrnkhata.github.io/images/embedded_projects/beckyallotmentsystem/Software-Requirements.pdf" width="1024" height="768">
-
-<h2 class="text-underline">Implementation</h2>
-
-<!-- youtube clip "Irrigation System Extra Features" -->
-<div class="youtube-player" data-id="FQUCazGfT6A"></div>
-
-
-### Hardware
-
-* Wi-Fi, MQTT Broker, Soil Moisture Sensor, ESP8266, Cayenne, Relay Modules,
-
-### Software
-
-**CAYENNE MQTT**
-<ul class="photo-gallery">
-  {% for image in page.images %}
-    {% if image.weight == 5 %}
-      <li>
-        <figure class="custom-figure">
-          <img src="{{ image.image_path }}" alt="{{ image.title }}">
-          <figcaption class="custom-figcaption">
-            {{ image.title }}
-          </figcaption>
-        </figure>  
-      </li>
-    {% endif %}  
-  {% endfor %}  
-</ul>
-
-<ul class="photo-gallery">
-  {% for image in page.images %}
-    {% if image.weight == 6 %}
-      <li>
-        <figure class="custom-figure">
-          <img src="{{ image.image_path }}" alt="{{ image.title }}">
-          <figcaption class="custom-figcaption">
-            {{ image.title }}
-          </figcaption>
-        </figure>  
-      </li>
-    {% endif %}  
-  {% endfor %}  
-</ul>
-
-<ul class="photo-gallery">
-  {% for image in page.images %}
-    {% if image.weight == 7 %}
-      <li>
-        <figure class="custom-figure">
-          <img src="{{ image.image_path }}" alt="{{ image.title }}">
-          <figcaption class="custom-figcaption">
-            {{ image.title }}
-          </figcaption>
-        </figure>  
-      </li>
-    {% endif %}  
-  {% endfor %}  
-</ul>
-
-**Code**
-
-```cpp
 ////////////////////////// ALLOTMENT WATER SYSTEM CONTROLLER ///////////////////////////////
 ///////////////////////// FEATHER HUZZAH USING CAYENNE MQTT ////////////////////////////////
 /////////////////////////// written by: JAMES JR NKHATA ////////////////////////////////////
@@ -335,7 +31,7 @@ uint8_t totalSampleHours = 0;
 uint16_t totalSampleValues = 0;
 
 /*************************************************************************************************************************************************************/
-
+ 
 /*
  * Soil sensor data
  */
@@ -350,7 +46,7 @@ uint16_t soilMoisture;
 /************************************************************************************************************************************************************/
 
 /*
- *  Cayenne System Variables
+ *  Cayenne System Variables 
  */
  #define SYSTEM_OFF_BUTTON_CHANNEL                    1  /*!< Switch the system on and off >*/
  #define STATUS_CHECK_SCHED_BUTTON_CHANNEL            2  /*!< Used to start a “Status Check” scheduled routine >*/  
@@ -359,7 +55,7 @@ uint16_t soilMoisture;
  #define CANCEL_WATER_BUTTON_CHANNEL                  5  /*!< Used to Cancel next scheduling or currently Watering Process >*/
 
  //#define USER_SCHED_WATER_BUTTON_CHANNEL              17  /*!< Used to manually schedule Watering the next day >*/
-
+ 
  #define CANCEL_WATERING_BUTTON_FLAG_CHANNEL          6  /*!< Used to reset the state of the Cancel Watering Button Cayenne Button press >*/
  #define STATUS_CHECK_SCHEDULE_BUTTON_FLAG_CHANNEL    7  /*!< Used to reset the state of the Check Schedule Button Cayenne Button press >*/
  #define WATER_PROCESS_SCHEDULE_BUTTON_FLAG_CHANNEL   8  /*!< Used to reset the state of the Water Process Schedule Button Cayenne Button press >*/
@@ -370,7 +66,7 @@ uint16_t soilMoisture;
  #define WATERING_SCHEDULED_TOMORROW_CHANNEL          13 /*!< Used to send a notification to the user informing them of a scheduled watering session >*/
 
  #define WATERING_STATUS_CHANNEL                      16 /*!< Used to log the watering for activity for the user >*/
-
+ 
  #define TOTAL_SAMPLE_HOURS_CHANNEL                   14 /*!< Used to send a Total Sample Hour data for DEBUGGING >*/
  #define TOTAL_SAMPLE_VALUES_CHANNEL                  15 /*!< Used to send a Total Sample Value data for DEBUGGING >*/
 
@@ -396,18 +92,18 @@ uint16_t soilMoisture;
  uint8_t autoWateringFlag = 0;
  uint8_t manualWateringFlag = 0;
  uint8_t wateringFlag = 0;
- uint8_t startWateringFlag = 0;
+ uint8_t startWateringFlag = 0; 
 /************************************************************************************************************************************************************/
 
 /*
- * Define the macros to use with the relays
+ * Define the macros to use with the relays 
  */
  #define SPRINKLER_VALVE_RELAY                        12 /*!< Used to control Sprinkler Solenoid Valve >*/
  #define PUMP_RELAY                                   13 /*!< Used to control the Pump>*/
 /************************************************************************************************************************************************************/
-
+ 
 /*
- * prototype the functions used in the system
+ * prototype the functions used in the system 
  */
 uint16_t Soil_Moisture_Reading(void);
 
@@ -431,7 +127,7 @@ void setup() {
 
   pinMode(PUMP_RELAY, OUTPUT); // setup Pump relay as output
   digitalWrite(PUMP_RELAY, HIGH); // switch off relay (ACTIVE LOW - LOW turns on and HIGH turns off)  
-
+  
 }
 /************************************************************************************************************************************************************/
 /************************************************************************************************************************************************************/
@@ -440,23 +136,23 @@ void loop() {
   Cayenne.loop();  
 
   Time_Counter(); // call Time_Counter function
-
+  
   capSoilSensor1 = analogRead(A0); /*!< > */
-
+    
   soilMoisture = map(capSoilSensor1, airDryValue, soilWetValue, 0, 100);
-
+  
   if(soilMoisture > 100 || soilMoisture < 0)
   {
     soilMoisture = 0;
     // 1. if the reading is below 0% or above 100% register as sensor error handler
   }
-
+     
 /************************************************************************************************************************************************************/
   // ***** CHECK IF SOIL WAS WATERED / IT RAINED **** //
 /************************************************************************************************************************************************************/  
   if(soilMoisture > 85 && !(wateringFlag) )
   {
-     uint16_t tempValue = Soil_Moisture_Reading(); // start collecting samples
+     uint16_t tempValue = Soil_Moisture_Reading(); // start collecting samples 
 
      if(tempValue >= 85)
      {
@@ -465,11 +161,11 @@ void loop() {
       Reset_Moist_Sample_Collect(); // reset the hourly sensor collection    
      }
   }
-
+  
 /************************************************************************************************************************************************************/
   // ***** HOURLY SAMPLE COLLECTION **** //
 /************************************************************************************************************************************************************/  
-  if( (minutes == 58 && seconds == 1) && !(wateringFlag) )//
+  if( (minutes == 58 && seconds == 1) && !(wateringFlag) )// 
   {
     uint16_t value = Soil_Moisture_Reading(); // start collecting samples for the hour
 
@@ -491,7 +187,7 @@ void loop() {
       // 2. try another sample collection ?
     }   
   }
-
+  
 /************************************************************************************************************************************************************/
   // ***** STATUS CHECK ON SCHEDULED EVENT **** //
 /************************************************************************************************************************************************************/
@@ -499,13 +195,13 @@ void loop() {
   if( !(systemOffButton) && statusCheckButton)
   {    
     // run Status_check_process
-    // call status check function and pass parameter of the minimum hours acceptable between soil watering
+    // call status check function and pass parameter of the minimum hours acceptable between soil watering 
     Status_Check_Process(24);
-
+    
     // reset status check schedule button by sending reset flag back to cayenne system       
     Notification_Reset_Status_Check_Sched();
   }
-
+  
 /************************************************************************************************************************************************************/
   // ***** WATERING PROCESSING **** //
 /************************************************************************************************************************************************************/
@@ -536,11 +232,11 @@ void loop() {
  *
  * @brief             - Default function for sending sensor data at intervals to Cayenne (See https://cayenne.mydevices.com/cayenne/)
  *                      You can also use functions for specific channels, e.g CAYENNE_OUT(1) for sending channel 1 data.
- * @param[in]         -
- * @param[in]         -
- * @param[in]         -
+ * @param[in]         - 
+ * @param[in]         - 
+ * @param[in]         - 
  *
- * @return            -
+ * @return            - 
  *
  * @Note              -
  */
@@ -553,26 +249,26 @@ CAYENNE_OUT_DEFAULT()
   Cayenne.virtualWrite(CANCEL_WATERING_BUTTON_FLAG_CHANNEL, cancelWateringState, "digital_sensor", "d");
 
   // Write Data to CAYENNE
-  Cayenne.virtualWrite(STATUS_CHECK_SCHEDULE_BUTTON_FLAG_CHANNEL, statusCheckSchedState);
+  Cayenne.virtualWrite(STATUS_CHECK_SCHEDULE_BUTTON_FLAG_CHANNEL, statusCheckSchedState); 
 
   // Write Data to CAYENNE
   Cayenne.virtualWrite(WATER_PROCESS_SCHEDULE_BUTTON_FLAG_CHANNEL, waterProcessSchedState);
 
   // Write Data to CAYENNE
   Cayenne.virtualWrite(MANUAL_WATER_BUTTON_FLAG_CHANNEL, manualWateringState);          
-
+   
   // Write Data to CAYENNE
   Cayenne.virtualWrite(STARTED_WATERING_CHANNEL, startedWateringState, "digital_sensor", "d");   
 
   // Write Data to CAYENNE
   Cayenne.virtualWrite(FINISHED_WATERING_CHANNEL, finishedWateringState, "digital_sensor", "d");   
-
+           
   // Write Data to CAYENNE
   Cayenne.virtualWrite(WATERING_SCHEDULED_TOMORROW_CHANNEL, wateringSchedTomorrowState, "digital_sensor", "d");
-
+             
   // Write Data to CAYENNE
   Cayenne.virtualWrite(TOTAL_SAMPLE_HOURS_CHANNEL, totalSampleHours);
-
+             
   // Write Data to CAYENNE
   Cayenne.virtualWrite(TOTAL_SAMPLE_VALUES_CHANNEL, totalSampleValues);
 
@@ -585,11 +281,11 @@ CAYENNE_OUT_DEFAULT()
  *
  * @brief             - Used to receive data from the CAYENNE System (See https://cayenne.mydevices.com/cayenne/)
  *
- * @param[in]         -
- * @param[in]         -
- * @param[in]         -
+ * @param[in]         - 
+ * @param[in]         - 
+ * @param[in]         - 
  *
- * @return            -
+ * @return            - 
  *
  * @Note              -
  */
@@ -621,7 +317,7 @@ CAYENNE_IN(CANCEL_WATER_BUTTON_CHANNEL) // Cancel Water Button
 /************************************************************************************************************************************************************
  * @fn                - Time_Counter
  *
- * @brief             - Used millis() function to count seconds, minutes and hours
+ * @brief             - Used millis() function to count seconds, minutes and hours 
  *
  * @param[in]         - "start" is an uint8_t used to start or stop the counter (1 - start, 0 - stop)
  * @param[in]         - "seconds_minutes_hours" uint8_t used to select return type 0 - seconds, 1 - minutes and 2 hours
@@ -645,16 +341,16 @@ void Time_Counter(void)
           minutes = 0;
           hours += 1;  
         }
-      }
+      } 
       previousTime = millis();
   }
 
   // condition to counter the millis function rolling over
   else if(millis() - previousTime < 0)
   {
-    previousTime = millis();
+    previousTime = millis(); 
   }
-
+    
 }
 
 /************************************************************************************************************************************************************
@@ -678,11 +374,11 @@ uint16_t Soil_Moisture_Reading(void)
 
   for(uint8_t x; x<samples; x++ )
   {
-
+    
     sampleValue += soilMoisture;
     sampleCount += 1;
     delay(1000); // add a 1 second delay between every Soil Moisture reading
-
+      
     //**DEBUG
     Serial.print("sampleValues ");
     Serial.println(sampleValue);
@@ -691,7 +387,7 @@ uint16_t Soil_Moisture_Reading(void)
     Serial.println(sampleCount);
     //**    
   }  
-
+  
   seconds += samples; // advance the seconds by the amount taken by the sample taking
 
   uint16_t averageSampleValue = (sampleValue/(uint16_t)sampleCount) ;
@@ -702,8 +398,8 @@ uint16_t Soil_Moisture_Reading(void)
 /************************************************************************************************************************************************************
  * @fn                - Average_Soil_Moisture_Reading
  *
- * @brief             - Used to calculate average Soil Moisture from collected
- *                      samples over a set period
+ * @brief             - Used to calculate average Soil Moisture from collected 
+ *                      samples over a set period 
  *
  * @param[in]         - soil wetness threshold in percent 0 - 100 (above 70% is still wet)
  * @param[in]         -
@@ -731,11 +427,11 @@ uint8_t Average_Soil_Moisture_Reading(uint8_t wetThreshold)
  * @brief             - Used to reset the parameters used to keep track of the timings
  *                      
  *
- * @param[in]         -
+ * @param[in]         - 
  * @param[in]         -
  * @param[in]         -
  *
- * @return            -
+ * @return            - 
  *
  * @Note              -
  */
@@ -760,7 +456,7 @@ void Flag_State_Change(uint8_t flag, uint8_t trigger)
 
 void Wait_Minutes(uint8_t waitTime)
 {
-
+  
 }
 
 void Sensor_Error_Handler(void)
@@ -773,14 +469,14 @@ void Sensor_Error_Handler(void)
  * @fn                - Status_Check_Process
  *
  * @brief             - Used to determine if the user has set the system on (from Cayenne system)
- *                      also used to check for the scheduled check for watering the next day
- *                      and if the hours passed are enough to require watering
+ *                      also used to check for the scheduled check for watering the next day 
+ *                      and if the hours passed are enough to require watering 
  *
  * @param[in]         - setSampleHours used to set the minimum hours of samples collected to start auto watering
  * @param[in]         -
  * @param[in]         -
  *
- * @return            -
+ * @return            - 
  *
  * @Note              -
  */
@@ -800,12 +496,12 @@ void Status_Check_Process(uint8_t setSampleHours)
       // Soil is dry
       // START WATERING PROCESS (Set Auto watering flag)
       autoWateringFlag = 1;
-
+      
       // send a notifaction to the user if watering is scheduled tomorrow
       Notification_Watering_Tomorrow();
     }
   }
-
+  
   /*
   // USER HAS MANUALLY SCHEDULED WATERING  
   else if()
@@ -820,8 +516,8 @@ void Status_Check_Process(uint8_t setSampleHours)
  * @fn                - Watering_Process
  *
  * @brief             - Used to initialize the watering when a scheduled signal is received from Cayenne system
- *                      it uses a few parameters to determine if the conditions are appropriate to carryout watering
- * @param[in]         -
+ *                      it uses a few parameters to determine if the conditions are appropriate to carryout watering 
+ * @param[in]         - 
  * @param[in]         -
  * @param[in]         -
  *
@@ -836,20 +532,20 @@ void Watering_Process(void)
     //*******DEBUG********//
     Serial.println("START WATERING PROCESS");
     // ********************* //
-
+    
     // send a notifaction to the user "watering is scheduled tomorrow"
     // Notification_Watering_Tomorrow();
-
+    
     // Wait for watering process schedule to start / Cancel button to be received / it rains before the water process schedule signal is received
     if(soilMoisture > 85 && !(waterProcessButton) )
     {
         uint16_t tempValue = Soil_Moisture_Reading(); // start collecting samples        
-        // if collected sample average is greater than
+        // if collected sample average is greater than 
         if(tempValue > 85)
         {
           // send notification to user that it rained / soil is wet so watering is cancelled
           Notification_Cancel_Watering();
-
+          
           // Reset Auto Watering Flag
           autoWateringFlag = 0;
         }    
@@ -859,7 +555,7 @@ void Watering_Process(void)
     else if(waterProcessButton)
     {
       // check if the user has cancelled the watering      
-      // Note: waited until Water Process Scheduled button is activated before cancelling incase the user changes their mind
+      // Note: waited until Water Process Scheduled button is activated before cancelling incase the user changes their mind 
       if(cancelWaterButton)
       {
         // Reset Auto Watering Flag
@@ -868,7 +564,7 @@ void Watering_Process(void)
 
         // reset water processs schedule button by sending reset flag back to cayenne system    
         Notification_Reset_Water_Process_Sched();
-
+  
         // reset cancel water button by sending reset flag back to cayenne system    
         Notification_Cancel_Watering();       
       }
@@ -888,7 +584,7 @@ void Watering_Process(void)
  *
  * @brief             - used to water when the manual button is pressed, watering until completion (1 hour) or cancel button is pressed or manual button is off
  *                      
- * @param[in]         -
+ * @param[in]         - 
  * @param[in]         -
  * @param[in]         -
  *
@@ -916,9 +612,9 @@ void ManualWatering(void)
 /************************************************************************************************************************************************************
  * @fn                - Watering_Cycle
  *
- * @brief             -
+ * @brief             - 
  *                      
- * @param[in]         -
+ * @param[in]         - 
  * @param[in]         -
  * @param[in]         -
  *
@@ -936,16 +632,16 @@ void Watering_Cycle(void)
     minutes = 0;
     hours = 0;
     previousTime = millis();    
-    autoWateringFlag = 0; // reset autowateringflag
+    autoWateringFlag = 0; // reset autowateringflag 
     manualWateringFlag = 0; // reset manualwateringflag    
     startWateringFlag = 1;
-
+    
     wateringStatus = 1;
     //Cayenne.virtualWrite(WATERING_STATUS_CHANNEL, wateringStatus);
 
     // Send started watering notification to user
     Notification_Started_Watering();
-
+    
     // start opening the solenoid valve first to prevent pump from using its built-in pressure control valve (high amp draw)    
     digitalWrite(SPRINKLER_VALVE_RELAY ,LOW);
     delay(5000); // add a 5 second delay
@@ -957,11 +653,11 @@ void Watering_Cycle(void)
     digitalWrite(SPRINKLER_VALVE_RELAY ,LOW);
     digitalWrite(PUMP_RELAY ,LOW);
     Serial.println("TURN ON RELAYS");
-
+        
     if(cancelWaterButton)
     {
       StopWatering();
-
+        
       // Send cancel notification to user
       // reset cancel water button by sending reset flag back to cayenne system    
       Notification_Cancel_Watering();    
@@ -970,7 +666,7 @@ void Watering_Cycle(void)
   else if( hours > 0 && startWateringFlag)
   {    
     StopWatering();
-
+        
     // Send completion notification to user
     Notification_Finished_Watering();
   }
@@ -979,9 +675,9 @@ void Watering_Cycle(void)
 /************************************************************************************************************************************************************
  * @fn                - StopWatering
  *
- * @brief             -
+ * @brief             - 
  *                      
- * @param[in]         -
+ * @param[in]         - 
  * @param[in]         -
  * @param[in]         -
  *
@@ -1000,17 +696,17 @@ void StopWatering(void)
 
   Serial.print("STOP WATERING");
 
-  seconds += 5; // increment seconds by 5 to make up for the delay
+  seconds += 5; // increment seconds by 5 to make up for the delay 
 
   // reset water processs schedule button by sending reset flag back to cayenne system    
   Notification_Reset_Water_Process_Sched();
-
+  
   // rest manual button by sending reset flag back to cayenne system    
   Notification_Reset_Manual_Button();
-
+  
   // reset cancel water button by sending reset flag back to cayenne system    
   Notification_Cancel_Watering();
-
+  
   // reset watering flags
   autoWateringFlag = 0;
   wateringFlag = 0;
@@ -1027,7 +723,7 @@ void StopWatering(void)
  *
  * @brief             - Function used to reset cancel water button by sending reset flag back to cayenne system
  *                      
- * @param[in]         -
+ * @param[in]         - 
  * @param[in]         -
  * @param[in]         -
  *
@@ -1038,7 +734,7 @@ void StopWatering(void)
 void Notification_Cancel_Watering(void)
 {
   // reset cancel water button by sending reset flag back to cayenne system
-  cancelWateringState = 1; // SET cancelWateringState
+  cancelWateringState = 1; // SET cancelWateringState 
   Cayenne.virtualWrite(CANCEL_WATERING_BUTTON_FLAG_CHANNEL , cancelWateringState);
   cancelWateringState = 0; // RESET cancelWateringState
 }
@@ -1046,9 +742,9 @@ void Notification_Cancel_Watering(void)
 /************************************************************************************************************************************************************
  * @fn                - Notification_Reset_Status_Check_Sched
  *
- * @brief             - Function used to reset status check schedule button by sending reset flag back to cayenne system
+ * @brief             - Function used to reset status check schedule button by sending reset flag back to cayenne system 
  *                      
- * @param[in]         -
+ * @param[in]         - 
  * @param[in]         -
  * @param[in]         -
  *
@@ -1062,7 +758,7 @@ void Notification_Reset_Status_Check_Sched(void)
   statusCheckSchedState = 1; // SET statusCheckSchedFlag  
   Cayenne.virtualWrite(STATUS_CHECK_SCHEDULE_BUTTON_FLAG_CHANNEL, statusCheckSchedState);
   statusCheckSchedState = 0; // RESET statusCheckSchedFlag
-
+  
 }
 
 /************************************************************************************************************************************************************
@@ -1070,7 +766,7 @@ void Notification_Reset_Status_Check_Sched(void)
  *
  * @brief             - Function used to reset water processs schedule button by sending reset flag back to cayenne system
  *                      
- * @param[in]         -
+ * @param[in]         - 
  * @param[in]         -
  * @param[in]         -
  *
@@ -1091,7 +787,7 @@ void Notification_Reset_Water_Process_Sched(void)
  *
  * @brief             - Function used to rest manual button by sending reset flag back to cayenne system
  *                      
- * @param[in]         -
+ * @param[in]         - 
  * @param[in]         -
  * @param[in]         -
  *
@@ -1112,7 +808,7 @@ void Notification_Reset_Manual_Button(void)
  *
  * @brief             - Function used to send a flag to cayenne to intialize a customised message to the user that watering has started
  *                      
- * @param[in]         -
+ * @param[in]         - 
  * @param[in]         -
  * @param[in]         -
  *
@@ -1133,7 +829,7 @@ void Notification_Started_Watering(void)
  *
  * @brief             - Function used to send a flag to cayenne to intialize a customised message to the user that watering has finished
  *                      
- * @param[in]         -
+ * @param[in]         - 
  * @param[in]         -
  * @param[in]         -
  *
@@ -1154,7 +850,7 @@ void Notification_Finished_Watering(void)
  *
  * @brief             - Function used to send a flag to cayenne to intialize a customised message to the user that watering is scheduled tomorrow
  *                      
- * @param[in]         -
+ * @param[in]         - 
  * @param[in]         -
  * @param[in]         -
  *
@@ -1169,16 +865,3 @@ void Notification_Watering_Tomorrow(void)
   Cayenne.virtualWrite(WATERING_SCHEDULED_TOMORROW_CHANNEL, wateringSchedTomorrowState);
   wateringSchedTomorrowState = 0; // RESET wateringSchedTomorrowState
 }
-```
-
-<h2 class="text-underline">Gallery</h2>
-
-<ul class="photo-gallery-3col">
-  {% for image in page.images %}
-    {% if image.weight >= 8 and image.weight <= 37 %}  
-      <li>
-        <img class="galley_img" src="{{ image.image_path }}" alt="{{ image.title }}">
-      </li>
-    {% endif %}  
-  {% endfor %}  
-</ul>
